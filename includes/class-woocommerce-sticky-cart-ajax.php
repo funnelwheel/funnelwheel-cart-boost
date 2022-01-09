@@ -14,9 +14,11 @@ class WooCommerce_Sticky_Cart_Ajax {
 	}
 
 	public function get_cart_information() {
-		return [
-			'isEmpty'   => WC()->cart->is_empty(),
-			'cartItems' => WC()->cart->get_cart(),
-		];
+		wp_send_json(
+			[
+				'isEmpty'   => WC()->cart->is_empty(),
+				'cartItems' => WC()->cart->get_cart(),
+			]
+		);
 	}
 }

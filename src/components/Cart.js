@@ -1,4 +1,19 @@
+import {useEffect} from "@wordpress/element";
+import apiFetch from "@wordpress/api-fetch";
+import {addQueryArgs} from "@@wordpress/url";
+
 export default function Cart() {
+	useEffect(() => {
+		apiFetch({
+			url: addQueryArgs(
+				"http://localhost/wp/woocommerce/wp-admin/admin-ajax.php",
+				{action: "woocommerce_get_cart_information"}
+			)
+		}).then(posts => {
+			console.log(posts);
+		});
+	}, []);
+
 	return (
 		<div id="sticky-cart" className="modal show">
 			<div className="modal-dialog modal-dialog-centered">
