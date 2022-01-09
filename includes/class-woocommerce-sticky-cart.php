@@ -58,6 +58,7 @@ final class WooCommerce_Sticky_Cart {
 	 */
 	private function hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+		add_action( 'wp_footer', [ $this, 'sticky_cart_root' ] );
 	}
 
 	/**
@@ -81,6 +82,14 @@ final class WooCommerce_Sticky_Cart {
 			[],
 			$asset_file['version']
 		);
+	}
+
+	/**
+	 * [sticky_cart_root description]
+	 * @return [type] [description]
+	 */
+	public function sticky_cart_root() {
+		echo '<div id="woocommerce-sticky-cart-root"></div>';
 	}
 
 	/**
