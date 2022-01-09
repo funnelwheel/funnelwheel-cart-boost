@@ -80,6 +80,14 @@ final class WooCommerce_Sticky_Cart {
 			true
 		);
 
+		wp_localize_script(
+			'woocommerce-sticky-cart',
+			'woocommerce_sticky_cart',
+			[
+				'ajaxURL' => admin_url( 'admin-ajax.php' ),
+			]
+		);
+
 		wp_enqueue_style(
 			'woocommerce-sticky-cart',
 			plugins_url( 'build/index.css', WOOCOMMERCE_STICKY_CART_FILE ),

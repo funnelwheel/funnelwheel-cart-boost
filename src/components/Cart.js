@@ -1,6 +1,4 @@
 import {useEffect} from "@wordpress/element";
-import apiFetch from "@wordpress/api-fetch";
-import {addQueryArgs} from "@@wordpress/url";
 
 export default function Cart() {
 	useEffect(() => {
