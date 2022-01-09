@@ -50,6 +50,7 @@ final class WooCommerce_Sticky_Cart {
 	 */
 	private function includes() {
 		include_once WOOCOMMERCE_STICKY_CART_ABSPATH . 'includes/template-functions.php';
+		include_once WOOCOMMERCE_STICKY_CART_ABSPATH . 'includes/class-woocommerce-sticky-cart-ajax.php';
 	}
 
 	/**
@@ -59,6 +60,9 @@ final class WooCommerce_Sticky_Cart {
 	private function hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'wp_footer', [ $this, 'sticky_cart_root' ] );
+
+		// Init classes.
+		$this->ajax = new WooCommerce_Sticky_Cart_Ajax();
 	}
 
 	/**
