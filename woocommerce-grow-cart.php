@@ -23,7 +23,7 @@ if ( ! defined( 'WOOCOMMERCE_GROW_CART_FILE' ) ) {
 include_once dirname( WOOCOMMERCE_GROW_CART_FILE ) . '/includes/class-woocommerce-grow-cart.php';
 
 // Returns the main instance of Container.
-function woocommercegrowy_cart() {
+function woocommerce_grow_cart() {
 	return \Upnrunn\WooCommerce_Grow_Cart::instance();
 }
 
