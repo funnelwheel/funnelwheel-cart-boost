@@ -5,10 +5,10 @@ namespace Upnrunn;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * WooCommerce_Sticky_Cart_Ajax class.
+ * WooCommerce_Grow_Cart_Ajax class.
  * @var [type]
  */
-class WooCommerce_Sticky_Cart_Ajax {
+class WooCommerce_Grow_Cart_Ajax {
 	public function __construct() {
 		add_action( 'wp_ajax_woocommerce_get_cart_information', [ $this, 'get_cart_information' ] );
 	}

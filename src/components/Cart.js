@@ -1,19 +1,19 @@
-import {useEffect} from "@wordpress/element";
+import {useQuery} from "react-query";
+import {getCartInformation} from "../api";
 
 export default function Cart() {
-	useEffect(() => {
-		apiFetch({
-			url: addQueryArgs(
-				"http://localhost/wp/woocommerce/wp-admin/admin-ajax.php",
-				{action: "woocommerce_get_cart_information"}
-			)
-		}).then(posts => {
-			console.log(posts);
-		});
-	}, []);
+	const {isLoading, isError, data, error} = useQuery(
+		"cartInformation",
+		getCartInformation
+	);
+
+	if (isLoading) return "Loading...";
+	if (error) return "An error has occurred: " + error.message;
+
+	console.log(data);
 
 	return (
-		<div id="sticky-cart" className="modal show">
+		<div id="grow-cart" className="modal show">
 			<div className="modal-dialog modal-dialog-centered">
 				<div className="modal-content">
 					<div className="modal-header">
@@ -24,14 +24,14 @@ export default function Cart() {
 					</div>
 
 					<div className="modal-body">
-						<div className="sticky-cart__main">
+						<div className="grow-cart__main">
 							<div className="empty">
 								<h4>Your Cart is Empty</h4>
 								<p>Fill your cart with amazing broth</p>
 								<button type="button">Shop Now</button>
 							</div>
 						</div>
-						<div className="sticky-cart__upsell">
+						<div className="grow-cart__upsell">
 							<p>Some text in the Modal..</p>
 						</div>
 					</div>

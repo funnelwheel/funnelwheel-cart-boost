@@ -2,7 +2,7 @@
 /**
  * Class SampleTest
  *
- * @package Woocommerce_Sticky_Cart
+ * @package Woocommerce_Grow_Cart
  */
 
 /**

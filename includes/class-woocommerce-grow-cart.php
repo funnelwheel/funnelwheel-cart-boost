@@ -5,10 +5,10 @@ namespace Upnrunn;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * WooCommerce_Sticky_Cart class.
+ * WooCommerce_Grow_Cart class.
  * @var [type]
  */
-final class WooCommerce_Sticky_Cart {
+final class WooCommerce_Grow_Cart {
 	/**
 	 * The single instance of the class.
 	 * @var [type]
@@ -17,7 +17,7 @@ final class WooCommerce_Sticky_Cart {
 
 	/**
 	 * Main Container instance.
-	 * Ensures only one instance of WooCommerce_Sticky_Cart is loaded or can be loaded.
+	 * Ensures only one instance of WooCommerce_Grow_Cart is loaded or can be loaded.
 	 *
 	 * @return [type] [description]
 	 */
@@ -38,10 +38,10 @@ final class WooCommerce_Sticky_Cart {
 	}
 
 	/**
-	 * Define WooCommerce_Sticky_Cart constants.
+	 * Define WooCommerce_Grow_Cart constants.
 	 */
 	private function define_constants() {
-		$this->define( 'WOOCOMMERCE_STICKY_CART_ABSPATH', dirname( WOOCOMMERCE_STICKY_CART_FILE ) . '/' );
+		$this->define( 'WOOCOMMERCE_GROW_CART_ABSPATH', dirname( WOOCOMMERCE_GROW_CART_FILE ) . '/' );
 	}
 
 	/**
@@ -49,8 +49,8 @@ final class WooCommerce_Sticky_Cart {
 	 * @return [type] [description]
 	 */
 	private function includes() {
-		include_once WOOCOMMERCE_STICKY_CART_ABSPATH . 'includes/template-functions.php';
-		include_once WOOCOMMERCE_STICKY_CART_ABSPATH . 'includes/class-woocommerce-sticky-cart-ajax.php';
+		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/template-functions.php';
+		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-ajax.php';
 	}
 
 	/**
@@ -59,10 +59,10 @@ final class WooCommerce_Sticky_Cart {
 	 */
 	private function hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-		add_action( 'wp_footer', [ $this, 'sticky_cart_root' ] );
+		add_action( 'wp_footer', [ $this, 'grow_cart_root' ] );
 
 		// Init classes.
-		$this->ajax = new WooCommerce_Sticky_Cart_Ajax();
+		$this->ajax = new WooCommerce_Grow_Cart_Ajax();
 	}
 
 	/**
@@ -70,38 +70,38 @@ final class WooCommerce_Sticky_Cart {
 	 * @return [type] [description]
 	 */
 	public function enqueue_scripts() {
-		$asset_file = include WOOCOMMERCE_STICKY_CART_ABSPATH . 'build/index.asset.php';
+		$asset_file = include WOOCOMMERCE_GROW_CART_ABSPATH . 'build/index.asset.php';
 
 		wp_enqueue_script(
-			'woocommerce-sticky-cart',
-			plugins_url( 'build/index.js', WOOCOMMERCE_STICKY_CART_FILE ),
+			'woocommerce-grow-cart',
+			plugins_url( 'build/index.js', WOOCOMMERCE_GROW_CART_FILE ),
 			$asset_file['dependencies'],
 			$asset_file['version'],
 			true
 		);
 
 		wp_localize_script(
-			'woocommerce-sticky-cart',
-			'woocommerce_sticky_cart',
+			'woocommerce-grow-cart',
+			'woocommerce_grow_cart',
 			[
 				'ajaxURL' => admin_url( 'admin-ajax.php' ),
 			]
 		);
 
 		wp_enqueue_style(
-			'woocommerce-sticky-cart',
-			plugins_url( 'build/index.css', WOOCOMMERCE_STICKY_CART_FILE ),
+			'woocommerce-grow-cart',
+			plugins_url( 'build/index.css', WOOCOMMERCE_GROW_CART_FILE ),
 			[],
 			$asset_file['version']
 		);
 	}
 
 	/**
-	 * [sticky_cart_root description]
+	 * [grow_cart_root description]
 	 * @return [type] [description]
 	 */
-	public function sticky_cart_root() {
-		echo '<div id="woocommerce-sticky-cart-root"></div>';
+	public function grow_cart_root() {
+		echo '<div id="woocommerce-grow-cart-root"></div>';
 	}
 
 	/**
