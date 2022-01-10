@@ -49,6 +49,7 @@ final class WooCommerce_Grow_Cart {
 	 * @return [type] [description]
 	 */
 	private function includes() {
+		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/functions.php';
 		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/template-functions.php';
 		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-ajax.php';
 	}

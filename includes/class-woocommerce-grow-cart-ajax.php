@@ -16,8 +16,8 @@ class WooCommerce_Grow_Cart_Ajax {
 	public function get_cart_information() {
 		wp_send_json(
 			[
-				'isEmpty'   => WC()->cart->is_empty(),
-				'cartItems' => WC()->cart->get_cart(),
+				'is_empty' => WC()->cart->is_empty(),
+				'items'    => get_cart_items(),
 			]
 		);
 	}
