@@ -22,6 +22,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Cart() {
   const [cart, updateCart] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(woocommerce_grow_cart.cart);
+  console.log(cart); // return;
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_1__.CartContext.Provider, {
     value: {
       cart,
@@ -45,11 +47,11 @@ function Cart() {
     className: "modal-body"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart__main"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, cart.is_empty ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "empty"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Your Cart is Empty"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Fill your cart with amazing broth"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button"
-  }, "Shop Now")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartItems__WEBPACK_IMPORTED_MODULE_2__["default"], null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "Shop Now")) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartItems__WEBPACK_IMPORTED_MODULE_2__["default"], null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart__upsell"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Some text in the Modal..")))))));
 }
@@ -72,13 +74,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/context.js");
 
 
+
 function CartItems() {
   const {
     cart,
     updateCart
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_1__.CartContext);
-  console.log(cart);
-  return "CartItems";
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems"
+  }, cart.items.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item",
+    key: item.key
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: item.product_permalink
+  }, item.product_title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-thumbnail",
+    dangerouslySetInnerHTML: {
+      __html: item.product_thumbnail
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-subtotal",
+    dangerouslySetInnerHTML: {
+      __html: item.product_subtotal
+    }
+  }))));
 }
 
 /***/ }),

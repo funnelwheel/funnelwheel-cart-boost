@@ -5,6 +5,9 @@ import CartItems from "./CartItems";
 export default function Cart() {
 	const [cart, updateCart] = useState(woocommerce_grow_cart.cart);
 
+	console.log(cart);
+	// return;
+
 	return (
 		<CartContext.Provider value={{cart, updateCart}}>
 			<div id="grow-cart" className="modal show">
@@ -19,12 +22,15 @@ export default function Cart() {
 
 						<div className="modal-body">
 							<div className="grow-cart__main">
-								<div className="empty">
-									<h4>Your Cart is Empty</h4>
-									<p>Fill your cart with amazing broth</p>
-									<button type="button">Shop Now</button>
-								</div>
-								<CartItems />
+								{cart.is_empty ? (
+									<div className="empty">
+										<h4>Your Cart is Empty</h4>
+										<p>Fill your cart with amazing broth</p>
+										<button type="button">Shop Now</button>
+									</div>
+								) : (
+									<CartItems />
+								)}
 							</div>
 							<div className="grow-cart__upsell">
 								<p>Some text in the Modal..</p>
