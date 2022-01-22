@@ -3,6 +3,7 @@ import { useContext } from "@wordpress/element";
 import { CartContext } from "../context";
 import { updateCartItem } from "../api";
 import QuantityInput from "./QuantityInput";
+import { ReactComponent as TrashIcon } from "./../svg/trash.svg";
 
 export default function CartItems() {
 	const queryClient = useQueryClient();
@@ -38,14 +39,25 @@ export default function CartItems() {
 							quantity: item.quantity,
 							min: item.min_purchase_quantity,
 							max: item.max_purchase_quantity,
-							onChange: (quantity) => {
+							onChange: (quantity) =>
 								mutation.mutate({
 									cart_key: item.key,
 									quantity,
-								});
-							},
+								}),
 						}}
 					/>
+
+					<button
+						type="button"
+						onClick={() =>
+							mutation.mutate({
+								cart_key: item.key,
+								quantity: 0,
+							})
+						}
+					>
+						<TrashIcon />
+					</button>
 				</div>
 			))}
 		</div>
