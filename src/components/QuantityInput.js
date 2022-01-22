@@ -1,12 +1,18 @@
 import { ReactComponent as PlusIcon } from "./../svg/plus.svg";
 import { ReactComponent as DashIcon } from "./../svg/dash.svg";
 
-export default function QuantityInput({ quantity, min, max, onChange }) {
+export default function QuantityInput({
+	isLoading,
+	quantity,
+	min,
+	max,
+	onChange,
+}) {
 	return (
 		<>
 			<button
 				className="CartItems__item-quantity-decrease"
-				disabled={quantity === min || min === max}
+				disabled={quantity === min || min === max || isLoading}
 				onClick={() => onChange(quantity - 1)}
 			>
 				<DashIcon />
@@ -14,7 +20,7 @@ export default function QuantityInput({ quantity, min, max, onChange }) {
 			<span className="CartItems__item-quantity">{quantity}</span>
 			<button
 				className="CartItems__item-quantity-increase"
-				disabled={quantity === max || min === max}
+				disabled={quantity === max || min === max || isLoading}
 				onClick={() => onChange(quantity + 1)}
 			>
 				<PlusIcon />

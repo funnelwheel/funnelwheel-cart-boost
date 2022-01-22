@@ -2378,6 +2378,7 @@ function CartItems() {
       __html: item.product_subtotal
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_QuantityInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    isLoading: mutation.isLoading,
     quantity: item.quantity,
     min: item.min_purchase_quantity,
     max: item.max_purchase_quantity,
@@ -2412,6 +2413,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function QuantityInput(_ref) {
   let {
+    isLoading,
     quantity,
     min,
     max,
@@ -2419,13 +2421,13 @@ function QuantityInput(_ref) {
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "CartItems__item-quantity-decrease",
-    disabled: quantity === min || min === max,
+    disabled: quantity === min || min === max || isLoading,
     onClick: () => onChange(quantity - 1)
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_dash_svg__WEBPACK_IMPORTED_MODULE_2__.ReactComponent, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "CartItems__item-quantity"
   }, quantity), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "CartItems__item-quantity-increase",
-    disabled: quantity === max || min === max,
+    disabled: quantity === max || min === max || isLoading,
     onClick: () => onChange(quantity + 1)
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_plus_svg__WEBPACK_IMPORTED_MODULE_1__.ReactComponent, null)));
 }

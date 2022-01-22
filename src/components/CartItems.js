@@ -34,6 +34,7 @@ export default function CartItems() {
 
 					<QuantityInput
 						{...{
+							isLoading: mutation.isLoading,
 							quantity: item.quantity,
 							min: item.min_purchase_quantity,
 							max: item.max_purchase_quantity,
