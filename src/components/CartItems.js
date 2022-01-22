@@ -2,8 +2,8 @@ import { useQueryClient, useMutation } from "react-query";
 import { useContext } from "@wordpress/element";
 import { CartContext } from "../context";
 import { updateCartItem } from "../api";
-import QuantityInput from "./QuantityInput";
 import { ReactComponent as TrashIcon } from "./../svg/trash.svg";
+import QuantityInput from "./QuantityInput";
 
 export default function CartItems() {
 	const queryClient = useQueryClient();

@@ -4,6 +4,7 @@ import classnames from "classnames";
 import { CartContext } from "../context";
 import { getCartInformation } from "../api";
 import CartItems from "./CartItems";
+import CartTotals from "./CartTotals";
 
 export default function Cart() {
 	const [showPopup, setShowPopup] = useState(true);
@@ -50,6 +51,8 @@ export default function Cart() {
 								) : (
 									<CartItems />
 								)}
+
+								<CartTotals />
 							</div>
 							<div className="grow-cart__upsell">
 								<p>Some text in the Modal..</p>
