@@ -17,6 +17,41 @@ export default function CartTotals() {
 						}}
 					/>
 				</li>
+
+				{cartInformation.data.tax_enabled && (
+					<li>
+						<span>Tax</span>
+						<span
+							dangerouslySetInnerHTML={{
+								__html: cartInformation.data.cart_tax,
+							}}
+						/>
+					</li>
+				)}
+
+				{cartInformation.data.has_shipping && (
+					<li>
+						<span>Shipping</span>
+						<span
+							dangerouslySetInnerHTML={{
+								__html:
+									cartInformation.data.cart_shipping_total,
+							}}
+						/>
+					</li>
+				)}
+
+				{cartInformation.data.has_discount && (
+					<li>
+						<span>Shipping</span>
+						<span
+							dangerouslySetInnerHTML={{
+								__html:
+									cartInformation.data.cart_discount_total,
+							}}
+						/>
+					</li>
+				)}
 			</ul>
 
 			<div>
