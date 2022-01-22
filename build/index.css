@@ -6,7 +6,7 @@
 }
 
 .modal {
-  display: block;
+  display: none;
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
@@ -24,6 +24,10 @@
   /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
   /* Black w/ opacity */
+}
+
+.show {
+  display: block;
 }
 
 .modal-dialog {

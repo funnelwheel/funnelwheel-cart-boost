@@ -7,7 +7,7 @@ const instance = axios.create({
 export function getCartInformation() {
 	return instance.get("/", {
 		params: {
-			action: "woocommerce_get_cart_information"
+			action: "growcart_get_cart_information"
 		}
 	});
 }
