@@ -1,9 +1,17 @@
+import { useQueryClient, useMutation } from "react-query";
 import { useContext } from "@wordpress/element";
 import { CartContext } from "../context";
+import { updateCartItem } from "../api";
 import QuantityInput from "./QuantityInput";
 
 export default function CartItems() {
+	const queryClient = useQueryClient();
 	const { cartInformation } = useContext(CartContext);
+	const mutation = useMutation(updateCartItem, {
+		onSuccess: (data) => {
+			queryClient.invalidateQueries("cartInformation");
+		},
+	});
 
 	return (
 		<div className="CartItems">
@@ -30,7 +38,10 @@ export default function CartItems() {
 							min: item.min_purchase_quantity,
 							max: item.max_purchase_quantity,
 							onChange: (quantity) => {
-								console.log(quantity);
+								mutation.mutate({
+									cart_key: item.key,
+									quantity,
+								});
 							},
 						}}
 					/>
