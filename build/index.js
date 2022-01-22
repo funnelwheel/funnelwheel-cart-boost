@@ -2406,14 +2406,18 @@ function CartItems() {
   }, cartInformation.data.items.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item",
     key: item.key
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-    href: item.product_permalink
-  }, item.product_title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-thumbnail-title-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item-thumbnail",
     dangerouslySetInnerHTML: {
       __html: item.product_thumbnail
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: item.product_permalink
+  }, item.product_title)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-subtotal-quantity-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item-subtotal",
     dangerouslySetInnerHTML: {
       __html: item.product_subtotal
@@ -2433,7 +2437,7 @@ function CartItems() {
       cart_key: item.key,
       quantity: 0
     })
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_5__.ReactComponent, null)))));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_5__.ReactComponent, null))))));
 }
 
 /***/ }),
@@ -2464,7 +2468,9 @@ function QuantityInput(_ref) {
     max,
     onChange
   } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-quantity"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "CartItems__item-quantity-decrease",
     disabled: quantity === min || min === max || isLoading,
     onClick: () => onChange(quantity - 1)

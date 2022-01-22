@@ -5,6 +5,32 @@
   padding: 2rem;
 }
 
+.CartItems {
+  padding: 2rem;
+}
+.CartItems__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9ecef;
+}
+.CartItems__item:last-child {
+  border-bottom: 0;
+}
+.CartItems__item-thumbnail-title-container {
+  display: flex;
+  align-items: center;
+}
+.CartItems__item-subtotal-quantity-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.CartItems__item-thumbnail .wp-post-image {
+  max-width: 80px;
+}
+
 .modal {
   display: none;
   /* Hidden by default */

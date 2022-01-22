@@ -18,46 +18,52 @@ export default function CartItems() {
 		<div className="CartItems">
 			{cartInformation.data.items.map((item) => (
 				<div className="CartItems__item" key={item.key}>
-					<a href={item.product_permalink}>{item.product_title}</a>
-					<div
-						className="CartItems__item-thumbnail"
-						dangerouslySetInnerHTML={{
-							__html: item.product_thumbnail,
-						}}
-					/>
+					<div className="CartItems__item-thumbnail-title-container">
+						<div
+							className="CartItems__item-thumbnail"
+							dangerouslySetInnerHTML={{
+								__html: item.product_thumbnail,
+							}}
+						/>
+						<a href={item.product_permalink}>
+							{item.product_title}
+						</a>
+					</div>
 
-					<div
-						className="CartItems__item-subtotal"
-						dangerouslySetInnerHTML={{
-							__html: item.product_subtotal,
-						}}
-					/>
+					<div className="CartItems__item-subtotal-quantity-container">
+						<div
+							className="CartItems__item-subtotal"
+							dangerouslySetInnerHTML={{
+								__html: item.product_subtotal,
+							}}
+						/>
 
-					<QuantityInput
-						{...{
-							isLoading: mutation.isLoading,
-							quantity: item.quantity,
-							min: item.min_purchase_quantity,
-							max: item.max_purchase_quantity,
-							onChange: (quantity) =>
+						<QuantityInput
+							{...{
+								isLoading: mutation.isLoading,
+								quantity: item.quantity,
+								min: item.min_purchase_quantity,
+								max: item.max_purchase_quantity,
+								onChange: (quantity) =>
+									mutation.mutate({
+										cart_key: item.key,
+										quantity,
+									}),
+							}}
+						/>
+
+						<button
+							type="button"
+							onClick={() =>
 								mutation.mutate({
 									cart_key: item.key,
-									quantity,
-								}),
-						}}
-					/>
-
-					<button
-						type="button"
-						onClick={() =>
-							mutation.mutate({
-								cart_key: item.key,
-								quantity: 0,
-							})
-						}
-					>
-						<TrashIcon />
-					</button>
+									quantity: 0,
+								})
+							}
+						>
+							<TrashIcon />
+						</button>
+					</div>
 				</div>
 			))}
 		</div>

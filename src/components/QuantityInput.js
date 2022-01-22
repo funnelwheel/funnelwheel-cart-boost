@@ -9,7 +9,7 @@ export default function QuantityInput({
 	onChange,
 }) {
 	return (
-		<>
+		<div className="CartItems__item-quantity">
 			<button
 				className="CartItems__item-quantity-decrease"
 				disabled={quantity === min || min === max || isLoading}
@@ -25,6 +25,6 @@ export default function QuantityInput({
 			>
 				<PlusIcon />
 			</button>
-		</>
+		</div>
 	);
 }
