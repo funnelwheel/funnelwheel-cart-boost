@@ -1,6 +1,79 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/svg/basket.svg":
+/*!****************************!*\
+  !*** ./src/svg/basket.svg ***!
+  \****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": function() { return /* binding */ SvgBasket; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgBasket(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 16,
+    height: 16,
+    fill: "currentColor",
+    className: "basket_svg__bi basket_svg__bi-basket"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M5.757 1.071a.5.5 0 01.172.686L3.383 6h9.234L10.07 1.757a.5.5 0 11.858-.514L13.783 6H15a1 1 0 011 1v1a1 1 0 01-1 1v4.5a2.5 2.5 0 01-2.5 2.5h-9A2.5 2.5 0 011 13.5V9a1 1 0 01-1-1V7a1 1 0 011-1h1.217L5.07 1.243a.5.5 0 01.686-.172zM2 9v4.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 01.5.5v3a.5.5 0 01-1 0v-3A.5.5 0 014 10zm2 0a.5.5 0 01.5.5v3a.5.5 0 01-1 0v-3A.5.5 0 016 10zm2 0a.5.5 0 01.5.5v3a.5.5 0 01-1 0v-3A.5.5 0 018 10zm2 0a.5.5 0 01.5.5v3a.5.5 0 01-1 0v-3a.5.5 0 01.5-.5zm2 0a.5.5 0 01.5.5v3a.5.5 0 01-1 0v-3a.5.5 0 01.5-.5z"
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktYmFza2V0IiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik01Ljc1NyAxLjA3MWEuNS41IDAgMCAxIC4xNzIuNjg2TDMuMzgzIDZoOS4yMzRMMTAuMDcgMS43NTdhLjUuNSAwIDEgMSAuODU4LS41MTRMMTMuNzgzIDZIMTVhMSAxIDAgMCAxIDEgMXYxYTEgMSAwIDAgMS0xIDF2NC41YTIuNSAyLjUgMCAwIDEtMi41IDIuNWgtOUEyLjUgMi41IDAgMCAxIDEgMTMuNVY5YTEgMSAwIDAgMS0xLTFWN2ExIDEgMCAwIDEgMS0xaDEuMjE3TDUuMDcgMS4yNDNhLjUuNSAwIDAgMSAuNjg2LS4xNzJ6TTIgOXY0LjVBMS41IDEuNSAwIDAgMCAzLjUgMTVoOWExLjUgMS41IDAgMCAwIDEuNS0xLjVWOUgyek0xIDd2MWgxNFY3SDF6bTMgM2EuNS41IDAgMCAxIC41LjV2M2EuNS41IDAgMCAxLTEgMHYtM0EuNS41IDAgMCAxIDQgMTB6bTIgMGEuNS41IDAgMCAxIC41LjV2M2EuNS41IDAgMCAxLTEgMHYtM0EuNS41IDAgMCAxIDYgMTB6bTIgMGEuNS41IDAgMCAxIC41LjV2M2EuNS41IDAgMCAxLTEgMHYtM0EuNS41IDAgMCAxIDggMTB6bTIgMGEuNS41IDAgMCAxIC41LjV2M2EuNS41IDAgMCAxLTEgMHYtM2EuNS41IDAgMCAxIC41LS41em0yIDBhLjUuNSAwIDAgMSAuNS41djNhLjUuNSAwIDAgMS0xIDB2LTNhLjUuNSAwIDAgMSAuNS0uNXoiLz4KPC9zdmc+");
+
+
+/***/ }),
+
+/***/ "./src/svg/chevron-up.svg":
+/*!********************************!*\
+  !*** ./src/svg/chevron-up.svg ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": function() { return /* binding */ SvgChevronUp; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgChevronUp(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 16,
+    height: 16,
+    fill: "currentColor",
+    className: "chevron-up_svg__bi chevron-up_svg__bi-chevron-up"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fillRule: "evenodd",
+    d: "M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z"
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktY2hldnJvbi11cCIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjY0NiA0LjY0NmEuNS41IDAgMCAxIC43MDggMGw2IDZhLjUuNSAwIDAgMS0uNzA4LjcwOEw4IDUuNzA3bC01LjY0NiA1LjY0N2EuNS41IDAgMCAxLS43MDgtLjcwOGw2LTZ6Ii8+Cjwvc3ZnPg==");
+
+
+/***/ }),
+
 /***/ "./src/svg/dash.svg":
 /*!**************************!*\
   !*** ./src/svg/dash.svg ***!
@@ -2311,6 +2384,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api */ "./src/api.js");
 /* harmony import */ var _CartItems__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CartItems */ "./src/components/CartItems.js");
 /* harmony import */ var _CartTotals__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CartTotals */ "./src/components/CartTotals.js");
+/* harmony import */ var _svg_chevron_up_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../svg/chevron-up.svg */ "./src/svg/chevron-up.svg");
+/* harmony import */ var _svg_basket_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../svg/basket.svg */ "./src/svg/basket.svg");
+
+
 
 
 
@@ -2320,7 +2397,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Cart() {
-  const [showPopup, setShowPopup] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [showPopup, setShowPopup] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const {
     isLoading,
     error,
@@ -2336,11 +2413,9 @@ function Cart() {
     value: {
       cartInformation
     }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, showPopup ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "grow-cart",
-    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("modal", {
-      show: showPopup
-    })
+    className: "modal show"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-dialog modal-dialog-centered"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -2363,7 +2438,21 @@ function Cart() {
     type: "button"
   }, "Shop Now")) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartItems__WEBPACK_IMPORTED_MODULE_5__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartTotals__WEBPACK_IMPORTED_MODULE_6__["default"], null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart__upsell"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Some text in the Modal..")))))));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Some text in the Modal..")))))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "grow-cart-mini"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "woocommerce-Price-amount amount"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "woocommerce-Price-currencySymbol"
+  }, "\u09F3\xA0"), "335.00"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "count"
+  }, "12 items")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: ""
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_basket_svg__WEBPACK_IMPORTED_MODULE_8__.ReactComponent, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button",
+    className: "btn-close",
+    onClick: () => setShowPopup(true)
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_chevron_up_svg__WEBPACK_IMPORTED_MODULE_7__.ReactComponent, null)))));
 }
 
 /***/ }),

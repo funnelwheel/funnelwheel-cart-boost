@@ -5,9 +5,11 @@ import { CartContext } from "../context";
 import { getCartInformation } from "../api";
 import CartItems from "./CartItems";
 import CartTotals from "./CartTotals";
+import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
+import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
 
 export default function Cart() {
-	const [showPopup, setShowPopup] = useState(true);
+	const [showPopup, setShowPopup] = useState(false);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
 		getCartInformation,
@@ -23,44 +25,71 @@ export default function Cart() {
 
 	return (
 		<CartContext.Provider value={{ cartInformation }}>
-			<div
-				id="grow-cart"
-				className={classnames("modal", { show: showPopup })}
-			>
-				<div className="modal-dialog modal-dialog-centered">
-					<div className="modal-content">
-						<div className="modal-header">
-							<h5 className="modal-title">Your Cart (2)</h5>
-							<button
-								type="button"
-								className="btn-close"
-								onClick={() => setShowPopup(false)}
-							>
-								&times;
-							</button>
-						</div>
-
-						<div className="modal-body">
-							<div className="grow-cart__main">
-								{cartInformation.data.is_empty ? (
-									<div className="empty">
-										<h4>Your Cart is Empty</h4>
-										<p>Fill your cart with amazing broth</p>
-										<button type="button">Shop Now</button>
-									</div>
-								) : (
-									<CartItems />
-								)}
-
-								<CartTotals />
+			{showPopup ? (
+				<div id="grow-cart" className="modal show">
+					<div className="modal-dialog modal-dialog-centered">
+						<div className="modal-content">
+							<div className="modal-header">
+								<h5 className="modal-title">Your Cart (2)</h5>
+								<button
+									type="button"
+									className="btn-close"
+									onClick={() => setShowPopup(false)}
+								>
+									&times;
+								</button>
 							</div>
-							<div className="grow-cart__upsell">
-								<p>Some text in the Modal..</p>
+
+							<div className="modal-body">
+								<div className="grow-cart__main">
+									{cartInformation.data.is_empty ? (
+										<div className="empty">
+											<h4>Your Cart is Empty</h4>
+											<p>
+												Fill your cart with amazing
+												broth
+											</p>
+											<button type="button">
+												Shop Now
+											</button>
+										</div>
+									) : (
+										<CartItems />
+									)}
+
+									<CartTotals />
+								</div>
+								<div className="grow-cart__upsell">
+									<p>Some text in the Modal..</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			) : (
+				<div className="grow-cart-mini">
+					<div>
+						<span className="woocommerce-Price-amount amount">
+							<span className="woocommerce-Price-currencySymbol">
+								৳&nbsp;
+							</span>
+							335.00
+						</span>
+						<span className="count">12 items</span>
+					</div>
+
+					<div className="">
+						<BasketIcon />
+						<button
+							type="button"
+							className="btn-close"
+							onClick={() => setShowPopup(true)}
+						>
+							<ChevronUpIcon />
+						</button>
+					</div>
+				</div>
+			)}
 		</CartContext.Provider>
 	);
 }
