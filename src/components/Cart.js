@@ -67,7 +67,7 @@ export default function Cart() {
 												cartInformation.data
 													.checkout_url
 											}
-											class="checkout-button button alt wc-forward"
+											className="checkout-button button alt wc-forward"
 										>
 											Proceed to checkout
 										</a>

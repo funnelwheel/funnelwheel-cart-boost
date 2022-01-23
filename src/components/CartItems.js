@@ -48,7 +48,7 @@ export default function CartItems() {
 										cart_key: item.key,
 										quantity,
 									}),
-								onRemove: () => () =>
+								onRemove: () =>
 									mutation.mutate({
 										cart_key: item.key,
 										quantity: 0,
