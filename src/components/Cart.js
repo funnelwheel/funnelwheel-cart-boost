@@ -58,6 +58,18 @@ export default function Cart() {
 									)}
 
 									<CartTotals />
+
+									<div>
+										<a
+											href={
+												cartInformation.data
+													.checkout_url
+											}
+											class="checkout-button button alt wc-forward"
+										>
+											Proceed to checkout
+										</a>
+									</div>
 								</div>
 								<div className="grow-cart__upsell">
 									<p>Some text in the Modal..</p>

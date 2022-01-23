@@ -30,6 +30,7 @@ class WooCommerce_Grow_Cart_Ajax {
 				'cart_shipping_total' => WC()->cart->get_cart_shipping_total(),
 				'cart_discount_total' => WC()->cart->get_cart_discount_total(),
 				'total'               => WC()->cart->get_total(),
+				'checkout_url'        => esc_url( wc_get_checkout_url() ),
 			]
 		);
 	}
