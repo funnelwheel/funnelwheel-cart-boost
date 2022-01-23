@@ -27,7 +27,7 @@ export default function Cart() {
 		<CartContext.Provider value={{ cartInformation }}>
 			{showPopup ? (
 				<div id="grow-cart" className="modal show">
-					<div className="modal-dialog modal-dialog-centered">
+					<div className="modal-dialog modal-dialog-bottom">
 						<div className="modal-content">
 							<div className="modal-header">
 								<h5 className="modal-title">Your Cart (2)</h5>
@@ -59,7 +59,7 @@ export default function Cart() {
 
 									<CartTotals />
 
-									<div>
+									<div className="grow-cart__proceed-to-checkout wc-proceed-to-checkout">
 										<a
 											href={
 												cartInformation.data

@@ -11,11 +11,11 @@
 	/* Full width */
 	height: 100%;
 	/* Full height */
-	overflow: auto;
+	overflow: hidden;
 	/* Enable scroll if needed */
-	background-color: rgb(0,0,0);
+	background-color: rgb(0, 0, 0);
 	/* Fallback color */
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0, 0, 0, 0.4);
 	/* Black w/ opacity */
 }
 
@@ -30,10 +30,11 @@
 	/* Could be more or less, depending on screen size */
 }
 
-.modal-dialog-centered {
+.modal-dialog-bottom {
 	display: flex;
-	align-items: center;
-	min-height: subtract(100%, $modal-dialog-margin * 2);
+	align-items: flex-end;
+	height: subtract(100%, $modal-dialog-margin * 2);
+	// min-height: subtract(100%, $modal-dialog-margin * 2);
 }
 
 .modal-content {
@@ -51,6 +52,7 @@
 	@include box-shadow($modal-content-box-shadow-xs);
 	// Remove focus outline from opened modal
 	outline: 0;
+	height: 90%;
 }
 
 .modal-header {
@@ -71,7 +73,7 @@
 		width: 1em;
 		height: 1em;
 		border-radius: 50%;
-		padding: ($modal-header-padding-y * .5) ($modal-header-padding-x * .5);
+		padding: ($modal-header-padding-y * 0.5) ($modal-header-padding-x * 0.5);
 		border: 0;
 		line-height: 1;
 	}
@@ -88,18 +90,5 @@
 .modal-body {
 	display: flex;
 	justify-content: space-between;
-}
-
-.grow-cart {
-	&__main {
-		width: 570px;
-	}
-
-	&__upsell {
-		display: flex;
-		flex-flow: column;
-		flex: 1;
-		padding: 32px 32px 0 32px;
-		background-color: rgb(255,249,239);
-	}
+	height: calc(100% - 57px);
 }

@@ -4,8 +4,6 @@ import { CartContext } from "../context";
 export default function CartTotals() {
 	const { cartInformation } = useContext(CartContext);
 
-	console.log(cartInformation);
-
 	return (
 		<div className="CartTotals">
 			<ul>
@@ -54,7 +52,7 @@ export default function CartTotals() {
 				)}
 			</ul>
 
-			<div>
+			<div className="CartTotals__total">
 				<span>Total</span>
 				<span
 					dangerouslySetInnerHTML={{

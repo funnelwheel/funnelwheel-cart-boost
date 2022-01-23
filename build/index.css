@@ -1,12 +1,33 @@
 /*!********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/sass/index.scss ***!
   \********************************************************************************************************************************************************************************************************************************************/
-.empty {
-  padding: 2rem;
+.grow-cart__main {
+  display: flex;
+  flex-flow: column;
+  width: 570px;
+}
+.grow-cart__upsell {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  height: 100%;
+  padding: 32px 32px 0 32px;
+  background-color: #fff9ef;
+}
+.grow-cart__proceed-to-checkout.wc-proceed-to-checkout {
+  padding: 20px 24px;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+.grow-cart__proceed-to-checkout.wc-proceed-to-checkout .button {
+  margin-bottom: 0;
 }
 
 .CartItems {
-  padding: 2rem;
+  flex: 1;
+  overflow: auto;
+  height: 100%;
+  padding: 20px 24px;
 }
 .CartItems__item {
   display: flex;
@@ -29,6 +50,29 @@
 }
 .CartItems__item-thumbnail .wp-post-image {
   max-width: 80px;
+}
+
+.CartTotals {
+  padding: 20px 24px;
+}
+.CartTotals ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.CartTotals ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.CartTotals__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .grow-cart-mini {
@@ -63,7 +107,7 @@
   /* Full width */
   height: 100%;
   /* Full height */
-  overflow: auto;
+  overflow: hidden;
   /* Enable scroll if needed */
   background-color: black;
   /* Fallback color */
@@ -82,10 +126,10 @@
   /* Could be more or less, depending on screen size */
 }
 
-.modal-dialog-centered {
+.modal-dialog-bottom {
   display: flex;
-  align-items: center;
-  min-height: calc(100% - 1rem);
+  align-items: flex-end;
+  height: calc(100% - 1rem);
 }
 
 .modal-content {
@@ -98,6 +142,7 @@
   background-clip: padding-box;
   border-radius: 0.3rem;
   outline: 0;
+  height: 90%;
 }
 
 .modal-header {
@@ -135,17 +180,7 @@
 .modal-body {
   display: flex;
   justify-content: space-between;
-}
-
-.grow-cart__main {
-  width: 570px;
-}
-.grow-cart__upsell {
-  display: flex;
-  flex-flow: column;
-  flex: 1;
-  padding: 32px 32px 0 32px;
-  background-color: #fff9ef;
+  height: calc(100% - 57px);
 }
 
 /*# sourceMappingURL=index.css.map*/
