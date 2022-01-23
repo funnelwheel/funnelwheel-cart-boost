@@ -68,25 +68,26 @@ export default function Cart() {
 				</div>
 			) : (
 				<div className="grow-cart-mini">
-					<div>
-						<span className="woocommerce-Price-amount amount">
-							<span className="woocommerce-Price-currencySymbol">
-								৳&nbsp;
-							</span>
-							335.00
-						</span>
-						<span className="count">12 items</span>
-					</div>
+					<div className="grow-cart-mini__inner">
+						<div>
+							<span
+								dangerouslySetInnerHTML={{
+									__html: cartInformation.data.total,
+								}}
+							/>
+							<span className="count">12 items</span>
+						</div>
 
-					<div className="">
-						<BasketIcon />
-						<button
-							type="button"
-							className="btn-close"
-							onClick={() => setShowPopup(true)}
-						>
-							<ChevronUpIcon />
-						</button>
+						<div className="">
+							<BasketIcon />
+							<button
+								type="button"
+								className="btn-close"
+								onClick={() => setShowPopup(true)}
+							>
+								<ChevronUpIcon />
+							</button>
+						</div>
 					</div>
 				</div>
 			)}
