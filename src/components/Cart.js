@@ -84,24 +84,24 @@ export default function Cart() {
 				<div className="grow-cart-mini">
 					<div className="grow-cart-mini__inner">
 						<div>
-							<div>{cartInformation.data.cart_title}</div>
-							<span
+							<h5 className="grow-cart-mini__title">
+								{cartInformation.data.cart_title}
+							</h5>
+							<div
+								className="grow-cart-mini__total"
 								dangerouslySetInnerHTML={{
 									__html: cartInformation.data.total,
 								}}
 							/>
 						</div>
 
-						<div className="">
-							<BasketIcon />
-							<button
-								type="button"
-								className="btn-close"
-								onClick={() => setShowPopup(true)}
-							>
-								<ChevronUpIcon />
-							</button>
-						</div>
+						<BasketIcon />
+						<button
+							type="button"
+							onClick={() => setShowPopup(true)}
+						>
+							<ChevronUpIcon />
+						</button>
 					</div>
 				</div>
 			)}

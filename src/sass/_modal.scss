@@ -48,7 +48,7 @@
 	background-color: $modal-content-bg;
 	background-clip: padding-box;
 	// border: $modal-content-border-width solid $modal-content-border-color;
-	@include border-radius($modal-content-border-radius);
+	@include border-radius(8px);
 	@include box-shadow($modal-content-box-shadow-xs);
 	// Remove focus outline from opened modal
 	outline: 0;
@@ -62,7 +62,7 @@
 	justify-content: center; // Put modal header elements (title and dismiss) on opposite ends
 	padding: $modal-header-padding;
 	border-bottom: $modal-header-border-width solid $modal-header-border-color;
-	@include border-top-radius($modal-content-inner-border-radius);
+	@include border-top-radius(8px);
 	background-color: $gray-800;
 
 	.btn-close {

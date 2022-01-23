@@ -2,7 +2,6 @@ import { useQueryClient, useMutation } from "react-query";
 import { useContext } from "@wordpress/element";
 import { CartContext } from "../context";
 import { updateCartItem } from "../api";
-import { ReactComponent as TrashIcon } from "./../svg/trash.svg";
 import QuantityInput from "./QuantityInput";
 
 export default function CartItems() {
@@ -49,20 +48,13 @@ export default function CartItems() {
 										cart_key: item.key,
 										quantity,
 									}),
+								onRemove: () => () =>
+									mutation.mutate({
+										cart_key: item.key,
+										quantity: 0,
+									}),
 							}}
 						/>
-
-						<button
-							type="button"
-							onClick={() =>
-								mutation.mutate({
-									cart_key: item.key,
-									quantity: 0,
-								})
-							}
-						>
-							<TrashIcon />
-						</button>
 					</div>
 				</div>
 			))}
