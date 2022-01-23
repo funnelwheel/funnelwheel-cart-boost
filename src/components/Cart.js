@@ -30,7 +30,9 @@ export default function Cart() {
 					<div className="modal-dialog modal-dialog-bottom">
 						<div className="modal-content">
 							<div className="modal-header">
-								<h5 className="modal-title">Your Cart (2)</h5>
+								<h5 className="modal-title">
+									{cartInformation.data.cart_title}
+								</h5>
 								<button
 									type="button"
 									className="btn-close"
@@ -82,14 +84,12 @@ export default function Cart() {
 				<div className="grow-cart-mini">
 					<div className="grow-cart-mini__inner">
 						<div>
+							<div>{cartInformation.data.cart_title}</div>
 							<span
 								dangerouslySetInnerHTML={{
 									__html: cartInformation.data.total,
 								}}
 							/>
-							<span className="count">
-								{cartInformation.data.cart_contents_count}
-							</span>
 						</div>
 
 						<div className="">
