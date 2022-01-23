@@ -21,6 +21,7 @@ class WooCommerce_Grow_Cart_Ajax {
 			[
 				'is_empty'            => WC()->cart->is_empty(),
 				'items'               => get_cart_items(),
+				'cart_contents_count' => sprintf( __( '%d items' ), WC()->cart->get_cart_contents_count() ),
 				'tax_enabled'         => wc_tax_enabled(),
 				'has_shipping'        => WC()->cart->needs_shipping() && WC()->cart->show_shipping(),
 				'has_discount'        => WC()->cart->has_discount(),

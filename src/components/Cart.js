@@ -75,7 +75,9 @@ export default function Cart() {
 									__html: cartInformation.data.total,
 								}}
 							/>
-							<span className="count">12 items</span>
+							<span className="count">
+								{cartInformation.data.cart_contents_count}
+							</span>
 						</div>
 
 						<div className="">
