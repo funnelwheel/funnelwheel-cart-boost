@@ -1,5 +1,6 @@
-import { useState } from "@wordpress/element";
-import { useQuery } from "react-query";
+import $ from "jquery";
+import { useState, useEffect } from "@wordpress/element";
+import { useQuery, useQueryClient } from "react-query";
 import classnames from "classnames";
 import { CartContext } from "../context";
 import { getCartInformation } from "../api";
@@ -9,6 +10,7 @@ import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
 import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
 
 export default function Cart() {
+	const queryClient = useQueryClient();
 	const [showPopup, setShowPopup] = useState(false);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
@@ -19,6 +21,17 @@ export default function Cart() {
 			},
 		}
 	);
+
+	function invalidateQueries() {
+		queryClient.invalidateQueries("cartInformation");
+	}
+
+	useEffect(() => {
+		$(document.body).on(
+			"added_to_cart removed_from_cart",
+			invalidateQueries
+		);
+	}, []);
 
 	if (isLoading) return "Loading...";
 	if (error) return "An error has occurred: " + error.message;
