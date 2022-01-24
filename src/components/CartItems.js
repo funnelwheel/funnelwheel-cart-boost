@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { useQueryClient, useMutation } from "react-query";
 import { useContext } from "@wordpress/element";
 import { CartContext } from "../context";
@@ -8,8 +9,9 @@ export default function CartItems() {
 	const queryClient = useQueryClient();
 	const { cartInformation } = useContext(CartContext);
 	const mutation = useMutation(updateCartItem, {
-		onSuccess: (data) => {
+		onSuccess: (response) => {
 			queryClient.invalidateQueries("cartInformation");
+			$(document.body).trigger("wc_fragment_refresh");
 		},
 	});
 

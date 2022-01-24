@@ -76,7 +76,7 @@ final class WooCommerce_Grow_Cart {
 		wp_enqueue_script(
 			'woocommerce-grow-cart',
 			plugins_url( 'build/index.js', WOOCOMMERCE_GROW_CART_FILE ),
-			$asset_file['dependencies'],
+			array_merge( $asset_file['dependencies'], [ 'wc-cart-fragments' ] ),
 			$asset_file['version'],
 			true
 		);
