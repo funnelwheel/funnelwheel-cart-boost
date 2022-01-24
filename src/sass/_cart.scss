@@ -2,6 +2,7 @@
 	&__main {
 		display: flex;
 		flex-flow: column;
+		justify-content: center;
 		width: 570px;
 	}
 
@@ -27,6 +28,8 @@
 }
 
 .empty {
+	padding: 20px 24px;
+	text-align: center;
 }
 
 .CartItems {
@@ -58,8 +61,11 @@
 		align-items: flex-end;
 	}
 
-	&__item-thumbnail .wp-post-image {
-		max-width: 80px;
+	&__item-thumbnail {
+		.attachment-woocommerce_thumbnail,
+		.wp-post-image {
+			max-width: 80px;
+		}
 	}
 
 	button[type="button"],

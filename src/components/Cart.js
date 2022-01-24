@@ -49,29 +49,35 @@ export default function Cart() {
 											<h4>Your Cart is Empty</h4>
 											<p>
 												Fill your cart with amazing
-												broth
+												products
 											</p>
-											<button type="button">
+											<a
+												href={
+													cartInformation.data
+														.shop_url
+												}
+											>
 												Shop Now
-											</button>
+											</a>
 										</div>
 									) : (
-										<CartItems />
+										<>
+											<CartItems />
+											<CartTotals />
+
+											<div className="grow-cart__proceed-to-checkout wc-proceed-to-checkout">
+												<a
+													href={
+														cartInformation.data
+															.checkout_url
+													}
+													className="checkout-button button alt wc-forward"
+												>
+													Proceed to checkout
+												</a>
+											</div>
+										</>
 									)}
-
-									<CartTotals />
-
-									<div className="grow-cart__proceed-to-checkout wc-proceed-to-checkout">
-										<a
-											href={
-												cartInformation.data
-													.checkout_url
-											}
-											className="checkout-button button alt wc-forward"
-										>
-											Proceed to checkout
-										</a>
-									</div>
 								</div>
 								<div className="grow-cart__upsell">
 									<p>Some text in the Modal..</p>
