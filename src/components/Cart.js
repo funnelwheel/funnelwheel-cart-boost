@@ -1,13 +1,13 @@
 import $ from "jquery";
 import { useState, useEffect } from "@wordpress/element";
 import { useQuery, useQueryClient } from "react-query";
-import classnames from "classnames";
 import { CartContext } from "../context";
 import { getCartInformation } from "../api";
-import CartItems from "./CartItems";
-import CartTotals from "./CartTotals";
 import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
 import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
+import CartItems from "./CartItems";
+import CartTotals from "./CartTotals";
+import SuggestedProducts from "./SuggestedProducts";
 
 export default function Cart() {
 	const queryClient = useQueryClient();
@@ -94,7 +94,7 @@ export default function Cart() {
 									)}
 								</div>
 								<div className="grow-cart__upsell">
-									<p>Some text in the Modal..</p>
+									<SuggestedProducts />
 								</div>
 							</div>
 						</div>
