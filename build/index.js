@@ -2414,6 +2414,7 @@ function Cart() {
 
   function invalidateQueries() {
     queryClient.invalidateQueries("cartInformation");
+    setShowPopup(true);
   }
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {

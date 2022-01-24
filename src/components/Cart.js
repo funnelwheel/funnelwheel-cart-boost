@@ -24,6 +24,7 @@ export default function Cart() {
 
 	function invalidateQueries() {
 		queryClient.invalidateQueries("cartInformation");
+		setShowPopup(true);
 	}
 
 	useEffect(() => {
