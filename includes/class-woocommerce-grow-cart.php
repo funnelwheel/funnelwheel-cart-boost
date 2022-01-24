@@ -71,6 +71,10 @@ final class WooCommerce_Grow_Cart {
 	 * @return [type] [description]
 	 */
 	public function enqueue_scripts() {
+		if ( is_cart() || is_checkout() ) {
+			return;
+		}
+
 		$asset_file = include WOOCOMMERCE_GROW_CART_ABSPATH . 'build/index.asset.php';
 
 		wp_enqueue_script(
@@ -106,6 +110,10 @@ final class WooCommerce_Grow_Cart {
 	 * @return [type] [description]
 	 */
 	public function grow_cart_root() {
+		if ( is_cart() || is_checkout() ) {
+			return;
+		}
+
 		echo '<div id="woocommerce-grow-cart-root"></div>';
 	}
 
