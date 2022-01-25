@@ -1,4 +1,5 @@
 import $ from "jquery";
+import classNames from "classnames";
 import { useState, useEffect } from "@wordpress/element";
 import { useQuery, useQueryClient } from "react-query";
 import { CartContext } from "../context";
@@ -42,7 +43,9 @@ export default function Cart() {
 			{showPopup ? (
 				<div id="grow-cart" className="modal show">
 					<div className="modal-dialog modal-dialog-bottom">
-						<div className="modal-content">
+						<div className={classNames("modal-content", {
+							slideInUp: showPopup
+						})}>
 							<div className="modal-header">
 								<h5 className="modal-title">
 									{cartInformation.data.cart_title}
