@@ -2340,7 +2340,8 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getCartInformation": function() { return /* binding */ getCartInformation; },
-/* harmony export */   "updateCartItem": function() { return /* binding */ updateCartItem; }
+/* harmony export */   "updateCartItem": function() { return /* binding */ updateCartItem; },
+/* harmony export */   "getSuggestedProducts": function() { return /* binding */ getSuggestedProducts; }
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2360,6 +2361,9 @@ function updateCartItem(_ref) {
     cart_key,
     quantity
   }));
+}
+function getSuggestedProducts() {
+  return instance.get("/?action=growcart_get_suggested_products");
 }
 
 /***/ }),
@@ -2662,8 +2666,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ SuggestedProducts; }
 /* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./src/api.js");
+
+
+
 function SuggestedProducts() {
-  return "SuggestedProducts";
+  const {
+    isLoading,
+    error,
+    data: suggestedProducts
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["suggestedProducts"], _api__WEBPACK_IMPORTED_MODULE_2__.getSuggestedProducts);
+  if (isLoading) return "Loading...";
+  if (error) return "An error has occurred: " + error.message;
+  console.log(suggestedProducts);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "SuggestedProducts"
+  }, suggestedProducts.data.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "SuggestedProducts__item"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: item.product_permalink
+  }, item.product_title))));
 }
 
 /***/ }),
