@@ -14,3 +14,7 @@ export function updateCartItem({ cart_key, quantity }) {
 		new URLSearchParams({ cart_key, quantity })
 	);
 }
+
+export function getSuggestedProducts() {
+	return instance.get("/?action=growcart_get_suggested_products");
+}
