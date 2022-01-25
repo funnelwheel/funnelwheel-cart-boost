@@ -11,8 +11,12 @@ import CartTotals from "./CartTotals";
 import SuggestedProducts from "./SuggestedProducts";
 
 export default function Cart() {
+	console.log(woocommerce_grow_cart.is_product);
 	const queryClient = useQueryClient();
 	const [showPopup, setShowPopup] = useState(false);
+	const [showMiniCart, setShowMiniCart] = useState(
+		!woocommerce_grow_cart.is_product
+	);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
 		getCartInformation,
@@ -33,6 +37,12 @@ export default function Cart() {
 			"added_to_cart removed_from_cart",
 			invalidateQueries
 		);
+
+		if (woocommerce_grow_cart.is_product) {
+			window.onscroll = function () {
+				setShowMiniCart(window.pageYOffset > 200);
+			};
+		}
 	}, []);
 
 	if (isLoading) return "Loading...";
@@ -43,9 +53,11 @@ export default function Cart() {
 			{showPopup ? (
 				<div id="grow-cart" className="modal show">
 					<div className="modal-dialog modal-dialog-bottom">
-						<div className={classNames("modal-content", {
-							slideInUp: showPopup
-						})}>
+						<div
+							className={classNames("modal-content", {
+								slideInUp: showPopup,
+							})}
+						>
 							<div className="modal-header">
 								<h5 className="modal-title">
 									{cartInformation.data.cart_title}
@@ -104,29 +116,33 @@ export default function Cart() {
 					</div>
 				</div>
 			) : (
-				<div className="grow-cart-mini">
-					<div className="grow-cart-mini__inner">
-						<div>
-							<h5 className="grow-cart-mini__title">
-								{cartInformation.data.cart_title}
-							</h5>
-							<div
-								className="grow-cart-mini__total"
-								dangerouslySetInnerHTML={{
-									__html: cartInformation.data.total,
-								}}
-							/>
-						</div>
+				<>
+					{showMiniCart && (
+						<div className="grow-cart-mini slideInUp">
+							<div className="grow-cart-mini__inner">
+								<div>
+									<h5 className="grow-cart-mini__title">
+										{cartInformation.data.cart_title}
+									</h5>
+									<div
+										className="grow-cart-mini__total"
+										dangerouslySetInnerHTML={{
+											__html: cartInformation.data.total,
+										}}
+									/>
+								</div>
 
-						<BasketIcon />
-						<button
-							type="button"
-							onClick={() => setShowPopup(true)}
-						>
-							<ChevronUpIcon />
-						</button>
-					</div>
-				</div>
+								<BasketIcon />
+								<button
+									type="button"
+									onClick={() => setShowPopup(true)}
+								>
+									<ChevronUpIcon />
+								</button>
+							</div>
+						</div>
+					)}
+				</>
 			)}
 		</CartContext.Provider>
 	);

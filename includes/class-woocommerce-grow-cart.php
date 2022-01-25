@@ -89,8 +89,9 @@ final class WooCommerce_Grow_Cart {
 			'woocommerce-grow-cart',
 			'woocommerce_grow_cart',
 			[
-				'ajaxURL' => admin_url( 'admin-ajax.php' ),
-				'cart'    => [
+				'ajaxURL'    => admin_url( 'admin-ajax.php' ),
+				'is_product' => is_product(),
+				'cart'       => [
 					'is_empty' => WC()->cart->is_empty(),
 					'items'    => get_cart_items(),
 				],
