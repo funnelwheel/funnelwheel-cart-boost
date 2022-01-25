@@ -2660,7 +2660,8 @@ function QuantityInput(_ref) {
     onClick: () => onChange(quantity + 1)
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_plus_svg__WEBPACK_IMPORTED_MODULE_1__.ReactComponent, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
-    onClick: onRemove
+    onClick: onRemove,
+    disabled: isLoading
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null)));
 }
 
@@ -2701,17 +2702,21 @@ function SuggestedProducts() {
   if (error) return "An error has occurred: " + error.message;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts"
-  }, suggestedProducts.data.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Products you may like"), suggestedProducts.data.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts__item"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts__item-thumbnail",
     dangerouslySetInnerHTML: {
       __html: item.product_thumbnail
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "SuggestedProducts__item-title-description-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: item.product_permalink
   }, item.product_title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: ""
+    className: "SuggestedProducts__item-short-description"
+  }, item.product_short_description), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "SuggestedProducts__item-subtotal-button-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts__item-subtotal",
     dangerouslySetInnerHTML: {
@@ -2723,7 +2728,7 @@ function SuggestedProducts() {
       product_id: item.product_id,
       quantity: 1
     })
-  }, "Add")))));
+  }, "Add"))))));
 }
 
 /***/ }),

@@ -30,7 +30,7 @@ export default function QuantityInput({
 				<PlusIcon />
 			</button>
 
-			<button type="button" onClick={onRemove}>
+			<button type="button" onClick={onRemove} disabled={isLoading}>
 				<TrashIcon />
 			</button>
 		</div>

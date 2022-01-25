@@ -1,0 +1,22 @@
+.SuggestedProducts {
+	&__item {
+		display: flex;
+	}
+
+	&__item-thumbnail {
+		.attachment-woocommerce_thumbnail,
+		.wp-post-image {
+			max-width: 80px;
+		}
+	}
+
+    &__item-title-description-container {
+        flex: 1;
+    }
+    
+    &__item-subtotal-button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

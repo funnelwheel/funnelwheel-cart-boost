@@ -1,6 +1,95 @@
 /*!********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/sass/index.scss ***!
   \********************************************************************************************************************************************************************************************************************************************/
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1055;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: hidden;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+.show {
+  display: block;
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+  /* 15% from the top and centered */
+  width: 1000px;
+  /* Could be more or less, depending on screen size */
+}
+
+.modal-dialog-bottom {
+  display: flex;
+  align-items: flex-end;
+  height: calc(100% - 1rem);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 8px;
+  outline: 0;
+  height: 90%;
+}
+
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #343a40;
+}
+.modal-header .btn-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  padding: 0.5rem 0.5rem;
+  border: 0;
+  line-height: 1;
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+  height: calc(100% - 57px);
+}
+
 .grow-cart__main {
   display: flex;
   flex-flow: column;
@@ -140,93 +229,20 @@
   line-height: 1;
 }
 
-.modal {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 1055;
-  /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: hidden;
-  /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
-}
-
-.show {
-  display: block;
-}
-
-.modal-dialog {
-  margin: 1.75rem auto;
-  /* 15% from the top and centered */
-  width: 1000px;
-  /* Could be more or less, depending on screen size */
-}
-
-.modal-dialog-bottom {
+.SuggestedProducts__item {
   display: flex;
-  align-items: flex-end;
-  height: calc(100% - 1rem);
 }
-
-.modal-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  pointer-events: auto;
-  background-color: #fff;
-  background-clip: padding-box;
-  border-radius: 8px;
-  outline: 0;
-  height: 90%;
+.SuggestedProducts__item-thumbnail .attachment-woocommerce_thumbnail,
+.SuggestedProducts__item-thumbnail .wp-post-image {
+  max-width: 80px;
 }
-
-.modal-header {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1rem;
-  border-bottom: 1px solid #dee2e6;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  background-color: #343a40;
+.SuggestedProducts__item-title-description-container {
+  flex: 1;
 }
-.modal-header .btn-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  box-sizing: content-box;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  padding: 0.5rem 0.5rem;
-  border: 0;
-  line-height: 1;
-}
-
-.modal-title {
-  margin-bottom: 0;
-  line-height: 1.5;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-}
-
-.modal-body {
+.SuggestedProducts__item-subtotal-button-container {
   display: flex;
   justify-content: space-between;
-  height: calc(100% - 57px);
+  align-items: center;
 }
 
 /*# sourceMappingURL=index.css.map*/

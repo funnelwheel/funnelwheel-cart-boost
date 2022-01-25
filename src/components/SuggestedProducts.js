@@ -19,6 +19,7 @@ export default function SuggestedProducts() {
 
 	return (
 		<div className="SuggestedProducts">
+            <h4>Products you may like</h4>
 			{suggestedProducts.data.map((item) => (
 				<div className="SuggestedProducts__item">
 					<div
@@ -27,27 +28,36 @@ export default function SuggestedProducts() {
 							__html: item.product_thumbnail,
 						}}
 					/>
-					<a href={item.product_permalink}>{item.product_title}</a>
 
-					<div className="">
-						<div
-							className="SuggestedProducts__item-subtotal"
-							dangerouslySetInnerHTML={{
-								__html: item.product_price,
-							}}
-						/>
+					<div className="SuggestedProducts__item-title-description-container">
+						<a href={item.product_permalink}>
+							{item.product_title}
+						</a>
 
-						<button
-							type="button"
-							onClick={() =>
-								mutation.mutate({
-									product_id: item.product_id,
-									quantity: 1,
-								})
-							}
-						>
-							Add
-						</button>
+						<div className="SuggestedProducts__item-short-description">
+							{item.product_short_description}
+						</div>
+
+						<div className="SuggestedProducts__item-subtotal-button-container">
+							<div
+								className="SuggestedProducts__item-subtotal"
+								dangerouslySetInnerHTML={{
+									__html: item.product_price,
+								}}
+							/>
+
+							<button
+								type="button"
+								onClick={() =>
+									mutation.mutate({
+										product_id: item.product_id,
+										quantity: 1,
+									})
+								}
+							>
+								Add
+							</button>
+						</div>
 					</div>
 				</div>
 			))}
