@@ -2681,14 +2681,27 @@ function SuggestedProducts() {
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["suggestedProducts"], _api__WEBPACK_IMPORTED_MODULE_2__.getSuggestedProducts);
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
-  console.log(suggestedProducts);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts"
   }, suggestedProducts.data.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts__item"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "SuggestedProducts__item-thumbnail",
+    dangerouslySetInnerHTML: {
+      __html: item.product_thumbnail
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: item.product_permalink
-  }, item.product_title))));
+  }, item.product_title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: ""
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "SuggestedProducts__item-subtotal",
+    dangerouslySetInnerHTML: {
+      __html: item.product_price
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button"
+  }, "Add")))));
 }
 
 /***/ }),
