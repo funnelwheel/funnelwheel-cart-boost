@@ -1,13 +1,18 @@
 .SuggestedProducts {
-    overflow: auto;
-    padding: 32px;
+	overflow: auto;
+	padding: 32px;
 
-    &__title {
-        line-height: 1;
-    }
+	&__title {
+		line-height: 1;
+	}
 
 	&__item {
 		display: flex;
+		margin-bottom: 0.5rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	&__item-thumbnail {
@@ -17,13 +22,20 @@
 		}
 	}
 
-    &__item-title-description-container {
-        flex: 1;
-    }
-    
-    &__item-subtotal-button-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+	&__item-title-description-container {
+		flex: 1;
+		margin-left: 1rem;
+	}
+
+	&__item-subtotal-button-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	button[type="button"] {
+		padding: 4px 20px;
+        border-radius: 4px;
+        font-size: $font-size-sm;
+	}
 }

@@ -128,6 +128,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   border-bottom: 1px solid #e9ecef;
 }
 .CartItems__item:last-child {
@@ -237,6 +239,10 @@
 }
 .SuggestedProducts__item {
   display: flex;
+  margin-bottom: 0.5rem;
+}
+.SuggestedProducts__item:last-child {
+  margin-bottom: 0;
 }
 .SuggestedProducts__item-thumbnail .attachment-woocommerce_thumbnail,
 .SuggestedProducts__item-thumbnail .wp-post-image {
@@ -244,11 +250,17 @@
 }
 .SuggestedProducts__item-title-description-container {
   flex: 1;
+  margin-left: 1rem;
 }
 .SuggestedProducts__item-subtotal-button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.SuggestedProducts button[type=button] {
+  padding: 4px 20px;
+  border-radius: 4px;
+  font-size: 0.875rem;
 }
 
 /*# sourceMappingURL=index.css.map*/
