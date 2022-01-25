@@ -1,11 +1,18 @@
-import { useQuery } from "react-query";
-import { getSuggestedProducts } from "../api";
+import { useQuery, useQueryClient, useMutation } from "react-query";
+import { getSuggestedProducts, addToCart } from "../api";
 
 export default function SuggestedProducts() {
+	const queryClient = useQueryClient();
 	const { isLoading, error, data: suggestedProducts } = useQuery(
 		["suggestedProducts"],
 		getSuggestedProducts
 	);
+	const mutation = useMutation(addToCart, {
+		onSuccess: (response) => {
+			queryClient.invalidateQueries("cartInformation");
+			$(document.body).trigger("wc_fragment_refresh");
+		},
+	});
 
 	if (isLoading) return "Loading...";
 	if (error) return "An error has occurred: " + error.message;
@@ -30,7 +37,17 @@ export default function SuggestedProducts() {
 							}}
 						/>
 
-						<button type="button">Add</button>
+						<button
+							type="button"
+							onClick={() =>
+								mutation.mutate({
+									product_id: item.product_id,
+									quantity: 1,
+								})
+							}
+						>
+							Add
+						</button>
 					</div>
 				</div>
 			))}

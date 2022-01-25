@@ -2685,11 +2685,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function SuggestedProducts() {
+  const queryClient = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQueryClient)();
   const {
     isLoading,
     error,
     data: suggestedProducts
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["suggestedProducts"], _api__WEBPACK_IMPORTED_MODULE_2__.getSuggestedProducts);
+  const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_2__.addToCart, {
+    onSuccess: response => {
+      queryClient.invalidateQueries("cartInformation");
+      $(document.body).trigger("wc_fragment_refresh");
+    }
+  });
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -2711,7 +2718,11 @@ function SuggestedProducts() {
       __html: item.product_price
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    type: "button"
+    type: "button",
+    onClick: () => mutation.mutate({
+      product_id: item.product_id,
+      quantity: 1
+    })
   }, "Add")))));
 }
 

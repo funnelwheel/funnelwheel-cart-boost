@@ -99,6 +99,7 @@ class WooCommerce_Grow_Cart_Ajax {
 			$_product = wc_get_product( $product_id );
 
 			$return[] = [
+				'product_id'        => $product_id,
 				'product_title'     => $_product->get_title(),
 				'product_permalink' => $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '',
 				'product_thumbnail' => $_product->get_image(),
