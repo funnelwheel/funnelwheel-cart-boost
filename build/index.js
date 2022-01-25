@@ -2698,11 +2698,12 @@ function SuggestedProducts() {
       $(document.body).trigger("wc_fragment_refresh");
     }
   });
-  if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Products you may like"), suggestedProducts.data.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, isLoading ? "Loading..." : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+    className: "SuggestedProducts__title"
+  }, "Products you may like"), suggestedProducts.data.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts__item"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "SuggestedProducts__item-thumbnail",
@@ -2728,7 +2729,7 @@ function SuggestedProducts() {
       product_id: item.product_id,
       quantity: 1
     })
-  }, "Add"))))));
+  }, "Add")))))));
 }
 
 /***/ }),

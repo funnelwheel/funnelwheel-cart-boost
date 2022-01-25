@@ -101,7 +101,6 @@
   flex-flow: column;
   flex: 1;
   height: 100%;
-  padding: 32px 32px 0 32px;
   background-color: #fff9ef;
 }
 .grow-cart__proceed-to-checkout.wc-proceed-to-checkout {
@@ -229,6 +228,13 @@
   line-height: 1;
 }
 
+.SuggestedProducts {
+  overflow: auto;
+  padding: 32px;
+}
+.SuggestedProducts__title {
+  line-height: 1;
+}
 .SuggestedProducts__item {
   display: flex;
 }
