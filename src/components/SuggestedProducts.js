@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import { getSuggestedProducts, addToCart } from "../api";
 

@@ -50,6 +50,14 @@ export default function CartTotals() {
 						/>
 					</li>
 				)}
+
+				<li>
+					<span>Coupon code</span>
+					<span>
+						<input type="text" placeholder="Enter code" />
+						<butto type="button" className="button">Apply coupon</butto>
+					</span>
+				</li>
 			</ul>
 
 			<div className="CartTotals__total">
