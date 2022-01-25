@@ -26,7 +26,10 @@ export default function CartItems() {
 								__html: item.product_thumbnail,
 							}}
 						/>
-						<a href={item.product_permalink}>
+						<a
+							className="CartItems__item-title"
+							href={item.product_permalink}
+						>
 							{item.product_title}
 						</a>
 					</div>

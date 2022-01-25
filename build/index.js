@@ -2544,6 +2544,7 @@ function CartItems() {
       __html: item.product_thumbnail
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "CartItems__item-title",
     href: item.product_permalink
   }, item.product_title)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item-subtotal-quantity-container"

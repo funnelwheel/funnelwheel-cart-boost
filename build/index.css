@@ -163,6 +163,9 @@
 .CartItems__item:last-child {
   border-bottom: 0;
 }
+.CartItems__item-title {
+  margin-left: 1rem;
+}
 .CartItems__item-thumbnail-title-container {
   display: flex;
   align-items: center;
