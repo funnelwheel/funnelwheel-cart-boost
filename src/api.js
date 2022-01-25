@@ -8,6 +8,13 @@ export function getCartInformation() {
 	return instance.get("/?action=growcart_get_cart_information");
 }
 
+export function addToCart({ product_id, quantity }) {
+	return instance.post(
+		"/?action=woocommerce_add_to_cart",
+		new URLSearchParams({ product_id, quantity })
+	);
+}
+
 export function updateCartItem({ cart_key, quantity }) {
 	return instance.post(
 		"/?action=growcart_update_cart_item",

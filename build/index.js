@@ -2340,6 +2340,7 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getCartInformation": function() { return /* binding */ getCartInformation; },
+/* harmony export */   "addToCart": function() { return /* binding */ addToCart; },
 /* harmony export */   "updateCartItem": function() { return /* binding */ updateCartItem; },
 /* harmony export */   "getSuggestedProducts": function() { return /* binding */ getSuggestedProducts; }
 /* harmony export */ });
@@ -2352,11 +2353,21 @@ const instance = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
 function getCartInformation() {
   return instance.get("/?action=growcart_get_cart_information");
 }
-function updateCartItem(_ref) {
+function addToCart(_ref) {
+  let {
+    product_id,
+    quantity
+  } = _ref;
+  return instance.post("/?action=woocommerce_add_to_cart", new URLSearchParams({
+    product_id,
+    quantity
+  }));
+}
+function updateCartItem(_ref2) {
   let {
     cart_key,
     quantity
-  } = _ref;
+  } = _ref2;
   return instance.post("/?action=growcart_update_cart_item", new URLSearchParams({
     cart_key,
     quantity
