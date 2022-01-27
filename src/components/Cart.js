@@ -19,12 +19,7 @@ export default function Cart() {
 	);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
-		getCartInformation,
-		{
-			initialData: {
-				data: woocommerce_grow_cart.cart,
-			},
-		}
+		getCartInformation
 	);
 
 	function invalidateQueries() {

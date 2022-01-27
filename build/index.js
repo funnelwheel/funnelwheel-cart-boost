@@ -2425,11 +2425,7 @@ function Cart() {
     isLoading,
     error,
     data: cartInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_5__.getCartInformation, {
-    initialData: {
-      data: woocommerce_grow_cart.cart
-    }
-  });
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_5__.getCartInformation);
 
   function invalidateQueries() {
     queryClient.invalidateQueries("cartInformation");
@@ -2592,14 +2588,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./src/api.js");
+
 
 
 
 function CartTotals() {
   const {
-    cartInformation
-  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_1__.CartContext);
+    isLoading,
+    error,
+    data: cartInformation
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
+  if (isLoading) return "Loading...";
+  if (error) return "An error has occurred: " + error.message;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartTotals"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Subtotal"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {

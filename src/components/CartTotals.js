@@ -1,8 +1,15 @@
 import { useContext } from "@wordpress/element";
-import { CartContext } from "../context";
+import { useQuery } from "react-query";
+import { getCartInformation } from "../api";
 
 export default function CartTotals() {
-	const { cartInformation } = useContext(CartContext);
+	const { isLoading, error, data: cartInformation } = useQuery(
+		["cartInformation"],
+		getCartInformation
+	);
+
+	if (isLoading) return "Loading...";
+	if (error) return "An error has occurred: " + error.message;
 
 	return (
 		<div className="CartTotals">
@@ -55,7 +62,9 @@ export default function CartTotals() {
 					<span>Coupon code</span>
 					<span>
 						<input type="text" placeholder="Enter code" />
-						<butto type="button" className="button">Apply coupon</butto>
+						<butto type="button" className="button">
+							Apply coupon
+						</butto>
 					</span>
 				</li>
 			</ul>

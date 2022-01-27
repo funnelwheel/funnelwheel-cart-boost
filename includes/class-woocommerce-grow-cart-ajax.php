@@ -21,6 +21,14 @@ class WooCommerce_Grow_Cart_Ajax {
 	}
 
 	public function get_cart_information() {
+		if ( ! function_exists( 'wc_cart_totals_order_total_html' ) ) {
+			include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
+		}
+
+		ob_start();
+		wc_cart_totals_order_total_html();
+		$cart_totals_order_total_html = \ob_get_clean();
+
 		wp_send_json(
 			[
 				'is_empty'            => WC()->cart->is_empty(),
@@ -33,7 +41,7 @@ class WooCommerce_Grow_Cart_Ajax {
 				'cart_tax'            => WC()->cart->get_cart_tax(),
 				'cart_shipping_total' => WC()->cart->get_cart_shipping_total(),
 				'cart_discount_total' => WC()->cart->get_cart_discount_total(),
-				'total'               => WC()->cart->get_total(),
+				'total'               => $cart_totals_order_total_html,
 				'shop_url'            => wc_get_page_permalink( 'shop' ),
 				'checkout_url'        => esc_url( wc_get_checkout_url() ),
 			]
