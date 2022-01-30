@@ -10,7 +10,7 @@ function get_cart_items() {
 	}
 
 	$items = [];
-	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+	foreach ( array_reverse( WC()->cart->get_cart() ) as $cart_item_key => $cart_item ) {
 		$_product = $cart_item['data'];
 
 		$items[] = [
