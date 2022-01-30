@@ -73,6 +73,7 @@ export default function CartTotals() {
 										}}
 									/>
 									<button
+										className="CartTotals__remove-coupon"
 										type="button"
 										onClick={() =>
 											mutationRemoveCoupon.mutate({

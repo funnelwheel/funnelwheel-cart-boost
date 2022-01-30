@@ -21,6 +21,8 @@ class WooCommerce_Grow_Cart_Ajax {
 	}
 
 	public function get_cart_information() {
+		WC()->cart->calculate_totals();
+
 		if ( ! function_exists( 'wc_cart_totals_order_total_html' ) ) {
 			include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
 		}
