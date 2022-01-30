@@ -25,3 +25,21 @@ export function updateCartItem({ cart_key, quantity }) {
 export function getSuggestedProducts() {
 	return instance.get("/?action=growcart_get_suggested_products");
 }
+
+export function applyCoupon({ security, coupon_code }) {
+	return axios.post(
+		woocommerce_grow_cart.wcAjaxURL
+			.toString()
+			.replace("%%endpoint%%", "apply_coupon"),
+		new URLSearchParams({ security, coupon_code })
+	);
+}
+
+export function removeCoupon({ security, coupon }) {
+	return axios.post(
+		woocommerce_grow_cart.wcAjaxURL
+			.toString()
+			.replace("%%endpoint%%", "remove_coupon"),
+		new URLSearchParams({ security, coupon })
+	);
+}

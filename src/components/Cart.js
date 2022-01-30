@@ -11,7 +11,6 @@ import CartTotals from "./CartTotals";
 import SuggestedProducts from "./SuggestedProducts";
 
 export default function Cart() {
-	console.log(woocommerce_grow_cart.is_product);
 	const queryClient = useQueryClient();
 	const [showPopup, setShowPopup] = useState(false);
 	const [showMiniCart, setShowMiniCart] = useState(

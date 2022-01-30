@@ -29,3 +29,30 @@ function get_cart_items() {
 
 	return $items;
 }
+
+function get_cart_coupons() {
+	$coupons = [];
+
+	foreach ( WC()->cart->get_coupons() as $code => $coupon ) {
+		if ( is_string( $coupon ) ) {
+			$coupon = new WC_Coupon( $coupon );
+		}
+
+		$discount_amount_html = '';
+
+		if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->get_code(), WC()->cart->display_cart_ex_tax ) ) {
+			$discount_amount_html = '-' . wc_price( $amount );
+		} elseif ( $coupon->get_free_shipping() ) {
+			$discount_amount_html = __( 'Free shipping coupon', 'woocommerce' );
+		}
+
+		$discount_amount_html = apply_filters( 'woocommerce_growcart_coupon_discount_amount_html', $discount_amount_html, $coupon );
+		$coupons[]            = [
+			'code'        => $coupon->get_code(),
+			'label'       => wc_cart_totals_coupon_label( $coupon, false ),
+			'coupon_html' => $discount_amount_html,
+		];
+	}
+
+	return $coupons;
+}

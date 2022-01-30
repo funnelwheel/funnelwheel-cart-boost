@@ -41,6 +41,7 @@ class WooCommerce_Grow_Cart_Ajax {
 				'cart_tax'            => WC()->cart->get_cart_tax(),
 				'cart_shipping_total' => WC()->cart->get_cart_shipping_total(),
 				'cart_discount_total' => WC()->cart->get_cart_discount_total(),
+				'coupons'             => get_cart_coupons(),
 				'total'               => $cart_totals_order_total_html,
 				'shop_url'            => wc_get_page_permalink( 'shop' ),
 				'checkout_url'        => esc_url( wc_get_checkout_url() ),

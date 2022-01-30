@@ -89,12 +89,16 @@ final class WooCommerce_Grow_Cart {
 			'woocommerce-grow-cart',
 			'woocommerce_grow_cart',
 			[
-				'ajaxURL'    => admin_url( 'admin-ajax.php' ),
-				'is_product' => is_product(),
-				'cart'       => [
+				'ajaxURL'             => admin_url( 'admin-ajax.php' ),
+				'wcAjaxURL'           => \WC_AJAX::get_endpoint( '%%endpoint%%' ),
+				'is_product'          => is_product(),
+				'cart'                => [
 					'is_empty' => WC()->cart->is_empty(),
 					'items'    => get_cart_items(),
+					'coupons'  => get_cart_coupons(),
 				],
+				'apply_coupon_nonce'  => wp_create_nonce( 'apply-coupon' ),
+				'remove_coupon_nonce' => wp_create_nonce( 'remove-coupon' ),
 			]
 		);
 

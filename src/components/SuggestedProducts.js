@@ -27,8 +27,8 @@ export default function SuggestedProducts() {
 						Products you may like
 					</h4>
 
-					{suggestedProducts.data.map((item) => (
-						<div className="SuggestedProducts__item">
+					{suggestedProducts.data.map((item, index) => (
+						<div className="SuggestedProducts__item" key={index}>
 							<div
 								className="SuggestedProducts__item-thumbnail"
 								dangerouslySetInnerHTML={{
