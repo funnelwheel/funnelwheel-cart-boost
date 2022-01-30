@@ -12,6 +12,7 @@ export default function CartTotals() {
 
 	const mutationApplyCoupon = useMutation(applyCoupon, {
 		onSuccess: (response) => {
+			updateCoupon("");
 			queryClient.invalidateQueries("cartInformation");
 		},
 	});
@@ -80,6 +81,9 @@ export default function CartTotals() {
 												coupon: coupon.code,
 											})
 										}
+										disabled={
+											mutationRemoveCoupon.isLoading
+										}
 									>
 										[Remove]
 									</button>
@@ -108,6 +112,7 @@ export default function CartTotals() {
 									coupon_code: coupon,
 								})
 							}
+							disabled={mutationApplyCoupon.isLoading}
 						>
 							Apply coupon
 						</button>

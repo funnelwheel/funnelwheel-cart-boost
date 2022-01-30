@@ -2625,6 +2625,7 @@ function CartTotals() {
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
   const mutationApplyCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_2__.applyCoupon, {
     onSuccess: response => {
+      updateCoupon("");
       queryClient.invalidateQueries("cartInformation");
     }
   });
@@ -2660,7 +2661,8 @@ function CartTotals() {
     onClick: () => mutationRemoveCoupon.mutate({
       security: woocommerce_grow_cart.remove_coupon_nonce,
       coupon: coupon.code
-    })
+    }),
+    disabled: mutationRemoveCoupon.isLoading
   }, "[Remove]"))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Coupon code"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     value: coupon,
@@ -2672,7 +2674,8 @@ function CartTotals() {
     onClick: () => mutationApplyCoupon.mutate({
       security: woocommerce_grow_cart.apply_coupon_nonce,
       coupon_code: coupon
-    })
+    }),
+    disabled: mutationApplyCoupon.isLoading
   }, "Apply coupon")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartTotals__total"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Total"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
