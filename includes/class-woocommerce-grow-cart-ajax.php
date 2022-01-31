@@ -72,9 +72,9 @@ class WooCommerce_Grow_Cart_Ajax {
 
 		$suggested_products = [];
 		$max_items          = 5;
-		$exclude_ids        = [];
 		$cart               = WC()->cart->get_cart();
 		$cart_is_empty      = WC()->cart->is_empty();
+		$exclude_ids        = wp_list_pluck( $cart, 'product_id' );
 
 		if ( $cart_is_empty ) {
 			$args = array(
@@ -92,8 +92,6 @@ class WooCommerce_Grow_Cart_Ajax {
 			$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $query->posts ) );
 		} else {
 			foreach ( $cart as $cart_item ) {
-				$exclude_ids[] = $cart_item['product_id'];
-
 				if ( count( $suggested_products ) >= $max_items ) {
 					continue;
 				}
@@ -101,12 +99,17 @@ class WooCommerce_Grow_Cart_Ajax {
 				$product_id         = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
 				$related_products   = wc_get_related_products( $product_id, $max_items, $exclude_ids );
 				$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $related_products ) );
+				$suggested_products = array_unique( $suggested_products );
 			}
 		}
 
 		$return = [];
 
 		foreach ( $suggested_products as $product_id ) {
+			if ( count( $return ) >= $max_items ) {
+				continue;
+			}
+
 			$_product = wc_get_product( $product_id );
 
 			$return[] = [

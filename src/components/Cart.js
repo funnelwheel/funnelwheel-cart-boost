@@ -23,6 +23,7 @@ export default function Cart() {
 
 	function invalidateQueries() {
 		queryClient.invalidateQueries("cartInformation");
+		queryClient.invalidateQueries("suggestedProducts");
 		setShowPopup(true);
 	}
 
