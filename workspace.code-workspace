@@ -1,13 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "."
-		},
-		{
 			"path": "..\\woocommerce-side-cart"
 		},
 		{
 			"path": "..\\woocommerce"
+		},
+		{
+			"path": "."
 		}
 	],
 	"settings": {}

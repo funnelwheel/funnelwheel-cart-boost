@@ -61,7 +61,8 @@ class WooCommerce_Grow_Cart_Ajax {
 
 		$cart_success = 0 === $quantity ? WC()->cart->remove_cart_item( $cart_key ) : WC()->cart->set_quantity( $cart_key, $quantity );
 		$response     = [
-			'success' => $cart_success,
+			'success'               => $cart_success,
+			'removed_cart_contents' => WC()->cart->removed_cart_contents,
 		];
 
 		wp_send_json( $response );
@@ -75,6 +76,17 @@ class WooCommerce_Grow_Cart_Ajax {
 		$cart               = WC()->cart->get_cart();
 		$cart_is_empty      = WC()->cart->is_empty();
 		$exclude_ids        = wp_list_pluck( $cart, 'product_id' );
+
+		if ( count( WC()->cart->removed_cart_contents ) ) {
+			foreach ( WC()->cart->removed_cart_contents as $key => $cart_item ) {
+				$product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
+
+				if ( ! in_array( $product_id, $exclude_ids, true ) ) {
+					$suggested_products[] = $product_id;
+					$exclude_ids[]        = $product_id;
+				}
+			}
+		}
 
 		if ( $cart_is_empty ) {
 			$args = array(

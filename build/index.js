@@ -2426,8 +2426,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CartItems__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CartItems */ "./src/components/CartItems.js");
 /* harmony import */ var _CartTotals__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CartTotals */ "./src/components/CartTotals.js");
 /* harmony import */ var _SuggestedProducts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./SuggestedProducts */ "./src/components/SuggestedProducts.js");
-/* harmony import */ var _FrequentlyBoughtTogether__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./FrequentlyBoughtTogether */ "./src/components/FrequentlyBoughtTogether.js");
-
 
 
 
@@ -2444,7 +2442,6 @@ function Cart() {
   const queryClient = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useQueryClient)();
   const [showPopup, setShowPopup] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [showMiniCart, setShowMiniCart] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(!woocommerce_grow_cart.is_product);
-  const [frequentlyBoughtTogether, setFrequentlyBoughtTogether] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const {
     isLoading,
     error,
@@ -2504,9 +2501,7 @@ function Cart() {
     className: "checkout-button button alt wc-forward"
   }, "Proceed to checkout")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart__upsell"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FrequentlyBoughtTogether__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    productsIds: frequentlyBoughtTogether
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SuggestedProducts__WEBPACK_IMPORTED_MODULE_10__["default"], null)))))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, showMiniCart && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SuggestedProducts__WEBPACK_IMPORTED_MODULE_10__["default"], null)))))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, showMiniCart && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart-mini slideInUp"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart-mini__inner"
@@ -2557,7 +2552,7 @@ function CartItems() {
     cartInformation
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext);
   const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_2__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_4__.updateCartItem, {
-    onSuccess: () => {
+    onSuccess: response => {
       queryClient.invalidateQueries("cartInformation");
       queryClient.invalidateQueries("suggestedProducts");
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(document.body).trigger("wc_fragment_refresh");
@@ -2691,30 +2686,6 @@ function CartTotals() {
       __html: cartInformation.data.total
     }
   })));
-}
-
-/***/ }),
-
-/***/ "./src/components/FrequentlyBoughtTogether.js":
-/*!****************************************************!*\
-  !*** ./src/components/FrequentlyBoughtTogether.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ FrequentlyBoughtTogether; }
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-
-function FrequentlyBoughtTogether() {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "FrequentlyBoughtTogether"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
-    className: "SuggestedProducts__title"
-  }, "Frequently bought together"));
 }
 
 /***/ }),
