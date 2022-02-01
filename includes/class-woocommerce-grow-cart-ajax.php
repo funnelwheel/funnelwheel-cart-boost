@@ -78,17 +78,18 @@ class WooCommerce_Grow_Cart_Ajax {
 		$exclude_ids        = wp_list_pluck( $cart, 'product_id' );
 
 		if ( count( WC()->cart->removed_cart_contents ) ) {
+			$title = __( 'Frequently bought together' );
+
 			foreach ( WC()->cart->removed_cart_contents as $key => $cart_item ) {
 				$product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
 
 				if ( ! in_array( $product_id, $exclude_ids, true ) ) {
 					$suggested_products[] = $product_id;
-					$exclude_ids[]        = $product_id;
 				}
 			}
-		}
+		} elseif ( $cart_is_empty ) {
+			$title = __( 'Popular products' );
 
-		if ( $cart_is_empty ) {
 			$args = array(
 				'post_type'           => 'product',
 				'post_status'         => 'publish',
@@ -103,6 +104,8 @@ class WooCommerce_Grow_Cart_Ajax {
 
 			$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $query->posts ) );
 		} else {
+			$title = __( 'Products you may like' );
+
 			foreach ( $cart as $cart_item ) {
 				if ( count( $suggested_products ) >= $max_items ) {
 					continue;
@@ -115,15 +118,15 @@ class WooCommerce_Grow_Cart_Ajax {
 			}
 		}
 
-		$return = [];
+		$products = [];
 
 		foreach ( $suggested_products as $product_id ) {
 			$_product = wc_get_product( $product_id );
-			if ( ( count( $return ) >= $max_items ) || ! ( 'simple' === $_product->get_type() ) ) {
+			if ( ( count( $products ) >= $max_items ) || ! ( 'simple' === $_product->get_type() ) ) {
 				continue;
 			}
 
-			$return[] = [
+			$products[] = [
 				'product_id'                => $product_id,
 				'product_title'             => $_product->get_title(),
 				'product_short_description' => $_product->get_short_description(),
@@ -133,6 +136,12 @@ class WooCommerce_Grow_Cart_Ajax {
 			];
 		}
 
-		wp_send_json( $return );
+		wp_send_json(
+			[
+				'title'                             => $title,
+				'products'                          => $products,
+				'WC()->cart->removed_cart_contents' => WC()->cart->removed_cart_contents,
+			]
+		);
 	}
 }

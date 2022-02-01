@@ -11,6 +11,7 @@ export default function SuggestedProducts() {
 	const mutation = useMutation(addToCart, {
 		onSuccess: () => {
 			queryClient.invalidateQueries("cartInformation");
+			queryClient.invalidateQueries("suggestedProducts");
 			$(document.body).trigger("wc_fragment_refresh");
 		},
 	});
@@ -24,10 +25,10 @@ export default function SuggestedProducts() {
 			) : (
 				<>
 					<h4 className="SuggestedProducts__title">
-						Products you may like
+						{suggestedProducts.data.title}
 					</h4>
 
-					{suggestedProducts.data.map((item, index) => (
+					{suggestedProducts.data.products.map((item, index) => (
 						<div className="SuggestedProducts__item" key={index}>
 							<div
 								className="SuggestedProducts__item-thumbnail"
