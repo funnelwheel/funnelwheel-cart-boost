@@ -62,6 +62,7 @@ export default function SuggestedProducts() {
 												quantity: 1,
 											})
 										}
+										disabled={mutation.isLoading}
 									>
 										Add
 									</button>
