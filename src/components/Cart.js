@@ -9,12 +9,16 @@ import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
 import CartItems from "./CartItems";
 import CartTotals from "./CartTotals";
 import SuggestedProducts from "./SuggestedProducts";
+import FrequentlyBoughtTogether from "./FrequentlyBoughtTogether";
 
 export default function Cart() {
 	const queryClient = useQueryClient();
 	const [showPopup, setShowPopup] = useState(false);
 	const [showMiniCart, setShowMiniCart] = useState(
 		!woocommerce_grow_cart.is_product
+	);
+	const [frequentlyBoughtTogether, setFrequentlyBoughtTogether] = useState(
+		[]
 	);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
@@ -104,6 +108,9 @@ export default function Cart() {
 									)}
 								</div>
 								<div className="grow-cart__upsell">
+									<FrequentlyBoughtTogether
+										productsIds={frequentlyBoughtTogether}
+									/>
 									<SuggestedProducts />
 								</div>
 							</div>
