@@ -106,11 +106,10 @@ class WooCommerce_Grow_Cart_Ajax {
 		$return = [];
 
 		foreach ( $suggested_products as $product_id ) {
-			if ( count( $return ) >= $max_items ) {
+			$_product = wc_get_product( $product_id );
+			if ( ( count( $return ) >= $max_items ) || ! ( 'simple' === $_product->get_type() ) ) {
 				continue;
 			}
-
-			$_product = wc_get_product( $product_id );
 
 			$return[] = [
 				'product_id'                => $product_id,
