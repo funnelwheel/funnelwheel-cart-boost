@@ -89,7 +89,16 @@ class WooCommerce_Grow_Cart_Rewards {
 		return $filtered_rewards;
 	}
 
-	public function get_next_reward_hint( $next_rewards = []) {
-		return '';
+	public function get_next_reward_hint( $next_rewards = [] ) {
+		$reward_hint_string     = __( 'Add %1$d more products to get %2$s' );
+		$cart_contents_count    = WC()->cart->get_cart_contents_count();
+		$next_reward            = current( $next_rewards );
+		$required_cart_contents = $next_reward['minimum_cart_contents_count'] - $cart_contents_count;
+
+		return sprintf(
+			$reward_hint_string,
+			$required_cart_contents,
+			$next_reward['name']
+		);
 	}
 }
