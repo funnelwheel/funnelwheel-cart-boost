@@ -65,7 +65,7 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		return [
 			'hint'                  => $hint,
-			'filtered_rewards'      => $filtered_rewards,
+			'rewards'               => $filtered_rewards,
 			'count_rewards'         => count( $rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
 			'cart_contents_count'   => $cart_contents_count,
@@ -90,9 +90,9 @@ class WooCommerce_Grow_Cart_Rewards {
 	}
 
 	public function get_next_reward_hint( $next_rewards = [] ) {
-		$reward_hint_string     = __( 'Add %1$d more products to get %2$s' );
 		$cart_contents_count    = WC()->cart->get_cart_contents_count();
 		$next_reward            = current( $next_rewards );
+		$reward_hint_string     = 'PERCENTAGE' === $next_reward['type'] ? __( 'Add %1$d more products to save %2$s' ) : __( 'Add %1$d more products to get %2$s' );
 		$required_cart_contents = $next_reward['minimum_cart_contents_count'] - $cart_contents_count;
 
 		return sprintf(
