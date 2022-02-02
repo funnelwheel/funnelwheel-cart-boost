@@ -57,28 +57,39 @@ class WooCommerce_Grow_Cart_Rewards {
 		$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
 		$hint             = '';
 
-		if ( $rewards === $filtered_rewards ) {
+		if ( $rewards === $filtered_rewards['current_rewards'] ) {
 			$hint = 'You\'re getting the most rewards!';
+		} else {
+			$hint = $this->get_next_reward_hint( $filtered_rewards['next_rewards'] );
 		}
 
 		return [
-			'hint'                => $hint,
-			'rewards'             => $filtered_rewards,
-			'available_rewards'   => count( $rewards ),
-			'filtered_rewards'    => count( $filtered_rewards ),
-			'cart_contents_count' => $cart_contents_count,
+			'hint'                  => $hint,
+			'filtered_rewards'      => $filtered_rewards,
+			'count_rewards'         => count( $rewards ),
+			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
+			'cart_contents_count'   => $cart_contents_count,
 		];
 	}
 
 	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count ) {
-		$filtered_rewards = [];
+		$filtered_rewards = [
+			'current_rewards' => [],
+			'next_rewards'    => [],
+		];
 
 		foreach ( $rewards as $key => $value ) {
 			if ( $value['minimum_cart_contents_count'] <= $cart_contents_count ) {
-				$filtered_rewards[ $key ] = $value;
+				$filtered_rewards['current_rewards'][ $key ] = $value;
+			} else {
+				$filtered_rewards['next_rewards'][ $key ] = $value;
 			}
 		}
 
 		return $filtered_rewards;
+	}
+
+	public function get_next_reward_hint( $next_rewards = []) {
+		return '';
 	}
 }
