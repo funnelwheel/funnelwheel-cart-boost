@@ -14,9 +14,8 @@ class WooCommerce_Grow_Cart_Rewards {
 	public function __construct() {
 	}
 
-	public function get_rewards() {
-		$cart_contents_count = WC()->cart->get_cart_contents_count();
-		$rewards             = [
+	public function get_available_rewards() {
+		return [
 			[
 				'name'                        => 'FREE SHIPPING',
 				'type'                        => 'FREE_SHIPPING',
@@ -53,6 +52,11 @@ class WooCommerce_Grow_Cart_Rewards {
 				'featured'                    => false,
 			],
 		];
+	}
+
+	public function get_rewards() {
+		$cart_contents_count = WC()->cart->get_cart_contents_count();
+		$rewards             = $this->get_available_rewards();
 
 		$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
 		$hint             = '';
@@ -100,5 +104,9 @@ class WooCommerce_Grow_Cart_Rewards {
 			$required_cart_contents,
 			$next_reward['name']
 		);
+	}
+
+	public function get_featured_rewards() {
+
 	}
 }
