@@ -102,6 +102,16 @@ final class WooCommerce_Grow_Cart {
 			]
 		);
 
+		if ( function_exists( 'is_product' ) && is_product() ) {
+			wp_enqueue_script(
+				'woocommerce-grow-cart-ajax-add-to-cart',
+				plugins_url( 'build/ajax-add-to-cart.js', WOOCOMMERCE_GROW_CART_FILE ),
+				array_merge( $asset_file['dependencies'], [ 'jquery' ] ),
+				$asset_file['version'],
+				true
+			);
+		}
+
 		wp_enqueue_style(
 			'woocommerce-grow-cart',
 			plugins_url( 'build/index.css', WOOCOMMERCE_GROW_CART_FILE ),
