@@ -18,6 +18,8 @@ class WooCommerce_Grow_Cart_Ajax {
 		add_action( 'wp_ajax_nopriv_growcart_update_cart_item', [ $this, 'update_cart_item' ] );
 		add_action( 'wp_ajax_growcart_get_suggested_products', [ $this, 'get_suggested_products' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_suggested_products', [ $this, 'get_suggested_products' ] );
+		add_action( 'wp_ajax_growcart_get_rewards', [ $this, 'get_rewards' ] );
+		add_action( 'wp_ajax_nopriv_growcart_get_rewards', [ $this, 'get_rewards' ] );
 	}
 
 	public function get_cart_information() {
@@ -142,6 +144,12 @@ class WooCommerce_Grow_Cart_Ajax {
 				'products'                          => $products,
 				'WC()->cart->removed_cart_contents' => WC()->cart->removed_cart_contents,
 			]
+		);
+	}
+
+	public function get_rewards() {
+		wp_send_json(
+			[ woocommerce_grow_cart()->rewards->get_rewards() ]
 		);
 	}
 }

@@ -52,6 +52,7 @@ final class WooCommerce_Grow_Cart {
 		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/functions.php';
 		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/template-functions.php';
 		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-ajax.php';
+		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-rewards.php';
 	}
 
 	/**
@@ -63,7 +64,8 @@ final class WooCommerce_Grow_Cart {
 		add_action( 'wp_footer', [ $this, 'grow_cart_root' ] );
 
 		// Init classes.
-		$this->ajax = new WooCommerce_Grow_Cart_Ajax();
+		$this->ajax    = new WooCommerce_Grow_Cart_Ajax();
+		$this->rewards = new WooCommerce_Grow_Cart_Rewards();
 	}
 
 	/**
