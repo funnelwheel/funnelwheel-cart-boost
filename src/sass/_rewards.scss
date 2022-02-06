@@ -1,0 +1,38 @@
+.Rewards {
+    padding: 20px 24px;
+    font-size: $font-size-sm;
+    background-color: $gray-800;
+    color: $white;
+
+    &__list {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        margin-left: 0;
+        margin-bottom: 0;
+
+        li {
+            margin-right: 16px;
+        }
+    }
+    
+    &__title {
+        font-size: $font-size-lg;
+    }
+
+    &__icon {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        border-radius: 50%;
+        text-align: center;
+        background-color: $gray-700;
+
+        &.availed {
+            background-color: $green;
+        }
+    }
+}

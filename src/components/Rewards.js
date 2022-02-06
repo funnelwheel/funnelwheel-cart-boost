@@ -12,9 +12,10 @@ export default function Rewards() {
 	return (
 		<div className="Rewards">
 			<ul className="Rewards__list">
+				<li className="Rewards__title">Rewards</li>
 				{rewards.data.rewards.current_rewards.map((reward) => (
 					<li>
-						<span className="Rewards__icon">
+						<span className="Rewards__icon availed">
 							<StarIcon />
 						</span>
 						<span className="Rewards__text">{reward.name}</span>

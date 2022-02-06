@@ -38,13 +38,6 @@ class WooCommerce_Grow_Cart_Rewards {
 				'featured'                    => false,
 			],
 			[
-				'name'                        => '100 USD',
-				'type'                        => 'FIXED',
-				'minimum_cart_contents_count' => 10,
-				'value'                       => 100,
-				'featured'                    => false,
-			],
-			[
 				'name'                        => 'MYSTERY GIFTCARD',
 				'type'                        => 'GIFTCARD',
 				'minimum_cart_contents_count' => 20,

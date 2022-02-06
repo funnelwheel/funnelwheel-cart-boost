@@ -2855,8 +2855,10 @@ function Rewards() {
     className: "Rewards"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "Rewards__list"
-  }, rewards.data.rewards.current_rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "Rewards__icon"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+    className: "Rewards__title"
+  }, "Rewards"), rewards.data.rewards.current_rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "Rewards__icon availed"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_star_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "Rewards__text"
   }, reward.name))), rewards.data.rewards.next_rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {

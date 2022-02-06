@@ -309,4 +309,38 @@
   margin-left: 4px;
 }
 
+.Rewards {
+  padding: 20px 24px;
+  font-size: 0.875rem;
+  background-color: #343a40;
+  color: #fff;
+}
+.Rewards__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+.Rewards__list li {
+  margin-right: 16px;
+}
+.Rewards__title {
+  font-size: 1.25rem;
+}
+.Rewards__icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #495057;
+}
+.Rewards__icon.availed {
+  background-color: #198754;
+}
+
 /*# sourceMappingURL=index.css.map*/
