@@ -6,6 +6,7 @@ import { CartContext } from "../context";
 import { getCartInformation } from "../api";
 import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
 import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
+import Rewards from "./Rewards";
 import CartItems from "./CartItems";
 import CartTotals from "./CartTotals";
 import SuggestedProducts from "./SuggestedProducts";
@@ -86,6 +87,7 @@ export default function Cart() {
 										</div>
 									) : (
 										<>
+											<Rewards />
 											<CartItems />
 											<CartTotals />
 
