@@ -69,6 +69,7 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		return [
 			'hint'                  => $hint,
+			'featured_rewards'      => $this->get_featured_rewards(),
 			'rewards'               => $filtered_rewards,
 			'count_rewards'         => count( $rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
@@ -107,6 +108,27 @@ class WooCommerce_Grow_Cart_Rewards {
 	}
 
 	public function get_featured_rewards() {
+		$cart_contents_count = WC()->cart->get_cart_contents_count();
+		$rewards             = $this->get_available_rewards();
+		$filtered_rewards    = wp_list_filter( $rewards, [ 'featured' => true ] );
 
+		$featured_rewards = [];
+		foreach ( $filtered_rewards as $key => $value ) {
+			$required_cart_contents = $value['minimum_cart_contents_count'] - $cart_contents_count;
+			$reward_hint_string     = $value['minimum_cart_contents_count'] <= $cart_contents_count ? sprintf(
+				__( 'You\'ve unlocked your %s!' ),
+				$value['name']
+			) : sprintf(
+				__( 'Add %d more products to unlock' ),
+				$required_cart_contents
+			);
+
+			$featured_rewards[] = [
+				'name' => $value['name'],
+				'hint' => $reward_hint_string,
+			];
+		}
+
+		return $featured_rewards;
 	}
 }
