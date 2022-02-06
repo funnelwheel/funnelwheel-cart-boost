@@ -86,9 +86,9 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		foreach ( $rewards as $key => $value ) {
 			if ( $value['minimum_cart_contents_count'] <= $cart_contents_count ) {
-				$filtered_rewards['current_rewards'][ $key ] = $value;
+				$filtered_rewards['current_rewards'][] = $value;
 			} else {
-				$filtered_rewards['next_rewards'][ $key ] = $value;
+				$filtered_rewards['next_rewards'][] = $value;
 			}
 		}
 

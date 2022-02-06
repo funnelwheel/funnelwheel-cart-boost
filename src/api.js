@@ -8,6 +8,14 @@ export function getCartInformation() {
 	return instance.get("/?action=growcart_get_cart_information");
 }
 
+export function getSuggestedProducts() {
+	return instance.get("/?action=growcart_get_suggested_products");
+}
+
+export function getRewards() {
+	return instance.get("/?action=growcart_get_rewards");
+}
+
 export function addToCart({ product_id, quantity }) {
 	return instance.post(
 		"/?action=woocommerce_add_to_cart",
@@ -20,10 +28,6 @@ export function updateCartItem({ cart_key, quantity }) {
 		"/?action=growcart_update_cart_item",
 		new URLSearchParams({ cart_key, quantity })
 	);
-}
-
-export function getSuggestedProducts() {
-	return instance.get("/?action=growcart_get_suggested_products");
 }
 
 export function applyCoupon({ security, coupon_code }) {

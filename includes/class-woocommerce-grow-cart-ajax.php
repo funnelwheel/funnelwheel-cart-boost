@@ -148,8 +148,6 @@ class WooCommerce_Grow_Cart_Ajax {
 	}
 
 	public function get_rewards() {
-		wp_send_json(
-			[ woocommerce_grow_cart()->rewards->get_rewards() ]
-		);
+		wp_send_json( woocommerce_grow_cart()->rewards->get_rewards() );
 	}
 }
