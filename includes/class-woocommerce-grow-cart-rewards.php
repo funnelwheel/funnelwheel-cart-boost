@@ -70,10 +70,11 @@ class WooCommerce_Grow_Cart_Rewards {
 		return [
 			'hint'                  => $hint,
 			'featured_rewards'      => $this->get_featured_rewards(),
-			'rewards'               => $filtered_rewards,
 			'count_rewards'         => count( $rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
 			'cart_contents_count'   => $cart_contents_count,
+			'rewards_progress'      => $this->get_rewards_progress( $rewards, $cart_contents_count ),
+			'rewards'               => $filtered_rewards,
 		];
 	}
 
@@ -130,5 +131,16 @@ class WooCommerce_Grow_Cart_Rewards {
 		}
 
 		return $featured_rewards;
+	}
+
+	public function get_rewards_progress( $rewards = [], $cart_contents_count = 0 ) {
+		if ( ! $cart_contents_count ) {
+			return 0;
+		}
+
+		$minimum_cart_contents_count_list = wp_list_pluck( $rewards, 'minimum_cart_contents_count' );
+		$max_cart_contents_count          = max( $minimum_cart_contents_count_list );
+
+		return ( $cart_contents_count / $max_cart_contents_count ) * 100;
 	}
 }
