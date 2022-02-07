@@ -237,6 +237,10 @@
   border: 0;
   line-height: 1;
 }
+.grow-cart-mini .Rewards {
+  padding: 0;
+  background-color: transparent;
+}
 
 .SuggestedProducts {
   overflow: auto;
@@ -341,6 +345,9 @@
 }
 .Rewards__icon.availed {
   background-color: #198754;
+}
+.Rewards__icon svg {
+  margin-left: 0;
 }
 
 .progress {

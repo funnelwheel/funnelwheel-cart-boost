@@ -2584,14 +2584,7 @@ function Cart() {
     className: "grow-cart-mini slideInUp"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart-mini__inner"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
-    className: "grow-cart-mini__title"
-  }, cartInformation.data.cart_title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "grow-cart-mini__total",
-    dangerouslySetInnerHTML: {
-      __html: cartInformation.data.total
-    }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_basket_svg__WEBPACK_IMPORTED_MODULE_7__.ReactComponent, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Rewards__WEBPACK_IMPORTED_MODULE_8__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_basket_svg__WEBPACK_IMPORTED_MODULE_7__.ReactComponent, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     onClick: () => setShowPopup(true)
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_chevron_up_svg__WEBPACK_IMPORTED_MODULE_6__.ReactComponent, null))))));

@@ -118,7 +118,7 @@ export default function Cart() {
 					{showMiniCart && (
 						<div className="grow-cart-mini slideInUp">
 							<div className="grow-cart-mini__inner">
-								<div>
+								{/* <div>
 									<h5 className="grow-cart-mini__title">
 										{cartInformation.data.cart_title}
 									</h5>
@@ -128,8 +128,9 @@ export default function Cart() {
 											__html: cartInformation.data.total,
 										}}
 									/>
-								</div>
+								</div> */}
 
+								<Rewards />
 								<BasketIcon />
 								<button
 									type="button"
