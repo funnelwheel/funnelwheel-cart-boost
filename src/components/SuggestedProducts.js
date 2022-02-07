@@ -12,6 +12,7 @@ export default function SuggestedProducts() {
 		onSuccess: () => {
 			queryClient.invalidateQueries("cartInformation");
 			queryClient.invalidateQueries("suggestedProducts");
+			queryClient.invalidateQueries("rewards");
 			$(document.body).trigger("wc_fragment_refresh");
 		},
 	});

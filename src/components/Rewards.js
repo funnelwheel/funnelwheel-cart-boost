@@ -32,6 +32,10 @@ export default function Rewards() {
 				))}
 			</ul>
 
+			<div className="progress">
+				<div className="progress__bar" style={{ width: `${rewards.data.rewards_progress}%` }}></div>
+			</div>
+
 			<span>{rewards.data.hint}</span>
 		</div>
 	);

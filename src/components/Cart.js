@@ -25,6 +25,7 @@ export default function Cart() {
 	function invalidateQueries() {
 		queryClient.invalidateQueries("cartInformation");
 		queryClient.invalidateQueries("suggestedProducts");
+		queryClient.invalidateQueries("rewards");
 		setShowPopup(true);
 	}
 
