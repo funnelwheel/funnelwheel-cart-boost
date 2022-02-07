@@ -49,6 +49,7 @@ class WooCommerce_Grow_Cart_Ajax {
 				'total'               => $cart_totals_order_total_html,
 				'shop_url'            => wc_get_page_permalink( 'shop' ),
 				'checkout_url'        => esc_url( wc_get_checkout_url() ),
+				'cart_contents_count' => WC()->cart->get_cart_contents_count()
 			]
 		);
 	}
