@@ -4,8 +4,7 @@ import { useState, useEffect } from "@wordpress/element";
 import { useQuery, useQueryClient } from "react-query";
 import { CartContext } from "../context";
 import { getCartInformation } from "../api";
-import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
-import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
+import MiniCart from "./MiniCart";
 import Rewards from "./Rewards";
 import CartItems from "./CartItems";
 import CartTotals from "./CartTotals";
@@ -14,9 +13,6 @@ import SuggestedProducts from "./SuggestedProducts";
 export default function Cart() {
 	const queryClient = useQueryClient();
 	const [showPopup, setShowPopup] = useState(false);
-	const [showMiniCart, setShowMiniCart] = useState(
-		!woocommerce_grow_cart.is_product
-	);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
 		getCartInformation
@@ -34,12 +30,6 @@ export default function Cart() {
 			"added_to_cart removed_from_cart",
 			invalidateQueries
 		);
-
-		if (woocommerce_grow_cart.is_product) {
-			window.onscroll = function () {
-				setShowMiniCart(window.pageYOffset > 200);
-			};
-		}
 	}, []);
 
 	if (isLoading) return "Loading...";
@@ -114,34 +104,7 @@ export default function Cart() {
 					</div>
 				</div>
 			) : (
-				<>
-					{showMiniCart && (
-						<div className="grow-cart-mini slideInUp">
-							<div className="grow-cart-mini__inner">
-								{/* <div>
-									<h5 className="grow-cart-mini__title">
-										{cartInformation.data.cart_title}
-									</h5>
-									<div
-										className="grow-cart-mini__total"
-										dangerouslySetInnerHTML={{
-											__html: cartInformation.data.total,
-										}}
-									/>
-								</div> */}
-
-								<Rewards />
-								<BasketIcon />
-								<button
-									type="button"
-									onClick={() => setShowPopup(true)}
-								>
-									<ChevronUpIcon />
-								</button>
-							</div>
-						</div>
-					)}
-				</>
+				<MiniCart setShowPopup={setShowPopup} />
 			)}
 		</CartContext.Provider>
 	);
