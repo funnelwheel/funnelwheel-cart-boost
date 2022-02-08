@@ -20,6 +20,7 @@ class WooCommerce_Grow_Cart_Ajax {
 		add_action( 'wp_ajax_nopriv_growcart_get_suggested_products', [ $this, 'get_suggested_products' ] );
 		add_action( 'wp_ajax_growcart_get_rewards', [ $this, 'get_rewards' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_rewards', [ $this, 'get_rewards' ] );
+		add_action( 'wp_ajax_growcart_get_admin_rewards', [ $this, 'get_admin_rewards' ] );
 	}
 
 	public function get_cart_information() {
@@ -49,7 +50,7 @@ class WooCommerce_Grow_Cart_Ajax {
 				'total'               => $cart_totals_order_total_html,
 				'shop_url'            => wc_get_page_permalink( 'shop' ),
 				'checkout_url'        => esc_url( wc_get_checkout_url() ),
-				'cart_contents_count' => WC()->cart->get_cart_contents_count()
+				'cart_contents_count' => WC()->cart->get_cart_contents_count(),
 			]
 		);
 	}
@@ -150,5 +151,11 @@ class WooCommerce_Grow_Cart_Ajax {
 
 	public function get_rewards() {
 		wp_send_json( woocommerce_grow_cart()->rewards->get_rewards() );
+	}
+
+	public function get_admin_rewards() {
+		$rewards = get_option( 'woocommerce_growcart_rewards' );
+		$rewards = $rewards ? $rewards : [];
+		wp_send_json( $rewards );
 	}
 }

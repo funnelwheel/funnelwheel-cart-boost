@@ -20,12 +20,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RewardsAdminScreen() {
-  const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([{
     name: "",
     type: "PERCENTAGE",
     value: "",
     minimum_cart_contents: 0
-  });
+  }]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsAdminScreen"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {

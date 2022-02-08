@@ -6,12 +6,14 @@ import {
 import { useState } from "@wordpress/element";
 
 export default function RewardsAdminScreen() {
-	const [reward, setReward] = useState({
-		name: "",
-		type: "PERCENTAGE",
-		value: "",
-		minimum_cart_contents: 0,
-	});
+	const [reward, setReward] = useState([
+		{
+			name: "",
+			type: "PERCENTAGE",
+			value: "",
+			minimum_cart_contents: 0,
+		},
+	]);
 
 	return (
 		<div className="RewardsAdminScreen">
