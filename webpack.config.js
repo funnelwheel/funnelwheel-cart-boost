@@ -5,5 +5,6 @@ module.exports = {
 	entry: {
 		...defaultConfig.entry,
 		"ajax-add-to-cart": "./src/ajax-add-to-cart.js",
+		"rewards": "./src/rewards.js"
 	},
 };

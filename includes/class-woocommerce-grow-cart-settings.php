@@ -17,12 +17,22 @@ class WooCommerce_Grow_Cart_Settings extends WC_Settings_Page {
 		global $current_section, $hide_save_button;
 
 		if ( '' === $current_section ) {
-			$hide_save_button = true;
+			// $hide_save_button = true;
 			$this->output_rewards_screen();
 		}
 	}
 
 	public function output_rewards_screen() {
+		$asset_file = include WOOCOMMERCE_GROW_CART_ABSPATH . 'build/rewards.asset.php';
+
+		wp_enqueue_script(
+			'woocommerce-grow-cart-rewards',
+			plugins_url( 'build/rewards.js', WOOCOMMERCE_GROW_CART_FILE ),
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			true
+		);
+
 		echo '<div id="rewards-screen"></div>';
 	}
 }
