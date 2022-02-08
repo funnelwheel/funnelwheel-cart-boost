@@ -62,6 +62,7 @@ final class WooCommerce_Grow_Cart {
 	private function hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'wp_footer', [ $this, 'grow_cart_root' ] );
+		add_filter( 'woocommerce_get_settings_pages', [ $this, 'settings_pages' ] );
 
 		// Init classes.
 		$this->ajax    = new WooCommerce_Grow_Cart_Ajax();
@@ -132,6 +133,18 @@ final class WooCommerce_Grow_Cart {
 		}
 
 		echo '<div id="woocommerce-grow-cart-root"></div>';
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param [type] $settings
+	 * @return void
+	 */
+	public function settings_pages( $settings ) {
+		$settings[] = include WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-settings.php';
+
+		return $settings;
 	}
 
 	/**
