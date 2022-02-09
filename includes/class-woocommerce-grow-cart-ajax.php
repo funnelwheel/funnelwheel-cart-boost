@@ -21,6 +21,7 @@ class WooCommerce_Grow_Cart_Ajax {
 		add_action( 'wp_ajax_growcart_get_rewards', [ $this, 'get_rewards' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_rewards', [ $this, 'get_rewards' ] );
 		add_action( 'wp_ajax_growcart_get_admin_rewards', [ $this, 'get_admin_rewards' ] );
+		add_action( 'wp_ajax_growcart_update_admin_rewards', [ $this, 'update_admin_rewards' ] );
 	}
 
 	public function get_cart_information() {
@@ -156,6 +157,17 @@ class WooCommerce_Grow_Cart_Ajax {
 	public function get_admin_rewards() {
 		$rewards = get_option( 'woocommerce_growcart_rewards' );
 		$rewards = $rewards ? $rewards : [];
-		wp_send_json( $rewards );
+		wp_send_json( json_decode( $rewards, true ) );
+	}
+
+	public function update_admin_rewards() {
+		check_ajax_referer( 'update-rewards', 'security' );
+
+		if ( isset( $_POST['rewards'] ) ) {
+			$rewards = sanitize_text_field( $_POST['rewards'] );
+			update_option( 'woocommerce_growcart_rewards', stripslashes( $rewards ) );
+		}
+
+		wp_send_json( $_POST['rewards'] );
 	}
 }
