@@ -42,6 +42,13 @@ class WooCommerce_Grow_Cart_Settings extends WC_Settings_Page {
 			]
 		);
 
+		wp_enqueue_style(
+			'woocommerce-growcart-rewards',
+			plugins_url( 'build/rewards.css', WOOCOMMERCE_GROW_CART_FILE ),
+			[],
+			$asset_file['version']
+		);
+
 		echo '<div id="rewards-screen"></div>';
 	}
 }

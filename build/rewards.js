@@ -1,6 +1,42 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/svg/x.svg":
+/*!***********************!*\
+  !*** ./src/svg/x.svg ***!
+  \***********************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": function() { return /* binding */ SvgX; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgX(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 16,
+    height: 16,
+    fill: "currentColor",
+    className: "x_svg__bi x_svg__bi-x"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M4.646 4.646a.5.5 0 01.708 0L8 7.293l2.646-2.647a.5.5 0 01.708.708L8.707 8l2.647 2.646a.5.5 0 01-.708.708L8 8.707l-2.646 2.647a.5.5 0 01-.708-.708L7.293 8 4.646 5.354a.5.5 0 010-.708z"
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmkteCIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8cGF0aCBkPSJNNC42NDYgNC42NDZhLjUuNSAwIDAgMSAuNzA4IDBMOCA3LjI5M2wyLjY0Ni0yLjY0N2EuNS41IDAgMCAxIC43MDguNzA4TDguNzA3IDhsMi42NDcgMi42NDZhLjUuNSAwIDAgMS0uNzA4LjcwOEw4IDguNzA3bC0yLjY0NiAyLjY0N2EuNS41IDAgMCAxLS43MDgtLjcwOEw3LjI5MyA4IDQuNjQ2IDUuMzU0YS41LjUgMCAwIDEgMC0uNzA4eiIvPgo8L3N2Zz4=");
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -2193,11 +2229,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _admin_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../admin-api */ "./src/admin-api.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _admin_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../admin-api */ "./src/admin-api.js");
+/* harmony import */ var _svg_x_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../svg/x.svg */ "./src/svg/x.svg");
+
+
 
 
 
@@ -2211,14 +2252,14 @@ function RewardsAdminScreen() {
     isLoading,
     error,
     data: rewards
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("adminRewards", _admin_api__WEBPACK_IMPORTED_MODULE_3__.getAdminRewards, {
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("adminRewards", _admin_api__WEBPACK_IMPORTED_MODULE_4__.getAdminRewards, {
     onSuccess: response => {
       if (response.data && response.data.length) {
         setActiveReward(response.data[0]);
       }
     }
   });
-  const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_admin_api__WEBPACK_IMPORTED_MODULE_3__.updateAdminRewards, {
+  const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_admin_api__WEBPACK_IMPORTED_MODULE_4__.updateAdminRewards, {
     onSuccess: response => {
       queryClient.invalidateQueries("adminRewards");
     }
@@ -2237,21 +2278,29 @@ function RewardsAdminScreen() {
     className: "RewardsAdminScreen"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     className: "wc-rewards-heading"
-  }, "Rewards", " ", rewards.data && rewards.data.length ? rewards.data.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, "Rewards", " ", rewards.data && rewards.data.length ? rewards.data.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: reward.id,
-    type: "button",
-    className: "page-title-action",
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("reward-title", {
+      active: activeReward.id === reward.id
+    }),
     onClick: () => {
       setActiveReward(rewards.data.find(_reward => _reward.id === reward.id));
     }
-  }, reward.name)) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    onClick: () => {
+      mutation.mutate({
+        security: woocommerce_growcart_rewards.update_rewards_nonce,
+        rewards: JSON.stringify(rewards.data.filter(_reward => _reward.id !== reward.id))
+      });
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_x_svg__WEBPACK_IMPORTED_MODULE_5__.ReactComponent, null)))) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     className: "page-title-action",
     onClick: () => {
       mutation.mutate({
         security: woocommerce_growcart_rewards.update_rewards_nonce,
         rewards: JSON.stringify([...rewards.data, {
-          id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+          id: (0,uuid__WEBPACK_IMPORTED_MODULE_6__["default"])(),
           name: "FREE SHIPPING",
           type: "FREE_SHIPPING",
           value: 0,
@@ -2259,13 +2308,13 @@ function RewardsAdminScreen() {
         }])
       });
     }
-  }, "Add")), activeReward && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+  }, "Add")), activeReward && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: "Name",
     value: activeReward.name,
     onChange: name => setActiveReward({ ...activeReward,
       name
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "Type",
     value: activeReward.type,
     options: [{
@@ -2284,13 +2333,13 @@ function RewardsAdminScreen() {
     onChange: type => setActiveReward({ ...activeReward,
       type
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: "Value",
     value: activeReward.value,
     onChange: value => setActiveReward({ ...activeReward,
       value
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
     label: "Minimum cart contents",
     isShiftStepEnabled: true,
     onChange: minimum_cart_contents => setActiveReward({ ...activeReward,
@@ -2320,10 +2369,77 @@ function RewardsAdminScreen() {
 
 /***/ }),
 
-/***/ "./src/sass/index.scss":
-/*!*****************************!*\
-  !*** ./src/sass/index.scss ***!
-  \*****************************/
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/***/ (function(module, exports) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString === Object.prototype.toString) {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				} else {
+					classes.push(arg.toString());
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
+
+/***/ }),
+
+/***/ "./src/sass/rewards.scss":
+/*!*******************************!*\
+  !*** ./src/sass/rewards.scss ***!
+  \*******************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7243,7 +7359,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _components_RewardsAdminScreen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RewardsAdminScreen */ "./src/components/RewardsAdminScreen.js");
-/* harmony import */ var _sass_index_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sass/index.scss */ "./src/sass/index.scss");
+/* harmony import */ var _sass_rewards_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sass/rewards.scss */ "./src/sass/rewards.scss");
 
 
 

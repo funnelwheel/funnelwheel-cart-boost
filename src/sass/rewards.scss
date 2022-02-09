@@ -1,0 +1,15 @@
+.RewardsAdminScreen {
+	.reward-title {
+        display: inline-block;
+        border-radius: 50px;
+        padding: 8px 12px;
+        margin: auto 2px;
+        cursor: pointer;
+        background-color: #ffffff;
+
+        &.active {
+            background-color: #000000;
+            color: #ffffff;
+        }
+	}
+}

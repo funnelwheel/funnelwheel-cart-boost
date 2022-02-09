@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import classnames from "classnames";
 import { useState, useEffect } from "@wordpress/element";
 import {
 	TextControl,
@@ -7,6 +8,7 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 import { getAdminRewards, updateAdminRewards } from "../admin-api";
+import { ReactComponent as XIcon } from "./../svg/x.svg";
 
 export default function RewardsAdminScreen() {
 	const queryClient = useQueryClient();
@@ -48,10 +50,11 @@ export default function RewardsAdminScreen() {
 				Rewards{" "}
 				{rewards.data && rewards.data.length
 					? rewards.data.map((reward) => (
-							<button
+							<div
 								key={reward.id}
-								type="button"
-								className="page-title-action"
+								className={classnames("reward-title", {
+									active: activeReward.id === reward.id,
+								})}
 								onClick={() => {
 									setActiveReward(
 										rewards.data.find(
@@ -61,8 +64,24 @@ export default function RewardsAdminScreen() {
 									);
 								}}
 							>
-								{reward.name}
-							</button>
+								<span>{reward.name}</span>
+								<span
+									onClick={() => {
+										mutation.mutate({
+											security:
+												woocommerce_growcart_rewards.update_rewards_nonce,
+											rewards: JSON.stringify(
+												rewards.data.filter(
+													(_reward) =>
+														_reward.id !== reward.id
+												)
+											),
+										});
+									}}
+								>
+									<XIcon />
+								</span>
+							</div>
 					  ))
 					: null}
 				<button
