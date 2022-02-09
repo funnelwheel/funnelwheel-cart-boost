@@ -155,9 +155,7 @@ class WooCommerce_Grow_Cart_Ajax {
 	}
 
 	public function get_admin_rewards() {
-		$rewards = get_option( 'woocommerce_growcart_rewards' );
-		$rewards = $rewards ? $rewards : [];
-		wp_send_json( json_decode( $rewards, true ) );
+		wp_send_json( woocommerce_grow_cart()->rewards->get_available_rewards() );
 	}
 
 	public function update_admin_rewards() {

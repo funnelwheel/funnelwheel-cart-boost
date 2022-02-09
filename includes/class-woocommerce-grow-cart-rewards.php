@@ -14,7 +14,7 @@ class WooCommerce_Grow_Cart_Rewards {
 	public function __construct() {
 	}
 
-	public function get_available_rewards() {
+	public function get_default_rewards() {
 		return [
 			[
 				'name'                        => 'FREE SHIPPING',
@@ -45,6 +45,11 @@ class WooCommerce_Grow_Cart_Rewards {
 				'featured'                    => false,
 			],
 		];
+	}
+
+	public function get_available_rewards() {
+		$rewards = get_option( 'woocommerce_growcart_rewards' );
+		return $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
 	}
 
 	public function get_rewards() {
@@ -78,7 +83,7 @@ class WooCommerce_Grow_Cart_Rewards {
 		];
 
 		foreach ( $rewards as $key => $value ) {
-			if ( $value['minimum_cart_contents_count'] <= $cart_contents_count ) {
+			if ( intval( $value['minimum_cart_contents_count'] ) <= $cart_contents_count ) {
 				$filtered_rewards['current_rewards'][] = $value;
 			} else {
 				$filtered_rewards['next_rewards'][] = $value;
@@ -131,8 +136,8 @@ class WooCommerce_Grow_Cart_Rewards {
 			return 0;
 		}
 
-		$minimum_cart_contents_count_list = wp_list_pluck( $rewards, 'minimum_cart_contents_count' );
-		$max_cart_contents_count          = max( $minimum_cart_contents_count_list );
+		$minimum_cart_contents_count_list = wp_list_pluck( $rewards, 'minimum_cart_contents' );
+		$max_cart_contents_count          = max( wp_parse_id_list( $minimum_cart_contents_count_list ) );
 
 		return ( $cart_contents_count / $max_cart_contents_count ) * 100;
 	}

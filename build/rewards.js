@@ -2436,10 +2436,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ }),
 
-/***/ "./src/sass/rewards.scss":
-/*!*******************************!*\
-  !*** ./src/sass/rewards.scss ***!
-  \*******************************/
+/***/ "./src/sass/admin-rewards.scss":
+/*!*************************************!*\
+  !*** ./src/sass/admin-rewards.scss ***!
+  \*************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7359,7 +7359,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _components_RewardsAdminScreen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RewardsAdminScreen */ "./src/components/RewardsAdminScreen.js");
-/* harmony import */ var _sass_rewards_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sass/rewards.scss */ "./src/sass/rewards.scss");
+/* harmony import */ var _sass_admin_rewards_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sass/admin-rewards.scss */ "./src/sass/admin-rewards.scss");
 
 
 
