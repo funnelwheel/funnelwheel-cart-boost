@@ -12,37 +12,91 @@ defined( 'ABSPATH' ) || exit;
  */
 class WooCommerce_Grow_Cart_Rewards {
 	public function __construct() {
+		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'shop_coupon_data' ], 10, 2 );
+		add_action( 'woocommerce_before_cart', [ $this, 'auto_add_coupons' ] );
+		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
+	}
+
+	public function shop_coupon_data( $coupon, $code ) {
+		$cart_contents_count = WC()->cart->get_cart_contents_count();
+		$rewards             = $this->get_available_rewards();
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			$current_rewards = wp_list_filter( $filtered_rewards['current_rewards'], [ 'id' => $code ] );
+			$reward          = current( $current_rewards );
+
+			if ( in_array( $reward['type'], [ 'percent', 'fixed_cart' ], true ) ) {
+				$coupon = [
+					'code'          => $reward['id'],
+					'amount'        => floatval( $reward['value'] ),
+					'discount_type' => $reward['type'],
+				];
+			}
+		}
+
+		return $coupon;
+	}
+
+	public function auto_add_coupons() {
+		$cart_contents_count = WC()->cart->get_cart_contents_count();
+		$rewards             = $this->get_available_rewards();
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				if ( WC()->cart->has_discount( $value['id'] ) ) {
+					continue;
+				}
+
+				if ( in_array( $value['type'], [ 'percent', 'fixed_cart' ], true ) ) {
+					WC()->cart->apply_coupon( $value['id'] );
+				}
+			}
+		}
+
+		if ( isset( $filtered_rewards['next_rewards'] ) && count( $filtered_rewards['next_rewards'] ) ) {
+			foreach ( $filtered_rewards['next_rewards'] as $key => $value ) {
+				if ( WC()->cart->has_discount( $value['id'] ) ) {
+					WC()->cart->remove_coupon( $value['id'] );
+				}
+			}
+		}
 	}
 
 	public function get_default_rewards() {
 		return [
 			[
-				'name'                        => 'FREE SHIPPING',
-				'type'                        => 'FREE_SHIPPING',
-				'minimum_cart_contents_count' => 3,
-				'value'                       => 0,
-				'featured'                    => true,
+				'id'                    => 1,
+				'name'                  => 'FREE SHIPPING',
+				'type'                  => 'free_shipping',
+				'minimum_cart_contents' => 3,
+				'value'                 => 0,
+				'featured'              => true,
 			],
 			[
-				'name'                        => '3%',
-				'type'                        => 'PERCENTAGE',
-				'minimum_cart_contents_count' => 5,
-				'value'                       => 3,
-				'featured'                    => false,
+				'id'                    => 2,
+				'name'                  => '3%',
+				'type'                  => 'percent',
+				'minimum_cart_contents' => 5,
+				'value'                 => 3,
+				'featured'              => false,
 			],
 			[
-				'name'                        => '100 USD',
-				'type'                        => 'FIXED',
-				'minimum_cart_contents_count' => 10,
-				'value'                       => 100,
-				'featured'                    => false,
+				'id'                    => 3,
+				'name'                  => '100 USD',
+				'type'                  => 'fixed_cart',
+				'minimum_cart_contents' => 10,
+				'value'                 => 100,
+				'featured'              => false,
 			],
 			[
-				'name'                        => 'GIFTCARD',
-				'type'                        => 'GIFTCARD',
-				'minimum_cart_contents_count' => 15,
-				'value'                       => 100,
-				'featured'                    => false,
+				'id'                    => 4,
+				'name'                  => 'GIFTCARD',
+				'type'                  => 'giftcard',
+				'minimum_cart_contents' => 15,
+				'value'                 => 100,
+				'featured'              => false,
 			],
 		];
 	}
@@ -83,7 +137,7 @@ class WooCommerce_Grow_Cart_Rewards {
 		];
 
 		foreach ( $rewards as $key => $value ) {
-			if ( intval( $value['minimum_cart_contents_count'] ) <= $cart_contents_count ) {
+			if ( intval( $value['minimum_cart_contents'] ) <= $cart_contents_count ) {
 				$filtered_rewards['current_rewards'][] = $value;
 			} else {
 				$filtered_rewards['next_rewards'][] = $value;
@@ -97,7 +151,7 @@ class WooCommerce_Grow_Cart_Rewards {
 		$cart_contents_count    = WC()->cart->get_cart_contents_count();
 		$next_reward            = current( $next_rewards );
 		$reward_hint_string     = 'PERCENTAGE' === $next_reward['type'] ? __( 'Add %1$d more products to save %2$s' ) : __( 'Add %1$d more products to get %2$s' );
-		$required_cart_contents = $next_reward['minimum_cart_contents_count'] - $cart_contents_count;
+		$required_cart_contents = intval( $next_reward['minimum_cart_contents'] ) - $cart_contents_count;
 
 		return sprintf(
 			$reward_hint_string,
@@ -113,8 +167,8 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		$featured_rewards = [];
 		foreach ( $filtered_rewards as $key => $value ) {
-			$required_cart_contents = $value['minimum_cart_contents_count'] - $cart_contents_count;
-			$reward_hint_string     = $value['minimum_cart_contents_count'] <= $cart_contents_count ? sprintf(
+			$required_cart_contents = intval( $value['minimum_cart_contents'] ) - $cart_contents_count;
+			$reward_hint_string     = intval( $value['minimum_cart_contents'] ) <= $cart_contents_count ? sprintf(
 				__( 'You\'ve unlocked your %s!' ),
 				$value['name']
 			) : sprintf(
@@ -136,8 +190,8 @@ class WooCommerce_Grow_Cart_Rewards {
 			return 0;
 		}
 
-		$minimum_cart_contents_count_list = wp_list_pluck( $rewards, 'minimum_cart_contents' );
-		$max_cart_contents_count          = max( wp_parse_id_list( $minimum_cart_contents_count_list ) );
+		$minimum_cart_contents_list = wp_list_pluck( $rewards, 'minimum_cart_contents' );
+		$max_cart_contents_count    = max( wp_parse_id_list( $minimum_cart_contents_list ) );
 
 		return ( $cart_contents_count / $max_cart_contents_count ) * 100;
 	}

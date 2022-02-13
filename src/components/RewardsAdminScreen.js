@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import classnames from "classnames";
-import { useState, useEffect } from "@wordpress/element";
+import { useState } from "@wordpress/element";
 import {
 	TextControl,
 	SelectControl,
@@ -12,13 +12,14 @@ import { ReactComponent as XIcon } from "./../svg/x.svg";
 
 export default function RewardsAdminScreen() {
 	const queryClient = useQueryClient();
+	const [hasChanges, setHasChanges] = useState(false);
 	const [activeReward, setActiveReward] = useState(null);
 	const { isLoading, error, data: rewards } = useQuery(
 		"adminRewards",
 		getAdminRewards,
 		{
 			onSuccess: (response) => {
-				if (response.data && response.data.length) {
+				if (!activeReward && response.data && response.data.length) {
 					setActiveReward(response.data[0]);
 				}
 			},
@@ -28,18 +29,9 @@ export default function RewardsAdminScreen() {
 	const mutation = useMutation(updateAdminRewards, {
 		onSuccess: (response) => {
 			queryClient.invalidateQueries("adminRewards");
+			setHasChanges(false);
 		},
 	});
-
-	useEffect(() => {
-		// document.querySelector(".woocommerce-save-button").addEventListener(
-		// 	"click",
-		// 	function (event) {
-		// 		event.preventDefault();
-		// 	},
-		// 	false
-		// );
-	}, [rewards]);
 
 	if (isLoading) return "Loading...";
 	if (error) return "An error has occurred: " + error.message;
@@ -55,16 +47,19 @@ export default function RewardsAdminScreen() {
 								className={classnames("reward-title", {
 									active: activeReward.id === reward.id,
 								})}
-								onClick={() => {
-									setActiveReward(
-										rewards.data.find(
-											(_reward) =>
-												_reward.id === reward.id
-										)
-									);
-								}}
 							>
-								<span>{reward.name}</span>
+								<span
+									onClick={() => {
+										setActiveReward(
+											rewards.data.find(
+												(_reward) =>
+													_reward.id === reward.id
+											)
+										);
+									}}
+								>
+									{reward.name}
+								</span>
 								<span
 									onClick={() => {
 										mutation.mutate({
@@ -96,7 +91,7 @@ export default function RewardsAdminScreen() {
 								{
 									id: uuidv4(),
 									name: "FREE SHIPPING",
-									type: "FREE_SHIPPING",
+									type: "free_shipping",
 									value: 0,
 									minimum_cart_contents: 3,
 								},
@@ -113,12 +108,14 @@ export default function RewardsAdminScreen() {
 					<TextControl
 						label="Name"
 						value={activeReward.name}
-						onChange={(name) =>
+						onChange={(name) => {
 							setActiveReward({
 								...activeReward,
 								name,
-							})
-						}
+							});
+
+							setHasChanges(true);
+						}}
 					/>
 
 					<SelectControl
@@ -127,53 +124,56 @@ export default function RewardsAdminScreen() {
 						options={[
 							{
 								label: "FREE SHIPPING",
-								value: "FREE_SHIPPING",
+								value: "free_shipping",
 							},
 							{
 								label: "PERCENTAGE",
-								value: "PERCENTAGE",
+								value: "percent",
 							},
-							{ label: "FIXED", value: "FIXED" },
-							{ label: "GIFTCARD", value: "GIFTCARD" },
+							{ label: "FIXED", value: "fixed_cart" },
+							{ label: "GIFTCARD", value: "giftcard" },
 						]}
-						onChange={(type) =>
+						onChange={(type) => {
 							setActiveReward({
 								...activeReward,
 								type,
-							})
-						}
+							});
+							setHasChanges(true);
+						}}
 					/>
 
 					<TextControl
 						label="Value"
 						value={activeReward.value}
-						onChange={(value) =>
+						onChange={(value) => {
 							setActiveReward({
 								...activeReward,
 								value,
-							})
-						}
+							});
+							setHasChanges(true);
+						}}
 					/>
 
 					<NumberControl
 						label="Minimum cart contents"
 						isShiftStepEnabled={true}
-						onChange={(minimum_cart_contents) =>
+						onChange={(minimum_cart_contents) => {
 							setActiveReward({
 								...activeReward,
 								minimum_cart_contents,
-							})
-						}
+							});
+							setHasChanges(true);
+						}}
 						shiftStep={10}
 						value={activeReward.minimum_cart_contents}
 					/>
 				</>
 			)}
 
-			<p class="submit">
+			<p className="submit">
 				<button
 					type="button"
-					class="button-primary woocommerce-save-button"
+					className="button-primary woocommerce-save-button"
 					onClick={() => {
 						mutation.mutate({
 							security:
@@ -189,6 +189,7 @@ export default function RewardsAdminScreen() {
 							),
 						});
 					}}
+					disabled={!hasChanges}
 				>
 					Save changes
 				</button>

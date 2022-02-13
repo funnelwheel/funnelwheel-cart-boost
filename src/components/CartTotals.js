@@ -91,6 +91,13 @@ export default function CartTotals() {
 								</span>
 							</li>
 						))}
+
+						{cartInformation.data.rewards && (
+							<li>
+								<span>Rewards</span>
+								<span>{cartInformation.data.rewards}</span>
+							</li>
+						)}
 					</>
 				)}
 

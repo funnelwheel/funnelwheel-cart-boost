@@ -35,8 +35,33 @@ class WooCommerce_Grow_Cart_Ajax {
 		wc_cart_totals_order_total_html();
 		$cart_totals_order_total_html = \ob_get_clean();
 
+		$cart_contents_count  = WC()->cart->get_cart_contents_count();
+		$rewards              = woocommerce_grow_cart()->rewards->get_available_rewards();
+		$filtered_rewards     = woocommerce_grow_cart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$current_reward_ids   = [];
+		$current_reward_names = [];
+
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			$current_reward_ids   = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
+			$current_reward_names = wp_list_pluck( $filtered_rewards['current_rewards'], 'name' );
+		}
+
+		$coupons = [];
+
+		$_coupons = get_cart_coupons();
+		foreach ( $_coupons as $key => $value ) {
+			if ( in_array( $value['code'], $current_reward_ids, true ) ) {
+				continue;
+			}
+
+			$coupons[] = $value;
+		}
+
+		do_action( 'growcart_before_cart_information' );
+
 		wp_send_json(
 			[
+				'current_reward_ids'  => $current_reward_ids,
 				'is_empty'            => WC()->cart->is_empty(),
 				'items'               => get_cart_items(),
 				'cart_title'          => sprintf( __( 'Your Cart (%d)' ), WC()->cart->get_cart_contents_count() ),
@@ -47,7 +72,9 @@ class WooCommerce_Grow_Cart_Ajax {
 				'cart_tax'            => WC()->cart->get_cart_tax(),
 				'cart_shipping_total' => WC()->cart->get_cart_shipping_total(),
 				'cart_discount_total' => WC()->cart->get_cart_discount_total(),
-				'coupons'             => get_cart_coupons(),
+				'coupons'             => $coupons,
+				'$_coupons'           => $_coupons,
+				'rewards'             => count( $current_reward_names ) ? implode( ' + ', $current_reward_names ) : false,
 				'total'               => $cart_totals_order_total_html,
 				'shop_url'            => wc_get_page_permalink( 'shop' ),
 				'checkout_url'        => esc_url( wc_get_checkout_url() ),
