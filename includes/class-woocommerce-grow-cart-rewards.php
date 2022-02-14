@@ -15,6 +15,7 @@ class WooCommerce_Grow_Cart_Rewards {
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'shop_coupon_data' ], 10, 2 );
 		add_action( 'woocommerce_before_cart', [ $this, 'auto_add_coupons' ] );
 		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
+		add_filter( 'woocommerce_package_rates', [ $this, 'package_rates' ], 10, 2 );
 	}
 
 	public function shop_coupon_data( $coupon, $code ) {
@@ -62,6 +63,38 @@ class WooCommerce_Grow_Cart_Rewards {
 				}
 			}
 		}
+	}
+
+	public function free_shipping_is_available( $is_available ) {
+		return true;
+	}
+
+	public function package_rates( $rates, $package ) {
+		$cart_contents_count = WC()->cart->get_cart_contents_count();
+		$rewards             = $this->get_available_rewards();
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				if ( WC()->cart->has_discount( $value['id'] ) ) {
+					continue;
+				}
+
+				if ( 'free_shipping' === $value['type'] ) {
+					return [
+						'free_shipping:1' => new \WC_Shipping_Rate(
+							'free_shipping:1',
+							'free_shipping',
+							0,
+							[],
+							'free_shipping'
+						),
+					];
+				}
+			}
+		}
+
+		return $rates;
 	}
 
 	public function get_default_rewards() {
