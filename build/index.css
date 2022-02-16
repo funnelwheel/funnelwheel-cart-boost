@@ -295,6 +295,8 @@
 
 .CartTotals {
   padding: 20px 24px;
+  line-height: 1;
+  font-size: 0.875rem;
 }
 .CartTotals ul {
   list-style: none;
@@ -329,6 +331,12 @@
 }
 .CartTotals button[type=button] {
   margin-left: 4px;
+}
+.CartTotals .amount {
+  font-weight: bold;
+}
+.CartTotals__total .amount {
+  font-size: 1.25rem;
 }
 
 .Rewards {

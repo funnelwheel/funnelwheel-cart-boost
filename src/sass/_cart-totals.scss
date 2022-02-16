@@ -1,5 +1,7 @@
 .CartTotals {
 	padding: 20px 24px;
+	line-height: 1;
+	font-size: $font-size-sm;
 
 	ul {
 		list-style: none;
@@ -40,5 +42,15 @@
 
 	button[type="button"] {
 		margin-left: 4px;
+	}
+
+	.amount {
+		font-weight: bold;
+	}
+
+	&__total {
+		.amount {
+			font-size: $font-size-lg;
+		}
 	}
 }
