@@ -46,20 +46,29 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
-				if ( WC()->cart->has_discount( $value['id'] ) ) {
+				$coupon_code = wc_format_coupon_code( $value['id'] );
+
+				if ( WC()->cart->has_discount( $coupon_code ) ) {
 					continue;
 				}
 
 				if ( in_array( $value['type'], [ 'percent', 'fixed_cart' ], true ) ) {
-					WC()->cart->apply_coupon( $value['id'] );
+					$applied_coupons   = WC()->cart->get_applied_coupons();
+					$applied_coupons[] = $coupon_code;
+
+					WC()->cart->set_applied_coupons( $applied_coupons );
+
+					do_action( 'woocommerce_applied_coupon', $coupon_code );
 				}
 			}
 		}
 
 		if ( isset( $filtered_rewards['next_rewards'] ) && count( $filtered_rewards['next_rewards'] ) ) {
 			foreach ( $filtered_rewards['next_rewards'] as $key => $value ) {
-				if ( WC()->cart->has_discount( $value['id'] ) ) {
-					WC()->cart->remove_coupon( $value['id'] );
+				$coupon_code = wc_format_coupon_code( $value['id'] );
+
+				if ( WC()->cart->has_discount( $coupon_cod ) ) {
+					WC()->cart->remove_coupon( $coupon_cod );
 				}
 			}
 		}
