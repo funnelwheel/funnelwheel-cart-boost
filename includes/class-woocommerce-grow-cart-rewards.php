@@ -13,9 +13,9 @@ defined( 'ABSPATH' ) || exit;
 class WooCommerce_Grow_Cart_Rewards {
 	public function __construct() {
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'shop_coupon_data' ], 10, 2 );
+		add_filter( 'woocommerce_package_rates', [ $this, 'package_rates' ], 10, 2 );
 		add_action( 'woocommerce_before_cart', [ $this, 'auto_add_coupons' ] );
 		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
-		add_filter( 'woocommerce_package_rates', [ $this, 'package_rates' ], 10, 2 );
 	}
 
 	public function shop_coupon_data( $coupon, $code ) {
@@ -43,10 +43,9 @@ class WooCommerce_Grow_Cart_Rewards {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
 		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
-
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
-				$coupon_code = wc_format_coupon_code( $value['id'] );
+				$coupon_code = $value['id'];
 
 				if ( WC()->cart->has_discount( $coupon_code ) ) {
 					continue;
@@ -65,17 +64,11 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		if ( isset( $filtered_rewards['next_rewards'] ) && count( $filtered_rewards['next_rewards'] ) ) {
 			foreach ( $filtered_rewards['next_rewards'] as $key => $value ) {
-				$coupon_code = wc_format_coupon_code( $value['id'] );
-
-				if ( WC()->cart->has_discount( $coupon_cod ) ) {
-					WC()->cart->remove_coupon( $coupon_cod );
+				if ( WC()->cart->has_discount( $value['id'] ) ) {
+					WC()->cart->remove_coupon( $value['id'] );
 				}
 			}
 		}
-	}
-
-	public function free_shipping_is_available( $is_available ) {
-		return true;
 	}
 
 	public function package_rates( $rates, $package ) {
@@ -93,7 +86,7 @@ class WooCommerce_Grow_Cart_Rewards {
 					return [
 						'free_shipping:1' => new \WC_Shipping_Rate(
 							'free_shipping:1',
-							'free_shipping',
+							'Free!',
 							0,
 							[],
 							'free_shipping'
