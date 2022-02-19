@@ -3,7 +3,7 @@ import { getRewards } from "../api";
 import { ReactComponent as LockIcon } from "./../svg/lock.svg";
 import { ReactComponent as StarIcon } from "./../svg/star.svg";
 
-export default function Rewards() {
+export default function Rewards({ children }) {
 	const { isLoading, error, data: rewards } = useQuery("rewards", getRewards);
 
 	if (isLoading) return "Loading...";
@@ -32,11 +32,22 @@ export default function Rewards() {
 				))}
 			</ul>
 
-			<div className="progress">
-				<div className="progress__bar" style={{ width: `${rewards.data.rewards_progress}%` }}></div>
-			</div>
+			<div className="Rewards__progress">
+				<div className="Rewards__progress-wrap">
+					<div className="progress">
+						<div
+							className="progress__bar"
+							style={{
+								width: `${rewards.data.rewards_progress}%`,
+							}}
+						></div>
+					</div>
 
-			<span>{rewards.data.hint}</span>
+					<span>{rewards.data.hint}</span>
+				</div>
+
+				{children}
+			</div>
 		</div>
 	);
 }

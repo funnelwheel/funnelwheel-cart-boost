@@ -29,28 +29,22 @@ export default function MiniCart({ setShowPopup }) {
 	return (
 		<div className="grow-cart-mini slideInUp">
 			<div className="grow-cart-mini__inner">
-				{/* <div>
-                    <h5 className="grow-cart-mini__title">
-                        {cartInformation.data.cart_title}
-                    </h5>
-                    <div
-                        className="grow-cart-mini__total"
-                        dangerouslySetInnerHTML={{
-                            __html: cartInformation.data.total,
-                        }}
-                    />
-                </div> */}
-
-				<Rewards />
-				<span className="cart-contents">
-					<BasketIcon />
-					<span className="badge">
-						{cartInformation.data.cart_contents_count}
-					</span>
-				</span>
-				<button type="button" onClick={() => setShowPopup(true)}>
-					<ChevronUpIcon />
-				</button>
+				<Rewards>
+					<div className="">
+						<span className="cart-contents">
+							<BasketIcon />
+							<span className="badge">
+								{cartInformation.data.cart_contents_count}
+							</span>
+						</span>
+						<button
+							type="button"
+							onClick={() => setShowPopup(true)}
+						>
+							<ChevronUpIcon />
+						</button>
+					</div>
+				</Rewards>
 			</div>
 		</div>
 	);
