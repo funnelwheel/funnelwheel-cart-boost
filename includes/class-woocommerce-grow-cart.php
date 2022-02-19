@@ -74,7 +74,7 @@ final class WooCommerce_Grow_Cart {
 	 * @return [type] [description]
 	 */
 	public function enqueue_scripts() {
-		if ( is_cart() || is_checkout() ) {
+		if ( is_cart() || is_checkout() || is_home() || is_front_page() ) {
 			return;
 		}
 
