@@ -13,8 +13,8 @@ export default function Rewards({ children }) {
 		<div className="Rewards">
 			<ul className="Rewards__list">
 				<li className="Rewards__title">Rewards</li>
-				{rewards.data.rewards.current_rewards.map((reward) => (
-					<li>
+				{rewards.data.rewards.current_rewards.map((reward, index) => (
+					<li key={index}>
 						<span className="Rewards__icon availed">
 							<StarIcon />
 						</span>
@@ -22,8 +22,8 @@ export default function Rewards({ children }) {
 					</li>
 				))}
 
-				{rewards.data.rewards.next_rewards.map((reward) => (
-					<li>
+				{rewards.data.rewards.next_rewards.map((reward, index) => (
+					<li key={index}>
 						<span className="Rewards__icon">
 							<LockIcon />
 						</span>

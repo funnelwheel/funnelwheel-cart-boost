@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { useState, useEffect } from "@wordpress/element";
 import { useQuery } from "react-query";
 import { getCartInformation } from "../api";
@@ -7,14 +8,19 @@ import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
 
 export default function MiniCart({ setShowPopup }) {
 	const [showMiniCart, setShowMiniCart] = useState(
-		!woocommerce_grow_cart.is_product
+		woocommerce_grow_cart.display_mini_cart
 	);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
 		getCartInformation
 	);
 
+	function displayMiniCart() {
+		setShowMiniCart(true);
+	}
+
 	useEffect(() => {
+		$(document.body).on("added_to_cart removed_from_cart", displayMiniCart);
 		if (woocommerce_grow_cart.is_product) {
 			window.onscroll = function () {
 				setShowMiniCart(window.pageYOffset > 200);

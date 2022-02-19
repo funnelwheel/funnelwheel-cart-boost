@@ -74,11 +74,12 @@ final class WooCommerce_Grow_Cart {
 	 * @return [type] [description]
 	 */
 	public function enqueue_scripts() {
-		if ( is_cart() || is_checkout() || is_home() || is_front_page() ) {
+		if ( is_cart() || is_checkout() ) {
 			return;
 		}
 
-		$asset_file = include WOOCOMMERCE_GROW_CART_ABSPATH . 'build/index.asset.php';
+		$asset_file        = include WOOCOMMERCE_GROW_CART_ABSPATH . 'build/index.asset.php';
+		$display_mini_cart = is_home() || is_front_page() || is_product() ? false : true;
 
 		wp_enqueue_script(
 			'woocommerce-grow-cart',
@@ -95,6 +96,7 @@ final class WooCommerce_Grow_Cart {
 				'ajaxURL'             => admin_url( 'admin-ajax.php' ),
 				'wcAjaxURL'           => \WC_AJAX::get_endpoint( '%%endpoint%%' ),
 				'is_product'          => is_product(),
+				'display_mini_cart'   => $display_mini_cart,
 				'cart'                => [
 					'is_empty' => WC()->cart->is_empty(),
 					'items'    => get_cart_items(),

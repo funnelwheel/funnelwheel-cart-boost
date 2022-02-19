@@ -37,7 +37,7 @@ export default function Cart() {
 
 	return (
 		<CartContext.Provider value={{ cartInformation }}>
-			{showPopup ? (
+			{showPopup && (
 				<div id="grow-cart" className="modal show">
 					<div className="modal-dialog modal-dialog-bottom">
 						<div
@@ -103,9 +103,9 @@ export default function Cart() {
 						</div>
 					</div>
 				</div>
-			) : (
-				<MiniCart setShowPopup={setShowPopup} />
 			)}
+
+			<MiniCart setShowPopup={setShowPopup} />
 		</CartContext.Provider>
 	);
 }
