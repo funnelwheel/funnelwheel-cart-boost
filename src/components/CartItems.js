@@ -29,12 +29,21 @@ export default function CartItems() {
 								__html: item.product_thumbnail,
 							}}
 						/>
-						<a
-							className="CartItems__item-title"
-							href={item.product_permalink}
-						>
-							{item.product_title}
-						</a>
+
+						<div className="CartItems__item-title-wrap">
+							<a
+								className="CartItems__item-title"
+								href={item.product_permalink}
+							>
+								{item.product_title}
+							</a>
+							<div
+								className="CartItems__item-price"
+								dangerouslySetInnerHTML={{
+									__html: item.product_price,
+								}}
+							/>
+						</div>
 					</div>
 
 					<div className="CartItems__item-subtotal-quantity-container">

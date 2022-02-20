@@ -5,50 +5,49 @@ jQuery(function ($) {
 	}
 
 	$(document).on("submit", "form.cart", function (e) {
+		e.preventDefault();
 		var form = $(this),
-			button = form.find(".single_add_to_cart_button");
+			button = form.find('button[type="submit"]'),
+			product_data = form.serializeArray(),
+			has_product_id = false;
 
-		var formFields = form.find(
-			'input:not([name="product_id"]), select, button, textarea'
-		);
-
-		// create the form data array
-		var formData = [];
-		formFields.each(function (i, field) {
-			// store them so you don't override the actual field's data
-			var fieldName = field.name,
-				fieldValue = field.value;
-
-			if (fieldName && fieldValue) {
-				// set the correct product/variation id for single or variable products
-				if (fieldName == "add-to-cart") {
-					fieldName = "product_id";
-					fieldValue =
-						form.find("input[name=variation_id]").val() ||
-						fieldValue;
+		$.each(product_data, function (key, form_item) {
+			if (
+				form_item.name === "product_id" ||
+				form_item.name === "add-to-cart"
+			) {
+				if (form_item.value) {
+					var has_product_id = true;
+					return false;
 				}
-
-				// if the fiels is a checkbox/radio and is not checked, skip it
-				if (
-					(field.type == "checkbox" || field.type == "radio") &&
-					field.checked == false
-				) {
-					return;
-				}
-
-				// add the data to the array
-				formData.push({
-					name: fieldName,
-					value: fieldValue,
-				});
 			}
 		});
 
-		if (!formData.length) {
-			return;
+		//If no product id found , look for the form action URL
+		if (!has_product_id) {
+			var is_url = form.attr("action").match(/add-to-cart=([0-9]+)/);
+			var product_id = is_url ? is_url[1] : false;
 		}
 
-		e.preventDefault();
+		if (
+			button.attr("name") &&
+			button.attr("name") == "add-to-cart" &&
+			button.attr("value")
+		) {
+			var product_id = button.attr("value");
+		}
+
+		if (product_id) {
+			product_data.push({
+				name: "add-to-cart",
+				value: product_id,
+			});
+		}
+
+		product_data.push({
+			name: "action",
+			value: "growcart_add_to_cart",
+		});
 
 		form.block({
 			message: null,
@@ -58,29 +57,24 @@ jQuery(function ($) {
 			},
 		});
 
-		$(document.body).trigger("adding_to_cart", [button, formData]);
+		$(document.body).trigger("adding_to_cart", [button, product_data]);
 
 		$.ajax({
 			type: "POST",
-			url: woocommerce_params.wc_ajax_url
-				.toString()
-				.replace("%%endpoint%%", "add_to_cart"),
-			data: formData,
+			url: woocommerce_grow_cart.ajaxURL,
+			data: $.param(product_data),
 			success: function (response) {
-				if (!response) {
-					return;
-				}
-
-				if (response.error & response.product_url) {
+				if (response.fragments) {
+					$(document.body).trigger("added_to_cart", [
+						response.fragments,
+						response.cart_hash,
+						button,
+					]);
+				} else if (response.error && response.product_url) {
 					window.location = response.product_url;
-					return;
+				} else {
+					console.log(response);
 				}
-
-				$(document.body).trigger("added_to_cart", [
-					response.fragments,
-					response.cart_hash,
-					button,
-				]);
 			},
 			complete: function () {
 				form.unblock();

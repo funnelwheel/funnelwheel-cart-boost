@@ -22,6 +22,8 @@ class WooCommerce_Grow_Cart_Ajax {
 		add_action( 'wp_ajax_nopriv_growcart_get_rewards', [ $this, 'get_rewards' ] );
 		add_action( 'wp_ajax_growcart_get_admin_rewards', [ $this, 'get_admin_rewards' ] );
 		add_action( 'wp_ajax_growcart_update_admin_rewards', [ $this, 'update_admin_rewards' ] );
+		add_action( 'wp_ajax_growcart_add_to_cart', [ $this, 'add_to_cart' ] );
+		add_action( 'wp_ajax_nopriv_growcart_add_to_cart', [ $this, 'add_to_cart' ] );
 	}
 
 	public function get_cart_information() {
@@ -194,5 +196,37 @@ class WooCommerce_Grow_Cart_Ajax {
 		}
 
 		wp_send_json( $_POST['rewards'] );
+	}
+
+	public function add_to_cart() {
+		if ( ! isset( $_POST['action'] ) || 'growcart_add_to_cart' !== $_POST['action'] || ! isset( $_POST['add-to-cart'] ) ) {
+			die();
+		}
+
+		// get woocommerce error notice
+		$error = wc_get_notices( 'error' );
+		$html  = '';
+
+		if ( $error ) {
+			// print notice
+			ob_start();
+			foreach ( $error as $value ) {
+				wc_print_notice( $value, 'error' );
+			}
+
+			$js_data = array(
+				'error' => ob_get_clean(),
+			);
+
+			wc_clear_notices(); // clear other notice
+			wp_send_json( $js_data );
+		} else {
+			// trigger action for added to cart in ajax
+			do_action( 'woocommerce_ajax_added_to_cart', intval( $_POST['add-to-cart'] ) );
+			wc_clear_notices(); // clear other notice
+			\WC_AJAX::get_refreshed_fragments();
+		}
+
+		die();
 	}
 }
