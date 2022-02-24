@@ -11,6 +11,45 @@ defined( 'ABSPATH' ) || exit;
  * @var [type]
  */
 class WooCommerce_Grow_Cart_Rewards {
+	private $default_rewards = [
+		[
+			'id'                    => 1,
+			'name'                  => 'FREE SHIPPING',
+			'type'                  => 'free_shipping',
+			'minimum_cart_contents' => 3,
+			'value'                 => 0,
+			'featured'              => true,
+		],
+		[
+			'id'                    => 2,
+			'name'                  => '3%',
+			'type'                  => 'percent',
+			'minimum_cart_contents' => 5,
+			'value'                 => 3,
+			'featured'              => false,
+		],
+		[
+			'id'                    => 3,
+			'name'                  => '100 USD',
+			'type'                  => 'fixed_cart',
+			'minimum_cart_contents' => 10,
+			'value'                 => 100,
+			'featured'              => false,
+		],
+		[
+			'id'                    => 4,
+			'name'                  => 'GIFTCARD',
+			'type'                  => 'giftcard',
+			'minimum_cart_contents' => 15,
+			'value'                 => 100,
+			'featured'              => false,
+		],
+	];
+
+	public function get_default_rewards() {
+		return $this->default_rewards;
+	}
+
 	public function __construct() {
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'shop_coupon_data' ], 10, 2 );
 		add_filter( 'woocommerce_package_rates', [ $this, 'package_rates' ], 10, 2 );
@@ -97,43 +136,6 @@ class WooCommerce_Grow_Cart_Rewards {
 		}
 
 		return $rates;
-	}
-
-	public function get_default_rewards() {
-		return [
-			[
-				'id'                    => 1,
-				'name'                  => 'FREE SHIPPING',
-				'type'                  => 'free_shipping',
-				'minimum_cart_contents' => 3,
-				'value'                 => 0,
-				'featured'              => true,
-			],
-			[
-				'id'                    => 2,
-				'name'                  => '3%',
-				'type'                  => 'percent',
-				'minimum_cart_contents' => 5,
-				'value'                 => 3,
-				'featured'              => false,
-			],
-			[
-				'id'                    => 3,
-				'name'                  => '100 USD',
-				'type'                  => 'fixed_cart',
-				'minimum_cart_contents' => 10,
-				'value'                 => 100,
-				'featured'              => false,
-			],
-			[
-				'id'                    => 4,
-				'name'                  => 'GIFTCARD',
-				'type'                  => 'giftcard',
-				'minimum_cart_contents' => 15,
-				'value'                 => 100,
-				'featured'              => false,
-			],
-		];
 	}
 
 	public function get_available_rewards() {
@@ -229,5 +231,38 @@ class WooCommerce_Grow_Cart_Rewards {
 		$max_cart_contents_count    = max( wp_parse_id_list( $minimum_cart_contents_list ) );
 
 		return ( $cart_contents_count / $max_cart_contents_count ) * 100;
+	}
+
+	public function get_reward_string( $current_rewards = [] ) {
+		$cart_subtotal  = WC()->cart->subtotal;
+		$reward_total   = 0;
+		$reward_strings = [];
+
+		foreach ( $current_rewards as $key => $value ) {
+
+			switch ( $value['type'] ) {
+				case 'percent':
+					$reward_total += ( $cart_subtotal * $value['value'] ) / 100;
+					break;
+				case 'fixed_cart':
+					$reward_total += $value['value'];
+					break;
+				case 'free_shipping':
+					$reward_strings[] = __( 'Free Shipping' );
+					break;
+				default:
+					break;
+			}
+		}
+
+		if ( $reward_total ) {
+			$reward_strings[] = sprintf( __( 'You are saving %s' ), wc_price( $reward_total ) );
+		}
+
+		if ( empty( $reward_strings ) ) {
+			return '';
+		}
+
+		return implode( ' + ', $reward_strings );
 	}
 }

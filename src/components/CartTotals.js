@@ -95,7 +95,11 @@ export default function CartTotals() {
 						{cartInformation.data.rewards && (
 							<li>
 								<span>Rewards</span>
-								<span>{cartInformation.data.rewards}</span>
+								<span
+									dangerouslySetInnerHTML={{
+										__html: cartInformation.data.rewards,
+									}}
+								/>
 							</li>
 						)}
 					</>
