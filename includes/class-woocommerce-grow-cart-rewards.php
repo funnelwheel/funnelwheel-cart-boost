@@ -83,6 +83,15 @@ class WooCommerce_Grow_Cart_Rewards {
 		$rewards             = $this->get_available_rewards();
 		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			$rewards_by_type = [
+				'percent'    => [],
+				'fixed_cart' => [],
+			];
+
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				$rewards_by_type[ $value['type'] ][] = $value['value'];
+			}
+
 			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
 				$coupon_code = $value['id'];
 
@@ -91,12 +100,14 @@ class WooCommerce_Grow_Cart_Rewards {
 				}
 
 				if ( in_array( $value['type'], [ 'percent', 'fixed_cart' ], true ) ) {
-					$applied_coupons   = WC()->cart->get_applied_coupons();
-					$applied_coupons[] = $coupon_code;
+					if ( max( $rewards_by_type[ $value['type'] ] ) === $value['value'] ) {
+						$applied_coupons   = WC()->cart->get_applied_coupons();
+						$applied_coupons[] = $coupon_code;
 
-					WC()->cart->set_applied_coupons( $applied_coupons );
+						WC()->cart->set_applied_coupons( $applied_coupons );
 
-					do_action( 'woocommerce_applied_coupon', $coupon_code );
+						do_action( 'woocommerce_applied_coupon', $coupon_code );
+					}
 				}
 			}
 		}
@@ -238,20 +249,29 @@ class WooCommerce_Grow_Cart_Rewards {
 		$reward_total   = 0;
 		$reward_strings = [];
 
-		foreach ( $current_rewards as $key => $value ) {
+		$rewards_by_type = [
+			'percent'    => [],
+			'fixed_cart' => [],
+		];
 
-			switch ( $value['type'] ) {
-				case 'percent':
-					$reward_total += ( $cart_subtotal * $value['value'] ) / 100;
-					break;
-				case 'fixed_cart':
-					$reward_total += $value['value'];
-					break;
-				case 'free_shipping':
-					$reward_strings[] = __( 'Free Shipping' );
-					break;
-				default:
-					break;
+		foreach ( $current_rewards as $key => $value ) {
+			$rewards_by_type[ $value['type'] ][] = $value['value'];
+		}
+
+		foreach ( $current_rewards as $key => $value ) {
+			if ( 'free_shipping' === $value['type'] ) {
+				$reward_strings[] = __( 'Free Shipping' );
+			} elseif ( max( $rewards_by_type[ $value['type'] ] ) === $value['value'] ) {
+				switch ( $value['type'] ) {
+					case 'percent':
+						$reward_total += ( $cart_subtotal * $value['value'] ) / 100;
+						break;
+					case 'fixed_cart':
+						$reward_total += $value['value'];
+						break;
+					default:
+						break;
+				}
 			}
 		}
 
