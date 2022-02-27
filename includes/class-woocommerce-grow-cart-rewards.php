@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 class WooCommerce_Grow_Cart_Rewards {
 	private $default_rewards = [
 		[
-			'id'                    => 1,
+			'id'                    => 'free_shipping',
 			'name'                  => 'FREE SHIPPING',
 			'type'                  => 'free_shipping',
 			'minimum_cart_contents' => 3,
@@ -21,7 +21,7 @@ class WooCommerce_Grow_Cart_Rewards {
 			'featured'              => true,
 		],
 		[
-			'id'                    => 2,
+			'id'                    => 'percent',
 			'name'                  => '3%',
 			'type'                  => 'percent',
 			'minimum_cart_contents' => 5,
@@ -29,7 +29,7 @@ class WooCommerce_Grow_Cart_Rewards {
 			'featured'              => false,
 		],
 		[
-			'id'                    => 3,
+			'id'                    => 'fixed_cart',
 			'name'                  => '100 USD',
 			'type'                  => 'fixed_cart',
 			'minimum_cart_contents' => 10,
@@ -37,7 +37,7 @@ class WooCommerce_Grow_Cart_Rewards {
 			'featured'              => false,
 		],
 		[
-			'id'                    => 4,
+			'id'                    => 'giftcard',
 			'name'                  => 'GIFTCARD',
 			'type'                  => 'giftcard',
 			'minimum_cart_contents' => 15,
@@ -54,10 +54,16 @@ class WooCommerce_Grow_Cart_Rewards {
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'shop_coupon_data' ], 10, 2 );
 		add_filter( 'woocommerce_package_rates', [ $this, 'package_rates' ], 10, 2 );
 		add_action( 'woocommerce_before_cart', [ $this, 'auto_add_coupons' ] );
+		add_action( 'woocommerce_before_cart_totals', [ $this, 'conditionally_hide_rewards' ] );
+		add_action( 'woocommerce_review_order_before_cart_contents', [ $this, 'conditionally_hide_rewards' ] );
 		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
 	}
 
 	public function shop_coupon_data( $coupon, $code ) {
+		if ( is_admin() ) {
+			return $coupon;
+		}
+
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
 		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
@@ -121,6 +127,18 @@ class WooCommerce_Grow_Cart_Rewards {
 		}
 	}
 
+	public function conditionally_hide_rewards() {
+		$cart_contents_count = WC()->cart->get_cart_contents_count();
+		$rewards             = $this->get_available_rewards();
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			$coupons         = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
+			$applied_coupons = WC()->cart->get_applied_coupons();
+			WC()->cart->set_applied_coupons( array_diff( $applied_coupons, $coupons ) );
+		}
+	}
+
 	public function package_rates( $rates, $package ) {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
@@ -159,8 +177,8 @@ class WooCommerce_Grow_Cart_Rewards {
 	public function get_rewards() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
-		$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
-		$hint             = '';
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$hint                = '';
 
 		if ( $rewards === $filtered_rewards['current_rewards'] ) {
 			$hint = 'You\'re getting the most rewards!';
