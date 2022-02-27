@@ -151,13 +151,14 @@ class WooCommerce_Grow_Cart_Rewards {
 
 	public function get_available_rewards() {
 		$rewards = get_option( 'woocommerce_growcart_rewards' );
-		return $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
+		$rewards = $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
+
+		return $rewards;
 	}
 
 	public function get_rewards() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
-
 		$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
 		$hint             = '';
 
