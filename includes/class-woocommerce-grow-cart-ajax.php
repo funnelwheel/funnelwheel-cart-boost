@@ -29,16 +29,6 @@ class WooCommerce_Grow_Cart_Ajax {
 	public function get_cart_information() {
 		do_action( 'growcart_before_cart_information' );
 
-		WC()->cart->calculate_totals();
-
-		if ( ! function_exists( 'wc_cart_totals_order_total_html' ) ) {
-			include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
-		}
-
-		ob_start();
-		wc_cart_totals_order_total_html();
-		$cart_totals_order_total_html = \ob_get_clean();
-
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = woocommerce_grow_cart()->rewards->get_available_rewards();
 		uasort( $rewards, [ $this, 'sort_by_minimum_cart_contents' ] );
@@ -62,6 +52,15 @@ class WooCommerce_Grow_Cart_Ajax {
 
 			$coupons[] = $value;
 		}
+
+		if ( ! function_exists( 'wc_cart_totals_order_total_html' ) ) {
+			include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
+		}
+
+		ob_start();
+		WC()->cart->calculate_totals();
+		wc_cart_totals_order_total_html();
+		$cart_totals_order_total_html = \ob_get_clean();
 
 		wp_send_json(
 			[

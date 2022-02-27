@@ -53,10 +53,10 @@ class WooCommerce_Grow_Cart_Rewards {
 	public function __construct() {
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'shop_coupon_data' ], 10, 2 );
 		add_filter( 'woocommerce_package_rates', [ $this, 'package_rates' ], 10, 2 );
-		add_action( 'woocommerce_before_cart', [ $this, 'auto_add_coupons' ] );
+		add_action( 'woocommerce_before_calculate_totals', [ $this, 'auto_add_coupons' ] );
+		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
 		add_action( 'woocommerce_before_cart_totals', [ $this, 'conditionally_hide_rewards' ] );
 		add_action( 'woocommerce_review_order_before_cart_contents', [ $this, 'conditionally_hide_rewards' ] );
-		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
 	}
 
 	public function shop_coupon_data( $coupon, $code ) {
@@ -119,6 +119,25 @@ class WooCommerce_Grow_Cart_Rewards {
 		}
 
 		if ( isset( $filtered_rewards['next_rewards'] ) && count( $filtered_rewards['next_rewards'] ) ) {
+			$rewards_by_type = [
+				'percent'    => [],
+				'fixed_cart' => [],
+			];
+
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				$rewards_by_type[ $value['type'] ][] = $value['value'];
+			}
+
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				if ( in_array( $value['type'], [ 'percent', 'fixed_cart' ], true ) ) {
+					if ( max( $rewards_by_type[ $value['type'] ] ) === $value['value'] ) {
+						continue;
+					}
+
+					WC()->cart->remove_coupon( $value['id'] );
+				}
+			}
+
 			foreach ( $filtered_rewards['next_rewards'] as $key => $value ) {
 				if ( WC()->cart->has_discount( $value['id'] ) ) {
 					WC()->cart->remove_coupon( $value['id'] );
