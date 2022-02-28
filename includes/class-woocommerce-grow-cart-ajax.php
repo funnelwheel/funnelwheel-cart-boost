@@ -57,8 +57,9 @@ class WooCommerce_Grow_Cart_Ajax {
 			include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
 		}
 
-		ob_start();
 		WC()->cart->calculate_totals();
+
+		ob_start();
 		wc_cart_totals_order_total_html();
 		$cart_totals_order_total_html = \ob_get_clean();
 

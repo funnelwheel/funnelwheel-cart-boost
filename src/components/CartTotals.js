@@ -29,33 +29,12 @@ export default function CartTotals() {
 	return (
 		<div className="CartTotals">
 			<ul>
-				<li>
-					<span>Subtotal</span>
-					<span
-						dangerouslySetInnerHTML={{
-							__html: cartInformation.data.cart_subtotal,
-						}}
-					/>
-				</li>
-
 				{cartInformation.data.tax_enabled && (
 					<li>
 						<span>Tax</span>
 						<span
 							dangerouslySetInnerHTML={{
 								__html: cartInformation.data.cart_tax,
-							}}
-						/>
-					</li>
-				)}
-
-				{cartInformation.data.has_shipping && (
-					<li>
-						<span>Shipping</span>
-						<span
-							dangerouslySetInnerHTML={{
-								__html:
-									cartInformation.data.cart_shipping_total,
 							}}
 						/>
 					</li>

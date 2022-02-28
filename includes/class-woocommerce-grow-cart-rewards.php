@@ -60,13 +60,13 @@ class WooCommerce_Grow_Cart_Rewards {
 	}
 
 	public function shop_coupon_data( $coupon, $code ) {
-		if ( is_admin() ) {
+		if ( is_admin() && ! wp_doing_ajax() ) {
 			return $coupon;
 		}
 
-		$cart_contents_count = WC()->cart->get_cart_contents_count();
-		$rewards             = $this->get_available_rewards();
-		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$cart_contents_count  = WC()->cart->get_cart_contents_count();
+			$rewards          = $this->get_available_rewards();
+			$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_rewards = wp_list_filter( $filtered_rewards['current_rewards'], [ 'id' => $code ] );
