@@ -59,9 +59,11 @@ class WooCommerce_Grow_Cart_Ajax {
 
 		WC()->cart->calculate_totals();
 
+		$cart_totals_order_total_html = '<del>' . WC()->cart->get_cart_subtotal() . '</del> ';
+
 		ob_start();
 		wc_cart_totals_order_total_html();
-		$cart_totals_order_total_html = \ob_get_clean();
+		$cart_totals_order_total_html .= \ob_get_clean();
 
 		wp_send_json(
 			[
