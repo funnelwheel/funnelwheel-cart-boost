@@ -12,6 +12,7 @@
 		dt,
 		dd {
 			flex: 0 0 auto;
+			font-weight: 600;
 		}
 
 		dt {
@@ -36,7 +37,7 @@
 	}
 
 	&__rewards {
-		font-weight: bold;
+		font-size: 15px;
 		color: #198754;
 	}
 
@@ -59,7 +60,7 @@
 
 	&__free-shipping {
 		svg {
-			width: 14px;
+			width: 18px;
 		}
 	}
 }

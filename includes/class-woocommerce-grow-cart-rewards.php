@@ -298,7 +298,7 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		foreach ( $current_rewards as $key => $value ) {
 			if ( 'free_shipping' === $value['type'] ) {
-				$reward_strings[] = '<span class="CartTotals__free-shipping">' . get_icon( 'truck' ) . __( 'Free Shipping' ) . '</span>';
+				$reward_strings[] = '<span class="CartTotals__free-shipping">' . get_icon( 'truck' ) . '<span> ' . __( 'Free Shipping' ) . '</span>' . '</span>';
 			} elseif ( max( $rewards_by_type[ $value['type'] ] ) === $value['value'] ) {
 				switch ( $value['type'] ) {
 					case 'percent':
@@ -321,6 +321,6 @@ class WooCommerce_Grow_Cart_Rewards {
 			return '';
 		}
 
-		return implode( '<span>+</span>', $reward_strings );
+		return implode( '<span> + </span>', $reward_strings );
 	}
 }
