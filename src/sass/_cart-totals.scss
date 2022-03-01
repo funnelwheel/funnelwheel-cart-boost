@@ -50,8 +50,10 @@
 	}
 
 	&__total {
-		.amount {
-			font-size: $font-size-lg;
+		strong {
+			.amount {
+				font-size: $font-size-lg;
+			}
 		}
 	}
 
