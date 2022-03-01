@@ -4,11 +4,13 @@ namespace Upnrunn;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+use WC_AJAX;
+
 /**
- * WooCommerce_Grow_Cart class.
+ * WooCommerce_GrowCart class.
  * @var [type]
  */
-final class WooCommerce_Grow_Cart {
+final class WooCommerce_GrowCart {
 	/**
 	 * The single instance of the class.
 	 * @var [type]
@@ -17,7 +19,7 @@ final class WooCommerce_Grow_Cart {
 
 	/**
 	 * Main Container instance.
-	 * Ensures only one instance of WooCommerce_Grow_Cart is loaded or can be loaded.
+	 * Ensures only one instance of WooCommerce_GrowCart is loaded or can be loaded.
 	 *
 	 * @return [type] [description]
 	 */
@@ -41,7 +43,7 @@ final class WooCommerce_Grow_Cart {
 	 * Define WooCommerce_Grow_Cart constants.
 	 */
 	private function define_constants() {
-		$this->define( 'WOOCOMMERCE_GROW_CART_ABSPATH', dirname( WOOCOMMERCE_GROW_CART_FILE ) . '/' );
+		$this->define( 'WOOCOMMERCE_GROWCART_ABSPATH', dirname( WOOCOMMERCE_GROWCART_FILE ) . '/' );
 	}
 
 	/**
@@ -49,10 +51,11 @@ final class WooCommerce_Grow_Cart {
 	 * @return [type] [description]
 	 */
 	private function includes() {
-		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/functions.php';
-		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/template-functions.php';
-		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-ajax.php';
-		include_once WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-rewards.php';
+		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/functions.php';
+		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/template-functions.php';
+		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-ajax.php';
+		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-rewards.php';
+		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-settings.php';
 	}
 
 	/**
@@ -65,8 +68,9 @@ final class WooCommerce_Grow_Cart {
 		add_filter( 'woocommerce_get_settings_pages', [ $this, 'settings_pages' ] );
 
 		// Init classes.
-		$this->ajax    = new WooCommerce_Grow_Cart_Ajax();
-		$this->rewards = new WooCommerce_Grow_Cart_Rewards();
+		$this->ajax     = new WooCommerce_GrowCart_Ajax();
+		$this->rewards  = new WooCommerce_GrowCart_Rewards();
+		$this->settings = new WooCommerce_Growcart_Settings();
 	}
 
 	/**
@@ -78,23 +82,23 @@ final class WooCommerce_Grow_Cart {
 			return;
 		}
 
-		$asset_file        = include WOOCOMMERCE_GROW_CART_ABSPATH . 'build/index.asset.php';
+		$asset_file        = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/index.asset.php';
 		$display_mini_cart = is_home() || is_front_page() || is_product() ? false : true;
 
 		wp_enqueue_script(
-			'woocommerce-grow-cart',
-			plugins_url( 'build/index.js', WOOCOMMERCE_GROW_CART_FILE ),
+			'woocommerce-growcart',
+			plugins_url( 'build/index.js', WOOCOMMERCE_GROWCART_FILE ),
 			array_merge( $asset_file['dependencies'], [ 'wc-cart-fragments' ] ),
 			$asset_file['version'],
 			true
 		);
 
 		wp_localize_script(
-			'woocommerce-grow-cart',
-			'woocommerce_grow_cart',
+			'woocommerce-growcart',
+			'woocommerce_growcart',
 			[
 				'ajaxURL'             => admin_url( 'admin-ajax.php' ),
-				'wcAjaxURL'           => \WC_AJAX::get_endpoint( '%%endpoint%%' ),
+				'wcAjaxURL'           => WC_AJAX::get_endpoint( '%%endpoint%%' ),
 				'is_product'          => is_product(),
 				'display_mini_cart'   => $display_mini_cart,
 				'cart'                => [
@@ -109,8 +113,8 @@ final class WooCommerce_Grow_Cart {
 
 		if ( function_exists( 'is_product' ) && is_product() ) {
 			wp_enqueue_script(
-				'woocommerce-grow-cart-ajax-add-to-cart',
-				plugins_url( 'build/ajax-add-to-cart.js', WOOCOMMERCE_GROW_CART_FILE ),
+				'woocommerce-growcart-ajax-add-to-cart',
+				plugins_url( 'build/ajax-add-to-cart.js', WOOCOMMERCE_GROWCART_FILE ),
 				array_merge( $asset_file['dependencies'], [ 'jquery' ] ),
 				$asset_file['version'],
 				true
@@ -118,8 +122,8 @@ final class WooCommerce_Grow_Cart {
 		}
 
 		wp_enqueue_style(
-			'woocommerce-grow-cart',
-			plugins_url( 'build/index.css', WOOCOMMERCE_GROW_CART_FILE ),
+			'woocommerce-growcart',
+			plugins_url( 'build/index.css', WOOCOMMERCE_GROWCART_FILE ),
 			[],
 			$asset_file['version']
 		);
@@ -134,7 +138,7 @@ final class WooCommerce_Grow_Cart {
 			return;
 		}
 
-		echo '<div id="woocommerce-grow-cart-root"></div>';
+		echo '<div id="woocommerce-growcart-root"></div>';
 	}
 
 	/**
@@ -144,7 +148,7 @@ final class WooCommerce_Grow_Cart {
 	 * @return void
 	 */
 	public function settings_pages( $settings ) {
-		$settings[] = include WOOCOMMERCE_GROW_CART_ABSPATH . 'includes/class-woocommerce-grow-cart-settings.php';
+		$settings[] = include WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-settings.php';
 
 		return $settings;
 	}

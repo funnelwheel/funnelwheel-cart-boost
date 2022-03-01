@@ -13,5 +13,5 @@ render(
 	<QueryClientProvider client={queryClient}>
 		<Cart />
 	</QueryClientProvider>,
-	document.getElementById("woocommerce-grow-cart-root")
+	document.getElementById("woocommerce-growcart-root")
 );

@@ -7,10 +7,10 @@ use WP_Query;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * WooCommerce_Grow_Cart_Rewards class.
+ * WooCommerce_GrowCart_Rewards class.
  * @var [type]
  */
-class WooCommerce_Grow_Cart_Rewards {
+class WooCommerce_GrowCart_Rewards {
 	private $default_rewards = [
 		[
 			'id'                    => 'free_shipping',

@@ -2,15 +2,16 @@
 namespace Upnrunn;
 
 use WP_Query;
+use WC_AJAX;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 /**
- * WooCommerce_Grow_Cart_Ajax class.
+ * WooCommerce_GrowCart_Ajax class.
  * @var [type]
  */
-class WooCommerce_Grow_Cart_Ajax {
+class WooCommerce_GrowCart_Ajax {
 	public function __construct() {
 		add_action( 'wp_ajax_growcart_get_cart_information', [ $this, 'get_cart_information' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_cart_information', [ $this, 'get_cart_information' ] );
@@ -30,16 +31,16 @@ class WooCommerce_Grow_Cart_Ajax {
 		do_action( 'growcart_before_cart_information' );
 
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
-		$rewards             = woocommerce_grow_cart()->rewards->get_available_rewards();
+		$rewards             = woocommerce_growcart()->rewards->get_available_rewards();
 		uasort( $rewards, [ $this, 'sort_by_minimum_cart_contents' ] );
 		$rewards            = array_values( $rewards );
-		$filtered_rewards   = woocommerce_grow_cart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$filtered_rewards   = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
 		$current_reward_ids = [];
 		$reward_string      = '';
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_reward_ids = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
-			$reward_string      = woocommerce_grow_cart()->rewards->get_reward_string( $filtered_rewards['current_rewards'] );
+			$reward_string      = woocommerce_growcart()->rewards->get_reward_string( $filtered_rewards['current_rewards'] );
 		}
 
 		$coupons = [];
@@ -183,11 +184,11 @@ class WooCommerce_Grow_Cart_Ajax {
 	}
 
 	public function get_rewards() {
-		wp_send_json( woocommerce_grow_cart()->rewards->get_rewards() );
+		wp_send_json( woocommerce_growcart()->rewards->get_rewards() );
 	}
 
 	public function get_admin_rewards() {
-		wp_send_json( woocommerce_grow_cart()->rewards->get_available_rewards() );
+		wp_send_json( woocommerce_growcart()->rewards->get_available_rewards() );
 	}
 
 	public function update_admin_rewards() {
@@ -227,7 +228,7 @@ class WooCommerce_Grow_Cart_Ajax {
 			// trigger action for added to cart in ajax
 			do_action( 'woocommerce_ajax_added_to_cart', intval( $_POST['add-to-cart'] ) );
 			wc_clear_notices(); // clear other notice
-			\WC_AJAX::get_refreshed_fragments();
+			WC_AJAX::get_refreshed_fragments();
 		}
 
 		die();

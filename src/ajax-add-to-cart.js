@@ -61,7 +61,7 @@ jQuery(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: woocommerce_grow_cart.ajaxURL,
+			url: woocommerce_growcart.ajaxURL,
 			data: $.param(product_data),
 			success: function (response) {
 				if (response.fragments) {

@@ -8,7 +8,7 @@ import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
 
 export default function MiniCart({ setShowPopup }) {
 	const [showMiniCart, setShowMiniCart] = useState(
-		woocommerce_grow_cart.display_mini_cart
+		woocommerce_growcart.display_mini_cart
 	);
 	const { isLoading, error, data: cartInformation } = useQuery(
 		["cartInformation"],
@@ -21,7 +21,7 @@ export default function MiniCart({ setShowPopup }) {
 
 	useEffect(() => {
 		$(document.body).on("added_to_cart removed_from_cart", displayMiniCart);
-		if (woocommerce_grow_cart.is_product) {
+		if (woocommerce_growcart.is_product) {
 			window.onscroll = function () {
 				setShowMiniCart(window.pageYOffset > 200);
 			};

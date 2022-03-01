@@ -57,7 +57,7 @@ export default function CartTotals() {
 										onClick={() =>
 											mutationRemoveCoupon.mutate({
 												security:
-													woocommerce_grow_cart.remove_coupon_nonce,
+													woocommerce_growcart.remove_coupon_nonce,
 												coupon: coupon.code,
 											})
 										}
@@ -100,7 +100,7 @@ export default function CartTotals() {
 							onClick={() =>
 								mutationApplyCoupon.mutate({
 									security:
-										woocommerce_grow_cart.apply_coupon_nonce,
+										woocommerce_growcart.apply_coupon_nonce,
 									coupon_code: coupon,
 								})
 							}

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-	baseURL: woocommerce_grow_cart.ajaxURL,
+	baseURL: woocommerce_growcart.ajaxURL,
 });
 
 export function getCartInformation() {
@@ -32,7 +32,7 @@ export function updateCartItem({ cart_key, quantity }) {
 
 export function applyCoupon({ security, coupon_code }) {
 	return axios.post(
-		woocommerce_grow_cart.wcAjaxURL
+		woocommerce_growcart.wcAjaxURL
 			.toString()
 			.replace("%%endpoint%%", "apply_coupon"),
 		new URLSearchParams({ security, coupon_code })
@@ -41,7 +41,7 @@ export function applyCoupon({ security, coupon_code }) {
 
 export function removeCoupon({ security, coupon }) {
 	return axios.post(
-		woocommerce_grow_cart.wcAjaxURL
+		woocommerce_growcart.wcAjaxURL
 			.toString()
 			.replace("%%endpoint%%", "remove_coupon"),
 		new URLSearchParams({ security, coupon })
