@@ -65,7 +65,6 @@ final class WooCommerce_GrowCart {
 	private function hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'wp_footer', [ $this, 'grow_cart_root' ] );
-		add_filter( 'woocommerce_get_settings_pages', [ $this, 'settings_pages' ] );
 
 		// Init classes.
 		$this->ajax     = new WooCommerce_GrowCart_Ajax();
@@ -139,18 +138,6 @@ final class WooCommerce_GrowCart {
 		}
 
 		echo '<div id="woocommerce-growcart-root"></div>';
-	}
-
-	/**
-	 * Undocumented function
-	 *
-	 * @param [type] $settings
-	 * @return void
-	 */
-	public function settings_pages( $settings ) {
-		$settings[] = include WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-settings.php';
-
-		return $settings;
 	}
 
 	/**
