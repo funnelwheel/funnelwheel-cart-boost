@@ -257,39 +257,6 @@ function SvgTrash(props) {
 
 /***/ }),
 
-/***/ "./src/svg/truck-solid.svg":
-/*!*********************************!*\
-  !*** ./src/svg/truck-solid.svg ***!
-  \*********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ReactComponent": function() { return /* binding */ SvgTruckSolid; }
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _path;
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-
-function SvgTruckSolid(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 640 512"
-  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    d: "M368 0c26.5 0 48 21.49 48 48v48h50.7c17 0 32.4 6.7 45.3 18.7l77.3 77.3c12 12 18.7 28.3 18.7 45.3V352c17.7 0 32 14.3 32 32s-14.3 32-32 32h-32c0 53-43 96-96 96-53.9 0-96-43-96-96H256c0 53-43 96-96 96-53.9 0-96-43-96-96H48c-26.51 0-48-21.5-48-48V48C0 21.49 21.49 0 48 0h320zm48 160v96h128v-18.7L466.7 160H416zM160 368c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48zm320 96c26.5 0 48-21.5 48-48s-21.5-48-48-48-48 21.5-48 48 21.5 48 48 48z"
-  })));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuMC4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIyIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNMzY4IDBDMzk0LjUgMCA0MTYgMjEuNDkgNDE2IDQ4Vjk2SDQ2Ni43QzQ4My43IDk2IDQ5OS4xIDEwMi43IDUxMiAxMTQuN0w1ODkuMyAxOTJDNjAxLjMgMjA0IDYwOCAyMjAuMyA2MDggMjM3LjNWMzUyQzYyNS43IDM1MiA2NDAgMzY2LjMgNjQwIDM4NEM2NDAgNDAxLjcgNjI1LjcgNDE2IDYwOCA0MTZINTc2QzU3NiA0NjkgNTMzIDUxMiA0ODAgNTEyQzQyNi4xIDUxMiAzODQgNDY5IDM4NCA0MTZIMjU2QzI1NiA0NjkgMjEzIDUxMiAxNjAgNTEyQzEwNi4xIDUxMiA2NCA0NjkgNjQgNDE2SDQ4QzIxLjQ5IDQxNiAwIDM5NC41IDAgMzY4VjQ4QzAgMjEuNDkgMjEuNDkgMCA0OCAwSDM2OHpNNDE2IDE2MFYyNTZINTQ0VjIzNy4zTDQ2Ni43IDE2MEg0MTZ6TTE2MCAzNjhDMTMzLjUgMzY4IDExMiAzODkuNSAxMTIgNDE2QzExMiA0NDIuNSAxMzMuNSA0NjQgMTYwIDQ2NEMxODYuNSA0NjQgMjA4IDQ0Mi41IDIwOCA0MTZDMjA4IDM4OS41IDE4Ni41IDM2OCAxNjAgMzY4ek00ODAgNDY0QzUwNi41IDQ2NCA1MjggNDQyLjUgNTI4IDQxNkM1MjggMzg5LjUgNTA2LjUgMzY4IDQ4MCAzNjhDNDUzLjUgMzY4IDQzMiAzODkuNSA0MzIgNDE2QzQzMiA0NDIuNSA0NTMuNSA0NjQgNDgwIDQ2NHoiLz48L3N2Zz4=");
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -2711,9 +2678,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-/* harmony import */ var _svg_truck_solid_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../svg/truck-solid.svg */ "./src/svg/truck-solid.svg");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api */ "./src/api.js");
-
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./src/api.js");
 
 
 
@@ -2725,14 +2690,14 @@ function CartTotals() {
     isLoading,
     error,
     data: cartInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_3__.getCartInformation);
-  const mutationApplyCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_3__.applyCoupon, {
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
+  const mutationApplyCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_2__.applyCoupon, {
     onSuccess: response => {
       updateCoupon("");
       queryClient.invalidateQueries("cartInformation");
     }
   });
-  const mutationRemoveCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_3__.removeCoupon, {
+  const mutationRemoveCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_2__.removeCoupon, {
     onSuccess: response => {
       queryClient.invalidateQueries("cartInformation");
     }
@@ -2741,13 +2706,11 @@ function CartTotals() {
   if (error) return "An error has occurred: " + error.message;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartTotals"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, cartInformation.data.tax_enabled && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Tax"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dl", null, cartInformation.data.tax_enabled && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, "Tax"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", {
     dangerouslySetInnerHTML: {
       __html: cartInformation.data.cart_tax
     }
-  })), cartInformation.data.has_discount && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, cartInformation.data.coupons.map(coupon => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    key: coupon.code
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, coupon.label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  })), cartInformation.data.has_discount && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, cartInformation.data.coupons.map(coupon => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, coupon.label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     dangerouslySetInnerHTML: {
       __html: coupon.coupon_html
     }
@@ -2759,11 +2722,12 @@ function CartTotals() {
       coupon: coupon.code
     }),
     disabled: mutationRemoveCoupon.isLoading
-  }, "[Remove]")))), cartInformation.data.rewards && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Rewards"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, "[Remove]")))), cartInformation.data.rewards && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, "Rewards"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", {
+    className: "CartTotals__rewards",
     dangerouslySetInnerHTML: {
       __html: cartInformation.data.rewards
     }
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Coupon code"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, "Coupon code"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     value: coupon,
     placeholder: "Enter code",
@@ -2776,9 +2740,8 @@ function CartTotals() {
       coupon_code: coupon
     }),
     disabled: mutationApplyCoupon.isLoading
-  }, "Apply coupon")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "CartTotals__total"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Total"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, "Apply coupon"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, "Total"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", {
+    className: "CartTotals__total",
     dangerouslySetInnerHTML: {
       __html: cartInformation.data.total
     }

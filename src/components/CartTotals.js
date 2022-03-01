@@ -1,6 +1,5 @@
 import { useState } from "@wordpress/element";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { ReactComponent as TruckIcon } from "./../svg/truck-solid.svg";
 import { getCartInformation, applyCoupon, removeCoupon } from "../api";
 
 export default function CartTotals() {
@@ -29,24 +28,24 @@ export default function CartTotals() {
 
 	return (
 		<div className="CartTotals">
-			<ul>
+			<dl>
 				{cartInformation.data.tax_enabled && (
-					<li>
-						<span>Tax</span>
-						<span
+					<>
+						<dt>Tax</dt>
+						<dd
 							dangerouslySetInnerHTML={{
 								__html: cartInformation.data.cart_tax,
 							}}
 						/>
-					</li>
+					</>
 				)}
 
 				{cartInformation.data.has_discount && (
 					<>
 						{cartInformation.data.coupons.map((coupon) => (
-							<li key={coupon.code}>
-								<span>{coupon.label}</span>
-								<span>
+							<>
+								<dt>{coupon.label}</dt>
+								<dd>
 									<span
 										dangerouslySetInnerHTML={{
 											__html: coupon.coupon_html,
@@ -68,26 +67,27 @@ export default function CartTotals() {
 									>
 										[Remove]
 									</button>
-								</span>
-							</li>
+								</dd>
+							</>
 						))}
 
 						{cartInformation.data.rewards && (
-							<li>
-								<span>Rewards</span>
-								<span
+							<>
+								<dt>Rewards</dt>
+								<dd
+									className="CartTotals__rewards"
 									dangerouslySetInnerHTML={{
 										__html: cartInformation.data.rewards,
 									}}
 								/>
-							</li>
+							</>
 						)}
 					</>
 				)}
 
-				<li>
-					<span>Coupon code</span>
-					<span>
+				<>
+					<dt>Coupon code</dt>
+					<dd>
 						<input
 							type="text"
 							value={coupon}
@@ -108,18 +108,17 @@ export default function CartTotals() {
 						>
 							Apply coupon
 						</button>
-					</span>
-				</li>
-			</ul>
+					</dd>
+				</>
 
-			<div className="CartTotals__total">
-				<span>Total</span>
-				<span
+				<dt>Total</dt>
+				<dd
+					className="CartTotals__total"
 					dangerouslySetInnerHTML={{
 						__html: cartInformation.data.total,
 					}}
 				/>
-			</div>
+			</dl>
 		</div>
 	);
 }

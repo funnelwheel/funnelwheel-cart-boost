@@ -297,35 +297,27 @@
 }
 
 .CartTotals {
-  padding: 20px 24px;
+  padding: 0 24px;
   line-height: 1;
   font-size: 0.875rem;
 }
-.CartTotals ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
-.CartTotals ul li {
+.CartTotals dl {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-.CartTotals__remove-coupon {
-  padding: 0;
-  background-color: inherit;
-}
-.CartTotals__remove-coupon:hover {
-  background-color: inherit;
-}
-.CartTotals__total {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+}
+.CartTotals dl dt,
+.CartTotals dl dd {
+  flex: 0 0 auto;
+}
+.CartTotals dl dt {
+  width: 25%;
+}
+.CartTotals dl dd {
+  width: 75%;
+  margin-bottom: 0.5rem;
+  text-align: right;
 }
 .CartTotals input[type=text],
 .CartTotals button[type=button] {
@@ -335,11 +327,22 @@
 .CartTotals button[type=button] {
   margin-left: 4px;
 }
-.CartTotals .amount {
+.CartTotals__rewards {
   font-weight: bold;
+  color: #198754;
+}
+.CartTotals__remove-coupon {
+  padding: 0;
+  background-color: inherit;
+}
+.CartTotals__remove-coupon:hover {
+  background-color: inherit;
 }
 .CartTotals__total .amount {
   font-size: 1.25rem;
+}
+.CartTotals__free-shipping svg {
+  width: 14px;
 }
 
 .Rewards {

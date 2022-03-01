@@ -73,7 +73,7 @@ function get_icon( $name = '' ) {
 	}
 
 	return sprintf(
-		'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+		'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor">
 			<path d="%s"/>
 		</svg>',
 		$path
