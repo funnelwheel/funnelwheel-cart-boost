@@ -1,5 +1,6 @@
 import { useState } from "@wordpress/element";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import { ReactComponent as TruckIcon } from "./../svg/truck-solid.svg";
 import { getCartInformation, applyCoupon, removeCoupon } from "../api";
 
 export default function CartTotals() {

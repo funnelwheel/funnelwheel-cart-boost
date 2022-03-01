@@ -298,7 +298,7 @@ class WooCommerce_Grow_Cart_Rewards {
 
 		foreach ( $current_rewards as $key => $value ) {
 			if ( 'free_shipping' === $value['type'] ) {
-				$reward_strings[] = __( 'Free Shipping' );
+				$reward_strings[] = '<span class="free-shipping">' . get_icon( 'truck' ) . __( 'Free Shipping' ) . '</span>';
 			} elseif ( max( $rewards_by_type[ $value['type'] ] ) === $value['value'] ) {
 				switch ( $value['type'] ) {
 					case 'percent':
