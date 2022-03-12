@@ -51,15 +51,22 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	public function __construct() {
-		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'shop_coupon_data' ], 10, 2 );
-		add_filter( 'woocommerce_package_rates', [ $this, 'package_rates' ], 10, 2 );
+		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'filter_shop_coupon_data' ], 10, 2 );
+		add_filter( 'woocommerce_package_rates', [ $this, 'filter_package_rates' ], 10, 2 );
 		add_action( 'woocommerce_before_calculate_totals', [ $this, 'auto_add_coupons' ] );
 		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
 		add_action( 'woocommerce_before_cart_totals', [ $this, 'conditionally_hide_rewards' ] );
 		add_action( 'woocommerce_review_order_before_cart_contents', [ $this, 'conditionally_hide_rewards' ] );
 	}
 
-	public function shop_coupon_data( $coupon, $code ) {
+	/**
+	 * Filter shop coupon data.
+	 *
+	 * @param [type] $coupon
+	 * @param [type] $code
+	 * @return void
+	 */
+	public function filter_shop_coupon_data( $coupon, $code ) {
 		if ( is_admin() && ! wp_doing_ajax() ) {
 			return $coupon;
 		}
@@ -84,6 +91,11 @@ class WooCommerce_GrowCart_Rewards {
 		return $coupon;
 	}
 
+	/**
+	 * Automatically add coupons.
+	 *
+	 * @return void
+	 */
 	public function auto_add_coupons() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
@@ -146,6 +158,11 @@ class WooCommerce_GrowCart_Rewards {
 		}
 	}
 
+	/**
+	 * Conditionally hide rewards.
+	 *
+	 * @return void
+	 */
 	public function conditionally_hide_rewards() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
@@ -158,7 +175,14 @@ class WooCommerce_GrowCart_Rewards {
 		}
 	}
 
-	public function package_rates( $rates, $package ) {
+	/**
+	 * Filter package rates.
+	 *
+	 * @param [type] $rates
+	 * @param [type] $package
+	 * @return void
+	 */
+	public function filter_package_rates( $rates, $package ) {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
 		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
@@ -186,6 +210,11 @@ class WooCommerce_GrowCart_Rewards {
 		return $rates;
 	}
 
+	/**
+	 * Get available rewards.
+	 *
+	 * @return void
+	 */
 	public function get_available_rewards() {
 		$rewards = get_option( 'woocommerce_growcart_rewards' );
 		$rewards = $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
@@ -193,6 +222,11 @@ class WooCommerce_GrowCart_Rewards {
 		return $rewards;
 	}
 
+	/**
+	 * Get rewards.
+	 *
+	 * @return void
+	 */
 	public function get_rewards() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
@@ -216,6 +250,13 @@ class WooCommerce_GrowCart_Rewards {
 		];
 	}
 
+	/**
+	 * Filter rewards by cart contents count.
+	 *
+	 * @param array $rewards
+	 * @param [type] $cart_contents_count
+	 * @return void
+	 */
 	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count ) {
 		$filtered_rewards = [
 			'current_rewards' => [],
@@ -233,6 +274,12 @@ class WooCommerce_GrowCart_Rewards {
 		return $filtered_rewards;
 	}
 
+	/**
+	 * Get next reward hint.
+	 *
+	 * @param array $next_rewards
+	 * @return void
+	 */
 	public function get_next_reward_hint( $next_rewards = [] ) {
 		$cart_contents_count    = WC()->cart->get_cart_contents_count();
 		$next_reward            = current( $next_rewards );
@@ -246,6 +293,11 @@ class WooCommerce_GrowCart_Rewards {
 		);
 	}
 
+	/**
+	 * Get featured rewards.
+	 *
+	 * @return void
+	 */
 	public function get_featured_rewards() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
@@ -271,6 +323,13 @@ class WooCommerce_GrowCart_Rewards {
 		return $featured_rewards;
 	}
 
+	/**
+	 * Get rewards progress.
+	 *
+	 * @param array $rewards
+	 * @param integer $cart_contents_count
+	 * @return void
+	 */
 	public function get_rewards_progress( $rewards = [], $cart_contents_count = 0 ) {
 		if ( ! $cart_contents_count ) {
 			return 0;
@@ -282,6 +341,12 @@ class WooCommerce_GrowCart_Rewards {
 		return ( $cart_contents_count / $max_cart_contents_count ) * 100;
 	}
 
+	/**
+	 * Get reward string.
+	 *
+	 * @param array $current_rewards
+	 * @return void
+	 */
 	public function get_reward_string( $current_rewards = [] ) {
 		$cart_subtotal  = WC()->cart->subtotal;
 		$reward_total   = 0;
@@ -322,5 +387,84 @@ class WooCommerce_GrowCart_Rewards {
 		}
 
 		return implode( '<span> + </span>', $reward_strings );
+	}
+
+	/**
+	 * Get suggested products.
+	 *
+	 * @return void
+	 */
+	public function get_suggested_products() {
+		global $post;
+
+		$suggested_products = [];
+		$max_items          = 5;
+		$cart               = WC()->cart->get_cart();
+		$cart_is_empty      = WC()->cart->is_empty();
+		$exclude_ids        = wp_list_pluck( $cart, 'product_id' );
+
+		if ( count( WC()->cart->removed_cart_contents ) ) {
+			$title = __( 'Frequently bought together' );
+
+			foreach ( WC()->cart->removed_cart_contents as $key => $cart_item ) {
+				$product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
+
+				if ( ! in_array( $product_id, $exclude_ids, true ) ) {
+					$suggested_products[] = $product_id;
+				}
+			}
+		} elseif ( $cart_is_empty ) {
+			$title = __( 'Popular products' );
+
+			$args = array(
+				'post_type'           => 'product',
+				'post_status'         => 'publish',
+				'ignore_sticky_posts' => true,
+				'meta_key'            => 'total_sales',
+				'order'               => 'DESC',
+				'orderby'             => 'meta_value_num',
+				'fields'              => 'ids',
+			);
+
+			$query = new WP_Query( $args );
+
+			$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $query->posts ) );
+		} else {
+			$title = __( 'Products you may like' );
+
+			foreach ( $cart as $cart_item ) {
+				if ( count( $suggested_products ) >= $max_items ) {
+					continue;
+				}
+
+				$product_id         = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
+				$related_products   = wc_get_related_products( $product_id, $max_items, $exclude_ids );
+				$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $related_products ) );
+				$suggested_products = array_unique( $suggested_products );
+			}
+		}
+
+		$products = [];
+
+		foreach ( $suggested_products as $product_id ) {
+			$_product = wc_get_product( $product_id );
+			if ( ( count( $products ) >= $max_items ) || ! ( 'simple' === $_product->get_type() ) ) {
+				continue;
+			}
+
+			$products[] = [
+				'product_id'                => $product_id,
+				'product_title'             => $_product->get_title(),
+				'product_short_description' => $_product->get_short_description(),
+				'product_permalink'         => $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '',
+				'product_thumbnail'         => $_product->get_image(),
+				'product_price'             => WC()->cart->get_product_price( $_product ),
+			];
+		}
+
+		return [
+			'title'    => $title,
+			'products' => $products,
+		];
 	}
 }
