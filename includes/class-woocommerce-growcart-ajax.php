@@ -176,9 +176,8 @@ class WooCommerce_GrowCart_Ajax {
 
 		wp_send_json(
 			[
-				'title'                             => $title,
-				'products'                          => $products,
-				'WC()->cart->removed_cart_contents' => WC()->cart->removed_cart_contents,
+				'title'    => $title,
+				'products' => $products,
 			]
 		);
 	}

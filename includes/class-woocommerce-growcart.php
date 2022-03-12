@@ -36,6 +36,7 @@ final class WooCommerce_GrowCart {
 	public function __construct() {
 		$this->define_constants();
 		$this->includes();
+		$this->init_classes();
 		$this->hooks();
 	}
 
@@ -59,17 +60,23 @@ final class WooCommerce_GrowCart {
 	}
 
 	/**
+	 * Init classes.
+	 *
+	 * @return void
+	 */
+	private function init_classes() {
+		$this->ajax     = new WooCommerce_GrowCart_Ajax();
+		$this->rewards  = new WooCommerce_GrowCart_Rewards();
+		$this->settings = new WooCommerce_Growcart_Settings();
+	}
+
+	/**
 	 * Init hooks.
 	 * @return [type] [description]
 	 */
 	private function hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'wp_footer', [ $this, 'grow_cart_root' ] );
-
-		// Init classes.
-		$this->ajax     = new WooCommerce_GrowCart_Ajax();
-		$this->rewards  = new WooCommerce_GrowCart_Rewards();
-		$this->settings = new WooCommerce_Growcart_Settings();
 	}
 
 	/**
