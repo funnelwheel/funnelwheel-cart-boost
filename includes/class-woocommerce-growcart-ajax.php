@@ -85,6 +85,7 @@ class WooCommerce_GrowCart_Ajax {
 				'shop_url'            => wc_get_page_permalink( 'shop' ),
 				'checkout_url'        => esc_url( wc_get_checkout_url() ),
 				'cart_contents_count' => WC()->cart->get_cart_contents_count(),
+				'suggested_products'  => woocommerce_growcart()->rewards->get_suggested_products(),
 			]
 		);
 	}
