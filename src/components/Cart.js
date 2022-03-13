@@ -35,6 +35,33 @@ export default function Cart() {
 	if (isLoading) return "Loading...";
 	if (error) return "An error has occurred: " + error.message;
 
+	const main = (
+		<>
+			{cartInformation.data.is_empty ? (
+				<div className="empty">
+					<h4>Your Cart is Empty</h4>
+					<p>Fill your cart with amazing products</p>
+					<a href={cartInformation.data.shop_url}>Shop Now</a>
+				</div>
+			) : (
+				<>
+					<Rewards />
+					<CartItems />
+					<CartTotals />
+
+					<div className="grow-cart__proceed-to-checkout wc-proceed-to-checkout">
+						<a
+							href={cartInformation.data.checkout_url}
+							className="checkout-button button alt wc-forward"
+						>
+							Proceed to checkout
+						</a>
+					</div>
+				</>
+			)}
+		</>
+	);
+
 	return (
 		<CartContext.Provider value={{ cartInformation }}>
 			{showPopup && (
@@ -59,46 +86,21 @@ export default function Cart() {
 							</div>
 
 							<div className="modal-body">
-								<div className="grow-cart__main">
-									{cartInformation.data.is_empty ? (
-										<div className="empty">
-											<h4>Your Cart is Empty</h4>
-											<p>
-												Fill your cart with amazing
-												products
-											</p>
-											<a
-												href={
-													cartInformation.data
-														.shop_url
-												}
-											>
-												Shop Now
-											</a>
-										</div>
-									) : (
-										<>
-											<Rewards />
-											<CartItems />
-											<CartTotals />
-
-											<div className="grow-cart__proceed-to-checkout wc-proceed-to-checkout">
-												<a
-													href={
-														cartInformation.data
-															.checkout_url
-													}
-													className="checkout-button button alt wc-forward"
-												>
-													Proceed to checkout
-												</a>
-											</div>
-										</>
-									)}
+								<div
+									className={classNames("grow-cart__main", {
+										["grow-cart__main-full"]: !cartInformation
+											.data.suggested_products.products
+											.length,
+									})}
+								>
+									{main}
 								</div>
-								<div className="grow-cart__upsell">
-									<SuggestedProducts />
-								</div>
+								{cartInformation.data.suggested_products
+									.products.length > 0 && (
+									<div className="grow-cart__upsell">
+										<SuggestedProducts />
+									</div>
+								)}
 							</div>
 						</div>
 					</div>

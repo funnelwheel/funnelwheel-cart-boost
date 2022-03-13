@@ -124,6 +124,9 @@
   justify-content: center;
   width: 570px;
 }
+.grow-cart__main-full {
+  width: 100%;
+}
 .grow-cart__upsell {
   display: flex;
   flex-flow: column;

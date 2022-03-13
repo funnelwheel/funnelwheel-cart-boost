@@ -2535,6 +2535,16 @@ function Cart() {
   }, []);
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
+  const main = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, cartInformation.data.is_empty ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "empty"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Your Cart is Empty"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Fill your cart with amazing products"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: cartInformation.data.shop_url
+  }, "Shop Now")) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Rewards__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartItems__WEBPACK_IMPORTED_MODULE_8__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartTotals__WEBPACK_IMPORTED_MODULE_9__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "grow-cart__proceed-to-checkout wc-proceed-to-checkout"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: cartInformation.data.checkout_url,
+    className: "checkout-button button alt wc-forward"
+  }, "Proceed to checkout"))));
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_4__.CartContext.Provider, {
     value: {
       cartInformation
@@ -2559,17 +2569,10 @@ function Cart() {
   }, "\xD7")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-body"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "grow-cart__main"
-  }, cartInformation.data.is_empty ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "empty"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Your Cart is Empty"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Fill your cart with amazing products"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-    href: cartInformation.data.shop_url
-  }, "Shop Now")) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Rewards__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartItems__WEBPACK_IMPORTED_MODULE_8__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartTotals__WEBPACK_IMPORTED_MODULE_9__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "grow-cart__proceed-to-checkout wc-proceed-to-checkout"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-    href: cartInformation.data.checkout_url,
-    className: "checkout-button button alt wc-forward"
-  }, "Proceed to checkout")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("grow-cart__main", {
+      ["grow-cart__main-full"]: !cartInformation.data.suggested_products.products.length
+    })
+  }, main), cartInformation.data.suggested_products.products.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart__upsell"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SuggestedProducts__WEBPACK_IMPORTED_MODULE_10__["default"], null)))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MiniCart__WEBPACK_IMPORTED_MODULE_6__["default"], {
     setShowPopup: setShowPopup
