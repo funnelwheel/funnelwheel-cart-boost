@@ -65,7 +65,13 @@ export default function Cart() {
 	return (
 		<CartContext.Provider value={{ cartInformation }}>
 			{showPopup && (
-				<div id="grow-cart" className="modal show">
+				<div
+					id="grow-cart"
+					className={classNames("modal show", {
+						["modal--small"]: !cartInformation.data
+							.suggested_products.products.length,
+					})}
+				>
 					<div className="modal-dialog modal-dialog-bottom">
 						<div
 							className={classNames("modal-content", {

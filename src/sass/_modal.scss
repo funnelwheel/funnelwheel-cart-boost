@@ -17,80 +17,86 @@
 	/* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4);
 	/* Black w/ opacity */
+
+	.modal-dialog {
+		margin: $modal-dialog-margin-y-sm-up auto;
+		/* 15% from the top and centered */
+		max-width: 1000px;
+		/* Could be more or less, depending on screen size */
+	}
+
+	.modal-dialog-bottom {
+		display: flex;
+		align-items: flex-end;
+		height: subtract(100%, $modal-dialog-margin * 2);
+		// min-height: subtract(100%, $modal-dialog-margin * 2);
+	}
+
+	.modal-header {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center; // Put modal header elements (title and dismiss) on opposite ends
+		padding: $modal-header-padding;
+		border-bottom: $modal-header-border-width solid $modal-header-border-color;
+		@include border-top-radius(8px);
+		background-color: $gray-800;
+	
+		.btn-close {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			box-sizing: content-box;
+			width: 1em;
+			height: 1em;
+			border-radius: 50%;
+			padding: ($modal-header-padding-y * 0.5) ($modal-header-padding-x * 0.5);
+			border: 0;
+			line-height: 1;
+		}
+	}
+	
+	.modal-title {
+		margin-bottom: 0;
+		line-height: $modal-title-line-height;
+		font-size: 16px;
+		font-weight: bold;
+		color: $white;
+	}
+
+	.modal-content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%; // Ensure `.modal-content` extends the full width of the parent `.modal-dialog`
+		// counteract the pointer-events: none; in the .modal-dialog
+		color: $modal-content-color;
+		pointer-events: auto;
+		background-color: $modal-content-bg;
+		background-clip: padding-box;
+		// border: $modal-content-border-width solid $modal-content-border-color;
+		@include border-radius(8px);
+		@include box-shadow($modal-content-box-shadow-xs);
+		// Remove focus outline from opened modal
+		outline: 0;
+		height: 90%;
+	}
+
+	.modal-body {
+		display: flex;
+		justify-content: space-between;
+		height: calc(100% - 57px);
+	}
+}
+
+.modal--small {
+	.modal-dialog {
+		max-width: 570px;
+	}
 }
 
 .show {
 	display: block;
-}
-
-.modal-dialog {
-	margin: $modal-dialog-margin-y-sm-up auto;
-	/* 15% from the top and centered */
-	width: 1000px;
-	/* Could be more or less, depending on screen size */
-}
-
-.modal-dialog-bottom {
-	display: flex;
-	align-items: flex-end;
-	height: subtract(100%, $modal-dialog-margin * 2);
-	// min-height: subtract(100%, $modal-dialog-margin * 2);
-}
-
-.modal-content {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 100%; // Ensure `.modal-content` extends the full width of the parent `.modal-dialog`
-	// counteract the pointer-events: none; in the .modal-dialog
-	color: $modal-content-color;
-	pointer-events: auto;
-	background-color: $modal-content-bg;
-	background-clip: padding-box;
-	// border: $modal-content-border-width solid $modal-content-border-color;
-	@include border-radius(8px);
-	@include box-shadow($modal-content-box-shadow-xs);
-	// Remove focus outline from opened modal
-	outline: 0;
-	height: 90%;
-}
-
-.modal-header {
-	display: flex;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center; // Put modal header elements (title and dismiss) on opposite ends
-	padding: $modal-header-padding;
-	border-bottom: $modal-header-border-width solid $modal-header-border-color;
-	@include border-top-radius(8px);
-	background-color: $gray-800;
-
-	.btn-close {
-		position: absolute;
-		top: 12px;
-		right: 12px;
-		box-sizing: content-box;
-		width: 1em;
-		height: 1em;
-		border-radius: 50%;
-		padding: ($modal-header-padding-y * 0.5) ($modal-header-padding-x * 0.5);
-		border: 0;
-		line-height: 1;
-	}
-}
-
-.modal-title {
-	margin-bottom: 0;
-	line-height: $modal-title-line-height;
-	font-size: 16px;
-	font-weight: bold;
-	color: $white;
-}
-
-.modal-body {
-	display: flex;
-	justify-content: space-between;
-	height: calc(100% - 57px);
 }
 
 @keyframes slideInUp {
