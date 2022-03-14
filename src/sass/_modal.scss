@@ -87,6 +87,32 @@
 		justify-content: space-between;
 		height: calc(100% - 57px);
 	}
+
+	@include media-breakpoint-down(lg) {
+		.modal-dialog {
+			max-width: 570px;
+		}
+	} 
+
+	@include media-breakpoint-down(md) {
+		.modal-dialog {
+			margin: 0;
+			max-width: 100%;
+		}
+
+		.modal-dialog-bottom {
+			height: 100%;
+		}
+
+		.modal-header,
+		.modal-content {
+			border-radius: 0;
+		}
+
+		.modal-content {
+			height: 100%;
+		}
+	}
 }
 
 .modal--small {

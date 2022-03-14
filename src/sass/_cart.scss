@@ -28,6 +28,16 @@
 			border-radius: 4px;
 		}
 	}
+
+	@include media-breakpoint-down(lg) {
+		&__main {
+			width: 100%;
+		}
+		
+		&__upsell {
+			display: none;
+		}
+	} 
 }
 
 .empty {
