@@ -52,6 +52,7 @@ class WooCommerce_Growcart_Settings {
 						'name'       => 'woocommerce_growcart_display_suggested_products',
 						'std'        => '1',
 						'label'      => __( 'Display suggested products', 'woocommerce-grow-cart' ),
+						'cb_label'   => __( 'Display suggested products on the right side of the popup modal.', 'wp-job-manager' ),
 						'desc'       => '',
 						'type'       => 'checkbox',
 						'attributes' => [],
@@ -60,6 +61,7 @@ class WooCommerce_Growcart_Settings {
 						'name'       => 'woocommerce_growcart_display_coupon',
 						'std'        => '1',
 						'label'      => __( 'Display coupon', 'woocommerce-grow-cart' ),
+						'cb_label'      => __( 'Display and allow users to apply coupon codes.', 'woocommerce-grow-cart' ),
 						'desc'       => '',
 						'type'       => 'checkbox',
 						'attributes' => [],
@@ -206,6 +208,37 @@ class WooCommerce_Growcart_Settings {
 			do_action( 'woocommerce_growcart_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
 		}
 		echo '</td></tr>';
+	}
+
+	/**
+	 * Checkbox input field.
+	 *
+	 * @param array  $option
+	 * @param array  $attributes
+	 * @param mixed  $value
+	 * @param string $ignored_placeholder
+	 */
+	protected function input_checkbox( $option, $attributes, $value, $ignored_placeholder ) {
+		if ( ! isset( $option['hidden_value'] ) ) {
+			$option['hidden_value'] = '0';
+		}
+		?>
+		<label>
+		<input type="hidden" name="<?php echo esc_attr( $option['name'] ); ?>" value="<?php echo esc_attr( $option['hidden_value'] ); ?>" />
+		<input
+			id="setting-<?php echo esc_attr( $option['name'] ); ?>"
+			name="<?php echo esc_attr( $option['name'] ); ?>"
+			type="checkbox"
+			value="1"
+			<?php
+			echo implode( ' ', $attributes ) . ' '; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			checked( '1', $value );
+			?>
+		/> <?php echo wp_kses_post( $option['cb_label'] ); ?></label>
+		<?php
+		if ( ! empty( $option['desc'] ) ) {
+			echo ' <p class="description">' . wp_kses_post( $option['desc'] ) . '</p>';
+		}
 	}
 
 	/**
