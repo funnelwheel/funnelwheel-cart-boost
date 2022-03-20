@@ -84,30 +84,6 @@ class WooCommerce_Growcart_Settings {
 		}
 	}
 
-	public function field_pill_cb( $args ) {
-		// Get the value of the setting we've registered with register_setting()
-		$options = get_option( 'wporg_options' );
-		?>
-		<select
-				id="<?php echo esc_attr( $args['label_for'] ); ?>"
-				data-custom="<?php echo esc_attr( $args['wporg_custom_data'] ); ?>"
-				name="wporg_options[<?php echo esc_attr( $args['label_for'] ); ?>]">
-			<option value="red" <?php echo isset( $options[ $args['label_for'] ] ) ? ( selected( $options[ $args['label_for'] ], 'red', false ) ) : ( '' ); ?>>
-				<?php esc_html_e( 'red pill', 'wporg' ); ?>
-			</option>
-			<option value="blue" <?php echo isset( $options[ $args['label_for'] ] ) ? ( selected( $options[ $args['label_for'] ], 'blue', false ) ) : ( '' ); ?>>
-				<?php esc_html_e( 'blue pill', 'wporg' ); ?>
-			</option>
-		</select>
-		<p class="description">
-			<?php esc_html_e( 'You take the blue pill and the story ends. You wake in your bed and you believe whatever you want to believe.', 'wporg' ); ?>
-		</p>
-		<p class="description">
-			<?php esc_html_e( 'You take the red pill and you stay in Wonderland and I show you how deep the rabbit-hole goes.', 'wporg' ); ?>
-		</p>
-		<?php
-	}
-
 	/**
 	 * Add options page.
 	 *
