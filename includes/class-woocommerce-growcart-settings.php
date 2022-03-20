@@ -84,12 +84,6 @@ class WooCommerce_Growcart_Settings {
 		}
 	}
 
-	public function section_developers_callback( $args ) {
-		?>
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Follow the white rabbit.', 'wporg' ); ?></p>
-		<?php
-	}
-
 	public function field_pill_cb( $args ) {
 		// Get the value of the setting we've registered with register_setting()
 		$options = get_option( 'wporg_options' );
