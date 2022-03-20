@@ -37,20 +37,18 @@ class WooCommerce_Growcart_Settings {
 	 * Start up.
 	 */
 	public function __construct() {
-		$this->options = get_option( 'woocommerce_growcart_options' );
 		add_action( 'admin_init', [ $this, 'register_settings' ] );
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
 		// add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
 	protected function init_settings() {
-		$this->options  = get_option( 'woocommerce_growcart_options' );
 		$this->settings = [
 			'general' => [
 				__( 'General', 'wp-job-manager' ),
 				[
 					[
-						'name'       => 'display_suggested_products',
+						'name'       => 'woocommerce_growcart_display_suggested_products',
 						'std'        => '1',
 						'label'      => __( 'Display suggested products', 'wp-job-manager' ),
 						'desc'       => '',
@@ -58,7 +56,7 @@ class WooCommerce_Growcart_Settings {
 						'attributes' => [],
 					],
 					[
-						'name'       => 'display_coupon',
+						'name'       => 'woocommerce_growcart_display_coupon',
 						'std'        => '1',
 						'label'      => __( 'Display coupon', 'wp-job-manager' ),
 						'desc'       => '',
@@ -84,32 +82,6 @@ class WooCommerce_Growcart_Settings {
 				register_setting( $this->settings_group, $option['name'] );
 			}
 		}
-
-		// Register a new setting for "wporg" page.
-		register_setting( 'wporg', 'wporg_options' );
-
-		// Register a new section in the "wporg" page.
-		add_settings_section(
-			'wporg_section_developers',
-			__( 'The Matrix has you.', 'wporg' ),
-			array( $this, 'section_developers_callback' ),
-			'wporg'
-		);
-
-		// Register a new field in the "wporg_section_developers" section, inside the "wporg" page.
-		add_settings_field(
-			'wporg_field_pill', // As of WP 4.6 this value is used only internally.
-			// Use $args' label_for to populate the id inside the callback.
-				__( 'Pill', 'wporg' ),
-			array( $this, 'field_pill_cb' ),
-			'wporg',
-			'wporg_section_developers',
-			array(
-				'label_for'         => 'wporg_field_pill',
-				'class'             => 'wporg_row',
-				'wporg_custom_data' => 'custom',
-			)
-		);
 	}
 
 	public function section_developers_callback( $args ) {
