@@ -38,70 +38,67 @@ export default function RewardsAdminScreen() {
 
 	return (
 		<div className="RewardsAdminScreen">
-			<h2 className="wc-rewards-heading">
-				Rewards{" "}
-				{rewards.data && rewards.data.length
-					? rewards.data.map((reward) => (
-							<div
-								key={reward.id}
-								className={classnames("reward-title", {
-									active: activeReward.id === reward.id,
-								})}
+			{rewards.data && rewards.data.length
+				? rewards.data.map((reward) => (
+						<div
+							key={reward.id}
+							className={classnames("reward-title", {
+								active: activeReward.id === reward.id,
+							})}
+						>
+							<span
+								onClick={() => {
+									setActiveReward(
+										rewards.data.find(
+											(_reward) =>
+												_reward.id === reward.id
+										)
+									);
+								}}
 							>
-								<span
-									onClick={() => {
-										setActiveReward(
-											rewards.data.find(
+								{reward.name}
+							</span>
+							<span
+								onClick={() => {
+									mutation.mutate({
+										security:
+											woocommerce_growcart_rewards.update_rewards_nonce,
+										rewards: JSON.stringify(
+											rewards.data.filter(
 												(_reward) =>
-													_reward.id === reward.id
+													_reward.id !== reward.id
 											)
-										);
-									}}
-								>
-									{reward.name}
-								</span>
-								<span
-									onClick={() => {
-										mutation.mutate({
-											security:
-												woocommerce_growcart_rewards.update_rewards_nonce,
-											rewards: JSON.stringify(
-												rewards.data.filter(
-													(_reward) =>
-														_reward.id !== reward.id
-												)
-											),
-										});
-									}}
-								>
-									<XIcon />
-								</span>
-							</div>
-					  ))
-					: null}
-				<button
-					type="button"
-					className="page-title-action"
-					onClick={() => {
-						mutation.mutate({
-							security:
-								woocommerce_growcart_rewards.update_rewards_nonce,
-							rewards: JSON.stringify([
-								...rewards.data,
-								{
-									id: uuidv4(),
-									name: "FREE SHIPPING",
-									type: "free_shipping",
-									value: 0,
-									minimum_cart_contents: 3,
-								},
-							]),
-						});
-					}}
-				>
-					Add
-				</button>
-			</h2>
+										),
+									});
+								}}
+							>
+								<XIcon />
+							</span>
+						</div>
+				  ))
+				: null}
+			<button
+				type="button"
+				className="page-title-action"
+				onClick={() => {
+					mutation.mutate({
+						security:
+							woocommerce_growcart_rewards.update_rewards_nonce,
+						rewards: JSON.stringify([
+							...rewards.data,
+							{
+								id: uuidv4(),
+								name: "FREE SHIPPING",
+								type: "free_shipping",
+								value: 0,
+								minimum_cart_contents: 3,
+							},
+						]),
+					});
+				}}
+			>
+				Add
+			</button>
 
 			{activeReward && (
 				<>
