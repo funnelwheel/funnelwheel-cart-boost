@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from "uuid";
-import { useQuery, useMutation, useQueryClient } from "react-query";
 import classnames from "classnames";
 import { useState } from "@wordpress/element";
 import {
@@ -7,49 +6,34 @@ import {
 	SelectControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
-import { getAdminRewards, updateAdminRewards } from "../admin-api";
 import { ReactComponent as XIcon } from "./../svg/x.svg";
 
 export default function RewardsAdminScreen() {
-	const queryClient = useQueryClient();
-	const [hasChanges, setHasChanges] = useState(false);
-	const [activeReward, setActiveReward] = useState(null);
-	const { isLoading, error, data: rewards } = useQuery(
-		"adminRewards",
-		getAdminRewards,
+	const [rewards, setRewards] = useState([
 		{
-			onSuccess: (response) => {
-				if (!activeReward && response.data && response.data.length) {
-					setActiveReward(response.data[0]);
-				}
-			},
-		}
-	);
-
-	const mutation = useMutation(updateAdminRewards, {
-		onSuccess: (response) => {
-			queryClient.invalidateQueries("adminRewards");
-			setHasChanges(false);
+			id: uuidv4(),
+			name: "FREE SHIPPING",
+			type: "free_shipping",
+			value: 0,
+			minimum_cart_contents: 3,
 		},
-	});
-
-	if (isLoading) return "Loading...";
-	if (error) return "An error has occurred: " + error.message;
+	]);
+	const [activeReward, setActiveReward] = useState(rewards[0]);
 
 	return (
 		<div className="RewardsAdminScreen">
-			{rewards.data && rewards.data.length
-				? rewards.data.map((reward) => (
+			{rewards && rewards.length
+				? rewards.map((reward) => (
 						<div
 							key={reward.id}
 							className={classnames("reward-title", {
-								active: activeReward.id === reward.id,
+								active: activeReward && activeReward.id === reward.id,
 							})}
 						>
 							<span
 								onClick={() => {
 									setActiveReward(
-										rewards.data.find(
+										rewards.find(
 											(_reward) =>
 												_reward.id === reward.id
 										)
@@ -64,7 +48,7 @@ export default function RewardsAdminScreen() {
 										security:
 											woocommerce_growcart_rewards.update_rewards_nonce,
 										rewards: JSON.stringify(
-											rewards.data.filter(
+											rewards.filter(
 												(_reward) =>
 													_reward.id !== reward.id
 											)
@@ -80,22 +64,18 @@ export default function RewardsAdminScreen() {
 			<button
 				type="button"
 				className="page-title-action"
-				onClick={() => {
-					mutation.mutate({
-						security:
-							woocommerce_growcart_rewards.update_rewards_nonce,
-						rewards: JSON.stringify([
-							...rewards.data,
-							{
-								id: uuidv4(),
-								name: "FREE SHIPPING",
-								type: "free_shipping",
-								value: 0,
-								minimum_cart_contents: 3,
-							},
-						]),
-					});
-				}}
+				onClick={() =>
+					setRewards([
+						...rewards,
+						{
+							id: uuidv4(),
+							name: "FREE SHIPPING",
+							type: "free_shipping",
+							value: 0,
+							minimum_cart_contents: 3,
+						},
+					])
+				}
 			>
 				Add
 			</button>
@@ -110,8 +90,6 @@ export default function RewardsAdminScreen() {
 								...activeReward,
 								name,
 							});
-
-							setHasChanges(true);
 						}}
 					/>
 
@@ -135,7 +113,6 @@ export default function RewardsAdminScreen() {
 								...activeReward,
 								type,
 							});
-							setHasChanges(true);
 						}}
 					/>
 
@@ -147,7 +124,6 @@ export default function RewardsAdminScreen() {
 								...activeReward,
 								value,
 							});
-							setHasChanges(true);
 						}}
 					/>
 
@@ -159,38 +135,12 @@ export default function RewardsAdminScreen() {
 								...activeReward,
 								minimum_cart_contents,
 							});
-							setHasChanges(true);
 						}}
 						shiftStep={10}
 						value={activeReward.minimum_cart_contents}
 					/>
 				</>
 			)}
-
-			<p className="submit">
-				<button
-					type="button"
-					className="button-primary woocommerce-save-button"
-					onClick={() => {
-						mutation.mutate({
-							security:
-								woocommerce_growcart_rewards.update_rewards_nonce,
-							rewards: JSON.stringify(
-								rewards.data.map((reward) => {
-									if (reward.id === activeReward.id) {
-										return activeReward;
-									}
-
-									return reward;
-								})
-							),
-						});
-					}}
-					disabled={!hasChanges}
-				>
-					Save changes
-				</button>
-			</p>
 		</div>
 	);
 }

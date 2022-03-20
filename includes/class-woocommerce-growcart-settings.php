@@ -124,6 +124,8 @@ class WooCommerce_Growcart_Settings {
 		<div class="wrap woocommerce-growcart-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<form class="woocommerce-growcart-options" action="options.php" method="post">
+				<?php settings_fields( $this->settings_group ); ?>
+
 				<h2 class="nav-tab-wrapper">
 					<?php
 					foreach ( $this->settings as $key => $section ) {
@@ -133,12 +135,6 @@ class WooCommerce_Growcart_Settings {
 				</h2>
 
 				<?php
-				// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Used for basic flow.
-				if ( ! empty( $_GET['settings-updated'] ) ) {
-					flush_rewrite_rules();
-					echo '<div class="updated fade woocommerce-grow-updated"><p>' . esc_html__( 'Settings successfully saved', 'woocommerce-grow-cart' ) . '</p></div>';
-				}
-
 				foreach ( $this->settings as $key => $section ) {
 					$section_args = isset( $section[2] ) ? (array) $section[2] : [];
 					echo '<div id="settings-' . esc_attr( sanitize_title( $key ) ) . '" class="settings_panel">';
