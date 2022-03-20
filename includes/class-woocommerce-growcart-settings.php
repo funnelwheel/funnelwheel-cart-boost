@@ -123,7 +123,7 @@ class WooCommerce_Growcart_Settings {
 		?>
 		<div class="wrap woocommerce-growcart-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<form action="options.php" method="post">
+			<form class="woocommerce-growcart-options" action="options.php" method="post">
 				<h2 class="nav-tab-wrapper">
 					<?php
 					foreach ( $this->settings as $key => $section ) {
@@ -165,6 +165,42 @@ class WooCommerce_Growcart_Settings {
 				</p>
 			</form>
 		</div>
+		<script type="text/javascript">
+			jQuery('.nav-internal').click(function (e) {
+				e.preventDefault();
+				jQuery('.nav-tab-wrapper a[href="' + jQuery(this).attr('href') + '"]').click();
+
+				return false;
+			});
+
+			jQuery('.nav-tab-wrapper a').click(function() {
+				if ( '#' !== jQuery(this).attr( 'href' ).substr( 0, 1 ) ) {
+					return false;
+				}
+				jQuery('.settings_panel').hide();
+				jQuery('.nav-tab-active').removeClass('nav-tab-active');
+				jQuery( jQuery(this).attr('href') ).show();
+				jQuery(this).addClass('nav-tab-active');
+				window.location.hash = jQuery(this).attr('href');
+				jQuery( 'form.woocommerce-growcart-options' ).attr( 'action', 'options.php' + jQuery(this).attr( 'href' ) );
+				window.scrollTo( 0, 0 );
+				return false;
+			});
+			var goto_hash = window.location.hash;
+			if ( '#' === goto_hash.substr( 0, 1 ) ) {
+				jQuery( 'form.woocommerce-growcart-options' ).attr( 'action', 'options.php' + jQuery(this).attr( 'href' ) );
+			}
+			if ( goto_hash ) {
+				var the_tab = jQuery( 'a[href="' + goto_hash + '"]' );
+				if ( the_tab.length > 0 ) {
+					the_tab.click();
+				} else {
+					jQuery( '.nav-tab-wrapper a:first' ).click();
+				}
+			} else {
+				jQuery( '.nav-tab-wrapper a:first' ).click();
+			}
+		</script>
 		<?php
 	}
 
