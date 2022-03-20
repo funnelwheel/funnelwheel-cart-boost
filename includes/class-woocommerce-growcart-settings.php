@@ -6,20 +6,140 @@ defined( 'ABSPATH' ) || exit;
 
 class WooCommerce_Growcart_Settings {
 	/**
-	 * Holds the values to be used in the fields callbacks.
+	 * The single instance of the class.
+	 *
+	 * @var self
+	 * @since  1.26.0
 	 */
-	private $options;
+	private static $instance = null;
+
+	/**
+	 * Our Settings.
+	 *
+	 * @var array Settings.
+	 */
+	protected $settings = [];
+
+	/**
+	 * Allows for accessing single instance of class. Class should only be constructed once per call.
+	 *
+	 * @static
+	 * @return self Main instance.
+	 */
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
 
 	/**
 	 * Start up.
 	 */
 	public function __construct() {
-		// Set class property
 		$this->options = get_option( 'woocommerce_growcart_options' );
-
+		add_action( 'admin_init', [ $this, 'register_settings' ] );
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-		// add_action( 'admin_init', array( $this, 'page_init' ) );
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+		// add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+	}
+
+	protected function init_settings() {
+		$this->options  = get_option( 'woocommerce_growcart_options' );
+		$this->settings = [
+			'general' => [
+				__( 'General', 'wp-job-manager' ),
+				[
+					[
+						'name'       => 'display_suggested_products',
+						'std'        => '1',
+						'label'      => __( 'Display suggested products', 'wp-job-manager' ),
+						'desc'       => '',
+						'type'       => 'checkbox',
+						'attributes' => [],
+					],
+					[
+						'name'       => 'display_coupon',
+						'std'        => '1',
+						'label'      => __( 'Display coupon', 'wp-job-manager' ),
+						'desc'       => '',
+						'type'       => 'checkbox',
+						'attributes' => [],
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * Register and add settings
+	 */
+	public function register_settings() {
+		$this->init_settings();
+
+		foreach ( $this->settings as $section ) {
+			foreach ( $section[1] as $option ) {
+				if ( isset( $option['std'] ) ) {
+					add_option( $option['name'], $option['std'] );
+				}
+				register_setting( $this->settings_group, $option['name'] );
+			}
+		}
+
+		// Register a new setting for "wporg" page.
+		register_setting( 'wporg', 'wporg_options' );
+
+		// Register a new section in the "wporg" page.
+		add_settings_section(
+			'wporg_section_developers',
+			__( 'The Matrix has you.', 'wporg' ),
+			array( $this, 'section_developers_callback' ),
+			'wporg'
+		);
+
+		// Register a new field in the "wporg_section_developers" section, inside the "wporg" page.
+		add_settings_field(
+			'wporg_field_pill', // As of WP 4.6 this value is used only internally.
+			// Use $args' label_for to populate the id inside the callback.
+				__( 'Pill', 'wporg' ),
+			array( $this, 'field_pill_cb' ),
+			'wporg',
+			'wporg_section_developers',
+			array(
+				'label_for'         => 'wporg_field_pill',
+				'class'             => 'wporg_row',
+				'wporg_custom_data' => 'custom',
+			)
+		);
+	}
+
+	public function section_developers_callback( $args ) {
+		?>
+		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Follow the white rabbit.', 'wporg' ); ?></p>
+		<?php
+	}
+
+	public function field_pill_cb( $args ) {
+		// Get the value of the setting we've registered with register_setting()
+		$options = get_option( 'wporg_options' );
+		?>
+		<select
+				id="<?php echo esc_attr( $args['label_for'] ); ?>"
+				data-custom="<?php echo esc_attr( $args['wporg_custom_data'] ); ?>"
+				name="wporg_options[<?php echo esc_attr( $args['label_for'] ); ?>]">
+			<option value="red" <?php echo isset( $options[ $args['label_for'] ] ) ? ( selected( $options[ $args['label_for'] ], 'red', false ) ) : ( '' ); ?>>
+				<?php esc_html_e( 'red pill', 'wporg' ); ?>
+			</option>
+			<option value="blue" <?php echo isset( $options[ $args['label_for'] ] ) ? ( selected( $options[ $args['label_for'] ], 'blue', false ) ) : ( '' ); ?>>
+				<?php esc_html_e( 'blue pill', 'wporg' ); ?>
+			</option>
+		</select>
+		<p class="description">
+			<?php esc_html_e( 'You take the blue pill and the story ends. You wake in your bed and you believe whatever you want to believe.', 'wporg' ); ?>
+		</p>
+		<p class="description">
+			<?php esc_html_e( 'You take the red pill and you stay in Wonderland and I show you how deep the rabbit-hole goes.', 'wporg' ); ?>
+		</p>
+		<?php
 	}
 
 	/**
@@ -28,84 +148,41 @@ class WooCommerce_Growcart_Settings {
 	 * @return void
 	 */
 	public function add_plugin_page() {
-		// This page will be under "Settings"
 		add_options_page(
 			__( 'WooCommerce Growcart Settings' ),
 			__( 'WooCommerce Growcart' ),
 			'manage_options',
 			'woocommerce-growcart',
-			array( $this, 'create_admin_page' )
-		);
-	}
-
-	/**
-	 * Register and add settings
-	 */
-	public function page_init() {
-		register_setting(
-			'woocommerce_growcart', // Option group
-			'woocommerce_growcart_options', // Option name
-			array( $this, 'sanitize' ) // Sanitize
-		);
-
-		add_settings_section(
-			'woocommerce_growcart_section_rewards', // ID
-			__( 'Spaces API' ), // Title
-			array( $this, 'section_rewards_callback' ), // Callback
-			'woocommerce-growcart' // Page
-		);
-
-		add_settings_field(
-			'rewards', // ID
-			__( 'Rewards' ), // Title
-			array( $this, 'field_rewards_callback' ), // Callback
-			'woocommerce-growcart', // Page
-			'woocommerce_growcart_section_rewards' // Section
-		);
-	}
-
-	/**
-	 * Sanitize each setting field as needed
-	 *
-	 * @param array $input Contains all settings fields as array keys
-	 */
-	public function sanitize( $input ) {
-		$new_input = array();
-		if ( isset( $input['rewards'] ) ) {
-			$new_input['rewards'] = sanitize_text_field( $input['rewards'] );
-		}
-
-		return $new_input;
-	}
-
-
-	/**
-	 * Print the Section text
-	 */
-	public function section_rewards_callback( $args ) {
-		?>
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Please enter API Key and API Secret below.', 'wporg' ); ?></p>
-		<?php
-	}
-
-	/**
-	 * Get the settings option array and print one of its values
-	 */
-	public function field_rewards_callback( $args ) {
-		printf(
-			'<input type="text" class="regular-text" id="rewards" name="formidable_digitalocean_spaces_options[rewards]" value="%s" />',
-			isset( $this->options['rewards'] ) ? esc_attr( $this->options['rewards'] ) : ''
+			array( $this, 'options_page_html' )
 		);
 	}
 
 	/**
 	 * Options page callback
 	 */
-	public function create_admin_page() {
+	public function options_page_html() {
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<div id="rewards-screen"></div>
+			<form action="options.php" method="post">
+				<h2 class="nav-tab-wrapper">
+					<?php
+					foreach ( $this->settings as $key => $section ) {
+						echo '<a href="#settings-' . esc_attr( sanitize_title( $key ) ) . '" class="nav-tab">' . esc_html( $section[0] ) . '</a>';
+					}
+					?>
+				</h2>
+
+				<?php
+				// output security fields for the registered setting "wporg"
+				settings_fields( 'wporg' );
+				// output setting sections and their fields
+				// (sections are registered for "wporg", each field is registered to a specific section)
+				do_settings_sections( 'wporg' );
+				// output save settings button
+				submit_button( 'Save Settings' );
+				?>
+			</form>
 		</div>
 		<?php
 	}
