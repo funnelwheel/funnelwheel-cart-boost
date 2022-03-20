@@ -129,6 +129,38 @@ class WooCommerce_Growcart_Settings {
 					}
 					?>
 				</h2>
+
+				<?php
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Used for basic flow.
+				if ( ! empty( $_GET['settings-updated'] ) ) {
+					flush_rewrite_rules();
+					echo '<div class="updated fade woocommerce-grow-updated"><p>' . esc_html__( 'Settings successfully saved', 'woocommerce-grow-cart' ) . '</p></div>';
+				}
+
+				foreach ( $this->settings as $key => $section ) {
+					$section_args = isset( $section[2] ) ? (array) $section[2] : [];
+					echo '<div id="settings-' . esc_attr( sanitize_title( $key ) ) . '" class="settings_panel">';
+					if ( ! empty( $section_args['before'] ) ) {
+						echo '<p class="before-settings">' . wp_kses_post( $section_args['before'] ) . '</p>';
+					}
+					echo '<table class="form-table settings parent-settings">';
+
+					foreach ( $section[1] as $option ) {
+						$value = get_option( $option['name'] );
+						// $this->output_field( $option, $value );
+					}
+
+					echo '</table>';
+					if ( ! empty( $section_args['after'] ) ) {
+						echo '<p class="after-settings">' . wp_kses_post( $section_args['after'] ) . '</p>';
+					}
+					echo '</div>';
+				}
+				?>
+
+				<p class="submit">
+					<input type="submit" class="button-primary" value="<?php esc_attr_e( 'Save Changes', 'woocommerce-grow-cart' ); ?>" />
+				</p>
 			</form>
 		</div>
 		<?php
