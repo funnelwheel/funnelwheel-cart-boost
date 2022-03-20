@@ -147,7 +147,7 @@ class WooCommerce_Growcart_Settings {
 
 					foreach ( $section[1] as $option ) {
 						$value = get_option( $option['name'] );
-						// $this->output_field( $option, $value );
+						$this->output_field( $option, $value );
 					}
 
 					echo '</table>';
@@ -164,6 +164,48 @@ class WooCommerce_Growcart_Settings {
 			</form>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Outputs the field row.
+	 *
+	 * @param array $option
+	 * @param mixed $value
+	 */
+	protected function output_field( $option, $value ) {
+		$placeholder    = ( ! empty( $option['placeholder'] ) ) ? 'placeholder="' . esc_attr( $option['placeholder'] ) . '"' : '';
+		$class          = ! empty( $option['class'] ) ? $option['class'] : '';
+		$option['type'] = ! empty( $option['type'] ) ? $option['type'] : 'text';
+		$attributes     = [];
+		if ( ! empty( $option['attributes'] ) && is_array( $option['attributes'] ) ) {
+			foreach ( $option['attributes'] as $attribute_name => $attribute_value ) {
+				$attributes[] = esc_attr( $attribute_name ) . '="' . esc_attr( $attribute_value ) . '"';
+			}
+		}
+
+		echo '<tr valign="top" class="' . esc_attr( $class ) . '">';
+
+		if ( ! empty( $option['label'] ) ) {
+			echo '<th scope="row"><label for="setting-' . esc_attr( $option['name'] ) . '">' . esc_html( $option['label'] ) . '</a></th><td>';
+		} else {
+			echo '<td colspan="2">';
+		}
+
+		$method_name = 'input_' . $option['type'];
+		if ( method_exists( $this, $method_name ) ) {
+			$this->$method_name( $option, $attributes, $value, $placeholder );
+		} else {
+			/**
+			 * Allows for custom fields in admin setting panes.
+			 *
+			 * @param string $option     Field name.
+			 * @param array  $attributes Array of attributes.
+			 * @param mixed  $value      Field value.
+			 * @param string $value      Placeholder text.
+			 */
+			do_action( 'woocommerce_growcart_admin_field_' . $option['type'], $option, $attributes, $value, $placeholder );
+		}
+		echo '</td></tr>';
 	}
 
 	/**
