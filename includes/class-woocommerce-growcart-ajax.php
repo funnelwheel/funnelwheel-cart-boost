@@ -71,7 +71,7 @@ class WooCommerce_GrowCart_Ajax {
 				'current_reward_ids'  => $current_reward_ids,
 				'is_empty'            => WC()->cart->is_empty(),
 				'items'               => get_cart_items(),
-				'cart_title'          => sprintf( __( 'Your Cart (%d)' ), WC()->cart->get_cart_contents_count() ),
+				'cart_title'          => sprintf( __( 'Your Cart (%d)', 'woocommerce-grow-cart' ), WC()->cart->get_cart_contents_count() ),
 				'tax_enabled'         => wc_tax_enabled(),
 				'has_shipping'        => WC()->cart->needs_shipping() && WC()->cart->show_shipping(),
 				'has_discount'        => WC()->cart->has_discount(),
@@ -95,7 +95,7 @@ class WooCommerce_GrowCart_Ajax {
 		$quantity = (int) $_POST['quantity'];
 
 		if ( ! is_numeric( $quantity ) || $quantity < 0 || ! $cart_key ) {
-			wp_send_json( [ 'error' => __( 'Something went wrong' ) ] );
+			wp_send_json( [ 'error' => __( 'Something went wrong', 'woocommerce-grow-cart' ) ] );
 		}
 
 		$cart_success = 0 === $quantity ? WC()->cart->remove_cart_item( $cart_key ) : WC()->cart->set_quantity( $cart_key, $quantity );

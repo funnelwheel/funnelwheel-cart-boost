@@ -37,6 +37,7 @@ class WooCommerce_Growcart_Settings {
 	 * Start up.
 	 */
 	public function __construct() {
+		$this->settings_group = 'woocommerce_growcart';
 		add_action( 'admin_init', [ $this, 'register_settings' ] );
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
 		// add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
@@ -45,12 +46,12 @@ class WooCommerce_Growcart_Settings {
 	protected function init_settings() {
 		$this->settings = [
 			'general' => [
-				__( 'General', 'wp-job-manager' ),
+				__( 'General', 'woocommerce-grow-cart' ),
 				[
 					[
 						'name'       => 'woocommerce_growcart_display_suggested_products',
 						'std'        => '1',
-						'label'      => __( 'Display suggested products', 'wp-job-manager' ),
+						'label'      => __( 'Display suggested products', 'woocommerce-grow-cart' ),
 						'desc'       => '',
 						'type'       => 'checkbox',
 						'attributes' => [],
@@ -58,9 +59,22 @@ class WooCommerce_Growcart_Settings {
 					[
 						'name'       => 'woocommerce_growcart_display_coupon',
 						'std'        => '1',
-						'label'      => __( 'Display coupon', 'wp-job-manager' ),
+						'label'      => __( 'Display coupon', 'woocommerce-grow-cart' ),
 						'desc'       => '',
 						'type'       => 'checkbox',
+						'attributes' => [],
+					],
+				],
+			],
+			'rewards' => [
+				__( 'Rewards', 'woocommerce-grow-cart' ),
+				[
+					[
+						'name'       => 'woocommerce_growcart_rewards',
+						'std'        => '',
+						'label'      => __( 'Rewards', 'woocommerce-grow-cart' ),
+						'desc'       => '',
+						'type'       => 'rewards',
 						'attributes' => [],
 					],
 				],
@@ -91,8 +105,8 @@ class WooCommerce_Growcart_Settings {
 	 */
 	public function add_plugin_page() {
 		add_options_page(
-			__( 'WooCommerce Growcart Settings' ),
-			__( 'WooCommerce Growcart' ),
+			__( 'WooCommerce Growcart Settings', 'woocommerce-grow-cart' ),
+			__( 'WooCommerce Growcart', 'woocommerce-grow-cart' ),
 			'manage_options',
 			'woocommerce-growcart',
 			array( $this, 'options_page_html' )
@@ -103,8 +117,9 @@ class WooCommerce_Growcart_Settings {
 	 * Options page callback
 	 */
 	public function options_page_html() {
+		$this->init_settings();
 		?>
-		<div class="wrap">
+		<div class="wrap woocommerce-growcart-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<form action="options.php" method="post">
 				<h2 class="nav-tab-wrapper">
@@ -114,16 +129,6 @@ class WooCommerce_Growcart_Settings {
 					}
 					?>
 				</h2>
-
-				<?php
-				// output security fields for the registered setting "wporg"
-				settings_fields( 'wporg' );
-				// output setting sections and their fields
-				// (sections are registered for "wporg", each field is registered to a specific section)
-				do_settings_sections( 'wporg' );
-				// output save settings button
-				submit_button( 'Save Settings' );
-				?>
 			</form>
 		</div>
 		<?php

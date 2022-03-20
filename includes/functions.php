@@ -43,7 +43,7 @@ function get_cart_coupons() {
 		if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->get_code(), WC()->cart->display_cart_ex_tax ) ) {
 			$discount_amount_html = '-' . wc_price( $amount );
 		} elseif ( $coupon->get_free_shipping() ) {
-			$discount_amount_html = __( 'Free shipping coupon', 'woocommerce' );
+			$discount_amount_html = __( 'Free shipping coupon', 'woocommerce-grow-cart' );
 		}
 
 		$discount_amount_html = apply_filters( 'woocommerce_growcart_coupon_discount_amount_html', $discount_amount_html, $coupon );
