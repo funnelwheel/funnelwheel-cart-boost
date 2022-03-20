@@ -40,7 +40,7 @@ class WooCommerce_Growcart_Settings {
 		$this->settings_group = 'woocommerce_growcart';
 		add_action( 'admin_init', [ $this, 'register_settings' ] );
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-		// add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
 	protected function init_settings() {
@@ -239,6 +239,19 @@ class WooCommerce_Growcart_Settings {
 		if ( ! empty( $option['desc'] ) ) {
 			echo ' <p class="description">' . wp_kses_post( $option['desc'] ) . '</p>';
 		}
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param [type] $option
+	 * @param [type] $attributes
+	 * @param [type] $value
+	 * @param [type] $ignored_placeholder
+	 * @return void
+	 */
+	public function input_rewards( $option, $attributes, $value, $ignored_placeholder ) {
+		echo '<div id="rewards-screen"></div>';
 	}
 
 	/**
