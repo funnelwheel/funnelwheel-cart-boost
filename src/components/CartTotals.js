@@ -85,31 +85,33 @@ export default function CartTotals() {
 					</>
 				)}
 
-				<>
-					<dt>Coupon code</dt>
-					<dd>
-						<input
-							type="text"
-							value={coupon}
-							placeholder="Enter code"
-							onChange={(e) => updateCoupon(e.target.value)}
-						/>
-						<button
-							type="button"
-							className="button"
-							onClick={() =>
-								mutationApplyCoupon.mutate({
-									security:
-										woocommerce_growcart.apply_coupon_nonce,
-									coupon_code: coupon,
-								})
-							}
-							disabled={mutationApplyCoupon.isLoading}
-						>
-							Apply coupon
-						</button>
-					</dd>
-				</>
+				{cartInformation.data.display_coupon && (
+					<>
+						<dt>Coupon code</dt>
+						<dd>
+							<input
+								type="text"
+								value={coupon}
+								placeholder="Enter code"
+								onChange={(e) => updateCoupon(e.target.value)}
+							/>
+							<button
+								type="button"
+								className="button"
+								onClick={() =>
+									mutationApplyCoupon.mutate({
+										security:
+											woocommerce_growcart.apply_coupon_nonce,
+										coupon_code: coupon,
+									})
+								}
+								disabled={mutationApplyCoupon.isLoading}
+							>
+								Apply coupon
+							</button>
+						</dd>
+					</>
+				)}
 
 				<dt>Total</dt>
 				<dd

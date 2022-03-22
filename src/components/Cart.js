@@ -101,12 +101,14 @@ export default function Cart() {
 								>
 									{main}
 								</div>
-								{cartInformation.data.suggested_products
-									.products.length > 0 && (
+								{cartInformation.data
+									.display_suggested_products &&
+								cartInformation.data.suggested_products.products
+									.length > 0 ? (
 									<div className="grow-cart__upsell">
 										<SuggestedProducts />
 									</div>
-								)}
+								) : null}
 							</div>
 						</div>
 					</div>
