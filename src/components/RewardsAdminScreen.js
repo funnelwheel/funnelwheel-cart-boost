@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import classnames from "classnames";
-import { useState } from "@wordpress/element";
+import { useState, useEffect } from "@wordpress/element";
 import {
 	TextControl,
 	SelectControl,
@@ -20,14 +20,31 @@ export default function RewardsAdminScreen() {
 	]);
 	const [activeReward, setActiveReward] = useState(rewards[0]);
 
+	useEffect(() => {
+		const rewards = JSON.parse(
+			document.getElementById("setting-woocommerce_growcart_rewards")
+				.value
+		);
+		setRewards(rewards);
+	}, []);
+
+	useEffect(() => {
+		document.getElementById(
+			"setting-woocommerce_growcart_rewards"
+		).value = JSON.stringify(rewards);
+	}, [rewards]);
+
 	return (
 		<div className="RewardsAdminScreen">
-			{rewards && rewards.length
-				? rewards.map((reward) => (
-						<div
+			{rewards && rewards.length ? (
+				<ul className="Rewards-List">
+					{rewards.map((reward) => (
+						<li
 							key={reward.id}
 							className={classnames("reward-title", {
-								active: activeReward && activeReward.id === reward.id,
+								active:
+									activeReward &&
+									activeReward.id === reward.id,
 							})}
 						>
 							<span
@@ -43,27 +60,24 @@ export default function RewardsAdminScreen() {
 								{reward.name}
 							</span>
 							<span
-								onClick={() => {
-									mutation.mutate({
-										security:
-											woocommerce_growcart_rewards.update_rewards_nonce,
-										rewards: JSON.stringify(
-											rewards.filter(
-												(_reward) =>
-													_reward.id !== reward.id
-											)
-										),
-									});
-								}}
+								onClick={() =>
+									setRewards(
+										rewards.filter(
+											(_reward) =>
+												_reward.id !== reward.id
+										)
+									)
+								}
 							>
 								<XIcon />
 							</span>
-						</div>
-				  ))
-				: null}
+						</li>
+					))}
+				</ul>
+			) : null}
+
 			<button
 				type="button"
-				className="page-title-action"
 				onClick={() =>
 					setRewards([
 						...rewards,

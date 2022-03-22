@@ -71,9 +71,18 @@ function RewardsAdminScreen() {
     minimum_cart_contents: 3
   }]);
   const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(rewards[0]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const rewards = JSON.parse(document.getElementById("setting-woocommerce_growcart_rewards").value);
+    setRewards(rewards);
+  }, []);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    document.getElementById("setting-woocommerce_growcart_rewards").value = JSON.stringify(rewards);
+  }, [rewards]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsAdminScreen"
-  }, rewards && rewards.length ? rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+    className: "Rewards-List"
+  }, rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: reward.id,
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("reward-title", {
       active: activeReward && activeReward.id === reward.id
@@ -83,15 +92,9 @@ function RewardsAdminScreen() {
       setActiveReward(rewards.find(_reward => _reward.id === reward.id));
     }
   }, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    onClick: () => {
-      mutation.mutate({
-        security: woocommerce_growcart_rewards.update_rewards_nonce,
-        rewards: JSON.stringify(rewards.filter(_reward => _reward.id !== reward.id))
-      });
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_x_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null)))) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: () => setRewards(rewards.filter(_reward => _reward.id !== reward.id))
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_x_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null))))) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
-    className: "page-title-action",
     onClick: () => setRewards([...rewards, {
       id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
       name: "FREE SHIPPING",
