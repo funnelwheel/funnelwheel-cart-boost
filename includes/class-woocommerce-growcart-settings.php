@@ -74,7 +74,7 @@ class WooCommerce_Growcart_Settings {
 					[
 						'name'       => 'woocommerce_growcart_rewards',
 						'std'        => '',
-						'label'      => __( 'Rewards', 'woocommerce-grow-cart' ),
+						// 'label'      => __( 'Rewards', 'woocommerce-grow-cart' ),
 						'desc'       => '',
 						'type'       => 'rewards',
 						'attributes' => [],

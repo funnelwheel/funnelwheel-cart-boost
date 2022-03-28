@@ -37,6 +37,29 @@ export default function RewardsAdminScreen() {
 	return (
 		<div className="RewardsAdminScreen">
 			{rewards && rewards.length ? (
+				<table className="table widefat">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Type</th>
+							<th scope="col">Value</th>
+							<th scope="col">Minimum cart contents</th>
+						</tr>
+					</thead>
+					<tbody>
+						{rewards.map((reward) => (
+							<tr>
+								<th>{reward.name}</th>
+								<td>{reward.type}</td>
+								<td>{reward.value}</td>
+								<td>{reward.minimum_cart_contents}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			) : null}
+
+			{rewards && rewards.length ? (
 				<ul className="Rewards-List">
 					{rewards.map((reward) => (
 						<li
