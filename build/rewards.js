@@ -30,6 +30,17 @@ function RewardsAdminScreen() {
     minimum_cart_contents: 3
   }]);
   const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+
+  function updateReward(reward) {
+    setRewards(rewards.map(_reward => {
+      if (_reward.id === reward.id) {
+        return reward;
+      }
+
+      return _reward;
+    }));
+  }
+
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const rewards = JSON.parse(document.getElementById("setting-woocommerce_growcart_rewards").value);
     setRewards(rewards);
@@ -51,9 +62,9 @@ function RewardsAdminScreen() {
     scope: "col"
   }, "Minimum cart contents"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: "Name",
-    value: activeReward.name,
+    value: reward.name,
     onChange: name => {
-      setActiveReward({ ...activeReward,
+      updateReward({ ...reward,
         name
       });
     }
@@ -77,7 +88,7 @@ function RewardsAdminScreen() {
     onClick: () => setRewards(rewards.filter(_reward => _reward.id !== reward.id))
   }, "Remove")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     label: "Type",
-    value: activeReward.type,
+    value: reward.type,
     options: [{
       label: "FREE SHIPPING",
       value: "free_shipping"
@@ -98,7 +109,7 @@ function RewardsAdminScreen() {
     }
   }) : reward.type), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: "Value",
-    value: activeReward.value,
+    value: reward.value,
     onChange: value => {
       setActiveReward({ ...activeReward,
         value

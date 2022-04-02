@@ -18,6 +18,18 @@ export default function RewardsAdminScreen() {
 	]);
 	const [activeReward, setActiveReward] = useState(null);
 
+	function updateReward(reward) {
+		setRewards(
+			rewards.map((_reward) => {
+				if (_reward.id === reward.id) {
+					return reward;
+				}
+
+				return _reward;
+			})
+		);
+	}
+
 	useEffect(() => {
 		const rewards = JSON.parse(
 			document.getElementById("setting-woocommerce_growcart_rewards")
@@ -52,10 +64,10 @@ export default function RewardsAdminScreen() {
 									activeReward.id === reward.id ? (
 										<TextControl
 											label="Name"
-											value={activeReward.name}
+											value={reward.name}
 											onChange={(name) => {
-												setActiveReward({
-													...activeReward,
+												updateReward({
+													...reward,
 													name,
 												});
 											}}
@@ -118,7 +130,7 @@ export default function RewardsAdminScreen() {
 									activeReward.id === reward.id ? (
 										<SelectControl
 											label="Type"
-											value={activeReward.type}
+											value={reward.type}
 											options={[
 												{
 													label: "FREE SHIPPING",
@@ -153,7 +165,7 @@ export default function RewardsAdminScreen() {
 									activeReward.id === reward.id ? (
 										<TextControl
 											label="Value"
-											value={activeReward.value}
+											value={reward.value}
 											onChange={(value) => {
 												setActiveReward({
 													...activeReward,
