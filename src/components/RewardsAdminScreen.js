@@ -1,12 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
-import classnames from "classnames";
 import { useState, useEffect } from "@wordpress/element";
 import {
 	TextControl,
 	SelectControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
-import { ReactComponent as XIcon } from "./../svg/x.svg";
 
 export default function RewardsAdminScreen() {
 	const [rewards, setRewards] = useState([
@@ -218,46 +216,6 @@ export default function RewardsAdminScreen() {
 						</tr>
 					</tfoot>
 				</table>
-			) : null}
-
-			{rewards && rewards.length ? (
-				<ul className="Rewards-List">
-					{rewards.map((reward) => (
-						<li
-							key={reward.id}
-							className={classnames("reward-title", {
-								active:
-									activeReward &&
-									activeReward.id === reward.id,
-							})}
-						>
-							<span
-								onClick={() => {
-									setActiveReward(
-										rewards.find(
-											(_reward) =>
-												_reward.id === reward.id
-										)
-									);
-								}}
-							>
-								{reward.name}
-							</span>
-							<span
-								onClick={() =>
-									setRewards(
-										rewards.filter(
-											(_reward) =>
-												_reward.id !== reward.id
-										)
-									)
-								}
-							>
-								<XIcon />
-							</span>
-						</li>
-					))}
-				</ul>
 			) : null}
 		</div>
 	);
