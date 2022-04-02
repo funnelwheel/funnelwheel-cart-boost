@@ -37,7 +37,7 @@ export default function RewardsAdminScreen() {
 	return (
 		<div className="RewardsAdminScreen">
 			{rewards && rewards.length ? (
-				<table className="table widefat">
+				<table className="growcart-rewards widefat">
 					<thead>
 						<tr>
 							<th scope="col">Name</th>
@@ -49,13 +49,37 @@ export default function RewardsAdminScreen() {
 					<tbody>
 						{rewards.map((reward) => (
 							<tr>
-								<th>{reward.name}</th>
+								<td>{reward.name}</td>
 								<td>{reward.type}</td>
 								<td>{reward.value}</td>
 								<td>{reward.minimum_cart_contents}</td>
 							</tr>
 						))}
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4">
+								<button
+									type="button"
+									className="button button-primary"
+									onClick={() =>
+										setRewards([
+											...rewards,
+											{
+												id: uuidv4(),
+												name: "FREE SHIPPING",
+												type: "free_shipping",
+												value: 0,
+												minimum_cart_contents: 3,
+											},
+										])
+									}
+								>
+									Add reward
+								</button>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			) : null}
 

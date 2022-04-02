@@ -30,9 +30,18 @@
 		width: 200px;
 	}
 
-	.table {
+	.growcart-rewards {
 		border: 1px solid #c3c4c7;
 		box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
         background-color: #ffffff;
+
+		th,
+		td {
+			padding: 1rem;
+		}
+
+		tr:nth-child(odd) td {
+			background-color: #f9f9f9;
+		}
 	}
 }

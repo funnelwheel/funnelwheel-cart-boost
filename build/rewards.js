@@ -81,7 +81,7 @@ function RewardsAdminScreen() {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsAdminScreen"
   }, rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("table", {
-    className: "table widefat"
+    className: "growcart-rewards widefat"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("thead", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
   }, "Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
@@ -90,7 +90,19 @@ function RewardsAdminScreen() {
     scope: "col"
   }, "Value"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
-  }, "Minimum cart contents"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.type), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.value), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.minimum_cart_contents))))) : null, rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+  }, "Minimum cart contents"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.type), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.value), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.minimum_cart_contents)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
+    colspan: "4"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button",
+    className: "button button-primary",
+    onClick: () => setRewards([...rewards, {
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+      name: "FREE SHIPPING",
+      type: "free_shipping",
+      value: 0,
+      minimum_cart_contents: 3
+    }])
+  }, "Add reward"))))) : null, rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "Rewards-List"
   }, rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: reward.id,
