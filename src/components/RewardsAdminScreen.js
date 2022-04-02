@@ -18,7 +18,7 @@ export default function RewardsAdminScreen() {
 			minimum_cart_contents: 3,
 		},
 	]);
-	const [activeReward, setActiveReward] = useState(rewards[0]);
+	const [activeReward, setActiveReward] = useState(null);
 
 	useEffect(() => {
 		const rewards = JSON.parse(
@@ -50,11 +50,35 @@ export default function RewardsAdminScreen() {
 						{rewards.map((reward) => (
 							<tr>
 								<td>
-									{reward.name}
+									{activeReward &&
+									activeReward.id === reward.id ? (
+										<TextControl
+											label="Name"
+											value={activeReward.name}
+											onChange={(name) => {
+												setActiveReward({
+													...activeReward,
+													name,
+												});
+											}}
+										/>
+									) : (
+										reward.name
+									)}
+
 									<div class="row-actions">
 										<a
 											className="growcart-reward-edit"
 											href="#"
+											onClick={() => {
+												setActiveReward(
+													rewards.find(
+														(_reward) =>
+															_reward.id ===
+															reward.id
+													)
+												);
+											}}
 										>
 											Edit
 										</a>
@@ -76,9 +100,81 @@ export default function RewardsAdminScreen() {
 										</a>
 									</div>
 								</td>
-								<td>{reward.type}</td>
-								<td>{reward.value}</td>
-								<td>{reward.minimum_cart_contents}</td>
+								<td>
+									{activeReward &&
+									activeReward.id === reward.id ? (
+										<SelectControl
+											label="Type"
+											value={activeReward.type}
+											options={[
+												{
+													label: "FREE SHIPPING",
+													value: "free_shipping",
+												},
+												{
+													label: "PERCENTAGE",
+													value: "percent",
+												},
+												{
+													label: "FIXED",
+													value: "fixed_cart",
+												},
+												{
+													label: "GIFTCARD",
+													value: "giftcard",
+												},
+											]}
+											onChange={(type) => {
+												setActiveReward({
+													...activeReward,
+													type,
+												});
+											}}
+										/>
+									) : (
+										reward.type
+									)}
+								</td>
+								<td>
+									{activeReward &&
+									activeReward.id === reward.id ? (
+										<TextControl
+											label="Value"
+											value={activeReward.value}
+											onChange={(value) => {
+												setActiveReward({
+													...activeReward,
+													value,
+												});
+											}}
+										/>
+									) : (
+										reward.value
+									)}
+								</td>
+								<td>
+									{activeReward &&
+									activeReward.id === reward.id ? (
+										<NumberControl
+											label="Minimum cart contents"
+											isShiftStepEnabled={true}
+											onChange={(
+												minimum_cart_contents
+											) => {
+												setActiveReward({
+													...activeReward,
+													minimum_cart_contents,
+												});
+											}}
+											shiftStep={10}
+											value={
+												activeReward.minimum_cart_contents
+											}
+										/>
+									) : (
+										reward.minimum_cart_contents
+									)}
+								</td>
 							</tr>
 						))}
 					</tbody>
@@ -148,86 +244,6 @@ export default function RewardsAdminScreen() {
 					))}
 				</ul>
 			) : null}
-
-			<button
-				type="button"
-				onClick={() =>
-					setRewards([
-						...rewards,
-						{
-							id: uuidv4(),
-							name: "FREE SHIPPING",
-							type: "free_shipping",
-							value: 0,
-							minimum_cart_contents: 3,
-						},
-					])
-				}
-			>
-				Add
-			</button>
-
-			{activeReward && (
-				<>
-					<TextControl
-						label="Name"
-						value={activeReward.name}
-						onChange={(name) => {
-							setActiveReward({
-								...activeReward,
-								name,
-							});
-						}}
-					/>
-
-					<SelectControl
-						label="Type"
-						value={activeReward.type}
-						options={[
-							{
-								label: "FREE SHIPPING",
-								value: "free_shipping",
-							},
-							{
-								label: "PERCENTAGE",
-								value: "percent",
-							},
-							{ label: "FIXED", value: "fixed_cart" },
-							{ label: "GIFTCARD", value: "giftcard" },
-						]}
-						onChange={(type) => {
-							setActiveReward({
-								...activeReward,
-								type,
-							});
-						}}
-					/>
-
-					<TextControl
-						label="Value"
-						value={activeReward.value}
-						onChange={(value) => {
-							setActiveReward({
-								...activeReward,
-								value,
-							});
-						}}
-					/>
-
-					<NumberControl
-						label="Minimum cart contents"
-						isShiftStepEnabled={true}
-						onChange={(minimum_cart_contents) => {
-							setActiveReward({
-								...activeReward,
-								minimum_cart_contents,
-							});
-						}}
-						shiftStep={10}
-						value={activeReward.minimum_cart_contents}
-					/>
-				</>
-			)}
 		</div>
 	);
 }
