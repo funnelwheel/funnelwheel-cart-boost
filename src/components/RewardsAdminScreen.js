@@ -67,37 +67,52 @@ export default function RewardsAdminScreen() {
 									)}
 
 									<div class="row-actions">
-										<a
-											className="growcart-reward-edit"
-											href="#"
-											onClick={() => {
-												setActiveReward(
-													rewards.find(
-														(_reward) =>
-															_reward.id ===
-															reward.id
-													)
-												);
-											}}
-										>
-											Edit
-										</a>
-										{" | "}
-										<a
-											href="#"
-											className="growcart-reward-delete"
-											onClick={() =>
-												setRewards(
-													rewards.filter(
-														(_reward) =>
-															_reward.id !==
-															reward.id
-													)
-												)
-											}
-										>
-											Remove
-										</a>
+										{activeReward &&
+										activeReward.id === reward.id ? (
+											<a
+												className="growcart-reward-cancel-edit"
+												href="#"
+												onClick={(name) => {
+													setActiveReward(null);
+												}}
+											>
+												Cancel changes
+											</a>
+										) : (
+											<>
+												<a
+													className="growcart-reward-edit"
+													href="#"
+													onClick={() => {
+														setActiveReward(
+															rewards.find(
+																(_reward) =>
+																	_reward.id ===
+																	reward.id
+															)
+														);
+													}}
+												>
+													Edit
+												</a>
+												{" | "}
+												<a
+													href="#"
+													className="growcart-reward-delete"
+													onClick={() =>
+														setRewards(
+															rewards.filter(
+																(_reward) =>
+																	_reward.id !==
+																	reward.id
+															)
+														)
+													}
+												>
+													Remove
+												</a>
+											</>
+										)}
 									</div>
 								</td>
 								<td>
