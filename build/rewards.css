@@ -39,5 +39,11 @@
 .RewardsAdminScreen .growcart-rewards tr:nth-child(odd) td {
   background-color: #f9f9f9;
 }
+.RewardsAdminScreen .growcart-rewards .row-actions {
+  position: relative;
+}
+.RewardsAdminScreen .growcart-rewards tr:hover .row-actions {
+  position: static;
+}
 
 /*# sourceMappingURL=rewards.css.map*/

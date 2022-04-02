@@ -90,7 +90,15 @@ function RewardsAdminScreen() {
     scope: "col"
   }, "Value"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
-  }, "Minimum cart contents"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.type), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.value), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.minimum_cart_contents)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
+  }, "Minimum cart contents"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "row-actions"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "growcart-reward-edit",
+    href: "#"
+  }, "Edit"), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: "#",
+    className: "growcart-reward-delete"
+  }, "Remove"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.type), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.value), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.minimum_cart_contents)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     colspan: "4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",

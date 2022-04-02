@@ -49,7 +49,24 @@ export default function RewardsAdminScreen() {
 					<tbody>
 						{rewards.map((reward) => (
 							<tr>
-								<td>{reward.name}</td>
+								<td>
+									{reward.name}
+									<div class="row-actions">
+										<a
+											className="growcart-reward-edit"
+											href="#"
+										>
+											Edit
+										</a>
+										{" | "}
+										<a
+											href="#"
+											className="growcart-reward-delete"
+										>
+											Remove
+										</a>
+									</div>
+								</td>
 								<td>{reward.type}</td>
 								<td>{reward.value}</td>
 								<td>{reward.minimum_cart_contents}</td>
