@@ -62,6 +62,15 @@ export default function RewardsAdminScreen() {
 										<a
 											href="#"
 											className="growcart-reward-delete"
+											onClick={() =>
+												setRewards(
+													rewards.filter(
+														(_reward) =>
+															_reward.id !==
+															reward.id
+													)
+												)
+											}
 										>
 											Remove
 										</a>
