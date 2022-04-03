@@ -64,7 +64,7 @@ function RewardsAdminScreen() {
     scope: "col"
   }, "Rule"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
-  }, "Minimum cart contents"))), rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => {
+  }, "Minimum cart contents/amount"))), rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Name",
       value: reward.name,
@@ -109,7 +109,7 @@ function RewardsAdminScreen() {
     }) : reward.value), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
       value: reward.rule,
       options: woocommerce_growcart_rewards.reward_rules,
-      onChange: type => {
+      onChange: rule => {
         updateReward({ ...reward,
           rule
         });
@@ -122,8 +122,8 @@ function RewardsAdminScreen() {
         });
       },
       shiftStep: 10,
-      value: reward.minimum_cart_contents
-    }) : reward.minimum_cart_contents));
+      value: "minimum_cart_contents" === reward.rule ? reward.minimum_cart_contents : reward.minimum_cart_amount
+    }) : "minimum_cart_contents" === reward.rule ? reward.minimum_cart_contents : reward.minimum_cart_amount));
   })) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     colspan: "5"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -135,7 +135,8 @@ function RewardsAdminScreen() {
       type: "free_shipping",
       rule: "minimum_cart_contents",
       value: 0,
-      minimum_cart_contents: 3
+      minimum_cart_contents: 3,
+      minimum_cart_amount: 0
     }])
   }, "Add reward"))))));
 }

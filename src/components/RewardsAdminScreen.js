@@ -61,7 +61,7 @@ export default function RewardsAdminScreen() {
 						<th scope="col">Type</th>
 						<th scope="col">Value</th>
 						<th scope="col">Rule</th>
-						<th scope="col">Minimum cart contents</th>
+						<th scope="col">Minimum cart contents/amount</th>
 					</tr>
 				</thead>
 				{rewards && rewards.length ? (
@@ -178,7 +178,7 @@ export default function RewardsAdminScreen() {
 												options={
 													woocommerce_growcart_rewards.reward_rules
 												}
-												onChange={(type) => {
+												onChange={(rule) => {
 													updateReward({
 														...reward,
 														rule,
@@ -204,11 +204,17 @@ export default function RewardsAdminScreen() {
 												}}
 												shiftStep={10}
 												value={
-													reward.minimum_cart_contents
+													"minimum_cart_contents" ===
+													reward.rule
+														? reward.minimum_cart_contents
+														: reward.minimum_cart_amount
 												}
 											/>
-										) : (
+										) : "minimum_cart_contents" ===
+										  reward.rule ? (
 											reward.minimum_cart_contents
+										) : (
+											reward.minimum_cart_amount
 										)}
 									</td>
 								</tr>
@@ -232,6 +238,7 @@ export default function RewardsAdminScreen() {
 											rule: "minimum_cart_contents",
 											value: 0,
 											minimum_cart_contents: 3,
+											minimum_cart_amount: 0,
 										},
 									])
 								}
