@@ -66,6 +66,17 @@ class WooCommerce_Growcart_Settings {
 						'type'       => 'checkbox',
 						'attributes' => [],
 					],
+					[
+						'name'    => 'woocommerce_growcart_reward_rule',
+						'std'     => 'minimum_cart_contents',
+						'label'   => __( 'Reward Rule', 'wp-job-manager' ),
+						'desc'    => __( 'Reward with selected rule will be dispalyed on the frontend.', 'wp-job-manager' ),
+						'type'    => 'select',
+						'options' => [
+							'minimum_cart_contents' => __( 'Minimum cart contents', 'woocommerce-grow-cart' ),
+							'minimum_cart_amount'   => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
+						],
+					],
 				],
 			],
 			'rewards' => [
@@ -268,6 +279,37 @@ class WooCommerce_Growcart_Settings {
 			?>
 		/> <?php echo wp_kses_post( $option['cb_label'] ); ?></label>
 		<?php
+		if ( ! empty( $option['desc'] ) ) {
+			echo ' <p class="description">' . wp_kses_post( $option['desc'] ) . '</p>';
+		}
+	}
+
+	/**
+	 * Select input field.
+	 *
+	 * @param array  $option
+	 * @param array  $attributes
+	 * @param mixed  $value
+	 * @param string $ignored_placeholder
+	 */
+	protected function input_select( $option, $attributes, $value, $ignored_placeholder ) {
+		?>
+		<select
+			id="setting-<?php echo esc_attr( $option['name'] ); ?>"
+			class="regular-text"
+			name="<?php echo esc_attr( $option['name'] ); ?>"
+			<?php
+			echo implode( ' ', $attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			?>
+		>
+		<?php
+		foreach ( $option['options'] as $key => $name ) {
+			echo '<option value="' . esc_attr( $key ) . '" ' . selected( $value, $key, false ) . '>' . esc_html( $name ) . '</option>';
+		}
+		?>
+		</select>
+		<?php
+
 		if ( ! empty( $option['desc'] ) ) {
 			echo ' <p class="description">' . wp_kses_post( $option['desc'] ) . '</p>';
 		}
