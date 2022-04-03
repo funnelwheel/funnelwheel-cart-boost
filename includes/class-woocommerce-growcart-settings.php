@@ -319,9 +319,33 @@ class WooCommerce_Growcart_Settings {
 			[
 				'ajaxURL'              => admin_url( 'admin-ajax.php' ),
 				'update_rewards_nonce' => wp_create_nonce( 'update-rewards' ),
+				'reward_types'         => [
+					[
+						'label' => __( 'Free Shipping' ),
+						'value' => 'free_shipping',
+					],
+					[
+						'label' => __( 'Percentage' ),
+						'value' => 'percent',
+					],
+					[
+						'label' => __( 'Fixed' ),
+						'value' => 'fixed_cart',
+					],
+					[
+						'label' => __( 'Giftcard' ),
+						'value' => 'giftcard',
+					],
+				],
 				'reward_rules'         => [
-					'minimum_cart_contents' => __( 'Minimum cart contents', 'woocommerce-grow-cart' ),
-					'minimum_cart_amount'   => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
+					[
+						'label' => __( 'Minimum cart contents', 'woocommerce-grow-cart' ),
+						'value' => 'minimum_cart_contents',
+					],
+					[
+						'label' => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
+						'value' => 'minimum_cart_amount',
+					],
 				],
 			]
 		);
