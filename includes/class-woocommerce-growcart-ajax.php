@@ -29,12 +29,7 @@ class WooCommerce_GrowCart_Ajax {
 
 	public function get_cart_information() {
 		do_action( 'growcart_before_cart_information' );
-
-		$cart_contents_count = WC()->cart->get_cart_contents_count();
-		$rewards             = woocommerce_growcart()->rewards->get_available_rewards();
-		uasort( $rewards, [ $this, 'sort_by_minimum_cart_contents' ] );
-		$rewards            = array_values( $rewards );
-		$filtered_rewards   = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$filtered_rewards   = woocommerce_growcart()->rewards->get_available_rewards();
 		$current_reward_ids = [];
 		$reward_string      = '';
 
@@ -162,13 +157,5 @@ class WooCommerce_GrowCart_Ajax {
 		}
 
 		die();
-	}
-
-	protected function sort_by_minimum_cart_contents( $a, $b ) {
-		if ( floatval( $a['minimum_cart_contents'] ) === floatval( $b['minimum_cart_contents'] ) ) {
-			return 0;
-		}
-
-		return ( floatval( $a['minimum_cart_contents'] ) < floatval( $b['minimum_cart_contents'] ) ) ? -1 : 1;
 	}
 }

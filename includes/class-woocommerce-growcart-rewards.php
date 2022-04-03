@@ -221,6 +221,14 @@ class WooCommerce_GrowCart_Rewards {
 		$rewards      = $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
 		$rewards      = wp_list_filter( $rewards, [ 'rule' => $rewards_rule ] );
 
+		if ( 'minimum_cart_contents' === $rewards_rule ) {
+			$cart_contents_count = WC()->cart->get_cart_contents_count();
+			$rewards             = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		} else {
+			$cart_subtotal = WC()->cart->get_cart_subtotal();
+			$rewards       = woocommerce_growcart()->rewards->filter_rewards_by_cart_subtotal( $rewards, $cart_subtotal );
+		}
+
 		return $rewards;
 	}
 
@@ -265,8 +273,40 @@ class WooCommerce_GrowCart_Rewards {
 			'next_rewards'    => [],
 		];
 
+		uasort( $rewards, [ $this, 'sort_by_minimum_cart_contents' ] );
+
+		$rewards = array_values( $rewards );
+
 		foreach ( $rewards as $key => $value ) {
 			if ( intval( $value['minimum_cart_contents'] ) <= $cart_contents_count ) {
+				$filtered_rewards['current_rewards'][] = $value;
+			} else {
+				$filtered_rewards['next_rewards'][] = $value;
+			}
+		}
+
+		return $filtered_rewards;
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param array $rewards
+	 * @param [type] $cart_subtotal
+	 * @return void
+	 */
+	public function filter_rewards_by_cart_subtotal( $rewards = [], $cart_subtotal ) {
+		$filtered_rewards = [
+			'current_rewards' => [],
+			'next_rewards'    => [],
+		];
+
+		// uasort( $rewards, [ $this, 'sort_by_minimum_cart_contents' ] );
+
+		$rewards = array_values( $rewards );
+
+		foreach ( $rewards as $key => $value ) {
+			if ( intval( $value['minimum_cart_amount'] ) <= $cart_subtotal ) {
 				$filtered_rewards['current_rewards'][] = $value;
 			} else {
 				$filtered_rewards['next_rewards'][] = $value;
@@ -468,5 +508,20 @@ class WooCommerce_GrowCart_Rewards {
 			'title'    => $title,
 			'products' => $products,
 		];
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param [type] $a
+	 * @param [type] $b
+	 * @return void
+	 */
+	protected function sort_by_minimum_cart_contents( $a, $b ) {
+		if ( floatval( $a['minimum_cart_contents'] ) === floatval( $b['minimum_cart_contents'] ) ) {
+			return 0;
+		}
+
+		return ( floatval( $a['minimum_cart_contents'] ) < floatval( $b['minimum_cart_contents'] ) ) ? -1 : 1;
 	}
 }
