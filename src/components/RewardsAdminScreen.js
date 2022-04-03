@@ -52,6 +52,7 @@ export default function RewardsAdminScreen() {
 						<tr>
 							<th scope="col">Name</th>
 							<th scope="col">Type</th>
+							<th scope="col">Rule</th>
 							<th scope="col">Value</th>
 							<th scope="col">Minimum cart contents</th>
 						</tr>

@@ -52,7 +52,7 @@ class WooCommerce_Growcart_Settings {
 						'name'       => 'woocommerce_growcart_display_suggested_products',
 						'std'        => '1',
 						'label'      => __( 'Display suggested products', 'woocommerce-grow-cart' ),
-						'cb_label'   => __( 'Display suggested products on the right side of the popup modal.', 'wp-job-manager' ),
+						'cb_label'   => __( 'Display suggested products on the right side of the popup modal.', 'woocommerce-grow-cart' ),
 						'desc'       => '',
 						'type'       => 'checkbox',
 						'attributes' => [],
@@ -61,7 +61,7 @@ class WooCommerce_Growcart_Settings {
 						'name'       => 'woocommerce_growcart_display_coupon',
 						'std'        => '1',
 						'label'      => __( 'Display coupon', 'woocommerce-grow-cart' ),
-						'cb_label'      => __( 'Display and allow users to apply coupon codes.', 'woocommerce-grow-cart' ),
+						'cb_label'   => __( 'Display and allow users to apply coupon codes.', 'woocommerce-grow-cart' ),
 						'desc'       => '',
 						'type'       => 'checkbox',
 						'attributes' => [],
@@ -319,6 +319,10 @@ class WooCommerce_Growcart_Settings {
 			[
 				'ajaxURL'              => admin_url( 'admin-ajax.php' ),
 				'update_rewards_nonce' => wp_create_nonce( 'update-rewards' ),
+				'reward_rules'         => [
+					'minimum_cart_contents' => __( 'Minimum cart contents', 'woocommerce-grow-cart' ),
+					'minimum_cart_amount'   => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
+				],
 			]
 		);
 
