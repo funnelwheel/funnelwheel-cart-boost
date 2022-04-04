@@ -264,7 +264,7 @@ class WooCommerce_GrowCart_Rewards {
 		$filtered_rewards = $this->get_filtered_rewards( $rewards );
 		$hint             = '';
 
-		if ( $rewards === $filtered_rewards['current_rewards'] ) {
+		if ( array_values( $filtered_rewards['rewards'] ) === $filtered_rewards['current_rewards'] ) {
 			$hint = 'You\'re getting the most rewards!';
 		} else {
 			$hint = $this->get_next_reward_hint( $filtered_rewards['next_rewards'] );
@@ -290,6 +290,7 @@ class WooCommerce_GrowCart_Rewards {
 	 */
 	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count ) {
 		$filtered_rewards = [
+			'rewards'         => $rewards,
 			'current_rewards' => [],
 			'next_rewards'    => [],
 		];
@@ -318,11 +319,12 @@ class WooCommerce_GrowCart_Rewards {
 	 */
 	public function filter_rewards_by_cart_subtotal( $rewards = [], $cart_subtotal ) {
 		$filtered_rewards = [
+			'rewards'         => $rewards,
 			'current_rewards' => [],
 			'next_rewards'    => [],
 		];
 
-		// uasort( $rewards, [ $this, 'sort_by_minimum_cart_contents' ] );
+		uasort( $rewards, [ $this, 'sort_by_minimum_cart_amount' ] );
 
 		$rewards = array_values( $rewards );
 
@@ -552,5 +554,20 @@ class WooCommerce_GrowCart_Rewards {
 		}
 
 		return ( floatval( $a['minimum_cart_contents'] ) < floatval( $b['minimum_cart_contents'] ) ) ? -1 : 1;
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param [type] $a
+	 * @param [type] $b
+	 * @return void
+	 */
+	protected function sort_by_minimum_cart_amount( $a, $b ) {
+		if ( floatval( $a['minimum_cart_amount'] ) === floatval( $b['minimum_cart_amount'] ) ) {
+			return 0;
+		}
+
+		return ( floatval( $a['minimum_cart_amount'] ) < floatval( $b['minimum_cart_amount'] ) ) ? -1 : 1;
 	}
 }
