@@ -255,7 +255,7 @@ class WooCommerce_GrowCart_Rewards {
 	public function get_rewards() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
-		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$filtered_rewards    = $this->get_filtered_rewards( $rewards );
 		$hint                = '';
 
 		if ( $rewards === $filtered_rewards['current_rewards'] ) {
