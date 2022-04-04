@@ -14,9 +14,10 @@ class WooCommerce_GrowCart_Rewards {
 	private $default_rewards = [
 		[
 			'id'                    => 'free_shipping',
-			'name'                  => 'FREE SHIPPING',
+			'name'                  => 'Free Shipping',
 			'type'                  => 'free_shipping',
 			'minimum_cart_contents' => 3,
+			'minimum_cart_mount' => 0,
 			'value'                 => 0,
 			'featured'              => true,
 		],
@@ -25,6 +26,7 @@ class WooCommerce_GrowCart_Rewards {
 			'name'                  => '3%',
 			'type'                  => 'percent',
 			'minimum_cart_contents' => 5,
+			'minimum_cart_mount' => 0,
 			'value'                 => 3,
 			'featured'              => false,
 		],
@@ -33,14 +35,16 @@ class WooCommerce_GrowCart_Rewards {
 			'name'                  => '100 USD',
 			'type'                  => 'fixed_cart',
 			'minimum_cart_contents' => 10,
+			'minimum_cart_mount' => 0,
 			'value'                 => 100,
 			'featured'              => false,
 		],
 		[
 			'id'                    => 'giftcard',
-			'name'                  => 'GIFTCARD',
+			'name'                  => 'Giftcard',
 			'type'                  => 'giftcard',
 			'minimum_cart_contents' => 15,
+			'minimum_cart_mount' => 0,
 			'value'                 => 100,
 			'featured'              => false,
 		],
@@ -216,18 +220,8 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_available_rewards() {
-		$rewards      = get_option( 'woocommerce_growcart_rewards' );
-		$rewards_rule = get_option( 'woocommerce_growcart_reward_rule' );
-		$rewards      = $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
-		$rewards      = wp_list_filter( $rewards, [ 'rule' => $rewards_rule ] );
-
-		if ( 'minimum_cart_contents' === $rewards_rule ) {
-			$cart_contents_count = WC()->cart->get_cart_contents_count();
-			$rewards             = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
-		} else {
-			$cart_subtotal = WC()->cart->get_cart_subtotal();
-			$rewards       = woocommerce_growcart()->rewards->filter_rewards_by_cart_subtotal( $rewards, $cart_subtotal );
-		}
+		$rewards = get_option( 'woocommerce_growcart_rewards' );
+		$rewards = $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
 
 		return $rewards;
 	}
