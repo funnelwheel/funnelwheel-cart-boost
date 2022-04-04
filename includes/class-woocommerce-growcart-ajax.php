@@ -29,7 +29,8 @@ class WooCommerce_GrowCart_Ajax {
 
 	public function get_cart_information() {
 		do_action( 'growcart_before_cart_information' );
-		$filtered_rewards   = woocommerce_growcart()->rewards->get_available_rewards();
+		$available_rewards  = woocommerce_growcart()->rewards->get_available_rewards();
+		$filtered_rewards   = woocommerce_growcart()->rewards->get_filtered_rewards( $available_rewards );
 		$current_reward_ids = [];
 		$reward_string      = '';
 
