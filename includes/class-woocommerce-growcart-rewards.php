@@ -11,47 +11,54 @@ defined( 'ABSPATH' ) || exit;
  * @var [type]
  */
 class WooCommerce_GrowCart_Rewards {
-	private $default_rewards = [
-		[
-			'id'                    => 'free_shipping',
-			'name'                  => 'Free Shipping',
-			'type'                  => 'free_shipping',
-			'minimum_cart_contents' => 3,
-			'minimum_cart_mount' => 0,
-			'value'                 => 0,
-			'featured'              => true,
-		],
-		[
-			'id'                    => 'percent',
-			'name'                  => '3%',
-			'type'                  => 'percent',
-			'minimum_cart_contents' => 5,
-			'minimum_cart_mount' => 0,
-			'value'                 => 3,
-			'featured'              => false,
-		],
-		[
-			'id'                    => 'fixed_cart',
-			'name'                  => '100 USD',
-			'type'                  => 'fixed_cart',
-			'minimum_cart_contents' => 10,
-			'minimum_cart_mount' => 0,
-			'value'                 => 100,
-			'featured'              => false,
-		],
-		[
-			'id'                    => 'giftcard',
-			'name'                  => 'Giftcard',
-			'type'                  => 'giftcard',
-			'minimum_cart_contents' => 15,
-			'minimum_cart_mount' => 0,
-			'value'                 => 100,
-			'featured'              => false,
-		],
-	];
-
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
 	public function get_default_rewards() {
-		return $this->default_rewards;
+		return [
+			[
+				'id'                    => 'free_shipping',
+				'name'                  => 'Free Shipping',
+				'type'                  => 'free_shipping',
+				'rule'                  => 'minimum_cart_contents',
+				'value'                 => 0,
+				'minimum_cart_contents' => 3,
+				'minimum_cart_mount'    => 0,
+				'featured'              => true,
+			],
+			[
+				'id'                    => 'percent',
+				'name'                  => '3%',
+				'type'                  => 'percent',
+				'rule'                  => 'minimum_cart_contents',
+				'value'                 => 3,
+				'minimum_cart_contents' => 5,
+				'minimum_cart_mount'    => 0,
+				'featured'              => false,
+			],
+			[
+				'id'                    => 'fixed_cart',
+				'name'                  => '100 USD',
+				'type'                  => 'fixed_cart',
+				'rule'                  => 'minimum_cart_contents',
+				'value'                 => 100,
+				'minimum_cart_contents' => 10,
+				'minimum_cart_mount'    => 0,
+				'featured'              => false,
+			],
+			[
+				'id'                    => 'giftcard',
+				'name'                  => 'Giftcard',
+				'type'                  => 'giftcard',
+				'rule'                  => 'minimum_cart_contents',
+				'value'                 => 100,
+				'minimum_cart_contents' => 15,
+				'minimum_cart_mount'    => 0,
+				'featured'              => false,
+			],
+		];
 	}
 
 	public function __construct() {
@@ -253,10 +260,9 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_rewards() {
-		$cart_contents_count = WC()->cart->get_cart_contents_count();
-		$rewards             = $this->get_available_rewards();
-		$filtered_rewards    = $this->get_filtered_rewards( $rewards );
-		$hint                = '';
+		$rewards          = $this->get_available_rewards();
+		$filtered_rewards = $this->get_filtered_rewards( $rewards );
+		$hint             = '';
 
 		if ( $rewards === $filtered_rewards['current_rewards'] ) {
 			$hint = 'You\'re getting the most rewards!';
@@ -269,7 +275,7 @@ class WooCommerce_GrowCart_Rewards {
 			'featured_rewards'      => $this->get_featured_rewards(),
 			'count_rewards'         => count( $rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
-			'cart_contents_count'   => $cart_contents_count,
+			'cart_contents_count'   => WC()->cart->get_cart_contents_count(),
 			'rewards_progress'      => $this->get_rewards_progress( $rewards, $cart_contents_count ),
 			'rewards'               => $filtered_rewards,
 		];
