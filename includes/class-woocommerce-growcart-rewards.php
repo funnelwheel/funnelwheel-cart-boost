@@ -233,6 +233,27 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
+	 * Undocumented function
+	 *
+	 * @param array $rewards
+	 * @return void
+	 */
+	public function get_filtered_rewards( $rewards = [] ) {
+		$rewards_rule = get_option( 'woocommerce_growcart_reward_rule' );
+		$rewards      = wp_list_filter( $rewards, [ 'rule' => $rewards_rule ] );
+
+		if ( 'minimum_cart_contents' === $rewards_rule ) {
+			$cart_contents_count = WC()->cart->get_cart_contents_count();
+			$rewards             = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		} else {
+			$cart_subtotal = WC()->cart->get_cart_subtotal();
+			$rewards       = woocommerce_growcart()->rewards->filter_rewards_by_cart_subtotal( $rewards, $cart_subtotal );
+		}
+
+		return $rewards;
+	}
+
+	/**
 	 * Get rewards.
 	 *
 	 * @return void
