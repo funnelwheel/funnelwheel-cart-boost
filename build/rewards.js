@@ -118,12 +118,12 @@ function RewardsAdminScreen() {
       isShiftStepEnabled: true,
       onChange: minimum_cart_contents => {
         updateReward({ ...reward,
-          minimum_cart_contents
+          [reward.rule]: minimum_cart_contents
         });
       },
       shiftStep: 10,
-      value: "minimum_cart_contents" === reward.rule ? reward.minimum_cart_contents : reward.minimum_cart_amount
-    }) : "minimum_cart_contents" === reward.rule ? reward.minimum_cart_contents : reward.minimum_cart_amount));
+      value: reward[reward.rule]
+    }) : reward[reward.rule]));
   })) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     colspan: "5"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {

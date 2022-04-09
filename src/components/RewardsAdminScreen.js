@@ -199,22 +199,14 @@ export default function RewardsAdminScreen() {
 												) => {
 													updateReward({
 														...reward,
-														minimum_cart_contents,
+														[reward.rule]: minimum_cart_contents,
 													});
 												}}
 												shiftStep={10}
-												value={
-													"minimum_cart_contents" ===
-													reward.rule
-														? reward.minimum_cart_contents
-														: reward.minimum_cart_amount
-												}
+												value={reward[reward.rule]}
 											/>
-										) : "minimum_cart_contents" ===
-										  reward.rule ? (
-											reward.minimum_cart_contents
 										) : (
-											reward.minimum_cart_amount
+											reward[reward.rule]
 										)}
 									</td>
 								</tr>
