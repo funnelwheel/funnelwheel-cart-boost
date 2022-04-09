@@ -276,7 +276,7 @@ class WooCommerce_GrowCart_Rewards {
 			'count_rewards'         => count( $rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
 			'cart_contents_count'   => WC()->cart->get_cart_contents_count(),
-			'rewards_progress'      => $this->get_rewards_progress( $rewards, $cart_contents_count ),
+			'rewards_progress'      => $this->get_rewards_progress( $filtered_rewards['rewards'] ),
 			'rewards'               => $filtered_rewards,
 		];
 	}
@@ -400,18 +400,24 @@ class WooCommerce_GrowCart_Rewards {
 	 * Get rewards progress.
 	 *
 	 * @param array $rewards
-	 * @param integer $cart_contents_count
 	 * @return void
 	 */
-	public function get_rewards_progress( $rewards = [], $cart_contents_count = 0 ) {
-		if ( ! $cart_contents_count ) {
+	public function get_rewards_progress( $rewards = [] ) {
+		$rewards_rule = get_option( 'woocommerce_growcart_reward_rule' );
+		$items        = wp_list_pluck( $rewards, 'minimum_cart_amount' );
+		$max          = max( wp_parse_id_list( $items ) );
+
+		if ( 'minimum_cart_contents' === $rewards_rule ) {
+			$current = WC()->cart->get_cart_contents_count();
+		} else {
+			$current = WC()->cart->get_cart_subtotal();
+		}
+
+		if ( ! $current || ! $max ) {
 			return 0;
 		}
 
-		$minimum_cart_contents_list = wp_list_pluck( $rewards, 'minimum_cart_contents' );
-		$max_cart_contents_count    = max( wp_parse_id_list( $minimum_cart_contents_list ) );
-
-		return ( $cart_contents_count / $max_cart_contents_count ) * 100;
+		return ( $current / $max ) * 100;
 	}
 
 	/**
