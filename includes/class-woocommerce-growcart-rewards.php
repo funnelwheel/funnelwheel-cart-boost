@@ -263,8 +263,9 @@ class WooCommerce_GrowCart_Rewards {
 		$rewards          = $this->get_available_rewards();
 		$filtered_rewards = $this->get_filtered_rewards( $rewards );
 		$hint             = '';
+		$most_rewards     = array_values( $filtered_rewards['rewards'] ) === $filtered_rewards['current_rewards'];
 
-		if ( array_values( $filtered_rewards['rewards'] ) === $filtered_rewards['current_rewards'] ) {
+		if ( $most_rewards ) {
 			$hint = 'You\'re getting the most rewards!';
 		} else {
 			$hint = $this->get_next_reward_hint( $filtered_rewards['next_rewards'] );
@@ -276,7 +277,7 @@ class WooCommerce_GrowCart_Rewards {
 			'count_rewards'         => count( $rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
 			'cart_contents_count'   => WC()->cart->get_cart_contents_count(),
-			'rewards_progress'      => $this->get_rewards_progress( $filtered_rewards['rewards'] ),
+			'rewards_progress'      => $most_rewards ? 100 : $this->get_rewards_progress( $filtered_rewards['rewards'] ),
 			'rewards'               => $filtered_rewards,
 		];
 	}
