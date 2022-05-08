@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { render } from "@wordpress/element";
-import RewardsAdminScreen from "./admin/RewardsList";
+import RewardsList from "./admin/RewardsList";
 import "./sass/admin-rewards.scss";
 
 // Create a client

@@ -1,16 +1,16 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/components/RewardsAdminScreen.js":
-/*!**********************************************!*\
-  !*** ./src/components/RewardsAdminScreen.js ***!
-  \**********************************************/
+/***/ "./src/admin/RewardsList.js":
+/*!**********************************!*\
+  !*** ./src/admin/RewardsList.js ***!
+  \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ RewardsAdminScreen; }
+/* harmony export */   "default": function() { return /* binding */ RewardsList; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function RewardsAdminScreen() {
+function RewardsList() {
   const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
@@ -51,7 +51,7 @@ function RewardsAdminScreen() {
     return previousValue;
   }, {});
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "RewardsAdminScreen"
+    className: "RewardsList"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("table", {
     className: "growcart-rewards widefat"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("thead", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
@@ -5065,7 +5065,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-/* harmony import */ var _components_RewardsAdminScreen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RewardsAdminScreen */ "./src/components/RewardsAdminScreen.js");
+/* harmony import */ var _admin_RewardsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./admin/RewardsList */ "./src/admin/RewardsList.js");
 /* harmony import */ var _sass_admin_rewards_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sass/admin-rewards.scss */ "./src/sass/admin-rewards.scss");
 
 
@@ -5076,7 +5076,7 @@ __webpack_require__.r(__webpack_exports__);
 const queryClient = new react_query__WEBPACK_IMPORTED_MODULE_1__.QueryClient();
 (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_query__WEBPACK_IMPORTED_MODULE_1__.QueryClientProvider, {
   client: queryClient
-}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_RewardsAdminScreen__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById("rewards-screen"));
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_admin_RewardsList__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById("rewards-screen"));
 }();
 /******/ })()
 ;

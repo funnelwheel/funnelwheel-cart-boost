@@ -8,6 +8,7 @@ import {
 
 export default function RewardsList() {
 	const [rewards, setRewards] = useState([]);
+	const [activeReward, setActiveReward] = useState(null);
 
 	function updateReward(reward) {
 		setRewards(
