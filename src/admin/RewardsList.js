@@ -87,7 +87,41 @@ export default function RewardsList() {
 									</td>
 									<td>{reward.name}</td>
 									<td>{rewardTypeLabels[reward.type]}</td>
-									<td></td>
+									<td>
+										<>
+											<a
+												className="growcart-reward-edit"
+												href="#"
+												onClick={() => {
+													setActiveReward(
+														rewards.find(
+															(_reward) =>
+																_reward.id ===
+																reward.id
+														)
+													);
+												}}
+											>
+												Edit
+											</a>
+											{" | "}
+											<a
+												href="#"
+												className="growcart-reward-delete"
+												onClick={() =>
+													setRewards(
+														rewards.filter(
+															(_reward) =>
+																_reward.id !==
+																reward.id
+														)
+													)
+												}
+											>
+												Remove
+											</a>
+										</>
+									</td>
 								</tr>
 							);
 						})}

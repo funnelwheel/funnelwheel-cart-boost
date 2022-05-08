@@ -80,7 +80,17 @@ function RewardsList() {
           enabled: !reward.enabled
         });
       }
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, rewardTypeLabels[reward.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null));
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, rewardTypeLabels[reward.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: "growcart-reward-edit",
+      href: "#",
+      onClick: () => {
+        setActiveReward(rewards.find(_reward => _reward.id === reward.id));
+      }
+    }, "Edit"), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      href: "#",
+      className: "growcart-reward-delete",
+      onClick: () => setRewards(rewards.filter(_reward => _reward.id !== reward.id))
+    }, "Remove"))));
   })) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     colspan: "5"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
