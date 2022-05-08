@@ -5,7 +5,7 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
-export default function RulesList({ rules, removeRule, updateRule }) {
+export default function RulesList({ reward, rules, removeRule, updateRule }) {
 	return (
 		<div className="RulesList">
 			{rules && rules.length
@@ -15,7 +15,7 @@ export default function RulesList({ rules, removeRule, updateRule }) {
 								<ToggleControl
 									checked={rule.enabled}
 									onChange={() => {
-										updateReward({
+										updateRule({
 											...rule,
 											enabled: !rule.enabled,
 										});
@@ -24,36 +24,50 @@ export default function RulesList({ rules, removeRule, updateRule }) {
 
 								<TextControl
 									label="Name"
-									value={reward.name}
+									value={rule.name}
 									onChange={(name) => {
-										updateReward({
-											...reward,
+										updateRule({
+											...rule,
 											name,
 										});
 									}}
 								/>
 
 								<TextControl
-									value={reward.value}
+									value={rule.value}
 									onChange={(value) => {
-										updateReward({
-											...reward,
+										updateRule({
+											...rule,
 											value,
 										});
 									}}
 								/>
 
-								<NumberControl
-									isShiftStepEnabled={true}
-									onChange={(minimum_cart_contents) => {
-										updateReward({
-											...reward,
-											[reward.rule]: minimum_cart_contents,
-										});
-									}}
-									shiftStep={10}
-									value={reward[reward.rule]}
-								/>
+								{"minimum_cart_contents" === reward.type ? (
+									<NumberControl
+										isShiftStepEnabled={true}
+										onChange={(minimum_cart_contents) => {
+											updateRule({
+												...rule,
+												minimum_cart_contents,
+											});
+										}}
+										shiftStep={10}
+										value={rule.minimum_cart_contents}
+									/>
+								) : (
+									<NumberControl
+										isShiftStepEnabled={true}
+										onChange={(minimum_cart_amount) => {
+											updateRule({
+												...rule,
+												minimum_cart_amount,
+											});
+										}}
+										shiftStep={10}
+										value={rule.minimum_cart_amount}
+									/>
+								)}
 							</>
 						);
 				  })
