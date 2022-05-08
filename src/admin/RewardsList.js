@@ -3,22 +3,25 @@ import { useState, useEffect } from "@wordpress/element";
 import {
 	TextControl,
 	SelectControl,
+	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
 export default function RewardsList() {
 	const [rewards, setRewards] = useState([
 		{
+			id: uuidv4(),
 			name: "Minimum cart contents",
 			type: "minimum_cart_contents",
-			active: false,
-			rules: []
+			enabled: false,
+			rules: [],
 		},
 		{
+			id: uuidv4(),
 			name: "Minimum cart amount",
 			type: "minimum_cart_amount",
-			active: false,
-			rules: []
+			enabled: false,
+			rules: [],
 		},
 	]);
 	const [activeReward, setActiveReward] = useState(null);
@@ -82,6 +85,17 @@ export default function RewardsList() {
 						{rewards.map((reward) => {
 							return (
 								<tr>
+									<td>
+										<ToggleControl
+											checked={reward.enabled}
+											onChange={() => {
+												updateReward({
+													...reward,
+													enabled: !reward.enabled,
+												});
+											}}
+										/>
+									</td>
 									<td>
 										{activeReward &&
 										activeReward.id === reward.id ? (

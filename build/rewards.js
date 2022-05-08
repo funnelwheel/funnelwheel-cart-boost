@@ -23,14 +23,16 @@ __webpack_require__.r(__webpack_exports__);
 
 function RewardsList() {
   const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
     name: "Minimum cart contents",
     type: "minimum_cart_contents",
-    active: false,
+    enabled: false,
     rules: []
   }, {
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
     name: "Minimum cart amount",
     type: "minimum_cart_amount",
-    active: false,
+    enabled: false,
     rules: []
   }]);
   const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
@@ -77,7 +79,14 @@ function RewardsList() {
   }, "Rule"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
   }, "Minimum cart contents/amount"))), rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+      checked: reward.enabled,
+      onChange: () => {
+        updateReward({ ...reward,
+          enabled: !reward.enabled
+        });
+      }
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Name",
       value: reward.name,
       onChange: name => {
