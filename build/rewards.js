@@ -14,29 +14,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _RulesList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RulesList */ "./src/admin/RulesList.js");
+
 
 
 
 
 function RewardsList() {
   const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     name: "Minimum cart contents",
     type: "minimum_cart_contents",
     enabled: false,
     rules: []
   }, {
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     name: "Minimum cart amount",
     type: "minimum_cart_amount",
     enabled: false,
     rules: []
   }]);
   const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     name: "Minimum cart amount",
     type: "minimum_cart_amount",
     enabled: false,
@@ -66,7 +68,12 @@ function RewardsList() {
     previousValue[currentValue.value] = currentValue.label;
     return previousValue;
   }, {});
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Reward type"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, rewardTypeLabels[activeReward.type])));
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Reward type"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, rewardTypeLabels[activeReward.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    reward: activeReward,
+    rules: activeReward.rules,
+    updateRule: () => {},
+    removeRule: () => {}
+  })));
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsList"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("table", {
@@ -104,7 +111,7 @@ function RewardsList() {
     type: "button",
     className: "button button-primary",
     onClick: () => setRewards([...rewards, {
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
       name: "FREE SHIPPING",
       type: "free_shipping",
       rule: "minimum_cart_contents",
@@ -113,6 +120,85 @@ function RewardsList() {
       minimum_cart_amount: 0
     }])
   }, "Add reward"))))));
+}
+
+/***/ }),
+
+/***/ "./src/admin/RulesList.js":
+/*!********************************!*\
+  !*** ./src/admin/RulesList.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ RulesList; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function RulesList(_ref) {
+  let {
+    reward,
+    rules,
+    removeRule,
+    updateRule
+  } = _ref;
+  console.log({
+    reward,
+    rules,
+    removeRule,
+    updateRule
+  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "RulesList"
+  }, rules && rules.length ? rules.map(rule => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+      checked: rule.enabled,
+      onChange: () => {
+        updateRule({ ...rule,
+          enabled: !rule.enabled
+        });
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+      label: "Name",
+      value: rule.name,
+      onChange: name => {
+        updateRule({ ...rule,
+          name
+        });
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+      value: rule.value,
+      onChange: value => {
+        updateRule({ ...rule,
+          value
+        });
+      }
+    }), "minimum_cart_contents" === reward.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      isShiftStepEnabled: true,
+      onChange: minimum_cart_contents => {
+        updateRule({ ...rule,
+          minimum_cart_contents
+        });
+      },
+      shiftStep: 10,
+      value: rule.minimum_cart_contents
+    }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      isShiftStepEnabled: true,
+      onChange: minimum_cart_amount => {
+        updateRule({ ...rule,
+          minimum_cart_amount
+        });
+      },
+      shiftStep: 10,
+      value: rule.minimum_cart_amount
+    }));
+  }) : null);
 }
 
 /***/ }),

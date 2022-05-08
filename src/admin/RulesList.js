@@ -1,11 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
-import { useState, useEffect } from "@wordpress/element";
 import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
 export default function RulesList({ reward, rules, removeRule, updateRule }) {
+    console.log({ reward, rules, removeRule, updateRule });
 	return (
 		<div className="RulesList">
 			{rules && rules.length

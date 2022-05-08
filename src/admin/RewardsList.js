@@ -4,6 +4,7 @@ import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
+import RulesList from "./RulesList";
 
 export default function RewardsList() {
 	const [rewards, setRewards] = useState([
@@ -64,12 +65,23 @@ export default function RewardsList() {
 		{}
 	);
 
-	return <div>
+	return (
 		<div>
-			<div>Reward type</div>
-			<div>{rewardTypeLabels[activeReward.type]}</div>
+			<div>
+				<div>Reward type</div>
+				<div>{rewardTypeLabels[activeReward.type]}</div>
+
+				<RulesList
+					{...{
+						reward: activeReward,
+						rules: activeReward.rules,
+						updateRule: () => {},
+						removeRule: () => {},
+					}}
+				/>
+			</div>
 		</div>
-	</div>;
+	);
 
 	return (
 		<div className="RewardsList">
