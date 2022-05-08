@@ -22,7 +22,13 @@ export default function RewardsList() {
 			rules: [],
 		},
 	]);
-	const [activeReward, setActiveReward] = useState(null);
+	const [activeReward, setActiveReward] = useState({
+		id: uuidv4(),
+		name: "Minimum cart amount",
+		type: "minimum_cart_amount",
+		enabled: false,
+		rules: [],
+	});
 
 	function updateReward(reward) {
 		setRewards(
@@ -57,6 +63,13 @@ export default function RewardsList() {
 		},
 		{}
 	);
+
+	return <div>
+		<div>
+			<div>Reward type</div>
+			<div>{rewardTypeLabels[activeReward.type]}</div>
+		</div>
+	</div>;
 
 	return (
 		<div className="RewardsList">
