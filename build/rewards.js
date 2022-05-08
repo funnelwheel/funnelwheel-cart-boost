@@ -56,11 +56,7 @@ function RewardsList() {
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     document.getElementById("setting-woocommerce_growcart_rewards").value = JSON.stringify(rewards);
   }, [rewards]);
-  const rewardRuleLabels = woocommerce_growcart_rewards.reward_rules.reduce((previousValue, currentValue) => {
-    previousValue[currentValue.value] = currentValue.label;
-    return previousValue;
-  }, {});
-  const rewardTypeLabels = woocommerce_growcart_rewards.reward_types.reduce((previousValue, currentValue) => {
+  const rewardTypeLabels = woocommerce_growcart_rewards.reward_rules.reduce((previousValue, currentValue) => {
     previousValue[currentValue.value] = currentValue.label;
     return previousValue;
   }, {});
@@ -70,15 +66,13 @@ function RewardsList() {
     className: "growcart-rewards widefat"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("thead", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
+  }, "Status"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
+    scope: "col"
   }, "Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
   }, "Type"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
-  }, "Value"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
-    scope: "col"
-  }, "Rule"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
-    scope: "col"
-  }, "Minimum cart contents/amount"))), rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => {
+  }, "Actions"))), rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
       checked: reward.enabled,
       onChange: () => {
@@ -86,65 +80,7 @@ function RewardsList() {
           enabled: !reward.enabled
         });
       }
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-      label: "Name",
-      value: reward.name,
-      onChange: name => {
-        updateReward({ ...reward,
-          name
-        });
-      }
-    }) : reward.name, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      class: "row-actions"
-    }, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-      className: "growcart-reward-cancel-edit",
-      href: "#",
-      onClick: name => {
-        setActiveReward(null);
-      }
-    }, "Cancel changes") : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-      className: "growcart-reward-edit",
-      href: "#",
-      onClick: () => {
-        setActiveReward(rewards.find(_reward => _reward.id === reward.id));
-      }
-    }, "Edit"), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-      href: "#",
-      className: "growcart-reward-delete",
-      onClick: () => setRewards(rewards.filter(_reward => _reward.id !== reward.id))
-    }, "Remove")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-      value: reward.type,
-      options: woocommerce_growcart_rewards.reward_types,
-      onChange: type => {
-        updateReward({ ...reward,
-          type
-        });
-      }
-    }) : rewardTypeLabels[reward.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-      value: reward.value,
-      onChange: value => {
-        updateReward({ ...reward,
-          value
-        });
-      }
-    }) : reward.value), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-      value: reward.rule,
-      options: woocommerce_growcart_rewards.reward_rules,
-      onChange: rule => {
-        updateReward({ ...reward,
-          rule
-        });
-      }
-    }) : rewardRuleLabels[reward.rule]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, activeReward && activeReward.id === reward.id ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      isShiftStepEnabled: true,
-      onChange: minimum_cart_contents => {
-        updateReward({ ...reward,
-          [reward.rule]: minimum_cart_contents
-        });
-      },
-      shiftStep: 10,
-      value: reward[reward.rule]
-    }) : reward[reward.rule]));
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, rewardTypeLabels[reward.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null));
   })) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     colspan: "5"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
