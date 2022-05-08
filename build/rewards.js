@@ -22,7 +22,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RewardsList() {
-  const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    name: "Minimum cart contents",
+    type: "minimum_cart_contents",
+    active: false,
+    rules: []
+  }, {
+    name: "Minimum cart amount",
+    type: "minimum_cart_amount",
+    active: false,
+    rules: []
+  }]);
   const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
   function updateReward(reward) {
@@ -35,9 +45,11 @@ function RewardsList() {
     }));
   }
 
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const rewards = JSON.parse(document.getElementById("setting-woocommerce_growcart_rewards").value);
-    setRewards(rewards);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {// const rewards = JSON.parse(
+    // 	document.getElementById("setting-woocommerce_growcart_rewards")
+    // 		.value
+    // );
+    // setRewards(rewards);
   }, []);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     document.getElementById("setting-woocommerce_growcart_rewards").value = JSON.stringify(rewards);

@@ -7,7 +7,20 @@ import {
 } from "@wordpress/components";
 
 export default function RewardsList() {
-	const [rewards, setRewards] = useState([]);
+	const [rewards, setRewards] = useState([
+		{
+			name: "Minimum cart contents",
+			type: "minimum_cart_contents",
+			active: false,
+			rules: []
+		},
+		{
+			name: "Minimum cart amount",
+			type: "minimum_cart_amount",
+			active: false,
+			rules: []
+		},
+	]);
 	const [activeReward, setActiveReward] = useState(null);
 
 	function updateReward(reward) {
@@ -23,11 +36,11 @@ export default function RewardsList() {
 	}
 
 	useEffect(() => {
-		const rewards = JSON.parse(
-			document.getElementById("setting-woocommerce_growcart_rewards")
-				.value
-		);
-		setRewards(rewards);
+		// const rewards = JSON.parse(
+		// 	document.getElementById("setting-woocommerce_growcart_rewards")
+		// 		.value
+		// );
+		// setRewards(rewards);
 	}, []);
 
 	useEffect(() => {
