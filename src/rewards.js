@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { render } from "@wordpress/element";
-import RewardsAdminScreen from "./components/RewardsAdminScreen";
+import RewardsAdminScreen from "./admin/RewardsList";
 import "./sass/admin-rewards.scss";
 
 // Create a client
@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 
 render(
 	<QueryClientProvider client={queryClient}>
-		<RewardsAdminScreen />
+		<RewardsList />
 	</QueryClientProvider>,
 	document.getElementById("rewards-screen")
 );
