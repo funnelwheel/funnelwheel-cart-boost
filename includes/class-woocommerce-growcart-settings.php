@@ -66,17 +66,6 @@ class WooCommerce_Growcart_Settings {
 						'type'       => 'checkbox',
 						'attributes' => [],
 					],
-					[
-						'name'    => 'woocommerce_growcart_reward_rule',
-						'std'     => 'minimum_cart_contents',
-						'label'   => __( 'Reward Rule', 'wp-job-manager' ),
-						'desc'    => __( 'Reward with selected rule will be dispalyed on the frontend.', 'wp-job-manager' ),
-						'type'    => 'select',
-						'options' => [
-							'minimum_cart_contents' => __( 'Minimum cart contents', 'woocommerce-grow-cart' ),
-							'minimum_cart_amount'   => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
-						],
-					],
 				],
 			],
 			'rewards' => [
