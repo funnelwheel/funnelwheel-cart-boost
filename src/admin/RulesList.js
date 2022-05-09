@@ -1,4 +1,5 @@
 import {
+	TextControl,
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
@@ -32,6 +33,7 @@ export default function RulesList({ reward, rules, removeRule, updateRule }) {
 								/>
 
 								<TextControl
+									label="Minimum cart amount"
 									value={rule.value}
 									onChange={(value) => {
 										updateRule({
@@ -43,6 +45,7 @@ export default function RulesList({ reward, rules, removeRule, updateRule }) {
 
 								{"minimum_cart_contents" === reward.type ? (
 									<NumberControl
+										label="Value"
 										isShiftStepEnabled={true}
 										onChange={(minimum_cart_contents) => {
 											updateRule({
@@ -55,6 +58,7 @@ export default function RulesList({ reward, rules, removeRule, updateRule }) {
 									/>
 								) : (
 									<NumberControl
+										label="Value"
 										isShiftStepEnabled={true}
 										onChange={(minimum_cart_amount) => {
 											updateRule({

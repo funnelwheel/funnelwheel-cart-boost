@@ -173,7 +173,7 @@ function RulesList(_ref) {
           enabled: !rule.enabled
         });
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Name",
       value: rule.name,
       onChange: name => {
@@ -181,7 +181,8 @@ function RulesList(_ref) {
           name
         });
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+      label: "Minimum cart amount",
       value: rule.value,
       onChange: value => {
         updateRule({ ...rule,
@@ -189,6 +190,7 @@ function RulesList(_ref) {
         });
       }
     }), "minimum_cart_contents" === reward.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "Value",
       isShiftStepEnabled: true,
       onChange: minimum_cart_contents => {
         updateRule({ ...rule,
@@ -198,6 +200,7 @@ function RulesList(_ref) {
       shiftStep: 10,
       value: rule.minimum_cart_contents
     }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "Value",
       isShiftStepEnabled: true,
       onChange: minimum_cart_amount => {
         updateRule({ ...rule,
