@@ -6,7 +6,6 @@ import {
 
 export default function RulesList({
 	reward,
-	rules,
 	addRule,
 	removeRule,
 	updateRule,
@@ -15,11 +14,17 @@ export default function RulesList({
 		<div className="RulesList">
 			<div className="RulesList__top">
 				<h4 className="RulesList__title">Reward Rules</h4>
-				<button type="button" className="RulesList__add">Add rule</button>
+				<button
+					type="button"
+					className="RulesList__add"
+					onClick={addRule}
+				>
+					Add rule
+				</button>
 			</div>
 			<div className="RulesList__items">
-				{rules && rules.length
-					? rules.map((rule) => {
+				{reward.rules && reward.rules.length
+					? reward.rules.map((rule) => {
 							return (
 								<div className="RulesListItem">
 									<ToggleControl

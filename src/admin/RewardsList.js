@@ -7,6 +7,7 @@ import {
 import RulesList from "./RulesList";
 
 export default function RewardsList() {
+	const activeRewardId = uuidv4();
 	const [rewards, setRewards] = useState([
 		{
 			id: uuidv4(),
@@ -16,39 +17,38 @@ export default function RewardsList() {
 			rules: [],
 		},
 		{
-			id: uuidv4(),
+			id: activeRewardId,
 			name: "Minimum cart amount",
 			type: "minimum_cart_amount",
 			enabled: false,
-			rules: [],
+			rules: [
+				{
+					id: uuidv4(),
+					name: "Free Fhipping",
+					minimum_cart_amount: 10,
+					value: 0,
+				},
+				{
+					id: uuidv4(),
+					name: "1%",
+					minimum_cart_amount: 20,
+					value: 0,
+				},
+				{
+					id: uuidv4(),
+					name: "20 USD",
+					minimum_cart_amount: 50,
+					value: 0,
+				},
+			],
 		},
 	]);
-	const [activeReward, setActiveReward] = useState({
-		id: uuidv4(),
-		name: "Minimum cart amount",
-		type: "minimum_cart_amount",
-		enabled: false,
-		rules: [
-			{
-				id: uuidv4(),
-				name: "Free Fhipping",
-				minimum_cart_amount: 10,
-				value: 0,
-			},
-			{
-				id: uuidv4(),
-				name: "1%",
-				minimum_cart_amount: 20,
-				value: 0,
-			},
-			{
-				id: uuidv4(),
-				name: "20 USD",
-				minimum_cart_amount: 50,
-				value: 0,
-			},
-		],
-	});
+	const [activeReward, setActiveReward] = useState(activeRewardId);
+	const activeRewardItem = rewards.find(
+		(reward) => reward.id === activeReward
+	);
+
+	console.log(activeRewardItem);
 
 	function updateReward(reward) {
 		setRewards(
@@ -92,15 +92,26 @@ export default function RewardsList() {
 						Reward type
 					</div>
 					<div className="RewardsListItem__type-value">
-						{rewardTypeLabels[activeReward.type]}
+						{rewardTypeLabels[activeRewardItem.type]}
 					</div>
 				</div>
 
 				<RulesList
 					{...{
-						reward: activeReward,
-						rules: activeReward.rules,
-						addRule: () => {},
+						reward: activeRewardItem,
+						addRule: () =>
+							updateReward({
+								...activeRewardItem,
+								rules: [
+									...activeRewardItem.rules,
+									{
+										id: uuidv4(),
+										name: "20 USD",
+										minimum_cart_amount: 0,
+										value: 0,
+									},
+								],
+							}),
 						updateRule: () => {},
 						removeRule: () => {},
 					}}

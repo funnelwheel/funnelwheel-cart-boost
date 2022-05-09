@@ -24,6 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RewardsList() {
+  const activeRewardId = (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])();
   const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([{
     id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     name: "Minimum cart contents",
@@ -31,14 +32,7 @@ function RewardsList() {
     enabled: false,
     rules: []
   }, {
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
-    name: "Minimum cart amount",
-    type: "minimum_cart_amount",
-    enabled: false,
-    rules: []
-  }]);
-  const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+    id: activeRewardId,
     name: "Minimum cart amount",
     type: "minimum_cart_amount",
     enabled: false,
@@ -58,7 +52,10 @@ function RewardsList() {
       minimum_cart_amount: 50,
       value: 0
     }]
-  });
+  }]);
+  const [activeReward, setActiveReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(activeRewardId);
+  const activeRewardItem = rewards.find(reward => reward.id === activeReward);
+  console.log(activeRewardItem);
 
   function updateReward(reward) {
     setRewards(rewards.map(_reward => {
@@ -93,10 +90,16 @@ function RewardsList() {
     className: "RewardsListItem__type-label"
   }, "Reward type"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__type-value"
-  }, rewardTypeLabels[activeReward.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    reward: activeReward,
-    rules: activeReward.rules,
-    addRule: () => {},
+  }, rewardTypeLabels[activeRewardItem.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    reward: activeRewardItem,
+    addRule: () => updateReward({ ...activeRewardItem,
+      rules: [...activeRewardItem.rules, {
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+        name: "20 USD",
+        minimum_cart_amount: 0,
+        value: 0
+      }]
+    }),
     updateRule: () => {},
     removeRule: () => {}
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -172,7 +175,6 @@ __webpack_require__.r(__webpack_exports__);
 function RulesList(_ref) {
   let {
     reward,
-    rules,
     addRule,
     removeRule,
     updateRule
@@ -185,10 +187,11 @@ function RulesList(_ref) {
     className: "RulesList__title"
   }, "Reward Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
-    className: "RulesList__add"
+    className: "RulesList__add",
+    onClick: addRule
   }, "Add rule")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList__items"
-  }, rules && rules.length ? rules.map(rule => {
+  }, reward.rules && reward.rules.length ? reward.rules.map(rule => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "RulesListItem"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
