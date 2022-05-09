@@ -85,10 +85,10 @@ export default function RewardsList() {
 	);
 
 	return (
-		<div>
-			<div>
-				<div>Reward type</div>
-				<div>{rewardTypeLabels[activeReward.type]}</div>
+		<div className="RewardsListItem">
+			<div className="RewardsListItem__col">
+				<div className="RewardsListItem__type-label">Reward type</div>
+				<div className="RewardsListItem__type">{rewardTypeLabels[activeReward.type]}</div>
 
 				<RulesList
 					{...{
@@ -99,6 +99,8 @@ export default function RewardsList() {
 					}}
 				/>
 			</div>
+
+			<div className="RewardsListItem__col">Preview</div>
 		</div>
 	);
 
