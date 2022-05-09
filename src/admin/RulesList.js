@@ -4,7 +4,6 @@ import {
 } from "@wordpress/components";
 
 export default function RulesList({ reward, rules, removeRule, updateRule }) {
-    console.log({ reward, rules, removeRule, updateRule });
 	return (
 		<div className="RulesList">
 			{rules && rules.length

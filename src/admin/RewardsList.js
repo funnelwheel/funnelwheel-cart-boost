@@ -28,7 +28,26 @@ export default function RewardsList() {
 		name: "Minimum cart amount",
 		type: "minimum_cart_amount",
 		enabled: false,
-		rules: [],
+		rules: [
+			{
+				id: uuidv4(),
+				name: "Free Fhipping",
+				minimum_cart_amount: 10,
+				value: 0,
+			},
+			{
+				id: uuidv4(),
+				name: "1%",
+				minimum_cart_amount: 20,
+				value: 0,
+			},
+			{
+				id: uuidv4(),
+				name: "20 USD",
+				minimum_cart_amount: 50,
+				value: 0,
+			},
+		],
 	});
 
 	function updateReward(reward) {

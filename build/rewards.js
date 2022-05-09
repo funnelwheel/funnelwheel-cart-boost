@@ -42,7 +42,22 @@ function RewardsList() {
     name: "Minimum cart amount",
     type: "minimum_cart_amount",
     enabled: false,
-    rules: []
+    rules: [{
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+      name: "Free Fhipping",
+      minimum_cart_amount: 10,
+      value: 0
+    }, {
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+      name: "1%",
+      minimum_cart_amount: 20,
+      value: 0
+    }, {
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+      name: "20 USD",
+      minimum_cart_amount: 50,
+      value: 0
+    }]
   });
 
   function updateReward(reward) {
@@ -148,12 +163,6 @@ function RulesList(_ref) {
     removeRule,
     updateRule
   } = _ref;
-  console.log({
-    reward,
-    rules,
-    removeRule,
-    updateRule
-  });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList"
   }, rules && rules.length ? rules.map(rule => {
