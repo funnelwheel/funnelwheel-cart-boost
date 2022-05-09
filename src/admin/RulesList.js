@@ -4,12 +4,7 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
-export default function RulesList({
-	reward,
-	addRule,
-	removeRule,
-	updateRule,
-}) {
+export default function RulesList({ reward, addRule, removeRule, updateRule }) {
 	return (
 		<div className="RulesList">
 			<div className="RulesList__top">
@@ -27,6 +22,13 @@ export default function RulesList({
 					? reward.rules.map((rule) => {
 							return (
 								<div className="RulesListItem">
+									<button
+										type="button"
+										className="RulesList__remove"
+										onClick={() => removeRule(rule.id)}
+									>
+										Remove
+									</button>
 									<ToggleControl
 										checked={rule.enabled}
 										onChange={() => {

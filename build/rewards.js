@@ -101,7 +101,11 @@ function RewardsList() {
       }]
     }),
     updateRule: () => {},
-    removeRule: () => {}
+    removeRule: ruleId => {
+      updateReward({ ...activeRewardItem,
+        rules: activeRewardItem.rules.filter(rule => rule.id !== ruleId)
+      });
+    }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__col"
   }, "Preview"));
@@ -194,7 +198,11 @@ function RulesList(_ref) {
   }, reward.rules && reward.rules.length ? reward.rules.map(rule => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "RulesListItem"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      type: "button",
+      className: "RulesList__remove",
+      onClick: () => removeRule(rule.id)
+    }, "Remove"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
       checked: rule.enabled,
       onChange: () => {
         updateRule({ ...rule,

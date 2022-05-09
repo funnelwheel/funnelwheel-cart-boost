@@ -113,7 +113,14 @@ export default function RewardsList() {
 								],
 							}),
 						updateRule: () => {},
-						removeRule: () => {},
+						removeRule: (ruleId) => {
+							updateReward({
+								...activeRewardItem,
+								rules: activeRewardItem.rules.filter(
+									(rule) => rule.id !== ruleId
+								),
+							});
+						},
 					}}
 				/>
 			</div>
