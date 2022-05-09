@@ -100,6 +100,7 @@ export default function RewardsList() {
 					{...{
 						reward: activeReward,
 						rules: activeReward.rules,
+						addRule: () => {},
 						updateRule: () => {},
 						removeRule: () => {},
 					}}

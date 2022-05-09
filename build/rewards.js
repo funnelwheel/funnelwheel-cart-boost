@@ -96,6 +96,7 @@ function RewardsList() {
   }, rewardTypeLabels[activeReward.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_2__["default"], {
     reward: activeReward,
     rules: activeReward.rules,
+    addRule: () => {},
     updateRule: () => {},
     removeRule: () => {}
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -172,11 +173,21 @@ function RulesList(_ref) {
   let {
     reward,
     rules,
+    addRule,
     removeRule,
     updateRule
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "RulesList__top"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+    className: "RulesList__title"
+  }, "Reward Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button",
+    className: "RulesList__add"
+  }, "Add rule")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "RulesList__items"
   }, rules && rules.length ? rules.map(rule => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "RulesListItem"
@@ -224,7 +235,7 @@ function RulesList(_ref) {
       shiftStep: 10,
       value: rule.minimum_cart_amount
     }));
-  }) : null);
+  }) : null));
 }
 
 /***/ }),

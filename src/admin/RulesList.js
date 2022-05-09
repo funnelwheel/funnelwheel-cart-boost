@@ -4,76 +4,90 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
-export default function RulesList({ reward, rules, removeRule, updateRule }) {
+export default function RulesList({
+	reward,
+	rules,
+	addRule,
+	removeRule,
+	updateRule,
+}) {
 	return (
 		<div className="RulesList">
-			{rules && rules.length
-				? rules.map((rule) => {
-						return (
-							<div className="RulesListItem">
-								<ToggleControl
-									checked={rule.enabled}
-									onChange={() => {
-										updateRule({
-											...rule,
-											enabled: !rule.enabled,
-										});
-									}}
-								/>
-
-								<TextControl
-									label="Name"
-									value={rule.name}
-									onChange={(name) => {
-										updateRule({
-											...rule,
-											name,
-										});
-									}}
-								/>
-
-								<TextControl
-									label="Minimum cart amount"
-									value={rule.value}
-									onChange={(value) => {
-										updateRule({
-											...rule,
-											value,
-										});
-									}}
-								/>
-
-								{"minimum_cart_contents" === reward.type ? (
-									<NumberControl
-										label="Value"
-										isShiftStepEnabled={true}
-										onChange={(minimum_cart_contents) => {
+			<div className="RulesList__top">
+				<h4 className="RulesList__title">Reward Rules</h4>
+				<button type="button" className="RulesList__add">Add rule</button>
+			</div>
+			<div className="RulesList__items">
+				{rules && rules.length
+					? rules.map((rule) => {
+							return (
+								<div className="RulesListItem">
+									<ToggleControl
+										checked={rule.enabled}
+										onChange={() => {
 											updateRule({
 												...rule,
-												minimum_cart_contents,
+												enabled: !rule.enabled,
 											});
 										}}
-										shiftStep={10}
-										value={rule.minimum_cart_contents}
 									/>
-								) : (
-									<NumberControl
-										label="Value"
-										isShiftStepEnabled={true}
-										onChange={(minimum_cart_amount) => {
+
+									<TextControl
+										label="Name"
+										value={rule.name}
+										onChange={(name) => {
 											updateRule({
 												...rule,
-												minimum_cart_amount,
+												name,
 											});
 										}}
-										shiftStep={10}
-										value={rule.minimum_cart_amount}
 									/>
-								)}
-							</div>
-						);
-				  })
-				: null}
+
+									<TextControl
+										label="Minimum cart amount"
+										value={rule.value}
+										onChange={(value) => {
+											updateRule({
+												...rule,
+												value,
+											});
+										}}
+									/>
+
+									{"minimum_cart_contents" === reward.type ? (
+										<NumberControl
+											label="Value"
+											isShiftStepEnabled={true}
+											onChange={(
+												minimum_cart_contents
+											) => {
+												updateRule({
+													...rule,
+													minimum_cart_contents,
+												});
+											}}
+											shiftStep={10}
+											value={rule.minimum_cart_contents}
+										/>
+									) : (
+										<NumberControl
+											label="Value"
+											isShiftStepEnabled={true}
+											onChange={(minimum_cart_amount) => {
+												updateRule({
+													...rule,
+													minimum_cart_amount,
+												});
+											}}
+											shiftStep={10}
+											value={rule.minimum_cart_amount}
+										/>
+									)}
+								</div>
+							);
+					  })
+					: null}
+			</div>
 		</div>
 	);
 }
