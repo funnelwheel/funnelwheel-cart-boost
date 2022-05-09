@@ -87,8 +87,14 @@ export default function RewardsList() {
 	return (
 		<div className="RewardsListItem">
 			<div className="RewardsListItem__col">
-				<div className="RewardsListItem__type-label">Reward type</div>
-				<div className="RewardsListItem__type">{rewardTypeLabels[activeReward.type]}</div>
+				<div className="RewardsListItem__type">
+					<div className="RewardsListItem__type-label">
+						Reward type
+					</div>
+					<div className="RewardsListItem__type-value">
+						{rewardTypeLabels[activeReward.type]}
+					</div>
+				</div>
 
 				<RulesList
 					{...{

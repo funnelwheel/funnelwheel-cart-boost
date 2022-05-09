@@ -10,7 +10,7 @@ export default function RulesList({ reward, rules, removeRule, updateRule }) {
 			{rules && rules.length
 				? rules.map((rule) => {
 						return (
-							<>
+							<div className="RulesListItem">
 								<ToggleControl
 									checked={rule.enabled}
 									onChange={() => {
@@ -70,7 +70,7 @@ export default function RulesList({ reward, rules, removeRule, updateRule }) {
 										value={rule.minimum_cart_amount}
 									/>
 								)}
-							</>
+							</div>
 						);
 				  })
 				: null}

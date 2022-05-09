@@ -46,4 +46,24 @@
   position: static;
 }
 
+.RewardsListItem {
+  display: flex;
+}
+.RewardsListItem__type {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.RulesListItem {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+.RulesListItem input[type=text] {
+  width: 100%;
+}
+
 /*# sourceMappingURL=rewards.css.map*/

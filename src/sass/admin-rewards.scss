@@ -53,3 +53,25 @@
 		}
 	}
 }
+
+.RewardsListItem {
+	display: flex;
+
+	&__type {
+		margin-bottom: 16px;
+		padding: 16px;
+		border-radius: 4px;
+		background-color: #ffffff;
+	}
+}
+
+.RulesListItem {
+	margin-bottom: 16px;
+	padding: 16px;
+	border-radius: 4px;
+	background-color: #ffffff;
+
+	input[type="text"] {
+		width: 100%;
+	}
+}
