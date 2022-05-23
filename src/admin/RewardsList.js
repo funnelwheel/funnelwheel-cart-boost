@@ -7,7 +7,8 @@ import {
 import RulesList from "./RulesList";
 
 export default function RewardsList() {
-	const activeRewardId = uuidv4();
+	const activeRewardId = null;
+	const [currentlyEditing, setCurrentlyEditing] = useState(activeRewardId);
 	const [rewards, setRewards] = useState([
 		{
 			id: uuidv4(),
@@ -43,12 +44,9 @@ export default function RewardsList() {
 			],
 		},
 	]);
-	const [activeReward, setActiveReward] = useState(activeRewardId);
-	const activeRewardItem = rewards.find(
-		(reward) => reward.id === activeReward
-	);
-
-	console.log(activeRewardItem);
+	const activeRewardItem = currentlyEditing ? rewards.find(
+		(reward) => reward.id === currentlyEditing
+	) : null;
 
 	function updateReward(reward) {
 		setRewards(
@@ -84,50 +82,54 @@ export default function RewardsList() {
 		{}
 	);
 
-	return (
-		<div className="RewardsListItem">
-			<div className="RewardsListItem__col">
-				<div className="RewardsListItem__type">
-					<div className="RewardsListItem__type-label">
-						Reward type
+	console.log(currentlyEditing);
+
+	if (currentlyEditing) {
+		return (
+			<div className="RewardsListItem">
+				<div className="RewardsListItem__col">
+					<div className="RewardsListItem__type">
+						<div className="RewardsListItem__type-label">
+							Reward type
+						</div>
+						<div className="RewardsListItem__type-value">
+							{rewardTypeLabels[activeRewardItem.type]}
+						</div>
 					</div>
-					<div className="RewardsListItem__type-value">
-						{rewardTypeLabels[activeRewardItem.type]}
-					</div>
+
+					<RulesList
+						{...{
+							reward: activeRewardItem,
+							addRule: () =>
+								updateReward({
+									...activeRewardItem,
+									rules: [
+										...activeRewardItem.rules,
+										{
+											id: uuidv4(),
+											name: "20 USD",
+											minimum_cart_amount: 0,
+											value: 0,
+										},
+									],
+								}),
+							updateRule: () => {},
+							removeRule: (ruleId) => {
+								updateReward({
+									...activeRewardItem,
+									rules: activeRewardItem.rules.filter(
+										(rule) => rule.id !== ruleId
+									),
+								});
+							},
+						}}
+					/>
 				</div>
 
-				<RulesList
-					{...{
-						reward: activeRewardItem,
-						addRule: () =>
-							updateReward({
-								...activeRewardItem,
-								rules: [
-									...activeRewardItem.rules,
-									{
-										id: uuidv4(),
-										name: "20 USD",
-										minimum_cart_amount: 0,
-										value: 0,
-									},
-								],
-							}),
-						updateRule: () => {},
-						removeRule: (ruleId) => {
-							updateReward({
-								...activeRewardItem,
-								rules: activeRewardItem.rules.filter(
-									(rule) => rule.id !== ruleId
-								),
-							});
-						},
-					}}
-				/>
+				<div className="RewardsListItem__col">Preview</div>
 			</div>
-
-			<div className="RewardsListItem__col">Preview</div>
-		</div>
-	);
+		);
+	}
 
 	return (
 		<div className="RewardsList">

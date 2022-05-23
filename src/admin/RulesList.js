@@ -22,22 +22,31 @@ export default function RulesList({ reward, addRule, removeRule, updateRule }) {
 					? reward.rules.map((rule) => {
 							return (
 								<div className="RulesListItem">
-									<button
-										type="button"
-										className="RulesList__remove"
-										onClick={() => removeRule(rule.id)}
-									>
-										Remove
-									</button>
-									<ToggleControl
-										checked={rule.enabled}
-										onChange={() => {
-											updateRule({
-												...rule,
-												enabled: !rule.enabled,
-											});
-										}}
-									/>
+									<div className="RulesListItem__actions">
+										<ToggleControl
+											checked={rule.enabled}
+											onChange={() => {
+												updateRule({
+													...rule,
+													enabled: !rule.enabled,
+												});
+											}}
+										/>
+										<button
+											type="button"
+											className="RulesList__remove"
+											onClick={() => removeRule(rule.id)}
+										>
+											Remove
+										</button>
+										<button
+											type="button"
+											className="RulesList__remove"
+											onClick={() => removeRule(rule.id)}
+										>
+											Remove
+										</button>
+									</div>
 
 									<TextControl
 										label="Name"
