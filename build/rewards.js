@@ -33,7 +33,7 @@ function RewardsList() {
     enabled: false,
     rules: []
   }, {
-    id: activeRewardId,
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     name: "Minimum cart amount",
     type: "minimum_cart_amount",
     enabled: false,
@@ -72,8 +72,9 @@ function RewardsList() {
     // );
     // setRewards(rewards);
   }, []);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    document.getElementById("setting-woocommerce_growcart_rewards").value = JSON.stringify(rewards);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {// document.getElementById(
+    // 	"setting-woocommerce_growcart_rewards"
+    // ).value = JSON.stringify(rewards);
   }, [rewards]);
   const rewardTypeLabels = woocommerce_growcart_rewards.reward_rules.reduce((previousValue, currentValue) => {
     previousValue[currentValue.value] = currentValue.label;
@@ -136,9 +137,7 @@ function RewardsList() {
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, rewardTypeLabels[reward.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       className: "growcart-reward-edit",
       href: "#",
-      onClick: () => {
-        setActiveReward(rewards.find(_reward => _reward.id === reward.id));
-      }
+      onClick: () => setCurrentlyEditing(reward.id)
     }, "Edit"), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       href: "#",
       className: "growcart-reward-delete",

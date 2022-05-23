@@ -18,7 +18,7 @@ export default function RewardsList() {
 			rules: [],
 		},
 		{
-			id: activeRewardId,
+			id: uuidv4(),
 			name: "Minimum cart amount",
 			type: "minimum_cart_amount",
 			enabled: false,
@@ -44,9 +44,9 @@ export default function RewardsList() {
 			],
 		},
 	]);
-	const activeRewardItem = currentlyEditing ? rewards.find(
-		(reward) => reward.id === currentlyEditing
-	) : null;
+	const activeRewardItem = currentlyEditing
+		? rewards.find((reward) => reward.id === currentlyEditing)
+		: null;
 
 	function updateReward(reward) {
 		setRewards(
@@ -69,9 +69,9 @@ export default function RewardsList() {
 	}, []);
 
 	useEffect(() => {
-		document.getElementById(
-			"setting-woocommerce_growcart_rewards"
-		).value = JSON.stringify(rewards);
+		// document.getElementById(
+		// 	"setting-woocommerce_growcart_rewards"
+		// ).value = JSON.stringify(rewards);
 	}, [rewards]);
 
 	const rewardTypeLabels = woocommerce_growcart_rewards.reward_rules.reduce(
@@ -165,15 +165,11 @@ export default function RewardsList() {
 											<a
 												className="growcart-reward-edit"
 												href="#"
-												onClick={() => {
-													setActiveReward(
-														rewards.find(
-															(_reward) =>
-																_reward.id ===
-																reward.id
-														)
-													);
-												}}
+												onClick={() =>
+													setCurrentlyEditing(
+														reward.id
+													)
+												}
 											>
 												Edit
 											</a>
