@@ -85,7 +85,8 @@ function RewardsList() {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsListItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       activeRewardItem,
       rewardTypeLabels,
-      updateReward
+      updateReward,
+      setCurrentlyEditing
     });
   }
 
@@ -159,10 +160,16 @@ function RewardsListItem(_ref) {
   let {
     rewardTypeLabels,
     activeRewardItem,
-    updateReward
+    updateReward,
+    setCurrentlyEditing
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button",
+    onClick: () => setCurrentlyEditing(null)
+  }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "RewardsListItem__row"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__col"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -189,7 +196,7 @@ function RewardsListItem(_ref) {
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__col"
-  }, "Preview"));
+  }, "Preview")));
 }
 
 /***/ }),

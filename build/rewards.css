@@ -46,7 +46,7 @@
   position: static;
 }
 
-.RewardsListItem {
+.RewardsListItem__row {
   display: flex;
 }
 .RewardsListItem__type {

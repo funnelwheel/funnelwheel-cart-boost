@@ -55,7 +55,9 @@
 }
 
 .RewardsListItem {
-	display: flex;
+	&__row {
+		display: flex;
+	}
 
 	&__type {
 		margin-bottom: 16px;

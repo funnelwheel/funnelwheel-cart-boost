@@ -85,7 +85,12 @@ export default function RewardsList() {
 	if (currentlyEditing) {
 		return (
 			<RewardsListItem
-				{...{ activeRewardItem, rewardTypeLabels, updateReward }}
+				{...{
+					activeRewardItem,
+					rewardTypeLabels,
+					updateReward,
+					setCurrentlyEditing,
+				}}
 			/>
 		);
 	}
