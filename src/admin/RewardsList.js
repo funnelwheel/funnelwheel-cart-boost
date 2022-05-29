@@ -97,7 +97,7 @@ export default function RewardsList() {
 
 	return (
 		<div className="RewardsList">
-			<table className="growcart-rewards widefat">
+			<table className="growcart-rewards">
 				<thead>
 					<tr>
 						<th scope="col">Status</th>
@@ -114,6 +114,11 @@ export default function RewardsList() {
 									<td>
 										<ToggleControl
 											checked={reward.enabled}
+											label={
+												reward.enabled
+													? "Active"
+													: "Disabled"
+											}
 											onChange={() => {
 												updateReward({
 													...reward,

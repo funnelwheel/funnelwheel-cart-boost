@@ -14,23 +14,160 @@ button {
   width: 200px;
 }
 
+.growcart-rewards input {
+  width: 1em;
+  height: 1em;
+  margin-top: 0.25em;
+  vertical-align: top;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  print-color-adjust: exact;
+}
+.growcart-rewards input[type=checkbox] {
+  border-radius: 0.25em;
+}
+.growcart-rewards input[type=radio] {
+  border-radius: 50%;
+}
+.growcart-rewards input:active {
+  filter: brightness(90%);
+}
+.growcart-rewards input:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+.growcart-rewards input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.growcart-rewards input:checked[type=checkbox] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3e%3cpath fill=%27none%27 stroke=%27%23fff%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%273%27 d=%27m6 10 3 3 6-6%27/%3e%3c/svg%3e");
+}
+.growcart-rewards input:checked[type=radio] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%272%27 fill=%27%23fff%27/%3e%3c/svg%3e");
+}
+.growcart-rewards input[type=checkbox]:indeterminate {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3e%3cpath fill=%27none%27 stroke=%27%23fff%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%273%27 d=%27M6 10h8%27/%3e%3c/svg%3e");
+}
+.growcart-rewards input:disabled {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.5;
+}
+.growcart-rewards input[disabled] ~ .form-check-label, .growcart-rewards input:disabled ~ .form-check-label {
+  cursor: default;
+  opacity: 0.5;
+}
+.growcart-rewards input[type=checkbox]:checked::before {
+  content: "";
+}
+.growcart-rewards .components-form-toggle {
+  padding-left: 2.5em;
+}
+.growcart-rewards .components-form-toggle input {
+  width: 2em;
+  margin-left: -2.5em;
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27rgba%280, 0, 0, 0.25%29%27/%3e%3c/svg%3e");
+  background-position: left center;
+  border-radius: 2em;
+  transition: background-position 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .growcart-rewards .components-form-toggle input {
+    transition: none;
+  }
+}
+.growcart-rewards .components-form-toggle input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%2386b7fe%27/%3e%3c/svg%3e");
+}
+.growcart-rewards .components-form-toggle input:checked {
+  background-position: right center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23fff%27/%3e%3c/svg%3e");
+}
+
 .growcart-rewards {
-  border: 1px solid #c3c4c7;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-  background-color: #ffffff;
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
 }
-.growcart-rewards th,
-.growcart-rewards td {
-  padding: 1rem;
+.growcart-rewards thead th {
+  border: none;
+  padding: 15px 30px;
+  font-size: 13px;
+  font-weight: 500;
+  color: gray;
 }
-.growcart-rewards tr:nth-child(odd) td {
-  background-color: #f9f9f9;
+.growcart-rewards thead tr {
+  background: #fff;
+  border-bottom: 4px solid #eceffa;
 }
-.growcart-rewards .row-actions {
+.growcart-rewards tbody tr {
+  margin-bottom: 10px;
+  border-bottom: 4px solid #f8f9fd;
+}
+.growcart-rewards tbody tr:last-child() {
+  border-bottom: 0;
+}
+.growcart-rewards tbody th,
+.growcart-rewards tbody td {
+  border: none;
+  padding: 15px 30px;
+  font-size: 14px;
+  background: #fff;
+  vertical-align: middle;
+}
+.growcart-rewards tbody td.status span {
   position: relative;
+  border-radius: 30px;
+  padding: 4px 10px 4px 25px;
 }
-.growcart-rewards tr:hover .row-actions {
-  position: static;
+.growcart-rewards tbody td.status span:after {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  content: "";
+  border-radius: 50%;
+}
+.growcart-rewards tbody td.status .active {
+  background: #43dc95;
+  color: #051b11;
+}
+.growcart-rewards tbody td.status .active:after {
+  background: #09311e;
+}
+.growcart-rewards tbody td.status .waiting {
+  background: #ffe187;
+  color: #876500;
+}
+.growcart-rewards tbody td.status .waiting:after {
+  background: #ba8b00;
+}
+.growcart-rewards tbody td .img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.growcart-rewards tbody td .email span {
+  display: block;
+}
+.growcart-rewards tbody td .email span:last-child() {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.3);
+}
+.growcart-rewards tbody td .close span {
+  font-size: 12px;
+  color: #dc3545;
 }
 
 .RewardsListItem__row {
