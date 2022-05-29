@@ -5,6 +5,7 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 import RewardsListItem from "./RewardsListItem";
+import RewardsListItemAdd from "./RewardsListItemAdd";
 
 export default function RewardsList() {
 	const activeRewardId = null;
@@ -82,6 +83,10 @@ export default function RewardsList() {
 		},
 		{}
 	);
+
+	if ("add" === activeScreen) {
+		return <RewardsListItemAdd {...{ setActiveScreen }} />;
+	}
 
 	if ("edit" === activeScreen) {
 		return (
@@ -174,20 +179,7 @@ export default function RewardsList() {
 							<button
 								type="button"
 								className="button button-primary"
-								onClick={() =>
-									setRewards([
-										...rewards,
-										{
-											id: uuidv4(),
-											name: "FREE SHIPPING",
-											type: "free_shipping",
-											rule: "minimum_cart_contents",
-											value: 0,
-											minimum_cart_contents: 3,
-											minimum_cart_amount: 0,
-										},
-									])
-								}
+								onClick={() => setActiveScreen("add")}
 							>
 								Add reward
 							</button>

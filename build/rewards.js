@@ -14,10 +14,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _RewardsListItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RewardsListItem */ "./src/admin/RewardsListItem.js");
+/* harmony import */ var _RewardsListItemAdd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RewardsListItemAdd */ "./src/admin/RewardsListItemAdd.js");
+
 
 
 
@@ -28,28 +30,28 @@ function RewardsList() {
   const [activeScreen, setActiveScreen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("list");
   const [currentlyEditing, setCurrentlyEditing] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(activeRewardId);
   const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
     name: "Minimum cart contents",
     type: "minimum_cart_contents",
     enabled: false,
     rules: []
   }, {
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
     name: "Minimum cart amount",
     type: "minimum_cart_amount",
     enabled: false,
     rules: [{
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
       name: "Free Fhipping",
       minimum_cart_amount: 10,
       value: 0
     }, {
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
       name: "1%",
       minimum_cart_amount: 20,
       value: 0
     }, {
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
       name: "20 USD",
       minimum_cart_amount: 50,
       value: 0
@@ -81,6 +83,12 @@ function RewardsList() {
     previousValue[currentValue.value] = currentValue.label;
     return previousValue;
   }, {});
+
+  if ("add" === activeScreen) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsListItemAdd__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      setActiveScreen
+    });
+  }
 
   if ("edit" === activeScreen) {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsListItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -130,15 +138,7 @@ function RewardsList() {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     className: "button button-primary",
-    onClick: () => setRewards([...rewards, {
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
-      name: "FREE SHIPPING",
-      type: "free_shipping",
-      rule: "minimum_cart_contents",
-      value: 0,
-      minimum_cart_contents: 3,
-      minimum_cart_amount: 0
-    }])
+    onClick: () => setActiveScreen("add")
   }, "Add reward"))))));
 }
 
@@ -208,6 +208,60 @@ function RewardsListItem(_ref) {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__col-preview"
   }, "Preview")));
+}
+
+/***/ }),
+
+/***/ "./src/admin/RewardsListItemAdd.js":
+/*!*****************************************!*\
+  !*** ./src/admin/RewardsListItemAdd.js ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ RewardsListItemAdd; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+function RewardsListItemAdd(_ref) {
+  let {
+    setActiveScreen
+  } = _ref;
+  const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+    name: "Free Shipping",
+    type: "free_shipping",
+    rule: "minimum_cart_contents",
+    value: 0,
+    minimum_cart_contents: 0,
+    minimum_cart_amount: 0
+  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "RewardsListItemAdd"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "RewardsListItem__back",
+    type: "button",
+    onClick: () => setActiveScreen("list")
+  }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "RewardsListItemAdd__body"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    label: "Name",
+    value: reward.name,
+    onChange: name => {
+      setReward({ ...reward,
+        name
+      });
+    }
+  })));
 }
 
 /***/ }),
