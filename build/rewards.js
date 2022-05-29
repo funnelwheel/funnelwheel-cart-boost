@@ -137,7 +137,7 @@ function RewardsList() {
     colspan: "5"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
-    className: "button button-primary",
+    className: "RewardsList__add",
     onClick: () => setActiveScreen("add")
   }, "Add reward"))))));
 }

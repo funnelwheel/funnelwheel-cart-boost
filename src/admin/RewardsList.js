@@ -178,7 +178,7 @@ export default function RewardsList() {
 						<td colspan="5">
 							<button
 								type="button"
-								className="button button-primary"
+								className="RewardsList__add"
 								onClick={() => setActiveScreen("add")}
 							>
 								Add reward
