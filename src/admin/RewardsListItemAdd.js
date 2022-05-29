@@ -1,9 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import {
-	TextControl,
-	ToggleControl,
-	__experimentalNumberControl as NumberControl,
-} from "@wordpress/components";
+import { TextControl, SelectControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 
 export default function RewardsListItemAdd({ setActiveScreen }) {
@@ -35,6 +31,18 @@ export default function RewardsListItemAdd({ setActiveScreen }) {
 						setReward({
 							...reward,
 							name,
+						});
+					}}
+				/>
+
+				<SelectControl
+                    label="Type"
+					value={reward.type}
+					options={woocommerce_growcart_rewards.reward_types}
+					onChange={(type) => {
+						setReward({
+							...reward,
+							type,
 						});
 					}}
 				/>

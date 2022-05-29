@@ -261,6 +261,15 @@ function RewardsListItemAdd(_ref) {
         name
       });
     }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: "Type",
+    value: reward.type,
+    options: woocommerce_growcart_rewards.reward_types,
+    onChange: type => {
+      setReward({ ...reward,
+        type
+      });
+    }
   })));
 }
 
