@@ -248,7 +248,7 @@ function RewardsListItemAdd(_ref) {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItemAdd"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "RewardsListItem__back",
+    className: "RewardsListItemAdd__back",
     type: "button",
     onClick: () => setActiveScreen("list")
   }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -270,7 +270,11 @@ function RewardsListItemAdd(_ref) {
         type
       });
     }
-  })));
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "RewardsListItemAdd__next",
+    type: "button",
+    onClick: () => setActiveScreen("list")
+  }, "Next"));
 }
 
 /***/ }),

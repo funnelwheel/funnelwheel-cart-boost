@@ -252,4 +252,14 @@ button {
   margin-bottom: 8px;
 }
 
+.RewardsListItemAdd__back {
+  margin-bottom: 16px;
+}
+.RewardsListItemAdd__body {
+  margin-bottom: 16px;
+  padding: 24px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
 /*# sourceMappingURL=rewards.css.map*/

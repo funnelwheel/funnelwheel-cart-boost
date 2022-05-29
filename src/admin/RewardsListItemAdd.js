@@ -16,7 +16,7 @@ export default function RewardsListItemAdd({ setActiveScreen }) {
 	return (
 		<div className="RewardsListItemAdd">
 			<button
-				className="RewardsListItem__back"
+				className="RewardsListItemAdd__back"
 				type="button"
 				onClick={() => setActiveScreen("list")}
 			>
@@ -36,7 +36,7 @@ export default function RewardsListItemAdd({ setActiveScreen }) {
 				/>
 
 				<SelectControl
-                    label="Type"
+					label="Type"
 					value={reward.type}
 					options={woocommerce_growcart_rewards.reward_types}
 					onChange={(type) => {
@@ -47,6 +47,14 @@ export default function RewardsListItemAdd({ setActiveScreen }) {
 					}}
 				/>
 			</div>
+
+			<button
+				className="RewardsListItemAdd__next"
+				type="button"
+				onClick={() => setActiveScreen("list")}
+			>
+				Next
+			</button>
 		</div>
 	);
 }
