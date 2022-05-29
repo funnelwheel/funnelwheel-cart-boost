@@ -5,11 +5,19 @@ export default function RewardsListItem({
 	rewardTypeLabels,
 	activeRewardItem,
 	updateReward,
+	setActiveScreen,
 	setCurrentlyEditing,
 }) {
 	return (
 		<div className="RewardsListItem">
-			<button className="RewardsListItem__back" type="button" onClick={() => setCurrentlyEditing(null)}>
+			<button
+				className="RewardsListItem__back"
+				type="button"
+				onClick={() => {
+					setActiveScreen("list");
+					setCurrentlyEditing(null);
+				}}
+			>
 				Back
 			</button>
 

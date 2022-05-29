@@ -8,6 +8,7 @@ import RewardsListItem from "./RewardsListItem";
 
 export default function RewardsList() {
 	const activeRewardId = null;
+	const [activeScreen, setActiveScreen] = useState("list");
 	const [currentlyEditing, setCurrentlyEditing] = useState(activeRewardId);
 	const [rewards, setRewards] = useState([
 		{
@@ -82,13 +83,14 @@ export default function RewardsList() {
 		{}
 	);
 
-	if (currentlyEditing) {
+	if ("edit" === activeScreen) {
 		return (
 			<RewardsListItem
 				{...{
 					activeRewardItem,
 					rewardTypeLabels,
 					updateReward,
+					setActiveScreen,
 					setCurrentlyEditing,
 				}}
 			/>
@@ -134,11 +136,12 @@ export default function RewardsList() {
 											<a
 												className="growcart-reward-edit"
 												href="#"
-												onClick={() =>
+												onClick={() => {
 													setCurrentlyEditing(
 														reward.id
-													)
-												}
+													);
+													setActiveScreen("edit");
+												}}
 											>
 												Edit
 											</a>
