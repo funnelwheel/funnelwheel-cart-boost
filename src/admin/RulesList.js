@@ -39,13 +39,6 @@ export default function RulesList({ reward, addRule, removeRule, updateRule }) {
 										>
 											Remove
 										</button>
-										<button
-											type="button"
-											className="RulesList__remove"
-											onClick={() => removeRule(rule.id)}
-										>
-											Remove
-										</button>
 									</div>
 
 									<TextControl

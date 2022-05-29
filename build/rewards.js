@@ -167,12 +167,13 @@ function RewardsListItem(_ref) {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "RewardsListItem__back",
     type: "button",
     onClick: () => setCurrentlyEditing(null)
   }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__row"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "RewardsListItem__col"
+    className: "RewardsListItem__col-rules"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__type"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -196,7 +197,7 @@ function RewardsListItem(_ref) {
       });
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "RewardsListItem__col"
+    className: "RewardsListItem__col-preview"
   }, "Preview")));
 }
 
@@ -251,10 +252,6 @@ function RulesList(_ref) {
         });
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-      type: "button",
-      className: "RulesList__remove",
-      onClick: () => removeRule(rule.id)
-    }, "Remove"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "RulesList__remove",
       onClick: () => removeRule(rule.id)

@@ -9,12 +9,12 @@ export default function RewardsListItem({
 }) {
 	return (
 		<div className="RewardsListItem">
-			<button type="button" onClick={() => setCurrentlyEditing(null)}>
+			<button className="RewardsListItem__back" type="button" onClick={() => setCurrentlyEditing(null)}>
 				Back
 			</button>
 
 			<div className="RewardsListItem__row">
-				<div className="RewardsListItem__col">
+				<div className="RewardsListItem__col-rules">
 					<div className="RewardsListItem__type">
 						<div className="RewardsListItem__type-label">
 							Reward type
@@ -53,7 +53,7 @@ export default function RewardsListItem({
 					/>
 				</div>
 
-				<div className="RewardsListItem__col">Preview</div>
+				<div className="RewardsListItem__col-preview">Preview</div>
 			</div>
 		</div>
 	);

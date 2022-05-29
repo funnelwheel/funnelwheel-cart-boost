@@ -5,7 +5,7 @@
 @import "~bootstrap/scss/utilities";
 
 button {
-	padding: 8px 12px;
+	padding: 8px 16px;
 	margin: auto 2px;
 	border-radius: 50px;
 	cursor: pointer;
@@ -17,7 +17,8 @@ button {
 	width: 200px;
 }
 
-.growcart-rewards {
+.growcart-rewards,
+.RulesList {
 	input {
 		width: $form-check-input-width;
 		height: $form-check-input-width;
@@ -239,13 +240,36 @@ button {
 }
 
 .RewardsListItem {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	&__back {
+		margin-bottom: 16px;
+	}
+
 	&__row {
-		display: flex;
+		@include make-row();
+	}
+
+	&__col-rules,
+	&__col-preview {
+		@include make-col-ready();
+	}
+
+	&__col-rules {
+		@include make-col(4);
+	}
+
+	&__col-preview {
+		@include make-col(8);
 	}
 
 	&__type {
 		margin-bottom: 16px;
-		padding: 16px;
+		padding: 24px;
 		border-radius: 4px;
 		background-color: #ffffff;
 	}
@@ -260,12 +284,22 @@ button {
 }
 
 .RulesListItem {
-	margin-bottom: 16px;
-	padding: 16px;
+	margin-bottom: 8px;
+	padding: 24px;
 	border-radius: 4px;
 	background-color: #ffffff;
 
 	input[type="text"] {
 		width: 100%;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		button[type="button"] {
+			margin-bottom: 8px;
+		}
 	}
 }

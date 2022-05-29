@@ -2,7 +2,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/sass/admin-rewards.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************/
 button {
-  padding: 8px 12px;
+  padding: 8px 16px;
   margin: auto 2px;
   border-radius: 50px;
   cursor: pointer;
@@ -14,7 +14,8 @@ button {
   width: 200px;
 }
 
-.growcart-rewards input {
+.growcart-rewards input,
+.RulesList input {
   width: 1em;
   height: 1em;
   margin-top: 0.25em;
@@ -29,51 +30,65 @@ button {
           appearance: none;
   print-color-adjust: exact;
 }
-.growcart-rewards input[type=checkbox] {
+.growcart-rewards input[type=checkbox],
+.RulesList input[type=checkbox] {
   border-radius: 0.25em;
 }
-.growcart-rewards input[type=radio] {
+.growcart-rewards input[type=radio],
+.RulesList input[type=radio] {
   border-radius: 50%;
 }
-.growcart-rewards input:active {
+.growcart-rewards input:active,
+.RulesList input:active {
   filter: brightness(90%);
 }
-.growcart-rewards input:focus {
+.growcart-rewards input:focus,
+.RulesList input:focus {
   border-color: #86b7fe;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
-.growcart-rewards input:checked {
+.growcart-rewards input:checked,
+.RulesList input:checked {
   background-color: #0d6efd;
   border-color: #0d6efd;
 }
-.growcart-rewards input:checked[type=checkbox] {
+.growcart-rewards input:checked[type=checkbox],
+.RulesList input:checked[type=checkbox] {
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3e%3cpath fill=%27none%27 stroke=%27%23fff%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%273%27 d=%27m6 10 3 3 6-6%27/%3e%3c/svg%3e");
 }
-.growcart-rewards input:checked[type=radio] {
+.growcart-rewards input:checked[type=radio],
+.RulesList input:checked[type=radio] {
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%272%27 fill=%27%23fff%27/%3e%3c/svg%3e");
 }
-.growcart-rewards input[type=checkbox]:indeterminate {
+.growcart-rewards input[type=checkbox]:indeterminate,
+.RulesList input[type=checkbox]:indeterminate {
   background-color: #0d6efd;
   border-color: #0d6efd;
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3e%3cpath fill=%27none%27 stroke=%27%23fff%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%273%27 d=%27M6 10h8%27/%3e%3c/svg%3e");
 }
-.growcart-rewards input:disabled {
+.growcart-rewards input:disabled,
+.RulesList input:disabled {
   pointer-events: none;
   filter: none;
   opacity: 0.5;
 }
-.growcart-rewards input[disabled] ~ .form-check-label, .growcart-rewards input:disabled ~ .form-check-label {
+.growcart-rewards input[disabled] ~ .form-check-label, .growcart-rewards input:disabled ~ .form-check-label,
+.RulesList input[disabled] ~ .form-check-label,
+.RulesList input:disabled ~ .form-check-label {
   cursor: default;
   opacity: 0.5;
 }
-.growcart-rewards input[type=checkbox]:checked::before {
+.growcart-rewards input[type=checkbox]:checked::before,
+.RulesList input[type=checkbox]:checked::before {
   content: "";
 }
-.growcart-rewards .components-form-toggle {
+.growcart-rewards .components-form-toggle,
+.RulesList .components-form-toggle {
   padding-left: 2.5em;
 }
-.growcart-rewards .components-form-toggle input {
+.growcart-rewards .components-form-toggle input,
+.RulesList .components-form-toggle input {
   width: 2em;
   margin-left: -2.5em;
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27rgba%280, 0, 0, 0.25%29%27/%3e%3c/svg%3e");
@@ -82,14 +97,17 @@ button {
   transition: background-position 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .growcart-rewards .components-form-toggle input {
+  .growcart-rewards .components-form-toggle input,
+.RulesList .components-form-toggle input {
     transition: none;
   }
 }
-.growcart-rewards .components-form-toggle input:focus {
+.growcart-rewards .components-form-toggle input:focus,
+.RulesList .components-form-toggle input:focus {
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%2386b7fe%27/%3e%3c/svg%3e");
 }
-.growcart-rewards .components-form-toggle input:checked {
+.growcart-rewards .components-form-toggle input:checked,
+.RulesList .components-form-toggle input:checked {
   background-position: right center;
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23fff%27/%3e%3c/svg%3e");
 }
@@ -170,12 +188,42 @@ button {
   color: #dc3545;
 }
 
+.RewardsListItem *,
+.RewardsListItem *::before,
+.RewardsListItem *::after {
+  box-sizing: border-box;
+}
+.RewardsListItem__back {
+  margin-bottom: 16px;
+}
 .RewardsListItem__row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
   display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.RewardsListItem__col-rules, .RewardsListItem__col-preview {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
+}
+.RewardsListItem__col-rules {
+  flex: 0 0 auto;
+  width: 33.33333333%;
+}
+.RewardsListItem__col-preview {
+  flex: 0 0 auto;
+  width: 66.66666667%;
 }
 .RewardsListItem__type {
   margin-bottom: 16px;
-  padding: 16px;
+  padding: 24px;
   border-radius: 4px;
   background-color: #ffffff;
 }
@@ -187,13 +235,21 @@ button {
 }
 
 .RulesListItem {
-  margin-bottom: 16px;
-  padding: 16px;
+  margin-bottom: 8px;
+  padding: 24px;
   border-radius: 4px;
   background-color: #ffffff;
 }
 .RulesListItem input[type=text] {
   width: 100%;
+}
+.RulesListItem__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.RulesListItem__actions button[type=button] {
+  margin-bottom: 8px;
 }
 
 /*# sourceMappingURL=rewards.css.map*/
