@@ -261,5 +261,8 @@ button {
   border-radius: 4px;
   background-color: #ffffff;
 }
+.RewardsListItemAdd .components-text-control__input {
+  width: 100%;
+}
 
 /*# sourceMappingURL=rewards.css.map*/
