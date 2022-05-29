@@ -1,56 +1,36 @@
-.RewardsAdminScreen {
-	.Rewards-List {
-		display: inline-block;
+button {
+	padding: 8px 12px;
+	margin: auto 2px;
+	border-radius: 50px;
+	cursor: pointer;
+	border: none;
+	background-color: #ffffff;
+}
+
+.components-base-control__label {
+	width: 200px;
+}
+
+.growcart-rewards {
+	border: 1px solid #c3c4c7;
+	box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+	background-color: #ffffff;
+
+	th,
+	td {
+		padding: 1rem;
 	}
 
-	.reward-title {
-		display: inline-block;
-		border-radius: 50px;
-		padding: 8px 12px;
-		margin: auto 2px;
-		cursor: pointer;
-		background-color: #ffffff;
-
-		&.active {
-			background-color: #000000;
-			color: #ffffff;
-		}
+	tr:nth-child(odd) td {
+		background-color: #f9f9f9;
 	}
 
-	button {
-		padding: 8px 12px;
-		margin: auto 2px;
-		border-radius: 50px;
-		cursor: pointer;
-		border: none;
-		background-color: #ffffff;
+	.row-actions {
+		position: relative;
 	}
 
-	.components-base-control__label {
-		width: 200px;
-	}
-
-	.growcart-rewards {
-		border: 1px solid #c3c4c7;
-		box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
-		background-color: #ffffff;
-
-		th,
-		td {
-			padding: 1rem;
-		}
-
-		tr:nth-child(odd) td {
-			background-color: #f9f9f9;
-		}
-
-		.row-actions {
-			position: relative;
-		}
-
-		tr:hover .row-actions {
-			position: static;
-		}
+	tr:hover .row-actions {
+		position: static;
 	}
 }
 

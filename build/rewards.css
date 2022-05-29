@@ -1,22 +1,7 @@
 /*!****************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/sass/admin-rewards.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************/
-.RewardsAdminScreen .Rewards-List {
-  display: inline-block;
-}
-.RewardsAdminScreen .reward-title {
-  display: inline-block;
-  border-radius: 50px;
-  padding: 8px 12px;
-  margin: auto 2px;
-  cursor: pointer;
-  background-color: #ffffff;
-}
-.RewardsAdminScreen .reward-title.active {
-  background-color: #000000;
-  color: #ffffff;
-}
-.RewardsAdminScreen button {
+button {
   padding: 8px 12px;
   margin: auto 2px;
   border-radius: 50px;
@@ -24,25 +9,27 @@
   border: none;
   background-color: #ffffff;
 }
-.RewardsAdminScreen .components-base-control__label {
+
+.components-base-control__label {
   width: 200px;
 }
-.RewardsAdminScreen .growcart-rewards {
+
+.growcart-rewards {
   border: 1px solid #c3c4c7;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   background-color: #ffffff;
 }
-.RewardsAdminScreen .growcart-rewards th,
-.RewardsAdminScreen .growcart-rewards td {
+.growcart-rewards th,
+.growcart-rewards td {
   padding: 1rem;
 }
-.RewardsAdminScreen .growcart-rewards tr:nth-child(odd) td {
+.growcart-rewards tr:nth-child(odd) td {
   background-color: #f9f9f9;
 }
-.RewardsAdminScreen .growcart-rewards .row-actions {
+.growcart-rewards .row-actions {
   position: relative;
 }
-.RewardsAdminScreen .growcart-rewards tr:hover .row-actions {
+.growcart-rewards tr:hover .row-actions {
   position: static;
 }
 
