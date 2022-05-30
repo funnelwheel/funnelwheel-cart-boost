@@ -1,13 +1,16 @@
 import { v4 as uuidv4 } from "uuid";
+import { RewardsAdminContext } from "../context";
 import RulesList from "./RulesList";
 
-export default function RewardsListItem({
-	rewardTypeLabels,
-	activeRewardItem,
-	updateReward,
-	setActiveScreen,
-	setCurrentlyEditing,
-}) {
+export default function RewardsListItem() {
+	const {
+		activeRewardItem,
+		updateReward,
+		rewardTypeLabels,
+		setActiveScreen,
+		setCurrentlyEditing,
+	} = useContext(RewardsAdminContext);
+
 	return (
 		<div className="RewardsListItem">
 			<button

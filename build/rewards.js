@@ -87,6 +87,7 @@ function Rewards() {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_1__.RewardsAdminContext.Provider, {
     value: {
       rewards,
+      activeRewardItem,
       updateReward,
       setCurrentlyEditing,
       setActiveScreen,
@@ -192,19 +193,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _RulesList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RulesList */ "./src/admin/RulesList.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _RulesList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RulesList */ "./src/admin/RulesList.js");
 
 
 
-function RewardsListItem(_ref) {
-  let {
-    rewardTypeLabels,
+
+function RewardsListItem() {
+  const {
     activeRewardItem,
     updateReward,
+    rewardTypeLabels,
     setActiveScreen,
     setCurrentlyEditing
-  } = _ref;
+  } = useContext(_context__WEBPACK_IMPORTED_MODULE_1__.RewardsAdminContext);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -224,11 +227,11 @@ function RewardsListItem(_ref) {
     className: "RewardsListItem__type-label"
   }, "Reward type"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__type-value"
-  }, rewardTypeLabels[activeRewardItem.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, rewardTypeLabels[activeRewardItem.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_2__["default"], {
     reward: activeRewardItem,
     addRule: () => updateReward({ ...activeRewardItem,
       rules: [...activeRewardItem.rules, {
-        id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
         name: "20 USD",
         minimum_cart_amount: 0,
         value: 0

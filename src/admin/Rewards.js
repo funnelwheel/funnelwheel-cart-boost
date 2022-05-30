@@ -86,6 +86,7 @@ export default function Rewards() {
 		<RewardsAdminContext.Provider
 			value={{
 				rewards,
+				activeRewardItem,
 				updateReward,
 				setCurrentlyEditing,
 				setActiveScreen,
