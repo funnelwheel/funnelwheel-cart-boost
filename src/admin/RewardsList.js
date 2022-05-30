@@ -12,6 +12,7 @@ export default function RewardsList() {
 		setCurrentlyEditing,
 		setActiveScreen,
 		setRewards,
+		rewardTypeLabels
 	} = useContext(RewardsAdminContext);
 
 	return (
