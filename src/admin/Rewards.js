@@ -4,7 +4,7 @@ import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
-import { AdminRewardsContext } from "../context";
+import { RewardsAdminContext } from "../context";
 import RewardsListItem from "./RewardsListItem";
 import RewardsListItemAdd from "./RewardsListItemAdd";
 
@@ -86,7 +86,7 @@ export default function Rewards() {
 	);
 
 	return (
-		<AdminRewardsContext.Provider value={{}}>
+		<RewardsAdminContext.Provider value={{}}>
 			{"list" === activeScreen && (
 				<div className="RewardsList">
 					<table className="growcart-rewards">
@@ -192,6 +192,6 @@ export default function Rewards() {
 			{"add" === activeScreen && (
 				<RewardsListItemAdd {...{ setActiveScreen }} />
 			)}
-		</AdminRewardsContext.Provider>
+		</RewardsAdminContext.Provider>
 	);
 }

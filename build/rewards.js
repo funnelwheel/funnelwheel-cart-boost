@@ -85,7 +85,7 @@ function Rewards() {
     previousValue[currentValue.value] = currentValue.label;
     return previousValue;
   }, {});
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_2__.AdminRewardsContext.Provider, {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext.Provider, {
     value: {}
   }, "list" === activeScreen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsList"
@@ -378,7 +378,7 @@ function RulesList(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CartContext": function() { return /* binding */ CartContext; },
-/* harmony export */   "AdminRewardsContext": function() { return /* binding */ AdminRewardsContext; }
+/* harmony export */   "RewardsAdminContext": function() { return /* binding */ RewardsAdminContext; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
@@ -387,7 +387,7 @@ const CartContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createCon
   cart: {},
   updateCart: () => {}
 });
-const AdminRewardsContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+const RewardsAdminContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createContext)({
   rewards: [],
   updateRewards: () => {}
 });
