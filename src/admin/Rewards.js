@@ -91,21 +91,11 @@ export default function Rewards() {
 				setCurrentlyEditing,
 				setActiveScreen,
 				setRewards,
-				rewardTypeLabels
+				rewardTypeLabels,
 			}}
 		>
 			{"list" === activeScreen && <RewardsList />}
-			{"edit" === activeScreen && (
-				<RewardsListItem
-					{...{
-						activeRewardItem,
-						rewardTypeLabels,
-						updateReward,
-						setActiveScreen,
-						setCurrentlyEditing,
-					}}
-				/>
-			)}
+			{"edit" === activeScreen && <RewardsListItem />}
 			{"add" === activeScreen && (
 				<RewardsListItemAdd {...{ setActiveScreen }} />
 			)}
