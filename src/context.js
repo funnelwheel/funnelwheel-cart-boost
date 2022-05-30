@@ -4,7 +4,7 @@ export const CartContext = createContext({
 	updateCart: () => {}
 });
 
-export const RewardsAdminContext = createContext({
+export const AdminRewardsContext = createContext({
 	rewards: [],
 	updateRewards: () => {}
 });
