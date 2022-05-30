@@ -3030,14 +3030,19 @@ function SuggestedProducts() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CartContext": function() { return /* binding */ CartContext; }
+/* harmony export */   "CartContext": function() { return /* binding */ CartContext; },
+/* harmony export */   "RewardsAdminContext": function() { return /* binding */ RewardsAdminContext; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
 const CartContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createContext)({
-  cart: woocommerce_growcart.cart,
+  cart: {},
   updateCart: () => {}
+});
+const RewardsAdminContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+  rewards: [],
+  updateRewards: () => {}
 });
 
 /***/ }),
