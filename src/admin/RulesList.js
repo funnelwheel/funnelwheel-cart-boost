@@ -3,6 +3,7 @@ import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
+import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 
 export default function RulesList({ reward, addRule, removeRule }) {
@@ -70,7 +71,7 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										}}
 									/>
 
-									<TextControl
+									<NumberControl
 										label="Minimum cart amount"
 										value={rule.value}
 										onChange={(value) => {

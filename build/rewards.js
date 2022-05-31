@@ -333,6 +333,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function RulesList(_ref) {
   let {
     reward,
@@ -341,7 +342,7 @@ function RulesList(_ref) {
   } = _ref;
   const {
     updateReward
-  } = useContext(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
 
   function updateRule(rule) {
     const rules = reward.rules.map(_rule => {
@@ -393,7 +394,7 @@ function RulesList(_ref) {
           name
         });
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Minimum cart amount",
       value: rule.value,
       onChange: value => {
