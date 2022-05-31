@@ -26,16 +26,8 @@ export default function RulesList({ reward, addRule, removeRule }) {
 
 	return (
 		<div className="RulesList">
-			<div className="RulesList__top">
-				<h4 className="RulesList__title">Reward Rules</h4>
-				<button
-					type="button"
-					className="RulesList__add"
-					onClick={addRule}
-				>
-					Add rule
-				</button>
-			</div>
+			<h4 className="RulesList__title">Reward Rules</h4>
+
 			<div className="RulesList__items">
 				{reward.rules && reward.rules.length
 					? reward.rules.map((rule) => {
@@ -43,6 +35,11 @@ export default function RulesList({ reward, addRule, removeRule }) {
 								<div className="RulesListItem" key={rule.id}>
 									<div className="RulesListItem__actions">
 										<ToggleControl
+											label={
+												rule.enabled
+													? "Active"
+													: "Disabled"
+											}
 											checked={rule.enabled}
 											onChange={() => {
 												updateRule({
@@ -116,6 +113,10 @@ export default function RulesList({ reward, addRule, removeRule }) {
 					  })
 					: null}
 			</div>
+
+			<button type="button" className="RulesList__add" onClick={addRule}>
+				Add rule
+			</button>
 		</div>
 	);
 }

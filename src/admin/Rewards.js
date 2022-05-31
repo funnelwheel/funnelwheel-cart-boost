@@ -86,8 +86,6 @@ export default function Rewards() {
 		{}
 	);
 
-	console.log(rewardTypeLabels);
-
 	return (
 		<RewardsAdminContext.Provider
 			value={{

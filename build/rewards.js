@@ -88,7 +88,6 @@ function Rewards() {
     previousValue[currentValue.value] = currentValue.label;
     return previousValue;
   }, {});
-  console.log(rewardTypeLabels);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_1__.RewardsAdminContext.Provider, {
     value: {
       rewards,
@@ -395,15 +394,9 @@ function RulesList(_ref) {
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "RulesList__top"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     className: "RulesList__title"
-  }, "Reward Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    type: "button",
-    className: "RulesList__add",
-    onClick: addRule
-  }, "Add rule")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "Reward Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList__items"
   }, reward.rules && reward.rules.length ? reward.rules.map(rule => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -412,6 +405,7 @@ function RulesList(_ref) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "RulesListItem__actions"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+      label: rule.enabled ? "Active" : "Disabled",
       checked: rule.enabled,
       onChange: () => {
         updateRule({ ...rule,
@@ -459,7 +453,11 @@ function RulesList(_ref) {
       shiftStep: 10,
       value: rule.minimum_cart_amount
     }));
-  }) : null));
+  }) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button",
+    className: "RulesList__add",
+    onClick: addRule
+  }, "Add rule"));
 }
 
 /***/ }),

@@ -46,7 +46,7 @@ export default function RewardsListItem() {
 						<div className="RewardsListItem__type-value">
 							{rewardTypeLabels[activeRewardItem.type]}
 						</div>
-
+						
 						<ToggleControl
 							label="Display suggested products"
 							help="Display suggested products on the right side of the popup modal."
