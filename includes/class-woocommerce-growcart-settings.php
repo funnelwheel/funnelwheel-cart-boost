@@ -45,29 +45,6 @@ class WooCommerce_Growcart_Settings {
 
 	protected function init_settings() {
 		$this->settings = [
-			'general' => [
-				__( 'General', 'woocommerce-grow-cart' ),
-				[
-					[
-						'name'       => 'woocommerce_growcart_display_suggested_products',
-						'std'        => '1',
-						'label'      => __( 'Display suggested products', 'woocommerce-grow-cart' ),
-						'cb_label'   => __( 'Display suggested products on the right side of the popup modal.', 'woocommerce-grow-cart' ),
-						'desc'       => '',
-						'type'       => 'checkbox',
-						'attributes' => [],
-					],
-					[
-						'name'       => 'woocommerce_growcart_display_coupon',
-						'std'        => '1',
-						'label'      => __( 'Display coupon', 'woocommerce-grow-cart' ),
-						'cb_label'   => __( 'Display and allow users to apply coupon codes.', 'woocommerce-grow-cart' ),
-						'desc'       => '',
-						'type'       => 'checkbox',
-						'attributes' => [],
-					],
-				],
-			],
 			'rewards' => [
 				__( 'Rewards', 'woocommerce-grow-cart' ),
 				[
@@ -125,14 +102,6 @@ class WooCommerce_Growcart_Settings {
 			<form class="woocommerce-growcart-options" action="options.php" method="post">
 				<?php settings_fields( $this->settings_group ); ?>
 
-				<h2 class="nav-tab-wrapper">
-					<?php
-					foreach ( $this->settings as $key => $section ) {
-						echo '<a href="#settings-' . esc_attr( sanitize_title( $key ) ) . '" class="nav-tab">' . esc_html( $section[0] ) . '</a>';
-					}
-					?>
-				</h2>
-
 				<?php
 				foreach ( $this->settings as $key => $section ) {
 					$section_args = isset( $section[2] ) ? (array) $section[2] : [];
@@ -154,48 +123,8 @@ class WooCommerce_Growcart_Settings {
 					echo '</div>';
 				}
 				?>
-
-				<p class="submit">
-					<input type="submit" class="button-primary" value="<?php esc_attr_e( 'Save Changes', 'woocommerce-grow-cart' ); ?>" />
-				</p>
 			</form>
 		</div>
-		<script type="text/javascript">
-			jQuery('.nav-internal').click(function (e) {
-				e.preventDefault();
-				jQuery('.nav-tab-wrapper a[href="' + jQuery(this).attr('href') + '"]').click();
-
-				return false;
-			});
-
-			jQuery('.nav-tab-wrapper a').click(function() {
-				if ( '#' !== jQuery(this).attr( 'href' ).substr( 0, 1 ) ) {
-					return false;
-				}
-				jQuery('.settings_panel').hide();
-				jQuery('.nav-tab-active').removeClass('nav-tab-active');
-				jQuery( jQuery(this).attr('href') ).show();
-				jQuery(this).addClass('nav-tab-active');
-				window.location.hash = jQuery(this).attr('href');
-				jQuery( 'form.woocommerce-growcart-options' ).attr( 'action', 'options.php' + jQuery(this).attr( 'href' ) );
-				window.scrollTo( 0, 0 );
-				return false;
-			});
-			var goto_hash = window.location.hash;
-			if ( '#' === goto_hash.substr( 0, 1 ) ) {
-				jQuery( 'form.woocommerce-growcart-options' ).attr( 'action', 'options.php' + jQuery(this).attr( 'href' ) );
-			}
-			if ( goto_hash ) {
-				var the_tab = jQuery( 'a[href="' + goto_hash + '"]' );
-				if ( the_tab.length > 0 ) {
-					the_tab.click();
-				} else {
-					jQuery( '.nav-tab-wrapper a:first' ).click();
-				}
-			} else {
-				jQuery( '.nav-tab-wrapper a:first' ).click();
-			}
-		</script>
 		<?php
 	}
 
