@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useContext } from "@wordpress/element";
-import { ToggleControl } from "@wordpress/components";
+import { TextControl, ToggleControl } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
 import RulesList from "./RulesList";
 
@@ -29,6 +29,17 @@ export default function RewardsListItem() {
 			<div className="RewardsListItem__row">
 				<div className="RewardsListItem__col-rules">
 					<div className="RewardsListItem__type">
+						<TextControl
+							label="Name"
+							value={activeRewardItem.name}
+							onChange={(name) => {
+								updateReward({
+									...activeRewardItem,
+									name,
+								});
+							}}
+						/>
+
 						<div className="RewardsListItem__type-label">
 							Reward type
 						</div>
@@ -53,9 +64,7 @@ export default function RewardsListItem() {
 						<ToggleControl
 							label="Display coupon"
 							help="Display and allow users to apply coupon codes."
-							checked={
-								activeRewardItem.display_coupon
-							}
+							checked={activeRewardItem.display_coupon}
 							onChange={() =>
 								updateReward({
 									...activeRewardItem,
