@@ -1,8 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 import { TextControl, SelectControl } from "@wordpress/components";
-import { useState } from "@wordpress/element";
+import { useState, useContext } from "@wordpress/element";
+import { RewardsAdminContext } from "../context";
 
 export default function RewardsListItemAdd({ setActiveScreen }) {
+	const { rewardRules } = useContext(RewardsAdminContext);
 	const [reward, setReward] = useState({
 		id: uuidv4(),
 		name: "Free Shipping",
@@ -38,11 +40,11 @@ export default function RewardsListItemAdd({ setActiveScreen }) {
 				<SelectControl
 					label="Type"
 					value={reward.type}
-					options={woocommerce_growcart_rewards.reward_types}
-					onChange={(type) => {
+					options={rewardRules}
+					onChange={(rule) => {
 						setReward({
 							...reward,
-							type,
+							rule,
 						});
 					}}
 				/>

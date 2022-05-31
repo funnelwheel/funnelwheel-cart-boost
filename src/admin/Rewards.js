@@ -86,6 +86,8 @@ export default function Rewards() {
 		{}
 	);
 
+	console.log(rewardTypeLabels);
+
 	return (
 		<RewardsAdminContext.Provider
 			value={{
@@ -96,6 +98,7 @@ export default function Rewards() {
 				setActiveScreen,
 				setRewards,
 				rewardTypeLabels,
+				rewardRules: woocommerce_growcart_rewards.reward_rules
 			}}
 		>
 			{"list" === activeScreen && <RewardsList />}
