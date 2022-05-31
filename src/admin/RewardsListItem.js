@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useContext } from "@wordpress/element";
+import { ToggleControl } from '@wordpress/components';
 import { RewardsAdminContext } from "../context";
 import RulesList from "./RulesList";
 
@@ -34,6 +35,17 @@ export default function RewardsListItem() {
 						<div className="RewardsListItem__type-value">
 							{rewardTypeLabels[activeRewardItem.type]}
 						</div>
+
+						<ToggleControl
+
+							checked={rule.enabled}
+							onChange={() => {
+								updateRule({
+									...rule,
+									enabled: !rule.enabled,
+								});
+							}}
+						/>
 					</div>
 
 					<RulesList

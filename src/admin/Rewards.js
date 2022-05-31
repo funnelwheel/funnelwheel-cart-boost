@@ -15,6 +15,8 @@ export default function Rewards() {
 			name: "Minimum cart contents",
 			type: "minimum_cart_contents",
 			enabled: false,
+			display_suggested_products: true,
+			display_coupon: true,
 			rules: [],
 		},
 		{
@@ -22,6 +24,8 @@ export default function Rewards() {
 			name: "Minimum cart amount",
 			type: "minimum_cart_amount",
 			enabled: false,
+			display_suggested_products: true,
+			display_coupon: true,
 			rules: [
 				{
 					id: uuidv4(),
