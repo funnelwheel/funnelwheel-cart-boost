@@ -37,7 +37,10 @@ function Rewards() {
     enabled: false,
     display_suggested_products: true,
     display_coupon: true,
-    rules: []
+    rules: [],
+    minimum_cart_contents: 0,
+    minimum_cart_amount: 0,
+    value: 0
   }, {
     id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
     name: "Minimum cart amount",
@@ -45,6 +48,9 @@ function Rewards() {
     enabled: false,
     display_suggested_products: true,
     display_coupon: true,
+    minimum_cart_contents: 0,
+    minimum_cart_amount: 0,
+    value: 0,
     rules: [{
       id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
       name: "Free Fhipping",
@@ -63,6 +69,10 @@ function Rewards() {
     }]
   }]);
   const activeRewardItem = currentlyEditing ? rewards.find(reward => reward.id === currentlyEditing) : null;
+
+  function addReward(reward) {
+    setRewards([...rewards, reward]);
+  }
 
   function updateReward(reward) {
     setRewards(rewards.map(_reward => {
@@ -92,6 +102,7 @@ function Rewards() {
     value: {
       rewards,
       activeRewardItem,
+      addReward,
       updateReward,
       setCurrentlyEditing,
       setActiveScreen,
@@ -299,21 +310,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function RewardsListItemAdd(_ref) {
-  let {
-    setActiveScreen
-  } = _ref;
+function RewardsListItemAdd() {
   const {
+    addReward,
+    setCurrentlyEditing,
+    setActiveScreen,
     rewardRules
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
   const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
     id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     name: "Free Shipping",
-    type: "free_shipping",
-    rule: "minimum_cart_contents",
+    type: "minimum_cart_contents",
+    display_suggested_products: true,
+    display_coupon: true,
     value: 0,
     minimum_cart_contents: 0,
-    minimum_cart_amount: 0
+    minimum_cart_amount: 0,
+    rules: [],
+    enabled: false
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItemAdd"
@@ -343,7 +357,11 @@ function RewardsListItemAdd(_ref) {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "RewardsListItemAdd__next",
     type: "button",
-    onClick: () => setActiveScreen("list")
+    onClick: () => {
+      addReward(reward);
+      setCurrentlyEditing(reward.id);
+      setActiveScreen("edit");
+    }
   }, "Next"));
 }
 

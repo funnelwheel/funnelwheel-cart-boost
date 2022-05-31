@@ -18,6 +18,9 @@ export default function Rewards() {
 			display_suggested_products: true,
 			display_coupon: true,
 			rules: [],
+			minimum_cart_contents: 0,
+			minimum_cart_amount: 0,
+			value: 0,
 		},
 		{
 			id: uuidv4(),
@@ -26,6 +29,9 @@ export default function Rewards() {
 			enabled: false,
 			display_suggested_products: true,
 			display_coupon: true,
+			minimum_cart_contents: 0,
+			minimum_cart_amount: 0,
+			value: 0,
 			rules: [
 				{
 					id: uuidv4(),
@@ -51,6 +57,10 @@ export default function Rewards() {
 	const activeRewardItem = currentlyEditing
 		? rewards.find((reward) => reward.id === currentlyEditing)
 		: null;
+
+	function addReward(reward) {
+		setRewards([...rewards, reward]);
+	}
 
 	function updateReward(reward) {
 		setRewards(
@@ -91,12 +101,13 @@ export default function Rewards() {
 			value={{
 				rewards,
 				activeRewardItem,
+				addReward,
 				updateReward,
 				setCurrentlyEditing,
 				setActiveScreen,
 				setRewards,
 				rewardTypeLabels,
-				rewardRules: woocommerce_growcart_rewards.reward_rules
+				rewardRules: woocommerce_growcart_rewards.reward_rules,
 			}}
 		>
 			{"list" === activeScreen && <RewardsList />}

@@ -3,16 +3,24 @@ import { TextControl, SelectControl } from "@wordpress/components";
 import { useState, useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 
-export default function RewardsListItemAdd({ setActiveScreen }) {
-	const { rewardRules } = useContext(RewardsAdminContext);
+export default function RewardsListItemAdd() {
+	const {
+		addReward,
+		setCurrentlyEditing,
+		setActiveScreen,
+		rewardRules,
+	} = useContext(RewardsAdminContext);
 	const [reward, setReward] = useState({
 		id: uuidv4(),
 		name: "Free Shipping",
-		type: "free_shipping",
-		rule: "minimum_cart_contents",
+		type: "minimum_cart_contents",
+		display_suggested_products: true,
+		display_coupon: true,
 		value: 0,
 		minimum_cart_contents: 0,
 		minimum_cart_amount: 0,
+		rules: [],
+		enabled: false,
 	});
 
 	return (
@@ -53,7 +61,11 @@ export default function RewardsListItemAdd({ setActiveScreen }) {
 			<button
 				className="RewardsListItemAdd__next"
 				type="button"
-				onClick={() => setActiveScreen("list")}
+				onClick={() => {
+					addReward(reward);
+					setCurrentlyEditing(reward.id);
+					setActiveScreen("edit");
+				}}
 			>
 				Next
 			</button>
