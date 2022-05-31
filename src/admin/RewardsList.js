@@ -30,7 +30,7 @@ export default function RewardsList() {
 					<tbody>
 						{rewards.map((reward) => {
 							return (
-								<tr>
+								<tr key={reward.id}>
 									<td>
 										<ToggleControl
 											checked={reward.enabled}
@@ -88,7 +88,7 @@ export default function RewardsList() {
 				) : null}
 				<tfoot>
 					<tr>
-						<td colspan="5">
+						<td colSpan="5">
 							<button
 								type="button"
 								className="RewardsList__add"

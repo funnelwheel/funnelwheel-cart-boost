@@ -21,7 +21,7 @@ export default function RulesList({ reward, addRule, removeRule, updateRule }) {
 				{reward.rules && reward.rules.length
 					? reward.rules.map((rule) => {
 							return (
-								<div className="RulesListItem">
+								<div className="RulesListItem" key={rule.id}>
 									<div className="RulesListItem__actions">
 										<ToggleControl
 											checked={rule.enabled}
