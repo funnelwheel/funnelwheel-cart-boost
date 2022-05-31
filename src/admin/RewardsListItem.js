@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useContext } from "@wordpress/element";
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
 import RulesList from "./RulesList";
 
@@ -37,14 +37,31 @@ export default function RewardsListItem() {
 						</div>
 
 						<ToggleControl
+							label="Display suggested products"
+							help="Display suggested products on the right side of the popup modal."
+							checked={
+								activeRewardItem.display_suggested_products
+							}
+							onChange={() =>
+								updateReward({
+									...activeRewardItem,
+									display_suggested_products: !activeRewardItem.display_suggested_products,
+								})
+							}
+						/>
 
-							checked={rule.enabled}
-							onChange={() => {
-								updateRule({
-									...rule,
-									enabled: !rule.enabled,
-								});
-							}}
+						<ToggleControl
+							label="Display coupon"
+							help="Display and allow users to apply coupon codes."
+							checked={
+								activeRewardItem.display_coupon
+							}
+							onChange={() =>
+								updateReward({
+									...activeRewardItem,
+									display_coupon: !activeRewardItem.display_coupon,
+								})
+							}
 						/>
 					</div>
 

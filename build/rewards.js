@@ -232,12 +232,19 @@ function RewardsListItem() {
   }, "Reward type"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__type-value"
   }, rewardTypeLabels[activeRewardItem.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    checked: rule.enabled,
-    onChange: () => {
-      updateRule({ ...rule,
-        enabled: !rule.enabled
-      });
-    }
+    label: "Display suggested products",
+    help: "Display suggested products on the right side of the popup modal.",
+    checked: activeRewardItem.display_suggested_products,
+    onChange: () => updateReward({ ...activeRewardItem,
+      display_suggested_products: !activeRewardItem.display_suggested_products
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: "Display coupon",
+    help: "Display and allow users to apply coupon codes.",
+    checked: activeRewardItem.display_coupon,
+    onChange: () => updateReward({ ...activeRewardItem,
+      display_coupon: !activeRewardItem.display_coupon
+    })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     reward: activeRewardItem,
     addRule: () => updateReward({ ...activeRewardItem,
