@@ -3,8 +3,26 @@ import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
+import { RewardsAdminContext } from "../context";
 
-export default function RulesList({ reward, addRule, removeRule, updateRule }) {
+export default function RulesList({ reward, addRule, removeRule }) {
+	const { updateReward } = useContext(RewardsAdminContext);
+
+	function updateRule(rule) {
+		const rules = reward.rules.map((_rule) => {
+			if (_rule.id === rule.id) {
+				return rule;
+			}
+
+			return _rule;
+		});
+
+		updateReward({
+			...reward,
+			rules,
+		});
+	}
+
 	return (
 		<div className="RulesList">
 			<div className="RulesList__top">

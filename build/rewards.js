@@ -329,15 +329,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
+
 
 
 function RulesList(_ref) {
   let {
     reward,
     addRule,
-    removeRule,
-    updateRule
+    removeRule
   } = _ref;
+  const {
+    updateReward
+  } = useContext(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
+
+  function updateRule(rule) {
+    const rules = reward.rules.map(_rule => {
+      if (_rule.id === rule.id) {
+        return rule;
+      }
+
+      return _rule;
+    });
+    updateReward({ ...reward,
+      rules
+    });
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
