@@ -93,18 +93,21 @@ function Rewards() {
     rules: [{
       id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
       name: "Free Fhipping",
-      minimum_cart_amount: 10,
-      value: 0
+      type: 'free_shipping',
+      value: 0,
+      minimum_cart_amount: 0
     }, {
       id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
       name: "1%",
-      minimum_cart_amount: 20,
-      value: 0
+      value: 1,
+      type: 'percent',
+      minimum_cart_amount: 10
     }, {
       id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
       name: "20 USD",
-      minimum_cart_amount: 50,
-      value: 0
+      value: 20,
+      type: 'fixed_cart',
+      minimum_cart_amount: 20
     }]
   }]);
   const activeRewardItem = currentlyEditing ? rewards.find(reward => reward.id === currentlyEditing) : null;
@@ -507,6 +510,12 @@ function RulesList(_ref) {
       },
       shiftStep: 10,
       value: rule.minimum_cart_amount
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+      label: "Size",
+      value: size,
+      options: woocommerce_growcart_rewards.reward_types,
+      onChange: newSize => setSize(newSize),
+      __nextHasNoMarginBottom: true
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Minimum cart amount",
       value: rule.value,

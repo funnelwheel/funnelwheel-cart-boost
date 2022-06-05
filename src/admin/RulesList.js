@@ -2,6 +2,7 @@ import {
 	TextControl,
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
+	SelectControl,
 } from "@wordpress/components";
 import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
@@ -106,6 +107,16 @@ export default function RulesList({ reward, addRule, removeRule }) {
 											value={rule.minimum_cart_amount}
 										/>
 									)}
+
+									<SelectControl
+										label="Size"
+										value={size}
+										options={
+											woocommerce_growcart_rewards.reward_types
+										}
+										onChange={(newSize) => setSize(newSize)}
+										__nextHasNoMarginBottom
+									/>
 
 									<NumberControl
 										label="Minimum cart amount"
