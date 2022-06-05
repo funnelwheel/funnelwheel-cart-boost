@@ -105,47 +105,7 @@ function Rewards() {
   const activeRewardId = null;
   const [activeScreen, setActiveScreen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("list");
   const [currentlyEditing, setCurrentlyEditing] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(activeRewardId);
-  const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
-    name: "Minimum cart contents",
-    type: "minimum_cart_quantity",
-    enabled: false,
-    display_suggested_products: true,
-    display_coupon: true,
-    rules: [],
-    minimum_cart_quantity: 0,
-    minimum_cart_amount: 0,
-    value: 0
-  }, {
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
-    name: "Minimum cart amount",
-    type: "minimum_cart_amount",
-    enabled: false,
-    display_suggested_products: true,
-    display_coupon: true,
-    minimum_cart_quantity: 0,
-    minimum_cart_amount: 0,
-    value: 0,
-    rules: [{
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
-      name: "Free Fhipping",
-      type: 'free_shipping',
-      value: 0,
-      minimum_cart_amount: 0
-    }, {
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
-      name: "1%",
-      value: 1,
-      type: 'percent',
-      minimum_cart_amount: 10
-    }, {
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
-      name: "20 USD",
-      value: 20,
-      type: 'fixed_cart',
-      minimum_cart_amount: 20
-    }]
-  }]);
+  const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const activeRewardItem = currentlyEditing ? rewards.find(reward => reward.id === currentlyEditing) : null;
 
   function addReward(reward) {
@@ -162,16 +122,50 @@ function Rewards() {
     }));
   }
 
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {// const rewards = JSON.parse(
-    // 	document.getElementById("setting-woocommerce_growcart_rewards")
-    // 		.value
-    // );
-    // setRewards(rewards);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setRewards([{
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+      name: "Minimum cart contents",
+      type: "minimum_cart_quantity",
+      enabled: false,
+      display_suggested_products: true,
+      display_coupon: true,
+      rules: [],
+      minimum_cart_quantity: 0,
+      minimum_cart_amount: 0,
+      value: 0
+    }, {
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+      name: "Minimum cart amount",
+      type: "minimum_cart_amount",
+      enabled: false,
+      display_suggested_products: true,
+      display_coupon: true,
+      minimum_cart_quantity: 0,
+      minimum_cart_amount: 0,
+      value: 0,
+      rules: [{
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+        name: "Free Fhipping",
+        type: "free_shipping",
+        value: 0,
+        minimum_cart_amount: 0
+      }, {
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+        name: "1%",
+        value: 1,
+        type: "percent",
+        minimum_cart_amount: 10
+      }, {
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+        name: "20 USD",
+        value: 20,
+        type: "fixed_cart",
+        minimum_cart_amount: 20
+      }]
+    }]);
   }, []);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {// document.getElementById(
-    // 	"setting-woocommerce_growcart_rewards"
-    // ).value = JSON.stringify(rewards);
-  }, [rewards]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {}, [rewards]);
   const rewardTypeLabels = woocommerce_growcart_rewards.reward_rules.reduce((previousValue, currentValue) => {
     previousValue[currentValue.value] = currentValue.label;
     return previousValue;
@@ -553,7 +547,7 @@ function RulesList(_ref) {
         type
       }),
       __nextHasNoMarginBottom: true
-    }), "minimum_cart_quantity" === rule.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+    }), "minimum_cart_quantity" === reward.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Minimum cart quantity",
       isShiftStepEnabled: true,
       onChange: minimum_cart_quantity => {

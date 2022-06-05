@@ -109,7 +109,7 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										__nextHasNoMarginBottom
 									/>
 
-									{"minimum_cart_quantity" === rule.type ? (
+									{"minimum_cart_quantity" === reward.type ? (
 										<NumberControl
 											label="Minimum cart quantity"
 											isShiftStepEnabled={true}
