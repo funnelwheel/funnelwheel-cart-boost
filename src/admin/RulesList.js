@@ -5,6 +5,7 @@ import {
 } from "@wordpress/components";
 import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
+import { ReactComponent as TrashIcon } from "./../svg/trash.svg";
 
 export default function RulesList({ reward, addRule, removeRule }) {
 	const { updateReward } = useContext(RewardsAdminContext);
@@ -53,7 +54,7 @@ export default function RulesList({ reward, addRule, removeRule }) {
 											className="RulesList__remove"
 											onClick={() => removeRule(rule.id)}
 										>
-											Remove
+											<TrashIcon />
 										</button>
 									</div>
 
