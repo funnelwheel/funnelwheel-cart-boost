@@ -291,15 +291,11 @@ class WooCommerce_Growcart_Settings {
 						'label' => __( 'Fixed' ),
 						'value' => 'fixed_cart',
 					],
-					[
-						'label' => __( 'Giftcard' ),
-						'value' => 'giftcard',
-					],
 				],
 				'reward_rules'         => [
 					[
-						'label' => __( 'Minimum cart contents', 'woocommerce-grow-cart' ),
-						'value' => 'minimum_cart_contents',
+						'label' => __( 'Minimum cart quantity', 'woocommerce-grow-cart' ),
+						'value' => 'minimum_cart_quantity',
 					],
 					[
 						'label' => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),

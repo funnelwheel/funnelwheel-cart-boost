@@ -13,7 +13,7 @@ export default function Rewards() {
 		{
 			id: uuidv4(),
 			name: "Minimum cart contents",
-			type: "minimum_cart_contents",
+			type: "minimum_cart_quantity",
 			enabled: false,
 			display_suggested_products: true,
 			display_coupon: true,
