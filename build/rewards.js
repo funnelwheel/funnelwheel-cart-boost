@@ -503,18 +503,18 @@ function RulesList(_ref) {
     }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Value",
       isShiftStepEnabled: true,
-      onChange: minimum_cart_amount => {
-        updateRule({ ...rule,
-          minimum_cart_amount
-        });
-      },
+      onChange: minimum_cart_amount => updateRule({ ...rule,
+        minimum_cart_amount
+      }),
       shiftStep: 10,
       value: rule.minimum_cart_amount
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-      label: "Size",
-      value: size,
+      label: "Type",
+      value: rule.type,
       options: woocommerce_growcart_rewards.reward_types,
-      onChange: newSize => setSize(newSize),
+      onChange: type => updateRule({ ...rule,
+        type
+      }),
       __nextHasNoMarginBottom: true
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Minimum cart amount",
