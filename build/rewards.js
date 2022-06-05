@@ -487,14 +487,6 @@ function RulesList(_ref) {
           name
         });
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Minimum cart amount",
-      value: rule.value,
-      onChange: value => {
-        updateRule({ ...rule,
-          value
-        });
-      }
     }), "minimum_cart_contents" === reward.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Value",
       isShiftStepEnabled: true,
@@ -515,6 +507,14 @@ function RulesList(_ref) {
       },
       shiftStep: 10,
       value: rule.minimum_cart_amount
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "Minimum cart amount",
+      value: rule.value,
+      onChange: value => {
+        updateRule({ ...rule,
+          value
+        });
+      }
     }));
   }) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",

@@ -77,17 +77,6 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										}}
 									/>
 
-									<NumberControl
-										label="Minimum cart amount"
-										value={rule.value}
-										onChange={(value) => {
-											updateRule({
-												...rule,
-												value,
-											});
-										}}
-									/>
-
 									{"minimum_cart_contents" === reward.type ? (
 										<NumberControl
 											label="Value"
@@ -117,6 +106,17 @@ export default function RulesList({ reward, addRule, removeRule }) {
 											value={rule.minimum_cart_amount}
 										/>
 									)}
+
+									<NumberControl
+										label="Minimum cart amount"
+										value={rule.value}
+										onChange={(value) => {
+											updateRule({
+												...rule,
+												value,
+											});
+										}}
+									/>
 								</div>
 							);
 					  })
