@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useContext } from "@wordpress/element";
-import { TextControl, ToggleControl } from "@wordpress/components";
+import { BaseControl, TextControl, ToggleControl } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
 import RulesList from "./RulesList";
 
@@ -40,12 +40,9 @@ export default function RewardsListItem() {
 							}}
 						/>
 
-						<div className="RewardsListItem__type-label">
-							Reward type
-						</div>
-						<div className="RewardsListItem__type-value">
-							{rewardTypeLabels[activeRewardItem.type]}
-						</div>
+						<BaseControl id="textarea-1" label="Reward type">
+							<div>{rewardTypeLabels[activeRewardItem.type]}</div>
+						</BaseControl>
 
 						<ToggleControl
 							label="Display suggested products"

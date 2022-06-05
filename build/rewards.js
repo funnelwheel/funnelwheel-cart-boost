@@ -333,11 +333,10 @@ function RewardsListItem() {
         name
       });
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "RewardsListItem__type-label"
-  }, "Reward type"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "RewardsListItem__type-value"
-  }, rewardTypeLabels[activeRewardItem.type]), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "textarea-1",
+    label: "Reward type"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, rewardTypeLabels[activeRewardItem.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: "Display suggested products",
     help: "Display suggested products on the right side of the popup modal.",
     checked: activeRewardItem.display_suggested_products,

@@ -3,7 +3,6 @@ import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 	SelectControl,
-	Tooltip,
 } from "@wordpress/components";
 import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";

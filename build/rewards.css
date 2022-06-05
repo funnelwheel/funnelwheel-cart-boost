@@ -129,6 +129,15 @@ button {
   border-radius: 4px;
   background-color: #ffffff;
 }
+.RewardsListItem .components-base-control {
+  margin-bottom: 16px;
+}
+.RewardsListItem .components-base-control__label,
+.RewardsListItem .components-input-control__label,
+.RewardsListItem .components-toggle-control__label {
+  font-size: 14px;
+  font-weight: 600;
+}
 
 .RulesList__top {
   display: flex;
@@ -152,6 +161,9 @@ button {
   margin-right: -18px;
 }
 .RulesListItem__actions button[type=button] {
+  margin-bottom: 8px;
+}
+.RulesListItem__actions .components-base-control {
   margin-bottom: 8px;
 }
 
