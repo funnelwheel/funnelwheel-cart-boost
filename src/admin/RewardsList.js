@@ -1,7 +1,7 @@
 import { useContext } from "@wordpress/element";
 import {
 	ToggleControl,
-	__experimentalConfirmDialog as ConfirmDialog
+	__experimentalConfirmDialog as ConfirmDialog,
 } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
 
@@ -12,7 +12,7 @@ export default function RewardsList() {
 		setCurrentlyEditing,
 		setActiveScreen,
 		setRewards,
-		rewardTypeLabels
+		rewardTypeLabels,
 	} = useContext(RewardsAdminContext);
 
 	return (
@@ -40,10 +40,24 @@ export default function RewardsList() {
 													: "Disabled"
 											}
 											onChange={() => {
-												updateReward({
-													...reward,
-													enabled: !reward.enabled,
-												});
+												setRewards(
+													rewards.map((_reward) => {
+														if (
+															_reward.id ===
+															reward.id
+														) {
+															return {
+																...reward,
+																enabled: !reward.enabled,
+															};
+														}
+
+														return {
+															..._reward,
+															enabled: false,
+														};
+													})
+												);
 											}}
 										/>
 									</td>

@@ -103,12 +103,12 @@ export default function Rewards() {
 		<RewardsAdminContext.Provider
 			value={{
 				rewards,
+				setRewards,
 				activeRewardItem,
 				addReward,
 				updateReward,
 				setCurrentlyEditing,
 				setActiveScreen,
-				setRewards,
 				rewardTypeLabels,
 				rewardRules: woocommerce_growcart_rewards.reward_rules,
 			}}
