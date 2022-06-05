@@ -3,6 +3,7 @@ import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 	SelectControl,
+	Tooltip
 } from "@wordpress/components";
 import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
@@ -29,6 +30,10 @@ export default function RulesList({ reward, addRule, removeRule }) {
 	return (
 		<div className="RulesList">
 			<h4 className="RulesList__title">Reward Rules</h4>
+
+			<Tooltip text="More information">
+        <div>Hover for more information</div>
+    </Tooltip>
 
 			<div className="RulesList__items">
 				{reward.rules && reward.rules.length

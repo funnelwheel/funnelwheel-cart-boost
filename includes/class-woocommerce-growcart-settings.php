@@ -310,7 +310,7 @@ class WooCommerce_Growcart_Settings {
 		wp_enqueue_style(
 			'woocommerce-growcart-rewards',
 			plugins_url( 'build/rewards.css', WOOCOMMERCE_GROWCART_FILE ),
-			[],
+			[ 'wp-components' ],
 			$asset_file['version']
 		);
 	}
