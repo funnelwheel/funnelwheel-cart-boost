@@ -55,18 +55,18 @@ export default function RulesListItem() {
 				}}
 			/>
 
-			{"minimum_cart_contents" === reward.type ? (
+			{"minimum_cart_quantity" === reward.type ? (
 				<NumberControl
 					label="Value"
 					isShiftStepEnabled={true}
-					onChange={(minimum_cart_contents) => {
+					onChange={(minimum_cart_quantity) => {
 						updateRule({
 							...rule,
-							minimum_cart_contents,
+							minimum_cart_quantity,
 						});
 					}}
 					shiftStep={10}
-					value={rule.minimum_cart_contents}
+					value={rule.minimum_cart_quantity}
 				/>
 			) : (
 				<NumberControl

@@ -46,7 +46,7 @@ export default function RewardsListItem() {
 						<div className="RewardsListItem__type-value">
 							{rewardTypeLabels[activeRewardItem.type]}
 						</div>
-						
+
 						<ToggleControl
 							label="Display suggested products"
 							help="Display suggested products on the right side of the popup modal."
@@ -84,9 +84,11 @@ export default function RewardsListItem() {
 										...activeRewardItem.rules,
 										{
 											id: uuidv4(),
-											name: "20 USD",
-											minimum_cart_amount: 0,
+											name: "Free Fhipping",
+											type: "free_shipping",
 											value: 0,
+											minimum_cart_quantity: 0,
+											minimum_cart_amount: 0,
 										},
 									],
 								}),

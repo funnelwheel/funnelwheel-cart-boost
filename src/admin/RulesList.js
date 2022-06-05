@@ -3,7 +3,7 @@ import {
 	ToggleControl,
 	__experimentalNumberControl as NumberControl,
 	SelectControl,
-	Tooltip
+	Tooltip,
 } from "@wordpress/components";
 import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
@@ -32,8 +32,8 @@ export default function RulesList({ reward, addRule, removeRule }) {
 			<h4 className="RulesList__title">Reward Rules</h4>
 
 			<Tooltip text="More information">
-        <div>Hover for more information</div>
-    </Tooltip>
+				<div>Hover for more information</div>
+			</Tooltip>
 
 			<div className="RulesList__items">
 				{reward.rules && reward.rules.length
@@ -83,35 +83,16 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										}}
 									/>
 
-									{"minimum_cart_contents" === reward.type ? (
-										<NumberControl
-											label="Value"
-											isShiftStepEnabled={true}
-											onChange={(
-												minimum_cart_contents
-											) => {
-												updateRule({
-													...rule,
-													minimum_cart_contents,
-												});
-											}}
-											shiftStep={10}
-											value={rule.minimum_cart_contents}
-										/>
-									) : (
-										<NumberControl
-											label="Value"
-											isShiftStepEnabled={true}
-											onChange={(minimum_cart_amount) =>
-												updateRule({
-													...rule,
-													minimum_cart_amount,
-												})
-											}
-											shiftStep={10}
-											value={rule.minimum_cart_amount}
-										/>
-									)}
+									<NumberControl
+										label="Value"
+										value={rule.value}
+										onChange={(value) => {
+											updateRule({
+												...rule,
+												value,
+											});
+										}}
+									/>
 
 									<SelectControl
 										label="Type"
@@ -128,16 +109,48 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										__nextHasNoMarginBottom
 									/>
 
-									<NumberControl
-										label="Minimum cart amount"
-										value={rule.value}
-										onChange={(value) => {
-											updateRule({
-												...rule,
-												value,
-											});
-										}}
-									/>
+									{["percent", "fixed_cart"].includes(
+										rule.type
+									) && (
+										<>
+											{"minimum_cart_quantity" ===
+											rule.type ? (
+												<NumberControl
+													label="Minimum cart quantity"
+													isShiftStepEnabled={true}
+													onChange={(
+														minimum_cart_quantity
+													) => {
+														updateRule({
+															...rule,
+															minimum_cart_quantity,
+														});
+													}}
+													shiftStep={10}
+													value={
+														rule.minimum_cart_quantity
+													}
+												/>
+											) : (
+												<NumberControl
+													label="Minimum cart amount"
+													isShiftStepEnabled={true}
+													onChange={(
+														minimum_cart_amount
+													) =>
+														updateRule({
+															...rule,
+															minimum_cart_amount,
+														})
+													}
+													shiftStep={10}
+													value={
+														rule.minimum_cart_amount
+													}
+												/>
+											)}
+										</>
+									)}
 								</div>
 							);
 					  })

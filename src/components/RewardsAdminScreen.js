@@ -195,11 +195,11 @@ export default function RewardsAdminScreen() {
 											<NumberControl
 												isShiftStepEnabled={true}
 												onChange={(
-													minimum_cart_contents
+													minimum_cart_quantity
 												) => {
 													updateReward({
 														...reward,
-														[reward.rule]: minimum_cart_contents,
+														[reward.rule]: minimum_cart_quantity,
 													});
 												}}
 												shiftStep={10}
@@ -227,9 +227,9 @@ export default function RewardsAdminScreen() {
 											id: uuidv4(),
 											name: "FREE SHIPPING",
 											type: "free_shipping",
-											rule: "minimum_cart_contents",
+											rule: "minimum_cart_quantity",
 											value: 0,
-											minimum_cart_contents: 3,
+											minimum_cart_quantity: 3,
 											minimum_cart_amount: 0,
 										},
 									])

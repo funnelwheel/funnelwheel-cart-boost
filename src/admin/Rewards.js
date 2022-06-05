@@ -18,7 +18,7 @@ export default function Rewards() {
 			display_suggested_products: true,
 			display_coupon: true,
 			rules: [],
-			minimum_cart_contents: 0,
+			minimum_cart_quantity: 0,
 			minimum_cart_amount: 0,
 			value: 0,
 		},
@@ -29,7 +29,7 @@ export default function Rewards() {
 			enabled: false,
 			display_suggested_products: true,
 			display_coupon: true,
-			minimum_cart_contents: 0,
+			minimum_cart_quantity: 0,
 			minimum_cart_amount: 0,
 			value: 0,
 			rules: [

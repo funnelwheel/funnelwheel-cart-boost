@@ -13,11 +13,11 @@ export default function RewardsListItemAdd() {
 	const [reward, setReward] = useState({
 		id: uuidv4(),
 		name: "Free Shipping",
-		type: "minimum_cart_contents",
+		type: "minimum_cart_quantity",
 		display_suggested_products: true,
 		display_coupon: true,
 		value: 0,
-		minimum_cart_contents: 0,
+		minimum_cart_quantity: 0,
 		minimum_cart_amount: 0,
 		rules: [],
 		enabled: false,

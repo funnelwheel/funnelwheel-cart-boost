@@ -77,7 +77,7 @@ function Rewards() {
     display_suggested_products: true,
     display_coupon: true,
     rules: [],
-    minimum_cart_contents: 0,
+    minimum_cart_quantity: 0,
     minimum_cart_amount: 0,
     value: 0
   }, {
@@ -87,7 +87,7 @@ function Rewards() {
     enabled: false,
     display_suggested_products: true,
     display_coupon: true,
-    minimum_cart_contents: 0,
+    minimum_cart_quantity: 0,
     minimum_cart_amount: 0,
     value: 0,
     rules: [{
@@ -320,9 +320,11 @@ function RewardsListItem() {
     addRule: () => updateReward({ ...activeRewardItem,
       rules: [...activeRewardItem.rules, {
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
-        name: "20 USD",
-        minimum_cart_amount: 0,
-        value: 0
+        name: "Free Fhipping",
+        type: "free_shipping",
+        value: 0,
+        minimum_cart_quantity: 0,
+        minimum_cart_amount: 0
       }]
     }),
     updateRule: () => {},
@@ -370,11 +372,11 @@ function RewardsListItemAdd() {
   const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
     id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     name: "Free Shipping",
-    type: "minimum_cart_contents",
+    type: "minimum_cart_quantity",
     display_suggested_products: true,
     display_coupon: true,
     value: 0,
-    minimum_cart_contents: 0,
+    minimum_cart_quantity: 0,
     minimum_cart_amount: 0,
     rules: [],
     enabled: false
@@ -500,24 +502,14 @@ function RulesList(_ref) {
           name
         });
       }
-    }), "minimum_cart_contents" === reward.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Value",
-      isShiftStepEnabled: true,
-      onChange: minimum_cart_contents => {
+      value: rule.value,
+      onChange: value => {
         updateRule({ ...rule,
-          minimum_cart_contents
+          value
         });
-      },
-      shiftStep: 10,
-      value: rule.minimum_cart_contents
-    }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Value",
-      isShiftStepEnabled: true,
-      onChange: minimum_cart_amount => updateRule({ ...rule,
-        minimum_cart_amount
-      }),
-      shiftStep: 10,
-      value: rule.minimum_cart_amount
+      }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
       label: "Type",
       value: rule.type,
@@ -526,15 +518,25 @@ function RulesList(_ref) {
         type
       }),
       __nextHasNoMarginBottom: true
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Minimum cart amount",
-      value: rule.value,
-      onChange: value => {
+    }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "minimum_cart_quantity" === rule.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "Minimum cart quantity",
+      isShiftStepEnabled: true,
+      onChange: minimum_cart_quantity => {
         updateRule({ ...rule,
-          value
+          minimum_cart_quantity
         });
-      }
-    }));
+      },
+      shiftStep: 10,
+      value: rule.minimum_cart_quantity
+    }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "Minimum cart amount",
+      isShiftStepEnabled: true,
+      onChange: minimum_cart_amount => updateRule({ ...rule,
+        minimum_cart_amount
+      }),
+      shiftStep: 10,
+      value: rule.minimum_cart_amount
+    })));
   }) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     className: "RulesList__add",
