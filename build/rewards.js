@@ -1,6 +1,42 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/svg/info-circle-fill.svg":
+/*!**************************************!*\
+  !*** ./src/svg/info-circle-fill.svg ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": function() { return /* binding */ SvgInfoCircleFill; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgInfoCircleFill(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 16,
+    height: 16,
+    fill: "currentColor",
+    className: "info-circle-fill_svg__bi info-circle-fill_svg__bi-info-circle-fill"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M8 16A8 8 0 108 0a8 8 0 000 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 110-2 1 1 0 010 2z"
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktaW5mby1jaXJjbGUtZmlsbCIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8cGF0aCBkPSJNOCAxNkE4IDggMCAxIDAgOCAwYTggOCAwIDAgMCAwIDE2em0uOTMtOS40MTItMSA0LjcwNWMtLjA3LjM0LjAyOS41MzMuMzA0LjUzMy4xOTQgMCAuNDg3LS4wNy42ODYtLjI0NmwtLjA4OC40MTZjLS4yODcuMzQ2LS45Mi41OTgtMS40NjUuNTk4LS43MDMgMC0xLjAwMi0uNDIyLS44MDgtMS4zMTlsLjczOC0zLjQ2OGMuMDY0LS4yOTMuMDA2LS4zOTktLjI4Ny0uNDdsLS40NTEtLjA4MS4wODItLjM4MSAyLjI5LS4yODd6TTggNS41YTEgMSAwIDEgMSAwLTIgMSAxIDAgMCAxIDAgMnoiLz4KPC9zdmc+");
+
+
+/***/ }),
+
 /***/ "./src/svg/trash.svg":
 /*!***************************!*\
   !*** ./src/svg/trash.svg ***!
@@ -436,6 +472,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
 /* harmony import */ var _svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../svg/trash.svg */ "./src/svg/trash.svg");
+/* harmony import */ var _svg_info_circle_fill_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../svg/info-circle-fill.svg */ "./src/svg/info-circle-fill.svg");
+
 
 
 
@@ -468,9 +506,7 @@ function RulesList(_ref) {
     className: "RulesList"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     className: "RulesList__title"
-  }, "Reward Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Tooltip, {
-    text: "More information"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Hover for more information")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "Reward Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList__items"
   }, reward.rules && reward.rules.length ? reward.rules.map(rule => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -502,7 +538,7 @@ function RulesList(_ref) {
           name
         });
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+    }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Value",
       value: rule.value,
       onChange: value => {
@@ -518,7 +554,7 @@ function RulesList(_ref) {
         type
       }),
       __nextHasNoMarginBottom: true
-    }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "minimum_cart_quantity" === rule.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+    }), "minimum_cart_quantity" === rule.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Minimum cart quantity",
       isShiftStepEnabled: true,
       onChange: minimum_cart_quantity => {
@@ -536,7 +572,7 @@ function RulesList(_ref) {
       }),
       shiftStep: 10,
       value: rule.minimum_cart_amount
-    })));
+    }));
   }) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     className: "RulesList__add",
