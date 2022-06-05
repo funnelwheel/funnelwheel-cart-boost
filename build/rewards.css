@@ -149,6 +149,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-right: -18px;
 }
 .RulesListItem__actions button[type=button] {
   margin-bottom: 8px;
