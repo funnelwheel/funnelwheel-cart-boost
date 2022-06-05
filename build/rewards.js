@@ -474,7 +474,11 @@ function RulesList(_ref) {
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "RulesList__remove",
-      onClick: () => removeRule(rule.id)
+      onClick: () => {
+        if (confirm("Deleting rule!") === true) {
+          removeRule(rule.id);
+        }
+      }
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Name",
       value: rule.name,

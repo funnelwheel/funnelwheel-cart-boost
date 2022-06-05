@@ -52,7 +52,15 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										<button
 											type="button"
 											className="RulesList__remove"
-											onClick={() => removeRule(rule.id)}
+											onClick={() => {
+												if (
+													confirm(
+														"Deleting rule!"
+													) === true
+												) {
+													removeRule(rule.id);
+												}
+											}}
 										>
 											<TrashIcon />
 										</button>

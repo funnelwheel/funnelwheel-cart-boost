@@ -1,7 +1,7 @@
 import { useContext } from "@wordpress/element";
 import {
 	ToggleControl,
-	__experimentalNumberControl as NumberControl,
+	__experimentalConfirmDialog as ConfirmDialog
 } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
 
