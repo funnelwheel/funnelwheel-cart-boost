@@ -77,24 +77,26 @@ class WooCommerce_Growcart_Settings {
 	}
 
 	/**
-	 * Add options page.
+	 * Add plugin page.
 	 *
 	 * @return void
 	 */
 	public function add_plugin_page() {
-		add_options_page(
-			__( 'WooCommerce Growcart Settings', 'woocommerce-grow-cart' ),
-			__( 'WooCommerce Growcart', 'woocommerce-grow-cart' ),
+		add_menu_page(
+			__( 'Growcart Settings', 'woocommerce-grow-cart' ),
+			__( 'Growcart', 'woocommerce-grow-cart' ),
 			'manage_options',
 			'woocommerce-growcart',
-			array( $this, 'options_page_html' )
+			array( $this, 'menu_page_html' ),
+			'dashicons-cart',
+			58
 		);
 	}
 
 	/**
 	 * Options page callback
 	 */
-	public function options_page_html() {
+	public function menu_page_html() {
 		$this->init_settings();
 		?>
 		<div class="wrap woocommerce-growcart-settings-wrap">
