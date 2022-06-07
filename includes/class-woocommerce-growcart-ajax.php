@@ -118,7 +118,7 @@ class WooCommerce_GrowCart_Ajax {
 	}
 
 	public function update_admin_rewards() {
-		check_ajax_referer( 'update-rewards', 'security' );
+		check_ajax_referer( 'woocommerce_growcart-options', 'security' );
 
 		if ( isset( $_POST['rewards'] ) ) {
 			$rewards = sanitize_text_field( $_POST['rewards'] );

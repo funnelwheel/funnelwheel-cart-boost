@@ -8,7 +8,6 @@ import { RewardsAdminContext } from "../context";
 export default function RewardsList() {
 	const {
 		rewards,
-		updateReward,
 		setCurrentlyEditing,
 		setActiveScreen,
 		setRewards,

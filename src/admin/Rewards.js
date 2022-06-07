@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
+import { useMutation } from "react-query";
 import { useState, useEffect } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
+import { updateAdminRewards } from "../admin-api";
 import RewardsList from "./RewardsList";
 import RewardsListItem from "./RewardsListItem";
 import RewardsListItemAdd from "./RewardsListItemAdd";
@@ -9,7 +11,16 @@ export default function Rewards() {
 	const activeRewardId = null;
 	const [activeScreen, setActiveScreen] = useState("list");
 	const [currentlyEditing, setCurrentlyEditing] = useState(activeRewardId);
-	const [rewards, setRewards] = useState([]);
+	const [rewards, setRewards] = useState(
+		JSON.parse(
+			document.querySelector('input[name="woocommerce_growcart_rewards"]')
+				.value
+		)
+	);
+	const mutation = useMutation(updateAdminRewards, {
+		onSuccess: (response) => {},
+	});
+
 	const activeRewardItem = currentlyEditing
 		? rewards.find((reward) => reward.id === currentlyEditing)
 		: null;
@@ -31,57 +42,11 @@ export default function Rewards() {
 	}
 
 	useEffect(() => {
-		setRewards([
-			{
-				id: uuidv4(),
-				name: "Minimum cart contents",
-				type: "minimum_cart_quantity",
-				enabled: false,
-				display_suggested_products: true,
-				display_coupon: true,
-				rules: [],
-				minimum_cart_quantity: 0,
-				minimum_cart_amount: 0,
-				value: 0,
-			},
-			{
-				id: uuidv4(),
-				name: "Minimum cart amount",
-				type: "minimum_cart_amount",
-				enabled: false,
-				display_suggested_products: true,
-				display_coupon: true,
-				minimum_cart_quantity: 0,
-				minimum_cart_amount: 0,
-				value: 0,
-				rules: [
-					{
-						id: uuidv4(),
-						name: "Free Fhipping",
-						type: "free_shipping",
-						value: 0,
-						minimum_cart_amount: 0,
-					},
-					{
-						id: uuidv4(),
-						name: "1%",
-						value: 1,
-						type: "percent",
-						minimum_cart_amount: 10,
-					},
-					{
-						id: uuidv4(),
-						name: "20 USD",
-						value: 20,
-						type: "fixed_cart",
-						minimum_cart_amount: 20,
-					},
-				],
-			},
-		]);
-	}, []);
-
-	useEffect(() => {}, [rewards]);
+		mutation.mutate({
+			security: document.querySelector('input[name="_wpnonce"]').value,
+			rewards: JSON.stringify(rewards),
+		});
+	}, [rewards]);
 
 	const rewardTypeLabels = woocommerce_growcart_rewards.reward_rules.reduce(
 		(previousValue, currentValue) => {
