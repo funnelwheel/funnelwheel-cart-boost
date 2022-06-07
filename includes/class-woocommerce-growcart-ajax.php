@@ -34,8 +34,6 @@ class WooCommerce_GrowCart_Ajax {
 		$current_reward_ids = [];
 		$reward_string      = '';
 
-		wp_send_json( $filtered_rewards );
-
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_reward_ids = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
 			$reward_string      = woocommerce_growcart()->rewards->get_reward_string( $filtered_rewards['current_rewards'] );

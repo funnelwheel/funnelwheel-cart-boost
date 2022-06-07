@@ -2545,6 +2545,7 @@ function Cart() {
     href: cartInformation.data.checkout_url,
     className: "checkout-button button alt wc-forward"
   }, "Proceed to checkout"))));
+  console.log(cartInformation);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_4__.CartContext.Provider, {
     value: {
       cartInformation

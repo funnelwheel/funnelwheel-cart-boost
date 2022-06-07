@@ -84,7 +84,8 @@ class WooCommerce_GrowCart_Rewards {
 
 		$cart_contents_count  = WC()->cart->get_cart_contents_count();
 			$rewards          = $this->get_available_rewards();
-			$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+			$rewards          = wp_list_filter( $rewards, [ 'enabled' => true ] );
+			$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_rewards = wp_list_filter( $filtered_rewards['current_rewards'], [ 'id' => $code ] );
@@ -110,7 +111,8 @@ class WooCommerce_GrowCart_Rewards {
 	public function auto_add_coupons() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
-		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$rewards             = wp_list_filter( $rewards, [ 'enabled' => true ] );
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$rewards_by_type = [
 				'percent'    => [],
@@ -177,7 +179,8 @@ class WooCommerce_GrowCart_Rewards {
 	public function conditionally_hide_rewards() {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
-		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$rewards             = wp_list_filter( $rewards, [ 'enabled' => true ] );
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$coupons         = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
@@ -196,7 +199,8 @@ class WooCommerce_GrowCart_Rewards {
 	public function filter_package_rates( $rates, $package ) {
 		$cart_contents_count = WC()->cart->get_cart_contents_count();
 		$rewards             = $this->get_available_rewards();
-		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+		$rewards             = wp_list_filter( $rewards, [ 'enabled' => true ] );
+		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
