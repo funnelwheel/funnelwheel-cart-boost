@@ -273,7 +273,7 @@ class WooCommerce_GrowCart_Rewards {
 		if ( $most_rewards ) {
 			$hint = 'You\'re getting the most rewards!';
 		} else {
-			$hint = $this->get_next_reward_hint( $filtered_rewards['next_rewards'] );
+			$hint = $this->get_next_reward_hint( $filtered_rewards['next_rewards'], $filtered_rewards['type'] );
 		}
 
 		return [
@@ -351,25 +351,23 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param array $next_rewards
 	 * @return void
 	 */
-	public function get_next_reward_hint( $next_rewards = [] ) {
+	public function get_next_reward_hint( $next_rewards = [], $type = 'minimum_cart_quantity' ) {
 		$reward_hint_string = '';
 		$next_reward        = current( $next_rewards );
 
-		return $next_reward;
-
-		if ( 'minimum_cart_quantity' === $next_reward['rule'] ) {
+		if ( 'minimum_cart_quantity' === $type ) {
 			$cart_contents_count    = WC()->cart->get_cart_contents_count();
-			$reward_hint_string     = 'PERCENTAGE' === $next_reward['type'] ? __( 'Add %1$d more products to save %2$s', 'woocommerce-grow-cart' ) : __( 'Add %1$d more products to get %2$s', 'woocommerce-grow-cart' );
+			$reward_hint_string     = 'percent' === $next_reward['type'] ? __( 'Add %1$d more products to save %2$s', 'woocommerce-grow-cart' ) : __( 'Add %1$d more products to get %2$s', 'woocommerce-grow-cart' );
 			$required_cart_contents = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
 			$cart_subtotal        = WC()->cart->subtotal;
-			$reward_hint_string   = 'PERCENTAGE' === $next_reward['type'] ? __( 'Add %1$d more to save %2$s', 'woocommerce-grow-cart' ) : __( 'Add %1$d more to get %2$s', 'woocommerce-grow-cart' );
+			$reward_hint_string   = 'percent' === $next_reward['type'] ? __( 'Add %1$d more to save %2$s', 'woocommerce-grow-cart' ) : __( 'Add %1$d more to get %2$s', 'woocommerce-grow-cart' );
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
 
 		return sprintf(
 			$reward_hint_string,
-			'minimum_cart_quantity' === $next_reward['rule'] ? $required_cart_contents : $required_cart_amount,
+			'minimum_cart_quantity' === $type ? $required_cart_contents : $required_cart_amount,
 			$next_reward['name']
 		);
 	}
