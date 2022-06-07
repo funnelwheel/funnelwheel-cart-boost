@@ -22,9 +22,9 @@ class WooCommerce_GrowCart_Rewards {
 				'id'                    => 'free_shipping',
 				'name'                  => 'Free Shipping',
 				'type'                  => 'free_shipping',
-				'rule'                  => 'minimum_cart_contents',
+				'rule'                  => 'minimum_cart_quantity',
 				'value'                 => 0,
-				'minimum_cart_contents' => 3,
+				'minimum_cart_quantity' => 3,
 				'minimum_cart_mount'    => 0,
 				'featured'              => true,
 			],
@@ -32,9 +32,9 @@ class WooCommerce_GrowCart_Rewards {
 				'id'                    => 'percent',
 				'name'                  => '3%',
 				'type'                  => 'percent',
-				'rule'                  => 'minimum_cart_contents',
+				'rule'                  => 'minimum_cart_quantity',
 				'value'                 => 3,
-				'minimum_cart_contents' => 5,
+				'minimum_cart_quantity' => 5,
 				'minimum_cart_mount'    => 0,
 				'featured'              => false,
 			],
@@ -42,9 +42,9 @@ class WooCommerce_GrowCart_Rewards {
 				'id'                    => 'fixed_cart',
 				'name'                  => '100 USD',
 				'type'                  => 'fixed_cart',
-				'rule'                  => 'minimum_cart_contents',
+				'rule'                  => 'minimum_cart_quantity',
 				'value'                 => 100,
-				'minimum_cart_contents' => 10,
+				'minimum_cart_quantity' => 10,
 				'minimum_cart_mount'    => 0,
 				'featured'              => false,
 			],
@@ -52,9 +52,9 @@ class WooCommerce_GrowCart_Rewards {
 				'id'                    => 'giftcard',
 				'name'                  => 'Giftcard',
 				'type'                  => 'giftcard',
-				'rule'                  => 'minimum_cart_contents',
+				'rule'                  => 'minimum_cart_quantity',
 				'value'                 => 100,
-				'minimum_cart_contents' => 15,
+				'minimum_cart_quantity' => 15,
 				'minimum_cart_mount'    => 0,
 				'featured'              => false,
 			],
@@ -240,15 +240,13 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_filtered_rewards( $rewards = [] ) {
-		$rewards_rule = get_option( 'woocommerce_growcart_reward_rule' );
-		$rewards      = wp_list_filter( $rewards, [ 'rule' => $rewards_rule ] );
-
-		if ( 'minimum_cart_contents' === $rewards_rule ) {
+		$rewards = wp_list_filter( $rewards, [ 'enabled' => true ] );
+		if ( 'minimum_cart_quantity' === $rewards[0]['type'] ) {
 			$cart_contents_count = WC()->cart->get_cart_contents_count();
-			$rewards             = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards, $cart_contents_count );
+			$rewards             = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
 		} else {
 			$cart_subtotal = WC()->cart->subtotal;
-			$rewards       = woocommerce_growcart()->rewards->filter_rewards_by_cart_subtotal( $rewards, $cart_subtotal );
+			$rewards       = woocommerce_growcart()->rewards->filter_rewards_by_cart_subtotal( $rewards[0]['rules'], $cart_subtotal );
 		}
 
 		return $rewards;
@@ -296,12 +294,12 @@ class WooCommerce_GrowCart_Rewards {
 			'next_rewards'    => [],
 		];
 
-		uasort( $rewards, [ $this, 'sort_by_minimum_cart_contents' ] );
+		uasort( $rewards, [ $this, 'sort_by_minimum_cart_quantity' ] );
 
 		$rewards = array_values( $rewards );
 
 		foreach ( $rewards as $key => $value ) {
-			if ( intval( $value['minimum_cart_contents'] ) <= $cart_contents_count ) {
+			if ( intval( $value['minimum_cart_quantity'] ) <= $cart_contents_count ) {
 				$filtered_rewards['current_rewards'][] = $value;
 			} else {
 				$filtered_rewards['next_rewards'][] = $value;
@@ -350,10 +348,10 @@ class WooCommerce_GrowCart_Rewards {
 		$reward_hint_string = '';
 		$next_reward        = current( $next_rewards );
 
-		if ( 'minimum_cart_contents' === $next_reward['rule'] ) {
+		if ( 'minimum_cart_quantity' === $next_reward['rule'] ) {
 			$cart_contents_count    = WC()->cart->get_cart_contents_count();
 			$reward_hint_string     = 'PERCENTAGE' === $next_reward['type'] ? __( 'Add %1$d more products to save %2$s', 'woocommerce-grow-cart' ) : __( 'Add %1$d more products to get %2$s', 'woocommerce-grow-cart' );
-			$required_cart_contents = intval( $next_reward['minimum_cart_contents'] ) - $cart_contents_count;
+			$required_cart_contents = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
 			$cart_subtotal        = WC()->cart->subtotal;
 			$reward_hint_string   = 'PERCENTAGE' === $next_reward['type'] ? __( 'Add %1$d more to save %2$s', 'woocommerce-grow-cart' ) : __( 'Add %1$d more to get %2$s', 'woocommerce-grow-cart' );
@@ -362,7 +360,7 @@ class WooCommerce_GrowCart_Rewards {
 
 		return sprintf(
 			$reward_hint_string,
-			'minimum_cart_contents' === $next_reward['rule'] ? $required_cart_contents : $required_cart_amount,
+			'minimum_cart_quantity' === $next_reward['rule'] ? $required_cart_contents : $required_cart_amount,
 			$next_reward['name']
 		);
 	}
@@ -379,8 +377,8 @@ class WooCommerce_GrowCart_Rewards {
 
 		$featured_rewards = [];
 		foreach ( $filtered_rewards as $key => $value ) {
-			$required_cart_contents = intval( $value['minimum_cart_contents'] ) - $cart_contents_count;
-			$reward_hint_string     = intval( $value['minimum_cart_contents'] ) <= $cart_contents_count ? sprintf(
+			$required_cart_contents = intval( $value['minimum_cart_quantity'] ) - $cart_contents_count;
+			$reward_hint_string     = intval( $value['minimum_cart_quantity'] ) <= $cart_contents_count ? sprintf(
 				__( 'You\'ve unlocked your %s!', 'woocommerce-grow-cart' ),
 				$value['name']
 			) : sprintf(
@@ -408,7 +406,7 @@ class WooCommerce_GrowCart_Rewards {
 		$items        = wp_list_pluck( $rewards, 'minimum_cart_amount' );
 		$max          = max( wp_parse_id_list( $items ) );
 
-		if ( 'minimum_cart_contents' === $rewards_rule ) {
+		if ( 'minimum_cart_quantity' === $rewards_rule ) {
 			$current = WC()->cart->get_cart_contents_count();
 		} else {
 			$current = WC()->cart->subtotal;
@@ -555,12 +553,12 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param [type] $b
 	 * @return void
 	 */
-	protected function sort_by_minimum_cart_contents( $a, $b ) {
-		if ( floatval( $a['minimum_cart_contents'] ) === floatval( $b['minimum_cart_contents'] ) ) {
+	protected function sort_by_minimum_cart_quantity( $a, $b ) {
+		if ( floatval( $a['minimum_cart_quantity'] ) === floatval( $b['minimum_cart_quantity'] ) ) {
 			return 0;
 		}
 
-		return ( floatval( $a['minimum_cart_contents'] ) < floatval( $b['minimum_cart_contents'] ) ) ? -1 : 1;
+		return ( floatval( $a['minimum_cart_quantity'] ) < floatval( $b['minimum_cart_quantity'] ) ) ? -1 : 1;
 	}
 
 	/**
