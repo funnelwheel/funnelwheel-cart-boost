@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { TextControl, SelectControl } from "@wordpress/components";
+import { TextControl, ToggleControl, SelectControl } from "@wordpress/components";
 import { useState, useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 

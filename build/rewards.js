@@ -2580,14 +2580,14 @@ function RewardsListItemAdd() {
         type
       });
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: "Display suggested products",
     help: "Display suggested products on the right side of the popup modal.",
     checked: reward.display_suggested_products,
     onChange: () => setReward({ ...reward,
       display_suggested_products: !reward.display_suggested_products
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: "Display coupon",
     help: "Display and allow users to apply coupon codes.",
     checked: reward.display_coupon,
