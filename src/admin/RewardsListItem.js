@@ -40,7 +40,7 @@ export default function RewardsListItem() {
 							}}
 						/>
 
-						<BaseControl id="textarea-1" label="Reward type">
+						<BaseControl label="Reward type">
 							<div>{rewardTypeLabels[activeRewardItem.type]}</div>
 						</BaseControl>
 

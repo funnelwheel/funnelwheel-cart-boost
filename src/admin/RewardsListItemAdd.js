@@ -14,13 +14,13 @@ export default function RewardsListItemAdd() {
 		id: uuidv4(),
 		name: "Free Shipping",
 		type: "minimum_cart_quantity",
-		display_suggested_products: true,
-		display_coupon: true,
 		value: 0,
 		minimum_cart_quantity: 0,
 		minimum_cart_amount: 0,
 		rules: [],
 		enabled: false,
+		display_suggested_products: true,
+		display_coupon: true,
 	});
 
 	return (
@@ -49,12 +49,36 @@ export default function RewardsListItemAdd() {
 					label="Type"
 					value={reward.type}
 					options={rewardRules}
-					onChange={(rule) => {
+					onChange={(type) => {
 						setReward({
 							...reward,
-							rule,
+							type,
 						});
 					}}
+				/>
+
+				<ToggleControl
+					label="Display suggested products"
+					help="Display suggested products on the right side of the popup modal."
+					checked={reward.display_suggested_products}
+					onChange={() =>
+						setReward({
+							...reward,
+							display_suggested_products: !reward.display_suggested_products,
+						})
+					}
+				/>
+
+				<ToggleControl
+					label="Display coupon"
+					help="Display and allow users to apply coupon codes."
+					checked={reward.display_coupon}
+					onChange={() =>
+						setReward({
+							...reward,
+							display_coupon: !reward.display_coupon,
+						})
+					}
 				/>
 			</div>
 
