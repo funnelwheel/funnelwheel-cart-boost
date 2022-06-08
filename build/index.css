@@ -249,11 +249,6 @@
 .grow-cart-mini__total {
   line-height: 1;
 }
-.grow-cart-mini .woocommerce-Price-amount.amount {
-  font-size: 1.25rem;
-  font-weight: bold;
-  line-height: 1;
-}
 .grow-cart-mini .cart-contents {
   position: relative;
   margin-left: auto;
@@ -399,6 +394,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.Rewards__progress .spend,
+.Rewards__progress .amount {
+  font-weight: bold;
 }
 .Rewards__progress-wrap {
   width: 100%;

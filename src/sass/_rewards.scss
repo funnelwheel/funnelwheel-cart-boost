@@ -23,6 +23,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
+		.spend,
+		.amount {
+			font-weight: bold;
+		}
 	}
 
 	&__progress-wrap {
