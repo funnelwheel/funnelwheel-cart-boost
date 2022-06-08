@@ -285,7 +285,7 @@ class WooCommerce_GrowCart_Rewards {
 			'count_rewards'         => count( $rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
 			'cart_contents_count'   => WC()->cart->get_cart_contents_count(),
-			'rewards_progress'      => $most_rewards ? 100 : $this->get_rewards_progress( $filtered_rewards['rewards'] ),
+			'rewards_progress'      => $most_rewards ? 100 : $this->get_rewards_progress( $filtered_rewards['rewards'], $filtered_rewards['type'] ),
 			'rewards'               => $filtered_rewards,
 		];
 	}
@@ -422,10 +422,9 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param array $rewards
 	 * @return void
 	 */
-	public function get_rewards_progress( $rewards = [] ) {
-		$rewards_rule = get_option( 'woocommerce_growcart_reward_rule' );
-		$items        = wp_list_pluck( $rewards, 'minimum_cart_amount' );
-		$max          = max( wp_parse_id_list( $items ) );
+	public function get_rewards_progress( $rewards = [], $rewards_rule = 'minimum_cart_quantity' ) {
+		$items = wp_list_pluck( $rewards, $rewards_rule );
+		$max   = max( wp_parse_id_list( $items ) );
 
 		if ( 'minimum_cart_quantity' === $rewards_rule ) {
 			$current = WC()->cart->get_cart_contents_count();
