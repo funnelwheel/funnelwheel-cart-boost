@@ -83,8 +83,8 @@ class WooCommerce_Growcart_Settings {
 	 */
 	public function add_plugin_page() {
 		add_menu_page(
-			__( 'Growcart Settings', 'woocommerce-grow-cart' ),
-			__( 'Growcart', 'woocommerce-grow-cart' ),
+			__( 'GrowCart Settings', 'woocommerce-grow-cart' ),
+			__( 'GrowCart', 'woocommerce-grow-cart' ),
 			'manage_options',
 			'woocommerce-growcart',
 			array( $this, 'menu_page_html' ),
