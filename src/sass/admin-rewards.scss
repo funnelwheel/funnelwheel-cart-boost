@@ -141,11 +141,14 @@ button {
 		border-radius: 4px;
 		background-color: #ffffff;
 	}
+}
 
+.RewardsListItem,
+.RewardsListItemAdd {
 	.components-base-control {
 		margin-bottom: 16px;
 	}
-	
+
 	.components-base-control__label,
 	.components-input-control__label,
 	.components-toggle-control__label {

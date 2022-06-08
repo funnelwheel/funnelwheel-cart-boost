@@ -129,12 +129,17 @@ button {
   border-radius: 4px;
   background-color: #ffffff;
 }
-.RewardsListItem .components-base-control {
+
+.RewardsListItem .components-base-control,
+.RewardsListItemAdd .components-base-control {
   margin-bottom: 16px;
 }
 .RewardsListItem .components-base-control__label,
 .RewardsListItem .components-input-control__label,
-.RewardsListItem .components-toggle-control__label {
+.RewardsListItem .components-toggle-control__label,
+.RewardsListItemAdd .components-base-control__label,
+.RewardsListItemAdd .components-input-control__label,
+.RewardsListItemAdd .components-toggle-control__label {
   font-size: 14px;
   font-weight: 600;
 }
