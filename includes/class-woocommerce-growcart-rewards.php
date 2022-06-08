@@ -375,13 +375,13 @@ class WooCommerce_GrowCart_Rewards {
 			$required_cart_contents = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
 			$cart_subtotal        = WC()->cart->subtotal;
-			$reward_hint_string   = 'percent' === $next_reward['type'] ? __( 'Add %1$d more to save %2$s', 'woocommerce-grow-cart' ) : __( 'Add %1$d more to get %2$s', 'woocommerce-grow-cart' );
+			$reward_hint_string   = 'percent' === $next_reward['type'] ? __( 'Spend %1$s more to save %2$s', 'woocommerce-grow-cart' ) : __( 'Spend %1$s more to get %2$s', 'woocommerce-grow-cart' );
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
 
 		return sprintf(
 			$reward_hint_string,
-			'minimum_cart_quantity' === $type ? $required_cart_contents : $required_cart_amount,
+			'minimum_cart_quantity' === $type ? $required_cart_contents : wc_price( $required_cart_amount ),
 			$next_reward['name']
 		);
 	}

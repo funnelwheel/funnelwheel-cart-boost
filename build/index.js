@@ -2545,7 +2545,6 @@ function Cart() {
     href: cartInformation.data.checkout_url,
     className: "checkout-button button alt wc-forward"
   }, "Proceed to checkout"))));
-  console.log(cartInformation);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_4__.CartContext.Provider, {
     value: {
       cartInformation
@@ -2943,7 +2942,11 @@ function Rewards(_ref) {
     style: {
       width: `${rewards.data.rewards_progress}%`
     }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, rewards.data.hint)), children));
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    dangerouslySetInnerHTML: {
+      __html: rewards.data.hint
+    }
+  })), children));
 }
 
 /***/ }),

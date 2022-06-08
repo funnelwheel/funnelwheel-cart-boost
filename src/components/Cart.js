@@ -62,8 +62,6 @@ export default function Cart() {
 		</>
 	);
 
-	console.log(cartInformation);
-
 	return (
 		<CartContext.Provider value={{ cartInformation }}>
 			{showPopup && (

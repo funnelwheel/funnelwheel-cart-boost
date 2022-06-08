@@ -43,7 +43,9 @@ export default function Rewards({ children }) {
 						></div>
 					</div>
 
-					<span>{rewards.data.hint}</span>
+					<span
+						dangerouslySetInnerHTML={{ __html: rewards.data.hint }}
+					></span>
 				</div>
 
 				{children}
