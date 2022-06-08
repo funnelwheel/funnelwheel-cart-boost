@@ -246,12 +246,13 @@ class WooCommerce_GrowCart_Rewards {
 	public function get_filtered_rewards( $rewards = [] ) {
 		$rewards     = wp_list_filter( $rewards, [ 'enabled' => true ] );
 		$reward_type = $rewards[0]['type'];
+
 		if ( 'minimum_cart_quantity' === $reward_type ) {
 			$cart_contents_count = WC()->cart->get_cart_contents_count();
-			$rewards             = woocommerce_growcart()->rewards->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
+			$rewards             = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
 		} else {
 			$cart_subtotal = WC()->cart->subtotal;
-			$rewards       = woocommerce_growcart()->rewards->filter_rewards_by_cart_subtotal( $rewards[0]['rules'], $cart_subtotal );
+			$rewards       = $this->filter_rewards_by_cart_subtotal( $rewards[0]['rules'], $cart_subtotal );
 		}
 
 		$rewards['type'] = $reward_type;
@@ -276,6 +277,8 @@ class WooCommerce_GrowCart_Rewards {
 			$hint = $this->get_next_reward_hint( $filtered_rewards['next_rewards'], $filtered_rewards['type'] );
 		}
 
+		return $filtered_rewards;
+
 		return [
 			'hint'                  => $hint,
 			'featured_rewards'      => $this->get_featured_rewards(),
@@ -296,14 +299,20 @@ class WooCommerce_GrowCart_Rewards {
 	 */
 	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count ) {
 		$filtered_rewards = [
-			'rewards'         => $rewards,
+			'rewards'         => [],
 			'current_rewards' => [],
 			'next_rewards'    => [],
 		];
 
+		if ( empty( $rewards ) ) {
+			return $filtered_rewards;
+		}
+
 		uasort( $rewards, [ $this, 'sort_by_minimum_cart_quantity' ] );
 
 		$rewards = array_values( $rewards );
+
+		$filtered_rewards['rewards'] = $rewards;
 
 		foreach ( $rewards as $key => $value ) {
 			if ( intval( $value['minimum_cart_quantity'] ) <= $cart_contents_count ) {
