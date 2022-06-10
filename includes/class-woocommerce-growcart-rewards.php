@@ -606,6 +606,13 @@ class WooCommerce_GrowCart_Rewards {
 	 */
 	public function replace_tags( $reward_hint_string = '' ) {
 		$reward_hint_string = str_replace( [ '{{quantity}}', '{{amount}}', '{{name}}' ], [ '%1$s', '%1$s', '%2$s' ], $reward_hint_string );
-		return $reward_hint_string;
+		$reward_hint_string = preg_replace( '#\*{2}(.*?)\*{2}#', '<b>$1</b>', $reward_hint_string );
+		return wp_kses(
+			$reward_hint_string,
+			[
+				'b'      => [],
+				'strong' => [],
+			]
+		);
 	}
 }
