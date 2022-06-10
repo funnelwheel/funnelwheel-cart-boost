@@ -86,6 +86,8 @@ export default function RewardsListItem() {
 											value: 0,
 											minimum_cart_quantity: 0,
 											minimum_cart_amount: 0,
+											hint:
+												"<strong>Spend</strong> [amount] more to save [discount_amount]",
 										},
 									],
 								}),

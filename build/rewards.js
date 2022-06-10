@@ -2498,7 +2498,8 @@ function RewardsListItem() {
         type: "free_shipping",
         value: 0,
         minimum_cart_quantity: 0,
-        minimum_cart_amount: 0
+        minimum_cart_amount: 0,
+        hint: "<strong>Spend</strong> [amount] more to save [discount_amount]"
       }]
     }),
     updateRule: () => {},
@@ -2594,6 +2595,14 @@ function RewardsListItemAdd() {
     onChange: () => setReward({ ...reward,
       display_coupon: !reward.display_coupon
     })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    label: "Reward hint",
+    value: reward.next_reward_hint,
+    onChange: next_reward_hint => {
+      setReward({ ...reward,
+        next_reward_hint
+      });
+    }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "RewardsListItemAdd__next",
     type: "button",
@@ -2724,6 +2733,14 @@ function RulesList(_ref) {
       }),
       shiftStep: 10,
       value: rule.minimum_cart_amount
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+      label: "Hint",
+      value: rule.hint,
+      onChange: hint => {
+        updateRule({ ...rule,
+          hint
+        });
+      }
     }));
   }) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",

@@ -1,5 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
-import { TextControl, ToggleControl, SelectControl } from "@wordpress/components";
+import {
+	TextControl,
+	ToggleControl,
+	SelectControl,
+} from "@wordpress/components";
 import { useState, useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 
@@ -79,6 +83,17 @@ export default function RewardsListItemAdd() {
 							display_coupon: !reward.display_coupon,
 						})
 					}
+				/>
+
+				<TextControl
+					label="Reward hint"
+					value={reward.next_reward_hint}
+					onChange={(next_reward_hint) => {
+						setReward({
+							...reward,
+							next_reward_hint,
+						});
+					}}
 				/>
 			</div>
 

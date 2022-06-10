@@ -138,6 +138,17 @@ export default function RulesList({ reward, addRule, removeRule }) {
 											value={rule.minimum_cart_amount}
 										/>
 									)}
+
+									<TextControl
+										label="Hint"
+										value={rule.hint}
+										onChange={(hint) => {
+											updateRule({
+												...rule,
+												hint,
+											});
+										}}
+									/>
 								</div>
 							);
 					  })
