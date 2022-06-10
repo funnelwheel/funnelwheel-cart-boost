@@ -141,6 +141,14 @@ export default function RulesList({ reward, addRule, removeRule }) {
 
 									<TextControl
 										label="Hint"
+										help={
+											<span
+												dangerouslySetInnerHTML={{
+													__html:
+														"Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code> and <code>{{amount}}</code> to display name and minimum cart amount.",
+												}}
+											></span>
+										}
 										value={rule.hint}
 										onChange={(hint) => {
 											updateRule({

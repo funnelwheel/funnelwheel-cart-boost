@@ -2730,6 +2730,11 @@ function RulesList(_ref) {
       value: rule.minimum_cart_amount
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Hint",
+      help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        dangerouslySetInnerHTML: {
+          __html: "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code> and <code>{{amount}}</code> to display name and minimum cart amount."
+        }
+      }),
       value: rule.hint,
       onChange: hint => {
         updateRule({ ...rule,
