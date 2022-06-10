@@ -370,16 +370,16 @@ class WooCommerce_GrowCart_Rewards {
 		$next_reward        = current( $next_rewards );
 
 		if ( 'minimum_cart_quantity' === $type ) {
-			$reward_hint_string     = '' === $next_reward['hint'] ? __( '<strong>Add</strong> [quantity] more products to get [discount_name]', 'woocommerce-grow-cart' ) : $next_reward['hint'];
+			$reward_hint_string     = '' === $next_reward['hint'] ? __( '**Add** {{quantity}} more products to get {{discount_name}}', 'woocommerce-grow-cart' ) : $next_reward['hint'];
 			$cart_contents_count    = WC()->cart->get_cart_contents_count();
 			$required_cart_contents = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
-			$reward_hint_string   = '' === $next_reward['hint'] ? __( '<strong>Spend</strong> [amount] more to get [discount_name]', 'woocommerce-grow-cart' ) : $next_reward['hint'];
+			$reward_hint_string   = '' === $next_reward['hint'] ? __( '**Spend** {{amount}} more to get {{discount_name}}', 'woocommerce-grow-cart' ) : $next_reward['hint'];
 			$cart_subtotal        = WC()->cart->subtotal;
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
 
-		$reward_hint_string = str_replace( [ '[quantity]', '[amount]', '[discount_name]' ], [ '%1$s', '%1$s', '%2$s' ], $reward_hint_string );
+		$reward_hint_string = $this->replace_tags( $reward_hint_string );
 
 		return sprintf(
 			$reward_hint_string,
@@ -596,5 +596,16 @@ class WooCommerce_GrowCart_Rewards {
 		}
 
 		return ( floatval( $a['minimum_cart_amount'] ) < floatval( $b['minimum_cart_amount'] ) ) ? -1 : 1;
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param string $reward_hint_string
+	 * @return void
+	 */
+	public function replace_tags( $reward_hint_string = '' ) {
+		$reward_hint_string = str_replace( [ '[quantity]', '[amount]', '[discount_name]' ], [ '%1$s', '%1$s', '%2$s' ], $reward_hint_string );
+		return $reward_hint_string;
 	}
 }

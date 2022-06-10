@@ -84,17 +84,6 @@ export default function RewardsListItemAdd() {
 						})
 					}
 				/>
-
-				<TextControl
-					label="Reward hint"
-					value={reward.next_reward_hint}
-					onChange={(next_reward_hint) => {
-						setReward({
-							...reward,
-							next_reward_hint,
-						});
-					}}
-				/>
 			</div>
 
 			<button

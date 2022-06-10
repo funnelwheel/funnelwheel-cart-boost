@@ -2598,14 +2598,6 @@ function RewardsListItemAdd() {
     onChange: () => setReward({ ...reward,
       display_coupon: !reward.display_coupon
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-    label: "Reward hint",
-    value: reward.next_reward_hint,
-    onChange: next_reward_hint => {
-      setReward({ ...reward,
-        next_reward_hint
-      });
-    }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "RewardsListItemAdd__next",
     type: "button",
