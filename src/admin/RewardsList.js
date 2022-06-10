@@ -11,7 +11,6 @@ export default function RewardsList() {
 		setCurrentlyEditing,
 		setActiveScreen,
 		setRewards,
-		rewardTypeLabels,
 	} = useContext(RewardsAdminContext);
 
 	return (
@@ -21,7 +20,7 @@ export default function RewardsList() {
 					<tr>
 						<th scope="col">Status</th>
 						<th scope="col">Name</th>
-						<th scope="col">Type</th>
+						<th scope="col">Rules</th>
 						<th scope="col">Actions</th>
 					</tr>
 				</thead>
@@ -61,7 +60,13 @@ export default function RewardsList() {
 										/>
 									</td>
 									<td>{reward.name}</td>
-									<td>{rewardTypeLabels[reward.type]}</td>
+									<td>
+										{reward.rules.map((rule) => (
+											<span class="badge">
+												{rule.name}
+											</span>
+										))}
+									</td>
 									<td>
 										<>
 											<a
