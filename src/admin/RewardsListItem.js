@@ -87,8 +87,8 @@ export default function RewardsListItem() {
 											hint:
 												"minimum_cart_quantity" ===
 												reward.type
-													? "<strong>Add</strong> [amount] more to save [discount_amount]"
-													: "<strong>Spend</strong> [amount] more to save [discount_amount]",
+													? "<strong>Add</strong> [quantity] more to save [discount_name]"
+													: "<strong>Spend</strong> [amount] more to save [discount_name]",
 											enabled: true,
 										},
 									],

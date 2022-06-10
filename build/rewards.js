@@ -2500,7 +2500,7 @@ function RewardsListItem() {
         value: 0,
         minimum_cart_quantity: 0,
         minimum_cart_amount: 0,
-        hint: "minimum_cart_quantity" === reward.type ? "<strong>Add</strong> [amount] more to save [discount_amount]" : "<strong>Spend</strong> [amount] more to save [discount_amount]",
+        hint: "minimum_cart_quantity" === reward.type ? "<strong>Add</strong> [quantity] more to save [discount_name]" : "<strong>Spend</strong> [amount] more to save [discount_name]",
         enabled: true
       }]
     }),

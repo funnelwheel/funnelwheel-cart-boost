@@ -370,12 +370,12 @@ class WooCommerce_GrowCart_Rewards {
 		$next_reward        = current( $next_rewards );
 
 		if ( 'minimum_cart_quantity' === $type ) {
+			$reward_hint_string     = '' === $next_reward['hint'] ? __( '<strong>Add</strong> [quantity] more products to get [discount_name]', 'woocommerce-grow-cart' ) : $next_reward['hint'];
 			$cart_contents_count    = WC()->cart->get_cart_contents_count();
-			$reward_hint_string     = 'percent' === $next_reward['type'] ? __( '<span class="add">Add</span> %1$d more products to save %2$s', 'woocommerce-grow-cart' ) : __( '<span class="add">Add</span> %1$d more products to get %2$s', 'woocommerce-grow-cart' );
 			$required_cart_contents = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
+			$reward_hint_string   = '' === $next_reward['hint'] ? __( '<strong>Spend</strong> [amount] more to get [discount_name]', 'woocommerce-grow-cart' ) : $next_reward['hint'];
 			$cart_subtotal        = WC()->cart->subtotal;
-			$reward_hint_string   = 'percent' === $next_reward['type'] ? __( '<span class="spend">Spend</span> %1$s more to save %2$s', 'woocommerce-grow-cart' ) : __( '<span class="spend">Spend</span> %1$s more to get %2$s', 'woocommerce-grow-cart' );
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
 
