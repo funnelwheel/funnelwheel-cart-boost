@@ -79,7 +79,7 @@ export default function RewardsListItem() {
 										...reward.rules,
 										{
 											id: uuidv4(),
-											name: "Free Fhipping",
+											name: "Free Shipping",
 											type: "free_shipping",
 											value: 0,
 											minimum_cart_quantity: 0,

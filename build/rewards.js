@@ -2496,7 +2496,7 @@ function RewardsListItem() {
     addRule: () => updateReward({ ...reward,
       rules: [...reward.rules, {
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
-        name: "Free Fhipping",
+        name: "Free Shipping",
         type: "free_shipping",
         value: 0,
         minimum_cart_quantity: 0,
