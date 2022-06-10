@@ -89,6 +89,7 @@ export default function RewardsListItem() {
 												reward.type
 													? "<strong>Add</strong> [amount] more to save [discount_amount]"
 													: "<strong>Spend</strong> [amount] more to save [discount_amount]",
+											enabled: true,
 										},
 									],
 								}),
