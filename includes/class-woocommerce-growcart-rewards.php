@@ -17,48 +17,7 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_default_rewards() {
-		return [
-			[
-				'id'                    => 'free_shipping',
-				'name'                  => 'Free Shipping',
-				'type'                  => 'free_shipping',
-				'rule'                  => 'minimum_cart_quantity',
-				'value'                 => 0,
-				'minimum_cart_quantity' => 3,
-				'minimum_cart_mount'    => 0,
-				'featured'              => true,
-			],
-			[
-				'id'                    => 'percent',
-				'name'                  => '3%',
-				'type'                  => 'percent',
-				'rule'                  => 'minimum_cart_quantity',
-				'value'                 => 3,
-				'minimum_cart_quantity' => 5,
-				'minimum_cart_mount'    => 0,
-				'featured'              => false,
-			],
-			[
-				'id'                    => 'fixed_cart',
-				'name'                  => '100 USD',
-				'type'                  => 'fixed_cart',
-				'rule'                  => 'minimum_cart_quantity',
-				'value'                 => 100,
-				'minimum_cart_quantity' => 10,
-				'minimum_cart_mount'    => 0,
-				'featured'              => false,
-			],
-			[
-				'id'                    => 'giftcard',
-				'name'                  => 'Giftcard',
-				'type'                  => 'giftcard',
-				'rule'                  => 'minimum_cart_quantity',
-				'value'                 => 100,
-				'minimum_cart_quantity' => 15,
-				'minimum_cart_mount'    => 0,
-				'featured'              => false,
-			],
-		];
+		return [];
 	}
 
 	public function __construct() {
@@ -626,5 +585,45 @@ class WooCommerce_GrowCart_Rewards {
 				'strong' => [],
 			]
 		);
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	public function get_active_reward() {
+		$available_rewards = $this->get_available_rewards();
+		if ( empty( $available_rewards ) ) {
+			return null;
+		}
+
+		$available_rewards_enabled = wp_list_filter( $rewards, [ 'enabled' => true ] );
+		if ( empty( $available_rewards_enabled ) ) {
+			return null;
+		}
+
+		$rewards = array_values( $rewards );
+
+		return $rewards[0];
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param array $rules
+	 * @return void
+	 */
+	public function get_active_rules( $rules = [] ) {
+		if ( empty( $rules ) ) {
+			return [];
+		}
+
+		$active_rules = wp_list_filter( $rewards[0]['rules'], [ 'enabled' => true ] );
+		if ( empty( $active_rules ) ) {
+			return [];
+		}
+
+		return array_values( $active_rules );
 	}
 }
