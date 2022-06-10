@@ -379,6 +379,8 @@ class WooCommerce_GrowCart_Rewards {
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
 
+		$reward_hint_string = str_replace( [ '[quantity]', '[amount]', '[discount_name]' ], [ '%1$s', '%1$s', '%2$s' ], $reward_hint_string );
+
 		return sprintf(
 			$reward_hint_string,
 			'minimum_cart_quantity' === $type ? $required_cart_contents : wc_price( $required_cart_amount ),
