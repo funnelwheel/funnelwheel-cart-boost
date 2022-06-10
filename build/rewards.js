@@ -2319,9 +2319,10 @@ function Rewards() {
   }, {});
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext.Provider, {
     value: {
+      reward: activeRewardItem,
+      activeRewardItem,
       rewards,
       setRewards,
-      activeRewardItem,
       addReward,
       updateReward,
       setCurrentlyEditing,
@@ -2444,7 +2445,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function RewardsListItem() {
   const {
-    activeRewardItem,
+    reward,
     updateReward,
     rewardTypeLabels,
     setActiveScreen,
@@ -2467,45 +2468,45 @@ function RewardsListItem() {
     className: "RewardsListItem__type"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: "Name",
-    value: activeRewardItem.name,
+    value: reward.name,
     onChange: name => {
-      updateReward({ ...activeRewardItem,
+      updateReward({ ...reward,
         name
       });
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     label: "Reward type"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, rewardTypeLabels[activeRewardItem.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, rewardTypeLabels[reward.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: "Display suggested products",
     help: "Display suggested products on the right side of the popup modal.",
-    checked: activeRewardItem.display_suggested_products,
-    onChange: () => updateReward({ ...activeRewardItem,
-      display_suggested_products: !activeRewardItem.display_suggested_products
+    checked: reward.display_suggested_products,
+    onChange: () => updateReward({ ...reward,
+      display_suggested_products: !reward.display_suggested_products
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: "Display coupon",
     help: "Display and allow users to apply coupon codes.",
-    checked: activeRewardItem.display_coupon,
-    onChange: () => updateReward({ ...activeRewardItem,
-      display_coupon: !activeRewardItem.display_coupon
+    checked: reward.display_coupon,
+    onChange: () => updateReward({ ...reward,
+      display_coupon: !reward.display_coupon
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    reward: activeRewardItem,
-    addRule: () => updateReward({ ...activeRewardItem,
-      rules: [...activeRewardItem.rules, {
+    reward: reward,
+    addRule: () => updateReward({ ...reward,
+      rules: [...reward.rules, {
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
         name: "Free Fhipping",
         type: "free_shipping",
         value: 0,
         minimum_cart_quantity: 0,
         minimum_cart_amount: 0,
-        hint: "<strong>Spend</strong> [amount] more to save [discount_amount]"
+        hint: "minimum_cart_quantity" === reward.type ? "<strong>Add</strong> [amount] more to save [discount_amount]" : "<strong>Spend</strong> [amount] more to save [discount_amount]"
       }]
     }),
     updateRule: () => {},
     removeRule: ruleId => {
-      updateReward({ ...activeRewardItem,
-        rules: activeRewardItem.rules.filter(rule => rule.id !== ruleId)
+      updateReward({ ...reward,
+        rules: reward.rules.filter(rule => rule.id !== ruleId)
       });
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

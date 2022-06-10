@@ -6,7 +6,7 @@ import RulesList from "./RulesList";
 
 export default function RewardsListItem() {
 	const {
-		activeRewardItem,
+		reward,
 		updateReward,
 		rewardTypeLabels,
 		setActiveScreen,
@@ -31,29 +31,27 @@ export default function RewardsListItem() {
 					<div className="RewardsListItem__type">
 						<TextControl
 							label="Name"
-							value={activeRewardItem.name}
+							value={reward.name}
 							onChange={(name) => {
 								updateReward({
-									...activeRewardItem,
+									...reward,
 									name,
 								});
 							}}
 						/>
 
 						<BaseControl label="Reward type">
-							<div>{rewardTypeLabels[activeRewardItem.type]}</div>
+							<div>{rewardTypeLabels[reward.type]}</div>
 						</BaseControl>
 
 						<ToggleControl
 							label="Display suggested products"
 							help="Display suggested products on the right side of the popup modal."
-							checked={
-								activeRewardItem.display_suggested_products
-							}
+							checked={reward.display_suggested_products}
 							onChange={() =>
 								updateReward({
-									...activeRewardItem,
-									display_suggested_products: !activeRewardItem.display_suggested_products,
+									...reward,
+									display_suggested_products: !reward.display_suggested_products,
 								})
 							}
 						/>
@@ -61,11 +59,11 @@ export default function RewardsListItem() {
 						<ToggleControl
 							label="Display coupon"
 							help="Display and allow users to apply coupon codes."
-							checked={activeRewardItem.display_coupon}
+							checked={reward.display_coupon}
 							onChange={() =>
 								updateReward({
-									...activeRewardItem,
-									display_coupon: !activeRewardItem.display_coupon,
+									...reward,
+									display_coupon: !reward.display_coupon,
 								})
 							}
 						/>
@@ -73,12 +71,12 @@ export default function RewardsListItem() {
 
 					<RulesList
 						{...{
-							reward: activeRewardItem,
+							reward: reward,
 							addRule: () =>
 								updateReward({
-									...activeRewardItem,
+									...reward,
 									rules: [
-										...activeRewardItem.rules,
+										...reward.rules,
 										{
 											id: uuidv4(),
 											name: "Free Fhipping",
@@ -87,15 +85,18 @@ export default function RewardsListItem() {
 											minimum_cart_quantity: 0,
 											minimum_cart_amount: 0,
 											hint:
-												"<strong>Spend</strong> [amount] more to save [discount_amount]",
+												"minimum_cart_quantity" ===
+												reward.type
+													? "<strong>Add</strong> [amount] more to save [discount_amount]"
+													: "<strong>Spend</strong> [amount] more to save [discount_amount]",
 										},
 									],
 								}),
 							updateRule: () => {},
 							removeRule: (ruleId) => {
 								updateReward({
-									...activeRewardItem,
-									rules: activeRewardItem.rules.filter(
+									...reward,
+									rules: reward.rules.filter(
 										(rule) => rule.id !== ruleId
 									),
 								});

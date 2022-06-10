@@ -131,7 +131,9 @@ button {
 }
 
 .RewardsListItem .components-base-control,
-.RewardsListItemAdd .components-base-control {
+.RewardsListItem .components-number-control,
+.RewardsListItemAdd .components-base-control,
+.RewardsListItemAdd .components-number-control {
   margin-bottom: 16px;
 }
 .RewardsListItem .components-base-control__label,

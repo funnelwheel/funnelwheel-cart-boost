@@ -145,7 +145,8 @@ button {
 
 .RewardsListItem,
 .RewardsListItemAdd {
-	.components-base-control {
+	.components-base-control,
+	.components-number-control {
 		margin-bottom: 16px;
 	}
 
