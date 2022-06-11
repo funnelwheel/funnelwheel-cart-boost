@@ -2552,7 +2552,7 @@ function Cart() {
   }, showPopup && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "grow-cart",
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("modal show", {
-      ["modal--small"]: !cartInformation.data.suggested_products.products.length
+      ["modal--small"]: !cartInformation.data.display_suggested_products || !cartInformation.data.suggested_products.products.length
     })
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-dialog modal-dialog-bottom"

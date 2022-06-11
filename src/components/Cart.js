@@ -68,8 +68,10 @@ export default function Cart() {
 				<div
 					id="grow-cart"
 					className={classNames("modal show", {
-						["modal--small"]: !cartInformation.data
-							.suggested_products.products.length,
+						["modal--small"]:
+							!cartInformation.data.display_suggested_products ||
+							!cartInformation.data.suggested_products.products
+								.length,
 					})}
 				>
 					<div className="modal-dialog modal-dialog-bottom">
