@@ -28,14 +28,11 @@ class WooCommerce_GrowCart_Ajax {
 	}
 
 	public function get_cart_information() {
-		$display_suggested_products = true;
-		$display_coupon             = true;
-		$current_reward_ids         = [];
-		$reward_string              = '';
+		$current_reward_ids = [];
+		$reward_string      = '';
+		$filtered_rewards   = woocommerce_growcart()->rewards->get_filtered_rewards();
 
 		do_action( 'growcart_before_cart_information' );
-
-		$filtered_rewards = woocommerce_growcart()->rewards->get_filtered_rewards();
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_reward_ids = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
@@ -85,8 +82,8 @@ class WooCommerce_GrowCart_Ajax {
 				'checkout_url'                      => esc_url( wc_get_checkout_url() ),
 				'cart_contents_count'               => WC()->cart->get_cart_contents_count(),
 				'suggested_products'                => woocommerce_growcart()->rewards->get_suggested_products(),
-				'display_suggested_products'        => get_option( 'display_suggested_products', true ),
-				'display_coupon'                    => get_option( 'display_coupon', true ),
+				'display_suggested_products'        => $filtered_rewards['display_suggested_products'],
+				'display_coupon'                    => $filtered_rewards['display_coupon'],
 				'WC()->cart->get_applied_coupons()' => WC()->cart->get_applied_coupons(),
 			]
 		);

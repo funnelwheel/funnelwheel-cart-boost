@@ -190,7 +190,11 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_filtered_rewards() {
-		$filtered_rewards = [];
+		$filtered_rewards = [
+			'type'                       => 'minimum_cart_quantity',
+			'display_suggested_products' => true,
+			'display_coupon'             => true,
+		];
 
 		$active_reward = $this->get_active_reward();
 		if ( ! $active_reward ) {
@@ -210,7 +214,9 @@ class WooCommerce_GrowCart_Rewards {
 			$filtered_rewards = $this->filter_rewards_by_cart_subtotal( $active_rules, $cart_subtotal );
 		}
 
-		$filtered_rewards['type'] = $active_reward['type'];
+		$filtered_rewards['type']                       = $active_reward['type'];
+		$filtered_rewards['display_suggested_products'] = $active_reward['display_suggested_products'];
+		$filtered_rewards['display_coupon']             = $active_reward['display_coupon'];
 
 		return $filtered_rewards;
 	}
