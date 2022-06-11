@@ -2927,7 +2927,8 @@ function Rewards(_ref) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_star_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "Rewards__text"
   }, reward.name))), rewards.data.rewards.next_rewards.map((reward, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    key: index
+    key: index,
+    className: "Rewards__item"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "Rewards__icon"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_lock_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {

@@ -23,7 +23,7 @@ export default function Rewards({ children }) {
 				))}
 
 				{rewards.data.rewards.next_rewards.map((reward, index) => (
-					<li key={index}>
+					<li key={index} className="Rewards__item">
 						<span className="Rewards__icon">
 							<LockIcon />
 						</span>
