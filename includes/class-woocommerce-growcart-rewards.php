@@ -190,22 +190,29 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_filtered_rewards() {
-		$available_rewards = $this->get_available_rewards();
-		$rewards           = wp_list_filter( $available_rewards, [ 'enabled' => true ] );
-		$rewards           = array_values( $rewards );
-		$reward_type       = $rewards[0]['type'];
+		$filtered_rewards = [];
 
-		if ( 'minimum_cart_quantity' === $reward_type ) {
-			$cart_contents_count = WC()->cart->get_cart_contents_count();
-			$rewards             = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
-		} else {
-			$cart_subtotal = WC()->cart->subtotal;
-			$rewards       = $this->filter_rewards_by_cart_subtotal( $rewards[0]['rules'], $cart_subtotal );
+		$active_reward = $this->get_active_reward();
+		if ( ! $active_reward ) {
+			return $filtered_rewards;
 		}
 
-		$rewards['type'] = $reward_type;
+		$active_rules = $this->get_active_rules( $active_reward['rules'] );
+		if ( empty( $active_rules ) ) {
+			return $filtered_rewards;
+		}
 
-		return $rewards;
+		if ( 'minimum_cart_quantity' === $active_reward['type'] ) {
+			$cart_contents_count = WC()->cart->get_cart_contents_count();
+			$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $active_rules, $cart_contents_count );
+		} else {
+			$cart_subtotal    = WC()->cart->subtotal;
+			$filtered_rewards = $this->filter_rewards_by_cart_subtotal( $active_rules, $cart_subtotal );
+		}
+
+		$filtered_rewards['type'] = $active_reward['type'];
+
+		return $filtered_rewards;
 	}
 
 	/**
@@ -214,8 +221,8 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_rewards() {
-		$filtered_rewards = $this->get_filtered_rewards();
 		$hint             = '';
+		$filtered_rewards = $this->get_filtered_rewards();
 		$most_rewards     = array_values( $filtered_rewards['rewards'] ) === $filtered_rewards['current_rewards'];
 
 		if ( $most_rewards ) {
