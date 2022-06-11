@@ -14,8 +14,8 @@ export default function Rewards({ children }) {
 			<ul className="Rewards__list">
 				<li className="Rewards__title">Rewards</li>
 				{rewards.data.rewards.current_rewards.map((reward, index) => (
-					<li key={index}>
-						<span className="Rewards__icon availed">
+					<li key={index} className="Rewards__item availed">
+						<span className="Rewards__icon">
 							<StarIcon />
 						</span>
 						<span className="Rewards__text">{reward.name}</span>

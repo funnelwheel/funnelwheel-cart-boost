@@ -384,11 +384,15 @@
   list-style: none;
   margin-left: 0;
   padding-left: 0;
-  margin-bottom: 0;
+  margin-bottom: 4px;
   font-size: 12px;
 }
 .Rewards__list li {
   margin-right: 16px;
+}
+.Rewards__item {
+  display: flex;
+  align-items: center;
 }
 .Rewards__progress {
   display: flex;
@@ -418,8 +422,11 @@
   text-align: center;
   background-color: #495057;
 }
-.Rewards__icon.availed {
+.Rewards .availed .Rewards__icon {
   background-color: #198754;
+}
+.Rewards .availed .Rewards__text {
+  font-weight: bold;
 }
 @media (max-width: 575.98px) {
   .Rewards__list {

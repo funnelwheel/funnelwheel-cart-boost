@@ -11,12 +11,17 @@
 		list-style: none;
 		margin-left: 0;
 		padding-left: 0;
-		margin-bottom: 0;
+		margin-bottom: 4px;
 		font-size: 12px;
 
 		li {
 			margin-right: 16px;
 		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
 	}
 
 	&__progress {
@@ -50,9 +55,15 @@
 		border-radius: 50%;
 		text-align: center;
 		background-color: $gray-700;
+	}
 
-		&.availed {
+	.availed {
+		.Rewards__icon {
 			background-color: $green;
+		}
+
+		.Rewards__text {
+			font-weight: bold;
 		}
 	}
 
