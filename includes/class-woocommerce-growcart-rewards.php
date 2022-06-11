@@ -187,13 +187,13 @@ class WooCommerce_GrowCart_Rewards {
 	/**
 	 * Undocumented function
 	 *
-	 * @param array $rewards
 	 * @return void
 	 */
-	public function get_filtered_rewards( $rewards = [] ) {
-		$rewards     = wp_list_filter( $rewards, [ 'enabled' => true ] );
-		$rewards     = array_values( $rewards );
-		$reward_type = $rewards[0]['type'];
+	public function get_filtered_rewards() {
+		$available_rewards = $this->get_available_rewards();
+		$rewards           = wp_list_filter( $available_rewards, [ 'enabled' => true ] );
+		$rewards           = array_values( $rewards );
+		$reward_type       = $rewards[0]['type'];
 
 		if ( 'minimum_cart_quantity' === $reward_type ) {
 			$cart_contents_count = WC()->cart->get_cart_contents_count();
@@ -214,8 +214,7 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_rewards() {
-		$rewards          = $this->get_available_rewards();
-		$filtered_rewards = $this->get_filtered_rewards( $rewards );
+		$filtered_rewards = $this->get_filtered_rewards();
 		$hint             = '';
 		$most_rewards     = array_values( $filtered_rewards['rewards'] ) === $filtered_rewards['current_rewards'];
 

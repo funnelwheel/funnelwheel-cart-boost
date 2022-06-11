@@ -28,11 +28,14 @@ class WooCommerce_GrowCart_Ajax {
 	}
 
 	public function get_cart_information() {
+		$display_suggested_products = true;
+		$display_coupon             = true;
+		$current_reward_ids         = [];
+		$reward_string              = '';
+
 		do_action( 'growcart_before_cart_information' );
-		$available_rewards  = woocommerce_growcart()->rewards->get_available_rewards();
-		$filtered_rewards   = woocommerce_growcart()->rewards->get_filtered_rewards( $available_rewards );
-		$current_reward_ids = [];
-		$reward_string      = '';
+
+		$filtered_rewards = woocommerce_growcart()->rewards->get_filtered_rewards();
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_reward_ids = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
