@@ -41,23 +41,23 @@ class WooCommerce_GrowCart_Rewards {
 			return $coupon;
 		}
 
-		$cart_contents_count = WC()->cart->get_cart_contents_count();
-		$rewards             = $this->get_available_rewards();
-		$rewards             = wp_list_filter( $rewards, [ 'enabled' => true ] );
-		$rewards             = array_values( $rewards );
-
-		if ( empty( $rewards ) || empty( $rewards[0]['rules'] ) ) {
+		$active_reward = $this->get_active_reward();
+		if ( ! $active_reward ) {
 			return $coupon;
 		}
 
-		$rules = wp_list_filter( $rewards[0]['rules'], [ 'enabled' => true ] );
-		$rules = array_values( $rules );
-
+		$active_rules = $this->get_active_rules( $active_reward['rules'] );
 		if ( empty( $rules ) ) {
 			return $coupon;
 		}
 
-		$filtered_rewards = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
+		if ( 'minimum_cart_quantity' === $active_reward['type'] ) {
+			$cart_contents_count = WC()->cart->get_cart_contents_count();
+			$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $active_rules, $cart_contents_count );
+		} else {
+			$cart_subtotal    = WC()->cart->subtotal;
+			$filtered_rewards = $this->filter_rewards_by_cart_subtotal( $active_rules, $cart_subtotal );
+		}
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_rewards = wp_list_filter( $filtered_rewards['current_rewards'], [ 'id' => $code ] );
@@ -619,7 +619,7 @@ class WooCommerce_GrowCart_Rewards {
 			return [];
 		}
 
-		$active_rules = wp_list_filter( $rewards[0]['rules'], [ 'enabled' => true ] );
+		$active_rules = wp_list_filter( $rules, [ 'enabled' => true ] );
 		if ( empty( $active_rules ) ) {
 			return [];
 		}
