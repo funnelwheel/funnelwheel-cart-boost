@@ -81,10 +81,24 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function auto_add_coupons() {
-		$cart_contents_count = WC()->cart->get_cart_contents_count();
-		$rewards             = $this->get_available_rewards();
-		$rewards             = wp_list_filter( $rewards, [ 'enabled' => true ] );
-		$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $rewards[0]['rules'], $cart_contents_count );
+		$active_reward = $this->get_active_reward();
+		if ( ! $active_reward ) {
+			return;
+		}
+
+		$active_rules = $this->get_active_rules( $active_reward['rules'] );
+		if ( empty( $rules ) ) {
+			return;
+		}
+
+		if ( 'minimum_cart_quantity' === $active_reward['type'] ) {
+			$cart_contents_count = WC()->cart->get_cart_contents_count();
+			$filtered_rewards    = $this->filter_rewards_by_cart_contents_count( $active_rules, $cart_contents_count );
+		} else {
+			$cart_subtotal    = WC()->cart->subtotal;
+			$filtered_rewards = $this->filter_rewards_by_cart_subtotal( $active_rules, $cart_subtotal );
+		}
+
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$rewards_by_type = [
 				'percent'    => [],
