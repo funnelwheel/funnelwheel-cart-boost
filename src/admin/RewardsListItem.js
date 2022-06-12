@@ -16,7 +16,7 @@ export default function RewardsListItem() {
 	function getRuleHint(rewardType) {
 		return "minimum_cart_quantity" === rewardType
 			? "**Add** {{quantity}} more to get {{name}}"
-			: "**Spend** {{amount}} more to get {{name}}";
+			: "**Spend** {{amount}} more to get {{name}}{{currency}}";
 	}
 
 	return (

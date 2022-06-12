@@ -2454,7 +2454,7 @@ function RewardsListItem() {
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
 
   function getRuleHint(rewardType) {
-    return "minimum_cart_quantity" === rewardType ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}} more to get {{name}}";
+    return "minimum_cart_quantity" === rewardType ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}} more to get {{name}}{{currency}}";
   }
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
