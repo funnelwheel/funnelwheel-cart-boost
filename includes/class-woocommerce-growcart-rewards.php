@@ -326,6 +326,7 @@ class WooCommerce_GrowCart_Rewards {
 	public function get_next_reward_hint( $next_rewards = [], $type = 'minimum_cart_quantity' ) {
 		$reward_hint_string = '';
 		$next_reward        = current( $next_rewards );
+		$currency_symbol    = get_woocommerce_currency_symbol();
 
 		if ( 'minimum_cart_quantity' === $type ) {
 			$reward_hint_string     = '' === $next_reward['hint'] ? __( '**Add** {{quantity}} more products to get {{name}}', 'woocommerce-grow-cart' ) : $next_reward['hint'];
@@ -337,9 +338,19 @@ class WooCommerce_GrowCart_Rewards {
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
 
-		$quantity_or_amount = 'minimum_cart_quantity' === $type ? $required_cart_quantity : wc_price( $required_cart_amount );
+		$allowed_tags   = 'minimum_cart_quantity' === $type ? [ '{{quantity}}', '{{name}}', '{{currency}}' ] : [ '{{amount}}', '{{name}}', '{{currency}}' ];
+		$allowed_values = 'minimum_cart_quantity' === $type ? [ $required_cart_quantity, $next_reward['name'], $currency_symbol ] : [ $required_cart_amount, $next_reward['name'], $currency_symbol ];
 
-		return $this->replace_tags( $reward_hint_string, [ $quantity_or_amount, $quantity_or_amount, $next_reward['name'], get_woocommerce_currency_symbol() ] );
+		$reward_hint_string = str_replace( $allowed_tags, $allowed_values, $reward_hint_string );
+		$reward_hint_string = preg_replace( '#\*{2}(.*?)\*{2}#', '<b>$1</b>', $reward_hint_string );
+
+		return wp_kses(
+			$reward_hint_string,
+			[
+				'b'      => [],
+				'strong' => [],
+			]
+		);
 	}
 
 	/**
@@ -550,24 +561,6 @@ class WooCommerce_GrowCart_Rewards {
 		}
 
 		return ( floatval( $a['minimum_cart_amount'] ) < floatval( $b['minimum_cart_amount'] ) ) ? -1 : 1;
-	}
-
-	/**
-	 * Undocumented function
-	 *
-	 * @param string $reward_hint_string
-	 * @return void
-	 */
-	public function replace_tags( $reward_hint_string = '', $values = [] ) {
-		$reward_hint_string = str_replace( [ '{{quantity}}', '{{amount}}', '{{name}}', '{{currency}}' ], $values, $reward_hint_string );
-		$reward_hint_string = preg_replace( '#\*{2}(.*?)\*{2}#', '<b>$1</b>', $reward_hint_string );
-		return wp_kses(
-			$reward_hint_string,
-			[
-				'b'      => [],
-				'strong' => [],
-			]
-		);
 	}
 
 	/**
