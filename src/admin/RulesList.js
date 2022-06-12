@@ -70,6 +70,16 @@ export default function RulesList({ reward, addRule, removeRule }) {
 
 									<TextControl
 										label="Name"
+										help={
+											"fixed_cart" === rule.type ? (
+												<span
+													dangerouslySetInnerHTML={{
+														__html:
+															"Use <code>{{currency}}</code> to display currency symbol.",
+													}}
+												></span>
+											) : null
+										}
 										value={rule.name}
 										onChange={(name) => {
 											updateRule({
@@ -133,7 +143,7 @@ export default function RulesList({ reward, addRule, removeRule }) {
 											<span
 												dangerouslySetInnerHTML={{
 													__html:
-														"Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency.",
+														"Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.",
 												}}
 											></span>
 										}

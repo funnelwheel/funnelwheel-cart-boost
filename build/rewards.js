@@ -2688,6 +2688,11 @@ function RulesList(_ref) {
       }
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Name",
+      help: "fixed_cart" === rule.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        dangerouslySetInnerHTML: {
+          __html: "Use <code>{{currency}}</code> to display currency symbol."
+        }
+      }) : null,
       value: rule.name,
       onChange: name => {
         updateRule({ ...rule,
@@ -2720,7 +2725,7 @@ function RulesList(_ref) {
       label: "Hint",
       help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
         dangerouslySetInnerHTML: {
-          __html: "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency."
+          __html: "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol."
         }
       }),
       value: rule.hint,
