@@ -18,7 +18,10 @@ export default function Rewards({ children }) {
 						<span className="Rewards__icon">
 							<StarIcon />
 						</span>
-						<span className="Rewards__text">{reward.name}</span>
+						<span
+							className="Rewards__text"
+							dangerouslySetInnerHTML={{ __html: reward.name }}
+						></span>
 					</li>
 				))}
 
@@ -27,7 +30,10 @@ export default function Rewards({ children }) {
 						<span className="Rewards__icon">
 							<LockIcon />
 						</span>
-						<span className="Rewards__text">{reward.name}</span>
+						<span
+							className="Rewards__text"
+							dangerouslySetInnerHTML={{ __html: reward.name }}
+						></span>
 					</li>
 				))}
 			</ul>
