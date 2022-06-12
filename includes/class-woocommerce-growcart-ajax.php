@@ -28,9 +28,10 @@ class WooCommerce_GrowCart_Ajax {
 	}
 
 	public function get_cart_information() {
-		$current_reward_ids = [];
-		$reward_string      = '';
-		$filtered_rewards   = woocommerce_growcart()->rewards->get_filtered_rewards();
+		$current_reward_ids           = [];
+		$reward_string                = '';
+		$filtered_rewards             = woocommerce_growcart()->rewards->get_filtered_rewards();
+		$cart_totals_order_total_html = '';
 
 		do_action( 'growcart_before_cart_information' );
 
@@ -56,7 +57,9 @@ class WooCommerce_GrowCart_Ajax {
 
 		WC()->cart->calculate_totals();
 
-		$cart_totals_order_total_html = '<del>' . WC()->cart->get_cart_subtotal() . '</del> ';
+		if ( WC()->cart->has_discount() ) {
+			$cart_totals_order_total_html .= '<del>' . WC()->cart->get_cart_subtotal() . '</del> ';
+		}
 
 		ob_start();
 		wc_cart_totals_order_total_html();
