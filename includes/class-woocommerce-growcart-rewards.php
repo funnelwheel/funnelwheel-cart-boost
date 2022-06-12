@@ -629,8 +629,20 @@ class WooCommerce_GrowCart_Rewards {
 			return [];
 		}
 
+		$allowed_tags    = 'minimum_cart_quantity' === $active_reward['type'] ? [ '{{value}}' ] : [ '{{value}}', '{{currency}}' ];
+		$currency_symbol = get_woocommerce_currency_symbol();
+
 		$active_rules = [];
 		foreach ( $_active_rules as $active_rule ) {
+			$allowed_values      = 'minimum_cart_quantity' === $active_reward['type'] ? [ $active_rule['value'] ] : [ $active_rule['value'], $currency_symbol ];
+			$active_rule['name'] = wp_kses(
+				str_replace( $allowed_tags, $allowed_values, $active_rule['name'] ),
+				[
+					'b'      => [],
+					'strong' => [],
+				]
+			);
+
 			$active_rules[] = $active_rule;
 		}
 
