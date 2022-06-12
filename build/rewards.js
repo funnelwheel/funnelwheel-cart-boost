@@ -2658,6 +2658,29 @@ function RulesList(_ref) {
     });
   }
 
+  function getNameFieldHelp(ruleType) {
+    switch (ruleType) {
+      case "fixed_cart":
+        return "Use <code>{{value}}</code> and <code>{{currency}}</code> to display value and currency symbol.";
+
+      case "percent":
+        return "Use <code>{{value}}</code> to display value.";
+
+      default:
+        null;
+    }
+  }
+
+  function getHintFieldHelp(rewardType) {
+    switch (rewardType) {
+      case "minimum_cart_quantity":
+        return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{quantity}}</code> and <code>{{currency}}</code> to display name, minimum cart quantity and currency symbol.";
+
+      default:
+        return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.";
+    }
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
@@ -2688,11 +2711,11 @@ function RulesList(_ref) {
       }
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Name",
-      help: "fixed_cart" === rule.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
         dangerouslySetInnerHTML: {
-          __html: "Use <code>{{currency}}</code> to display currency symbol."
+          __html: getNameFieldHelp(rule.type)
         }
-      }) : null,
+      }),
       value: rule.name,
       onChange: name => {
         updateRule({ ...rule,
@@ -2725,7 +2748,7 @@ function RulesList(_ref) {
       label: "Hint",
       help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
         dangerouslySetInnerHTML: {
-          __html: "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol."
+          __html: getHintFieldHelp(reward.type)
         }
       }),
       value: rule.hint,

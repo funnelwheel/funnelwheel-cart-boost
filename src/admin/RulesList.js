@@ -27,6 +27,29 @@ export default function RulesList({ reward, addRule, removeRule }) {
 		});
 	}
 
+	function getNameFieldHelp(ruleType) {
+		switch (ruleType) {
+			case "fixed_cart":
+				return "Use <code>{{value}}</code> and <code>{{currency}}</code> to display value and currency symbol.";
+
+			case "percent":
+				return "Use <code>{{value}}</code> to display value.";
+
+			default:
+				null;
+		}
+	}
+
+	function getHintFieldHelp(rewardType) {
+		switch (rewardType) {
+			case "minimum_cart_quantity":
+				return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{quantity}}</code> and <code>{{currency}}</code> to display name, minimum cart quantity and currency symbol.";
+
+			default:
+				return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.";
+		}
+	}
+
 	return (
 		<div className="RulesList">
 			<h4 className="RulesList__title">Reward Rules</h4>
@@ -71,14 +94,13 @@ export default function RulesList({ reward, addRule, removeRule }) {
 									<TextControl
 										label="Name"
 										help={
-											"fixed_cart" === rule.type ? (
-												<span
-													dangerouslySetInnerHTML={{
-														__html:
-															"Use <code>{{currency}}</code> to display currency symbol.",
-													}}
-												></span>
-											) : null
+											<span
+												dangerouslySetInnerHTML={{
+													__html: getNameFieldHelp(
+														rule.type
+													),
+												}}
+											></span>
 										}
 										value={rule.name}
 										onChange={(name) => {
@@ -142,8 +164,9 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										help={
 											<span
 												dangerouslySetInnerHTML={{
-													__html:
-														"Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.",
+													__html: getHintFieldHelp(
+														reward.type
+													),
 												}}
 											></span>
 										}
