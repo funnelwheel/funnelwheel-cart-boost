@@ -40,17 +40,6 @@ export default function CartTotals() {
 					</>
 				)}
 
-				{cartInformation.data.has_shipping && (
-					<>
-						<dt>Shipping</dt>
-						<dd
-							dangerouslySetInnerHTML={{
-								__html: cartInformation.data.cart_shipping_total,
-							}}
-						/>
-					</>
-				)}
-
 				{cartInformation.data.has_discount && (
 					<>
 						{cartInformation.data.coupons.map((coupon) => (
