@@ -88,34 +88,35 @@ final class WooCommerce_GrowCart {
 			return;
 		}
 
-		$asset_file        = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/index.asset.php';
-		$display_mini_cart = is_home() || is_front_page() || is_product() ? false : true;
+		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/index.asset.php';
 
-		wp_enqueue_script(
-			'woocommerce-growcart',
-			plugins_url( 'build/index.js', WOOCOMMERCE_GROWCART_FILE ),
-			array_merge( $asset_file['dependencies'], [ 'wc-cart-fragments' ] ),
-			$asset_file['version'],
-			true
-		);
+		if ( $this->display_growcart() ) {
+			wp_enqueue_script(
+				'woocommerce-growcart',
+				plugins_url( 'build/index.js', WOOCOMMERCE_GROWCART_FILE ),
+				array_merge( $asset_file['dependencies'], [ 'wc-cart-fragments' ] ),
+				$asset_file['version'],
+				true
+			);
 
-		wp_localize_script(
-			'woocommerce-growcart',
-			'woocommerce_growcart',
-			[
-				'ajaxURL'             => admin_url( 'admin-ajax.php' ),
-				'wcAjaxURL'           => WC_AJAX::get_endpoint( '%%endpoint%%' ),
-				'is_product'          => is_product(),
-				'display_mini_cart'   => $display_mini_cart,
-				'cart'                => [
-					'is_empty' => WC()->cart->is_empty(),
-					'items'    => get_cart_items(),
-					'coupons'  => get_cart_coupons(),
-				],
-				'apply_coupon_nonce'  => wp_create_nonce( 'apply-coupon' ),
-				'remove_coupon_nonce' => wp_create_nonce( 'remove-coupon' ),
-			]
-		);
+			wp_localize_script(
+				'woocommerce-growcart',
+				'woocommerce_growcart',
+				[
+					'ajaxURL'             => admin_url( 'admin-ajax.php' ),
+					'wcAjaxURL'           => WC_AJAX::get_endpoint( '%%endpoint%%' ),
+					'is_product'          => is_product(),
+					'display_mini_cart'   => is_home() || is_front_page() || is_product() ? false : true,
+					'cart'                => [
+						'is_empty' => WC()->cart->is_empty(),
+						'items'    => get_cart_items(),
+						'coupons'  => get_cart_coupons(),
+					],
+					'apply_coupon_nonce'  => wp_create_nonce( 'apply-coupon' ),
+					'remove_coupon_nonce' => wp_create_nonce( 'remove-coupon' ),
+				]
+			);
+		}
 
 		if ( function_exists( 'is_product' ) && is_product() ) {
 			wp_enqueue_script(
@@ -145,6 +146,25 @@ final class WooCommerce_GrowCart {
 		}
 
 		echo '<div id="woocommerce-growcart-root"></div>';
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	public function display_growcart() {
+		$active_reward = woocommerce_growcart()->rewards->get_active_reward();
+		if ( ! $active_reward ) {
+			return false;
+		}
+
+		$active_rules = woocommerce_growcart()->rewards->get_active_rules( $active_reward );
+		if ( empty( $active_rules ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
