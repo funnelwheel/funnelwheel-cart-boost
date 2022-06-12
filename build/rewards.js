@@ -2452,6 +2452,11 @@ function RewardsListItem() {
     setActiveScreen,
     setCurrentlyEditing
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
+
+  function getRuleHint(rewardType) {
+    return "minimum_cart_quantity" === rewardType ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}} more to get {{name}}";
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -2501,7 +2506,7 @@ function RewardsListItem() {
         value: 0,
         minimum_cart_quantity: 1,
         minimum_cart_amount: 1,
-        hint: "minimum_cart_quantity" === reward.type ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}} more to get {{name}}",
+        hint: getRuleHint(reward.type),
         enabled: true
       }]
     }),

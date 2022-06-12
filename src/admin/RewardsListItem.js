@@ -13,6 +13,12 @@ export default function RewardsListItem() {
 		setCurrentlyEditing,
 	} = useContext(RewardsAdminContext);
 
+	function getRuleHint(rewardType) {
+		return "minimum_cart_quantity" === rewardType
+			? "**Add** {{quantity}} more to get {{name}}"
+			: "**Spend** {{amount}} more to get {{name}}";
+	}
+
 	return (
 		<div className="RewardsListItem">
 			<button
@@ -84,11 +90,7 @@ export default function RewardsListItem() {
 											value: 0,
 											minimum_cart_quantity: 1,
 											minimum_cart_amount: 1,
-											hint:
-												"minimum_cart_quantity" ===
-												reward.type
-													? "**Add** {{quantity}} more to get {{name}}"
-													: "**Spend** {{amount}} more to get {{name}}",
+											hint: getRuleHint(reward.type),
 											enabled: true,
 										},
 									],
