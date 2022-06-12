@@ -50,6 +50,24 @@ export default function RulesList({ reward, addRule, removeRule }) {
 		}
 	}
 
+	const hasFreeShippingRule = reward.rules.reduce((previousValue, currentValue) => {
+		if ("free_shipping" === currentValue.type) {
+			return true;
+		}
+
+		return previousValue;
+	}, false);
+
+	const typeOptions = woocommerce_growcart_rewards.reward_types.map(
+		(option) => {
+			if (hasFreeShippingRule && "free_shipping" === option.value) {
+				return { ...option, disabled: true };
+			}
+
+			return option;
+		}
+	);
+
 	return (
 		<div className="RulesList">
 			<h4 className="RulesList__title">Reward Rules</h4>
@@ -114,9 +132,7 @@ export default function RulesList({ reward, addRule, removeRule }) {
 									<SelectControl
 										label="Type"
 										value={rule.type}
-										options={
-											woocommerce_growcart_rewards.reward_types
-										}
+										options={typeOptions}
 										onChange={(type) =>
 											updateRule({
 												...rule,
