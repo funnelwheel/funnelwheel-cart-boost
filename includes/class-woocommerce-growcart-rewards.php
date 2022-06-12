@@ -46,7 +46,7 @@ class WooCommerce_GrowCart_Rewards {
 			return $coupon;
 		}
 
-		$active_rules = $this->get_active_rules( $active_reward['rules'] );
+		$active_rules = $this->get_active_rules( $active_reward );
 		if ( empty( $active_rules ) ) {
 			return $coupon;
 		}
@@ -201,7 +201,7 @@ class WooCommerce_GrowCart_Rewards {
 			return $filtered_rewards;
 		}
 
-		$active_rules = $this->get_active_rules( $active_reward['rules'] );
+		$active_rules = $this->get_active_rules( $active_reward );
 		if ( empty( $active_rules ) ) {
 			return $filtered_rewards;
 		}
@@ -576,7 +576,7 @@ class WooCommerce_GrowCart_Rewards {
 			return $filtered_rules;
 		}
 
-		$active_rules = $this->get_active_rules( $active_reward['rules'] );
+		$active_rules = $this->get_active_rules( $active_reward );
 		if ( empty( $active_rules ) ) {
 			return $filtered_rules;
 		}
@@ -619,16 +619,21 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param array $rules
 	 * @return void
 	 */
-	public function get_active_rules( $rules = [] ) {
-		if ( empty( $rules ) ) {
+	public function get_active_rules( $active_reward ) {
+		if ( empty( $active_reward['rules'] ) ) {
 			return [];
 		}
 
-		$active_rules = wp_list_filter( $rules, [ 'enabled' => 1 ] );
-		if ( empty( $active_rules ) ) {
+		$_active_rules = wp_list_filter( $active_reward['rules'], [ 'enabled' => 1 ] );
+		if ( empty( $_active_rules ) ) {
 			return [];
 		}
 
-		return array_values( $active_rules );
+		$active_rules = [];
+		foreach ( $_active_rules as $active_rule ) {
+			$active_rules[] = $active_rule;
+		}
+
+		return $active_rules;
 	}
 }
