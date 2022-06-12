@@ -145,7 +145,7 @@ export default function RulesList({ reward, addRule, removeRule }) {
 											<span
 												dangerouslySetInnerHTML={{
 													__html:
-														"Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code> and <code>{{amount}}</code> to display name and minimum cart amount.",
+														"Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency.",
 												}}
 											></span>
 										}

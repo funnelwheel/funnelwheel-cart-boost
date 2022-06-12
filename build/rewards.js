@@ -2501,7 +2501,7 @@ function RewardsListItem() {
         value: 0,
         minimum_cart_quantity: 0,
         minimum_cart_amount: 0,
-        hint: "minimum_cart_quantity" === reward.type ? "**Add** {{quantity}} more to save {{name}}" : "**Spend** {{amount}} more to save {{name}}",
+        hint: "minimum_cart_quantity" === reward.type ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}} more to get {{name}}",
         enabled: true
       }]
     }),
@@ -2732,7 +2732,7 @@ function RulesList(_ref) {
       label: "Hint",
       help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
         dangerouslySetInnerHTML: {
-          __html: "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code> and <code>{{amount}}</code> to display name and minimum cart amount."
+          __html: "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency."
         }
       }),
       value: rule.hint,

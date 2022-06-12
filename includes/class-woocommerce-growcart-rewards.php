@@ -330,20 +330,16 @@ class WooCommerce_GrowCart_Rewards {
 		if ( 'minimum_cart_quantity' === $type ) {
 			$reward_hint_string     = '' === $next_reward['hint'] ? __( '**Add** {{quantity}} more products to get {{name}}', 'woocommerce-grow-cart' ) : $next_reward['hint'];
 			$cart_contents_count    = WC()->cart->get_cart_contents_count();
-			$required_cart_contents = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
+			$required_cart_quantity = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
 			$reward_hint_string   = '' === $next_reward['hint'] ? __( '**Spend** {{amount}} more to get {{name}}', 'woocommerce-grow-cart' ) : $next_reward['hint'];
 			$cart_subtotal        = WC()->cart->subtotal;
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
 
-		$reward_hint_string = $this->replace_tags( $reward_hint_string );
+		$quantity_or_amount = 'minimum_cart_quantity' === $type ? $required_cart_quantity : wc_price( $required_cart_amount );
 
-		return sprintf(
-			$reward_hint_string,
-			'minimum_cart_quantity' === $type ? $required_cart_contents : wc_price( $required_cart_amount ),
-			$next_reward['name']
-		);
+		return $this->replace_tags( $reward_hint_string, [ $quantity_or_amount, $quantity_or_amount, $next_reward['name'], get_woocommerce_currency_symbol() ] );
 	}
 
 	/**
@@ -562,8 +558,8 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param string $reward_hint_string
 	 * @return void
 	 */
-	public function replace_tags( $reward_hint_string = '' ) {
-		$reward_hint_string = str_replace( [ '{{quantity}}', '{{amount}}', '{{name}}' ], [ '%1$s', '%1$s', '%2$s' ], $reward_hint_string );
+	public function replace_tags( $reward_hint_string = '', $values = [] ) {
+		$reward_hint_string = str_replace( [ '{{quantity}}', '{{amount}}', '{{name}}', '{{currency}}' ], $values, $reward_hint_string );
 		$reward_hint_string = preg_replace( '#\*{2}(.*?)\*{2}#', '<b>$1</b>', $reward_hint_string );
 		return wp_kses(
 			$reward_hint_string,

@@ -87,8 +87,8 @@ export default function RewardsListItem() {
 											hint:
 												"minimum_cart_quantity" ===
 												reward.type
-													? "**Add** {{quantity}} more to save {{name}}"
-													: "**Spend** {{amount}} more to save {{name}}",
+													? "**Add** {{quantity}} more to get {{name}}"
+													: "**Spend** {{amount}} more to get {{name}}",
 											enabled: true,
 										},
 									],
