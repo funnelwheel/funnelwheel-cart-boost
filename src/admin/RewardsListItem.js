@@ -82,8 +82,8 @@ export default function RewardsListItem() {
 											name: "Free Shipping",
 											type: "free_shipping",
 											value: 0,
-											minimum_cart_quantity: 0,
-											minimum_cart_amount: 0,
+											minimum_cart_quantity: 1,
+											minimum_cart_amount: 1,
 											hint:
 												"minimum_cart_quantity" ===
 												reward.type

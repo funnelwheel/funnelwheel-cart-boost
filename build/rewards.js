@@ -2499,8 +2499,8 @@ function RewardsListItem() {
         name: "Free Shipping",
         type: "free_shipping",
         value: 0,
-        minimum_cart_quantity: 0,
-        minimum_cart_amount: 0,
+        minimum_cart_quantity: 1,
+        minimum_cart_amount: 1,
         hint: "minimum_cart_quantity" === reward.type ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}} more to get {{name}}",
         enabled: true
       }]
@@ -2694,14 +2694,6 @@ function RulesList(_ref) {
           name
         });
       }
-    }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Value",
-      value: rule.value,
-      onChange: value => {
-        updateRule({ ...rule,
-          value
-        });
-      }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
       label: "Type",
       value: rule.type,
@@ -2710,24 +2702,20 @@ function RulesList(_ref) {
         type
       }),
       __nextHasNoMarginBottom: true
-    }), "minimum_cart_quantity" === reward.type ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Minimum cart quantity",
-      isShiftStepEnabled: true,
-      onChange: minimum_cart_quantity => {
-        updateRule({ ...rule,
-          minimum_cart_quantity
-        });
-      },
-      shiftStep: 10,
-      value: rule.minimum_cart_quantity
-    }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Minimum cart amount",
-      isShiftStepEnabled: true,
-      onChange: minimum_cart_amount => updateRule({ ...rule,
-        minimum_cart_amount
+    }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "Value",
+      value: rule.value,
+      onChange: value => updateRule({ ...rule,
+        value
       }),
-      shiftStep: 10,
-      value: rule.minimum_cart_amount
+      min: 0
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "minimum_cart_quantity" === reward.type ? "Minimum cart quantity" : "Minimum cart amount",
+      onChange: value => updateRule({ ...rule,
+        [reward.type]: value
+      }),
+      value: rule[reward.type],
+      min: 1
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Hint",
       help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
