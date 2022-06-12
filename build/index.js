@@ -2715,6 +2715,10 @@ function CartTotals() {
     dangerouslySetInnerHTML: {
       __html: cartInformation.data.cart_tax
     }
+  })), cartInformation.data.has_shipping && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, "Shipping"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", {
+    dangerouslySetInnerHTML: {
+      __html: cartInformation.data.cart_shipping_total
+    }
   })), cartInformation.data.has_discount && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, cartInformation.data.coupons.map(coupon => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, coupon.label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     dangerouslySetInnerHTML: {
       __html: coupon.coupon_html
