@@ -2811,6 +2811,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
+
 
 
 
@@ -2826,16 +2828,6 @@ const Example2 = () => {
     value: value
   });
 };
-
-function Example() {
-  const [color, setColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
-    color: color,
-    onChange: setColor,
-    enableAlpha: true,
-    defaultValue: "#000"
-  });
-}
 
 const fontSizes = [{
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Small"),
@@ -2861,16 +2853,19 @@ const MyFontSizePicker = () => {
 };
 
 function Styles() {
-  const [color, setColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
+  const {
+    reward,
+    updateReward
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
+  const textColor = typeof reward.styles === "undefined" ? "#000000" : reward.styles.textcolor;
+  const backgroundColor = typeof reward.styles === "undefined" ? "#ffffff" : reward.styles.backgroundColor;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    id: "textarea-1",
+    id: "Styles__color",
     label: "Color",
     __nextHasNoMarginBottom: true
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
-    className: "my-container-class-name",
-    contentClassName: "my-popover-content-classname",
     position: "bottom right",
     renderToggle: _ref => {
       let {
@@ -2882,10 +2877,19 @@ function Styles() {
         onClick: onToggle,
         "aria-expanded": isOpen
       }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorIndicator, {
-        colorValue: "#0073aa"
+        colorValue: textColor
       }), "Text");
     },
-    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example, null)
+    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+      color: textColor,
+      onChange: textcolor => updateReward({ ...reward,
+        styles: { ...reward.styles,
+          textcolor
+        }
+      }),
+      enableAlpha: true,
+      defaultValue: "#000000"
+    })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
     className: "my-container-class-name",
     contentClassName: "my-popover-content-classname",
@@ -2900,10 +2904,19 @@ function Styles() {
         onClick: onToggle,
         "aria-expanded": isOpen
       }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorIndicator, {
-        colorValue: "#0073aa"
+        colorValue: backgroundColor
       }), "Background");
     },
-    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example, null)
+    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+      color: backgroundColor,
+      onChange: backgroundColor => updateReward({ ...reward,
+        styles: { ...reward.styles,
+          backgroundColor
+        }
+      }),
+      enableAlpha: true,
+      defaultValue: "#ffffff"
+    })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     id: "textarea-1",
     label: "Typography",

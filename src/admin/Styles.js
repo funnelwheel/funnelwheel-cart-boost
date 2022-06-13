@@ -7,29 +7,18 @@ import {
 	__experimentalDimensionControl as DimensionControl,
 	__experimentalUnitControl as UnitControl,
 } from "@wordpress/components";
-import { useState } from "@wordpress/element";
+import { useState, useContext } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { Button, Dropdown } from "@wordpress/components";
 import { ColorPicker } from "@wordpress/components";
 import { ColorIndicator } from "@wordpress/components";
+import { RewardsAdminContext } from "../context";
 
 const Example2 = () => {
 	const [value, setValue] = useState("10px");
 
 	return <UnitControl onChange={setValue} value={value} />;
 };
-
-function Example() {
-	const [color, setColor] = useState();
-	return (
-		<ColorPicker
-			color={color}
-			onChange={setColor}
-			enableAlpha
-			defaultValue="#000"
-		/>
-	);
-}
 
 const fontSizes = [
 	{
@@ -61,18 +50,20 @@ const MyFontSizePicker = () => {
 };
 
 export default function Styles() {
-	const [color, setColor] = useState();
+	const { reward, updateReward } = useContext(RewardsAdminContext);
+	const textColor =
+		typeof reward.styles === "undefined"
+			? "#000000"
+			: reward.styles.textcolor;
+	const backgroundColor =
+		typeof reward.styles === "undefined"
+			? "#ffffff"
+			: reward.styles.backgroundColor;
 
 	return (
 		<div className="Styles">
-			<BaseControl
-				id="textarea-1"
-				label="Color"
-				__nextHasNoMarginBottom={true}
-			>
+			<BaseControl id="Styles__color" label="Color" __nextHasNoMarginBottom={true}>
 				<Dropdown
-					className="my-container-class-name"
-					contentClassName="my-popover-content-classname"
 					position="bottom right"
 					renderToggle={({ isOpen, onToggle }) => (
 						<Button
@@ -80,11 +71,26 @@ export default function Styles() {
 							onClick={onToggle}
 							aria-expanded={isOpen}
 						>
-							<ColorIndicator colorValue="#0073aa" />
+							<ColorIndicator colorValue={textColor} />
 							Text
 						</Button>
 					)}
-					renderContent={() => <Example />}
+					renderContent={() => (
+						<ColorPicker
+							color={textColor}
+							onChange={(textcolor) =>
+								updateReward({
+									...reward,
+									styles: {
+										...reward.styles,
+										textcolor,
+									},
+								})
+							}
+							enableAlpha
+							defaultValue="#000000"
+						/>
+					)}
 				/>
 
 				<Dropdown
@@ -97,11 +103,26 @@ export default function Styles() {
 							onClick={onToggle}
 							aria-expanded={isOpen}
 						>
-							<ColorIndicator colorValue="#0073aa" />
+							<ColorIndicator colorValue={backgroundColor} />
 							Background
 						</Button>
 					)}
-					renderContent={() => <Example />}
+					renderContent={() => (
+						<ColorPicker
+							color={backgroundColor}
+							onChange={(backgroundColor) =>
+								updateReward({
+									...reward,
+									styles: {
+										...reward.styles,
+										backgroundColor,
+									},
+								})
+							}
+							enableAlpha
+							defaultValue="#ffffff"
+						/>
+					)}
 				/>
 			</BaseControl>
 
