@@ -14,8 +14,8 @@
 		padding: 1rem 1.5rem;
 		border-top-left-radius: 8px;
 		border-top-right-radius: 8px;
-		background-color: $gray-900;
-		color: $white;
+		background-color: var(--growcart-background-color);
+		color: var(--growcart-text-color);
 	}
 
 	&__title {
@@ -65,6 +65,7 @@
 	.Rewards {
 		padding: 0;
 		background-color: transparent;
+		font-size: var(--growcart-font-size);
 
 		&__progress-wrap {
 			width: 75%;

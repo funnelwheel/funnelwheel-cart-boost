@@ -239,8 +239,8 @@
   padding: 1rem 1.5rem;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: #212529;
-  color: #fff;
+  background-color: var(--growcart-background-color);
+  color: var(--growcart-text-color);
 }
 .grow-cart-mini__title {
   line-height: 1;
@@ -283,6 +283,7 @@
 .grow-cart-mini .Rewards {
   padding: 0;
   background-color: transparent;
+  font-size: var(--growcart-font-size);
 }
 .grow-cart-mini .Rewards__progress-wrap {
   width: 75%;

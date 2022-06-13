@@ -134,6 +134,22 @@ final class WooCommerce_GrowCart {
 			[],
 			$asset_file['version']
 		);
+
+		$active_reward = woocommerce_growcart()->rewards->get_active_reward();
+		if ( $active_reward ) {
+			$font_size        = isset( $active_reward['styles'], $active_reward['styles']['fontSize'] ) ? $active_reward['styles']['fontSize'] . 'px' : '14px';
+			$text_color       = isset( $active_reward['styles'], $active_reward['styles']['textcolor'] ) ? $active_reward['styles']['textcolor'] : '#ffffff';
+			$background_color = isset( $active_reward['styles'], $active_reward['styles']['backgroundColor'] ) ? $active_reward['styles']['backgroundColor'] : '#000000';
+
+			$custom_css = "
+				:root {
+					--growcart-font-size: {$font_size};
+                    --growcart-text-color: {$text_color};
+                    --growcart-background-color: {$background_color};
+                }
+			";
+			wp_add_inline_style( 'woocommerce-growcart', $custom_css );
+		}
 	}
 
 	/**
