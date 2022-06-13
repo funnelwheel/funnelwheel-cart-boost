@@ -4,12 +4,20 @@ import {
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 	FontSizePicker,
+	__experimentalDimensionControl as DimensionControl,
+	__experimentalUnitControl as UnitControl,
 } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { Button, Dropdown } from "@wordpress/components";
 import { ColorPicker } from "@wordpress/components";
 import { ColorIndicator } from "@wordpress/components";
+
+const Example2 = () => {
+	const [value, setValue] = useState("10px");
+
+	return <UnitControl onChange={setValue} value={value} />;
+};
 
 function Example() {
 	const [color, setColor] = useState();
@@ -103,6 +111,17 @@ export default function Styles() {
 				__nextHasNoMarginBottom={true}
 			>
 				<MyFontSizePicker />
+			</BaseControl>
+
+			<BaseControl
+				id="textarea-1"
+				label="Spacing"
+				__nextHasNoMarginBottom={true}
+			>
+				<Example2 />
+				<Example2 />
+				<Example2 />
+				<Example2 />
 			</BaseControl>
 		</div>
 	);

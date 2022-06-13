@@ -2814,6 +2814,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const Example2 = () => {
+  const [value, setValue] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("10px");
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    onChange: setValue,
+    value: value
+  });
+};
+
 function Example() {
   const [color, setColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
@@ -2895,7 +2903,11 @@ function Styles() {
     id: "textarea-1",
     label: "Typography",
     __nextHasNoMarginBottom: true
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MyFontSizePicker, null)));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MyFontSizePicker, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "textarea-1",
+    label: "Spacing",
+    __nextHasNoMarginBottom: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null)));
 }
 
 /***/ }),
