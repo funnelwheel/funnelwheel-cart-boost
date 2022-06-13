@@ -25,6 +25,11 @@ export default function RewardsListItemAdd() {
 		enabled: false,
 		display_suggested_products: true,
 		display_coupon: true,
+		styles: {
+			fontSize: "14px",
+			textcolor: "#000000",
+			backgroundColor: "#ffffff",
+		},
 	});
 
 	return (

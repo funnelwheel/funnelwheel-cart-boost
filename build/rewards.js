@@ -2563,7 +2563,12 @@ function RewardsListItemAdd() {
     rules: [],
     enabled: false,
     display_suggested_products: true,
-    display_coupon: true
+    display_coupon: true,
+    styles: {
+      fontSize: "14px",
+      textcolor: "#000000",
+      backgroundColor: "#ffffff"
+    }
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItemAdd"
