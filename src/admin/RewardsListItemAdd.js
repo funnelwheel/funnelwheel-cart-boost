@@ -26,6 +26,12 @@ export default function RewardsListItemAdd() {
 		display_suggested_products: true,
 		display_coupon: true,
 		styles: {
+			spacing: {
+				top: 24,
+				right: 24,
+				bottom: 24,
+				left: 24
+			},
 			fontSize: "14px",
 			textcolor: "#000000",
 			backgroundColor: "#ffffff",

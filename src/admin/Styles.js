@@ -1,11 +1,13 @@
 import {
 	BaseControl,
+	FontSizePicker,
 	__experimentalNumberControl as NumberControl,
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
-	FontSizePicker,
 	__experimentalDimensionControl as DimensionControl,
 	__experimentalUnitControl as UnitControl,
+	Flex,
+	FlexItem,
 } from "@wordpress/components";
 import { useState, useContext } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
@@ -13,12 +15,6 @@ import { Button, Dropdown } from "@wordpress/components";
 import { ColorPicker } from "@wordpress/components";
 import { ColorIndicator } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
-
-const Example2 = () => {
-	const [value, setValue] = useState("10px");
-
-	return <UnitControl onChange={setValue} value={value} />;
-};
 
 const fontSizes = [
 	{
@@ -31,12 +27,12 @@ const fontSizes = [
 		slug: "normal",
 		size: 16,
 	},
-    {
+	{
 		name: __("Medium"),
 		slug: "medium",
 		size: 23,
 	},
-    {
+	{
 		name: __("Large"),
 		slug: "Large",
 		size: 26,
@@ -46,14 +42,25 @@ const fallbackFontSize = 16;
 
 export default function Styles() {
 	const { reward, updateReward } = useContext(RewardsAdminContext);
+	const spacing =
+		typeof reward.styles && reward.styles !== "undefined"
+			? {
+					top: 24,
+					right: 24,
+					bottom: 24,
+					left: 24,
+			  }
+			: reward.styles.spacing;
 	const fontSize =
-		typeof reward.styles === "undefined" ? 12 : reward.styles.fontSize;
+		typeof reward.styles && reward.styles !== "undefined"
+			? 14
+			: reward.styles.fontSize;
 	const textColor =
-		typeof reward.styles === "undefined"
+		typeof reward.styles && reward.styles !== "undefined"
 			? "#000000"
 			: reward.styles.textcolor;
 	const backgroundColor =
-		typeof reward.styles === "undefined"
+		typeof reward.styles && reward.styles !== "undefined"
 			? "#ffffff"
 			: reward.styles.backgroundColor;
 
@@ -143,14 +150,80 @@ export default function Styles() {
 			</BaseControl>
 
 			<BaseControl
-				id="textarea-1"
+				className="Styles__spacing"
 				label="Spacing"
 				__nextHasNoMarginBottom={true}
 			>
-				<Example2 />
-				<Example2 />
-				<Example2 />
-				<Example2 />
+				<Flex>
+					<FlexItem>
+						<UnitControl
+							onChange={(top) =>
+								updateReward({
+									...reward,
+									styles: {
+										...reward.styles,
+										spacing: {
+											...reward.styles.spacing,
+											top,
+										},
+									},
+								})
+							}
+							value={spacing.top}
+						/>
+					</FlexItem>
+					<FlexItem>
+						<UnitControl
+							onChange={(right) =>
+								updateReward({
+									...reward,
+									styles: {
+										...reward.styles,
+										spacing: {
+											...reward.styles.spacing,
+											right,
+										},
+									},
+								})
+							}
+							value={spacing.right}
+						/>
+					</FlexItem>
+					<FlexItem>
+						<UnitControl
+							onChange={(bottom) =>
+								updateReward({
+									...reward,
+									styles: {
+										...reward.styles,
+										spacing: {
+											...reward.styles.spacing,
+											bottom,
+										},
+									},
+								})
+							}
+							value={spacing.bottom}
+						/>
+					</FlexItem>
+					<FlexItem>
+						<UnitControl
+							onChange={(left) =>
+								updateReward({
+									...reward,
+									styles: {
+										...reward.styles,
+										spacing: {
+											...reward.styles.spacing,
+											left,
+										},
+									},
+								})
+							}
+							value={spacing.left}
+						/>
+					</FlexItem>
+				</Flex>
 			</BaseControl>
 		</div>
 	);

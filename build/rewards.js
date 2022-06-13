@@ -2565,6 +2565,12 @@ function RewardsListItemAdd() {
     display_suggested_products: true,
     display_coupon: true,
     styles: {
+      spacing: {
+        top: 24,
+        right: 24,
+        bottom: 24,
+        left: 24
+      },
       fontSize: "14px",
       textcolor: "#000000",
       backgroundColor: "#ffffff"
@@ -2820,15 +2826,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-const Example2 = () => {
-  const [value, setValue] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("10px");
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
-    onChange: setValue,
-    value: value
-  });
-};
-
 const fontSizes = [{
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Small"),
   slug: "small",
@@ -2852,9 +2849,15 @@ function Styles() {
     reward,
     updateReward
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
-  const fontSize = typeof reward.styles === "undefined" ? 12 : reward.styles.fontSize;
-  const textColor = typeof reward.styles === "undefined" ? "#000000" : reward.styles.textcolor;
-  const backgroundColor = typeof reward.styles === "undefined" ? "#ffffff" : reward.styles.backgroundColor;
+  const spacing = typeof reward.styles && reward.styles !== "undefined" ? {
+    top: 24,
+    right: 24,
+    bottom: 24,
+    left: 24
+  } : reward.styles.spacing;
+  const fontSize = typeof reward.styles && reward.styles !== "undefined" ? 14 : reward.styles.fontSize;
+  const textColor = typeof reward.styles && reward.styles !== "undefined" ? "#000000" : reward.styles.textcolor;
+  const backgroundColor = typeof reward.styles && reward.styles !== "undefined" ? "#ffffff" : reward.styles.backgroundColor;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
@@ -2927,10 +2930,46 @@ function Styles() {
       }
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    id: "textarea-1",
+    className: "Styles__spacing",
     label: "Spacing",
     __nextHasNoMarginBottom: true
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Example2, null)));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    onChange: top => updateReward({ ...reward,
+      styles: { ...reward.styles,
+        spacing: { ...reward.styles.spacing,
+          top
+        }
+      }
+    }),
+    value: spacing.top
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    onChange: right => updateReward({ ...reward,
+      styles: { ...reward.styles,
+        spacing: { ...reward.styles.spacing,
+          right
+        }
+      }
+    }),
+    value: spacing.right
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    onChange: bottom => updateReward({ ...reward,
+      styles: { ...reward.styles,
+        spacing: { ...reward.styles.spacing,
+          bottom
+        }
+      }
+    }),
+    value: spacing.bottom
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+    onChange: left => updateReward({ ...reward,
+      styles: { ...reward.styles,
+        spacing: { ...reward.styles.spacing,
+          left
+        }
+      }
+    }),
+    value: spacing.left
+  })))));
 }
 
 /***/ }),
