@@ -43,7 +43,8 @@ const fallbackFontSize = 16;
 export default function Styles() {
 	const { reward, updateReward } = useContext(RewardsAdminContext);
 	const spacing =
-		typeof reward.styles && reward.styles !== "undefined"
+		typeof reward.styles === "undefined" ||
+		typeof reward.styles.spacing === "undefined"
 			? {
 					top: 24,
 					right: 24,
@@ -52,15 +53,18 @@ export default function Styles() {
 			  }
 			: reward.styles.spacing;
 	const fontSize =
-		typeof reward.styles && reward.styles !== "undefined"
+		typeof reward.styles === "undefined" ||
+		typeof reward.styles.fontSize === "undefined"
 			? 14
 			: reward.styles.fontSize;
 	const textColor =
-		typeof reward.styles && reward.styles !== "undefined"
+		typeof reward.styles === "undefined" ||
+		typeof reward.styles.textcolor === "undefined"
 			? "#000000"
 			: reward.styles.textcolor;
 	const backgroundColor =
-		typeof reward.styles && reward.styles !== "undefined"
+		typeof reward.styles === "undefined" ||
+		typeof reward.styles.backgroundColor === "undefined"
 			? "#ffffff"
 			: reward.styles.backgroundColor;
 
