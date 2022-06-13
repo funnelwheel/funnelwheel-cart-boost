@@ -62,68 +62,72 @@ export default function Styles() {
 
 	return (
 		<div className="Styles">
-			<BaseControl id="Styles__color" label="Color" __nextHasNoMarginBottom={true}>
-				<Dropdown
-					position="bottom right"
-					renderToggle={({ isOpen, onToggle }) => (
-						<Button
-							variant="tertiary"
-							onClick={onToggle}
-							aria-expanded={isOpen}
-						>
-							<ColorIndicator colorValue={textColor} />
-							Text
-						</Button>
-					)}
-					renderContent={() => (
-						<ColorPicker
-							color={textColor}
-							onChange={(textcolor) =>
-								updateReward({
-									...reward,
-									styles: {
-										...reward.styles,
-										textcolor,
-									},
-								})
-							}
-							enableAlpha
-							defaultValue="#000000"
-						/>
-					)}
-				/>
+			<BaseControl
+				className="Styles__color"
+				label="Color"
+				__nextHasNoMarginBottom={true}
+			>
+				<div className="components-tools-panel-item first">
+					<Dropdown
+						position="bottom right"
+						renderToggle={({ isOpen, onToggle }) => (
+							<Button
+								onClick={onToggle}
+								aria-expanded={isOpen}
+							>
+								<ColorIndicator colorValue={textColor} />
+								Text
+							</Button>
+						)}
+						renderContent={() => (
+							<ColorPicker
+								color={textColor}
+								onChange={(textcolor) =>
+									updateReward({
+										...reward,
+										styles: {
+											...reward.styles,
+											textcolor,
+										},
+									})
+								}
+								enableAlpha
+								defaultValue="#000000"
+							/>
+						)}
+					/>
+				</div>
 
-				<Dropdown
-					className="my-container-class-name"
-					contentClassName="my-popover-content-classname"
-					position="bottom right"
-					renderToggle={({ isOpen, onToggle }) => (
-						<Button
-							variant="tertiary"
-							onClick={onToggle}
-							aria-expanded={isOpen}
-						>
-							<ColorIndicator colorValue={backgroundColor} />
-							Background
-						</Button>
-					)}
-					renderContent={() => (
-						<ColorPicker
-							color={backgroundColor}
-							onChange={(backgroundColor) =>
-								updateReward({
-									...reward,
-									styles: {
-										...reward.styles,
-										backgroundColor,
-									},
-								})
-							}
-							enableAlpha
-							defaultValue="#ffffff"
-						/>
-					)}
-				/>
+				<div className="components-tools-panel-item last">
+					<Dropdown
+						position="bottom right"
+						renderToggle={({ isOpen, onToggle }) => (
+							<Button
+								onClick={onToggle}
+								aria-expanded={isOpen}
+							>
+								<ColorIndicator colorValue={backgroundColor} />
+								Background
+							</Button>
+						)}
+						renderContent={() => (
+							<ColorPicker
+								color={backgroundColor}
+								onChange={(backgroundColor) =>
+									updateReward({
+										...reward,
+										styles: {
+											...reward.styles,
+											backgroundColor,
+										},
+									})
+								}
+								enableAlpha
+								defaultValue="#ffffff"
+							/>
+						)}
+					/>
+				</div>
 			</BaseControl>
 
 			<BaseControl

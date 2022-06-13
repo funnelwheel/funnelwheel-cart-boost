@@ -124,7 +124,7 @@ button {
 		white-space: nowrap;
 		vertical-align: baseline;
 		border-radius: var(--bs-badge-border-radius, 0);
-		background-color: rgb(108,117,125);
+		background-color: rgb(108, 117, 125);
 	}
 }
 
@@ -235,4 +235,32 @@ button {
 	padding: 24px;
 	border-radius: 4px;
 	background-color: $white;
+
+	&__color {
+		.components-dropdown {
+			display: block;
+		}
+		
+		.components-button {
+			width: 100%;
+		}
+
+		.components-tools-panel-item {
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			border-left: 1px solid rgba(0, 0, 0, 0.1);
+			border-right: 1px solid rgba(0, 0, 0, 0.1);
+			padding: 0;
+		}
+
+		.components-tools-panel-item.first {
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+		}
+
+		.components-tools-panel-item.last {
+			border-bottom-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
+	}
 }
