@@ -1,9 +1,27 @@
 import {
+	BaseControl,
 	__experimentalNumberControl as NumberControl,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 	FontSizePicker,
 } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
+import { Button, Dropdown } from "@wordpress/components";
+import { ColorPicker } from "@wordpress/components";
+import { ColorIndicator } from "@wordpress/components";
+
+function Example() {
+	const [color, setColor] = useState();
+	return (
+		<ColorPicker
+			color={color}
+			onChange={setColor}
+			enableAlpha
+			defaultValue="#000"
+		/>
+	);
+}
 
 const fontSizes = [
 	{
@@ -39,31 +57,53 @@ export default function Styles() {
 
 	return (
 		<div className="Styles">
-			<div className="field">
-				<label for="field__mini-cart-header-background-color">
-					Background Color
-				</label>
-				<input
-					type="color"
-					id="field__mini-cart-header-background-color"
-					value={color}
-					onChange={(e) => setColor(e.target.value)}
+			<BaseControl
+				id="textarea-1"
+				label="Color"
+				__nextHasNoMarginBottom={true}
+			>
+				<Dropdown
+					className="my-container-class-name"
+					contentClassName="my-popover-content-classname"
+					position="bottom right"
+					renderToggle={({ isOpen, onToggle }) => (
+						<Button
+							variant="tertiary"
+							onClick={onToggle}
+							aria-expanded={isOpen}
+						>
+							<ColorIndicator colorValue="#0073aa" />
+							Text
+						</Button>
+					)}
+					renderContent={() => <Example />}
 				/>
-			</div>
 
-			<div className="field">
-				<label for="field__mini-cart-header-font-color">
-					Font Color
-				</label>
-				<input
-					type="color"
-					id="field__mini-cart-header-font-color"
-					value={color}
-					onChange={(e) => setColor(e.target.value)}
+				<Dropdown
+					className="my-container-class-name"
+					contentClassName="my-popover-content-classname"
+					position="bottom right"
+					renderToggle={({ isOpen, onToggle }) => (
+						<Button
+							variant="tertiary"
+							onClick={onToggle}
+							aria-expanded={isOpen}
+						>
+							<ColorIndicator colorValue="#0073aa" />
+							Background
+						</Button>
+					)}
+					renderContent={() => <Example />}
 				/>
-			</div>
+			</BaseControl>
 
-			<MyFontSizePicker />
+			<BaseControl
+				id="textarea-1"
+				label="Typography"
+				__nextHasNoMarginBottom={true}
+			>
+				<MyFontSizePicker />
+			</BaseControl>
 		</div>
 	);
 }

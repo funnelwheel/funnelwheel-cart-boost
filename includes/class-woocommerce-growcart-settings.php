@@ -101,8 +101,7 @@ class WooCommerce_Growcart_Settings {
 		?>
 		<div class="wrap woocommerce-growcart-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<form class="woocommerce-growcart-options" action="options.php" method="post">
-				<?php settings_fields( $this->settings_group ); ?>
+			<?php settings_fields( $this->settings_group ); ?>
 
 				<?php
 				foreach ( $this->settings as $key => $section ) {
@@ -125,7 +124,6 @@ class WooCommerce_Growcart_Settings {
 					echo '</div>';
 				}
 				?>
-			</form>
 		</div>
 		<?php
 	}
