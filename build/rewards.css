@@ -207,4 +207,11 @@ button {
   width: 100%;
 }
 
+.Styles {
+  max-width: 500px;
+  padding: 24px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
 /*# sourceMappingURL=rewards.css.map*/

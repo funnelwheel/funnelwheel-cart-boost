@@ -81,6 +81,26 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function auto_add_coupons() {
+		$coupon_codes = [];
+		$coupon_posts = get_posts(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => 'shop_coupon',
+				'post_status'    => 'publish',
+			)
+		);
+
+		foreach ( $coupon_posts as $coupon_post ) {
+			$coupon_codes[] = $coupon_post->post_name;
+		}
+
+		$cart_coupons = get_cart_coupons();
+		foreach ( $cart_coupons as $coupon ) {
+			if ( ! in_array( $coupon, $coupon_codes, true ) && WC()->cart->has_discount( $coupon['code'] ) ) {
+				WC()->cart->remove_coupon( $coupon['code'] );
+			}
+		}
+
 		$filtered_rewards = $this->get_filtered_rules();
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {

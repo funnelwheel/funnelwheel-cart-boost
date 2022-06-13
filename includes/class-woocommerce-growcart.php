@@ -76,7 +76,7 @@ final class WooCommerce_GrowCart {
 	 */
 	private function hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-		add_action( 'wp_footer', [ $this, 'grow_cart_root' ] );
+		add_action( 'wp_footer', [ $this, 'growcart_root' ] );
 	}
 
 	/**
@@ -137,10 +137,10 @@ final class WooCommerce_GrowCart {
 	}
 
 	/**
-	 * [grow_cart_root description]
+	 * [growcart_root description]
 	 * @return [type] [description]
 	 */
-	public function grow_cart_root() {
+	public function growcart_root() {
 		if ( is_cart() || is_checkout() ) {
 			return;
 		}

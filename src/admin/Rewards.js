@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { useMutation } from "react-query";
 import { useState, useEffect } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
