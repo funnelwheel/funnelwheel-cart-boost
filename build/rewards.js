@@ -2832,31 +2832,27 @@ const Example2 = () => {
 const fontSizes = [{
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Small"),
   slug: "small",
-  size: 12
+  size: 14
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Big"),
-  slug: "big",
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Normal"),
+  slug: "normal",
+  size: 16
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Medium"),
+  slug: "medium",
+  size: 23
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Large"),
+  slug: "Large",
   size: 26
 }];
 const fallbackFontSize = 16;
-
-const MyFontSizePicker = () => {
-  const [fontSize, setFontSize] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(12);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FontSizePicker, {
-    fontSizes: fontSizes,
-    value: fontSize,
-    fallbackFontSize: fallbackFontSize,
-    onChange: newFontSize => {
-      setFontSize(newFontSize);
-    }
-  });
-};
-
 function Styles() {
   const {
     reward,
     updateReward
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
+  const fontSize = typeof reward.styles === "undefined" ? 12 : reward.styles.fontSize;
   const textColor = typeof reward.styles === "undefined" ? "#000000" : reward.styles.textcolor;
   const backgroundColor = typeof reward.styles === "undefined" ? "#ffffff" : reward.styles.backgroundColor;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -2918,10 +2914,19 @@ function Styles() {
       defaultValue: "#ffffff"
     })
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    id: "textarea-1",
+    className: "Styles__typography",
     label: "Typography",
     __nextHasNoMarginBottom: true
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MyFontSizePicker, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FontSizePicker, {
+    fontSizes: fontSizes,
+    value: fontSize,
+    fallbackFontSize: fallbackFontSize,
+    onChange: fontSize => updateReward({ ...reward,
+      styles: { ...reward.styles,
+        fontSize
+      }
+    })
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     id: "textarea-1",
     label: "Spacing",
     __nextHasNoMarginBottom: true

@@ -24,33 +24,30 @@ const fontSizes = [
 	{
 		name: __("Small"),
 		slug: "small",
-		size: 12,
+		size: 14,
 	},
 	{
-		name: __("Big"),
-		slug: "big",
+		name: __("Normal"),
+		slug: "normal",
+		size: 16,
+	},
+    {
+		name: __("Medium"),
+		slug: "medium",
+		size: 23,
+	},
+    {
+		name: __("Large"),
+		slug: "Large",
 		size: 26,
 	},
 ];
 const fallbackFontSize = 16;
 
-const MyFontSizePicker = () => {
-	const [fontSize, setFontSize] = useState(12);
-
-	return (
-		<FontSizePicker
-			fontSizes={fontSizes}
-			value={fontSize}
-			fallbackFontSize={fallbackFontSize}
-			onChange={(newFontSize) => {
-				setFontSize(newFontSize);
-			}}
-		/>
-	);
-};
-
 export default function Styles() {
 	const { reward, updateReward } = useContext(RewardsAdminContext);
+	const fontSize =
+		typeof reward.styles === "undefined" ? 12 : reward.styles.fontSize;
 	const textColor =
 		typeof reward.styles === "undefined"
 			? "#000000"
@@ -71,10 +68,7 @@ export default function Styles() {
 					<Dropdown
 						position="bottom right"
 						renderToggle={({ isOpen, onToggle }) => (
-							<Button
-								onClick={onToggle}
-								aria-expanded={isOpen}
-							>
+							<Button onClick={onToggle} aria-expanded={isOpen}>
 								<ColorIndicator colorValue={textColor} />
 								Text
 							</Button>
@@ -102,10 +96,7 @@ export default function Styles() {
 					<Dropdown
 						position="bottom right"
 						renderToggle={({ isOpen, onToggle }) => (
-							<Button
-								onClick={onToggle}
-								aria-expanded={isOpen}
-							>
+							<Button onClick={onToggle} aria-expanded={isOpen}>
 								<ColorIndicator colorValue={backgroundColor} />
 								Background
 							</Button>
@@ -131,11 +122,24 @@ export default function Styles() {
 			</BaseControl>
 
 			<BaseControl
-				id="textarea-1"
+				className="Styles__typography"
 				label="Typography"
 				__nextHasNoMarginBottom={true}
 			>
-				<MyFontSizePicker />
+				<FontSizePicker
+					fontSizes={fontSizes}
+					value={fontSize}
+					fallbackFontSize={fallbackFontSize}
+					onChange={(fontSize) =>
+						updateReward({
+							...reward,
+							styles: {
+								...reward.styles,
+								fontSize,
+							},
+						})
+					}
+				/>
 			</BaseControl>
 
 			<BaseControl
