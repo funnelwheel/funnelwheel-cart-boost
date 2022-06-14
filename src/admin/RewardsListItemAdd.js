@@ -33,8 +33,8 @@ export default function RewardsListItemAdd() {
 				left: 24
 			},
 			fontSize: 14,
-			textcolor: "#000000",
-			backgroundColor: "#ffffff",
+			textcolor: "#ffffff",
+			backgroundColor: "#000000",
 		},
 	});
 
