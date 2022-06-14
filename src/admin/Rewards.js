@@ -8,7 +8,7 @@ import RewardsListItemAdd from "./RewardsListItemAdd";
 
 export default function Rewards() {
 	const initialRewards = document.querySelector('input[name="woocommerce_growcart_rewards"]')
-		.value || [];
+		.value || '[]';
 	const activeRewardId = null;
 	const [activeScreen, setActiveScreen] = useState("list");
 	const [currentlyEditing, setCurrentlyEditing] = useState(activeRewardId);
