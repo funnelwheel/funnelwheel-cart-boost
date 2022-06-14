@@ -2,8 +2,8 @@
 	padding: 20px 24px;
 	width: 100%;
 	font-size: $font-size-sm;
-	background-color: $gray-800;
-	color: $white;
+	background-color: var(--growcart-background-color);
+	color: var(--growcart-text-color);
 
 	&__list {
 		display: flex;
