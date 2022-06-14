@@ -3,23 +3,23 @@
 	line-height: 1;
 	font-size: $font-size-sm;
 
-	dl {
+	li {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 
-		dt,
-		dd {
+		.label,
+		.value {
 			flex: 0 0 auto;
 			font-weight: 600;
 		}
 
-		dt {
+		.label {
 			width: 25%;
 		}
 
-		dd {
+		.value {
 			width: 75%;
 			margin-bottom: 0.5rem;
 			text-align: right;

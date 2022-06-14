@@ -30,8 +30,8 @@ export default function CartTotals() {
 		<ul className="CartTotals">
 			{cartInformation.data.tax_enabled && (
 				<li>
-					<span>Tax</span>
-					<span
+					<span className="label">Tax</span>
+					<span className="value"
 						dangerouslySetInnerHTML={{
 							__html: cartInformation.data.cart_tax,
 						}}
@@ -43,8 +43,8 @@ export default function CartTotals() {
 				<>
 					{cartInformation.data.coupons.map((coupon) => (
 						<li>
-							<span>{coupon.label}</span>
-							<span>
+							<span className="label">{coupon.label}</span>
+							<span className="value">
 								<span
 									dangerouslySetInnerHTML={{
 										__html: coupon.coupon_html,
@@ -72,9 +72,9 @@ export default function CartTotals() {
 
 					{cartInformation.data.rewards && (
 						<li>
-							<span>Rewards</span>
+							<span className="label">Rewards</span>
 							<span
-								className="CartTotals__rewards"
+								className="value CartTotals__rewards"
 								dangerouslySetInnerHTML={{
 									__html: cartInformation.data.rewards,
 								}}
@@ -86,8 +86,8 @@ export default function CartTotals() {
 
 			{cartInformation.data.display_coupon && (
 				<li>
-					<span>Coupon code</span>
-					<span>
+					<span className="label">Coupon code</span>
+					<span className="value">
 						<input
 							type="text"
 							value={coupon}
@@ -113,9 +113,9 @@ export default function CartTotals() {
 			)}
 
 			<li>
-				<span>Total</span>
+				<span className="label">Total</span>
 				<span
-					className="CartTotals__total"
+					className="value CartTotals__total"
 					dangerouslySetInnerHTML={{
 						__html: cartInformation.data.total,
 					}}

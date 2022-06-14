@@ -329,21 +329,21 @@
   line-height: 1;
   font-size: 0.875rem;
 }
-.CartTotals dl {
+.CartTotals li {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
-.CartTotals dl dt,
-.CartTotals dl dd {
+.CartTotals li .label,
+.CartTotals li .value {
   flex: 0 0 auto;
   font-weight: 600;
 }
-.CartTotals dl dt {
+.CartTotals li .label {
   width: 25%;
 }
-.CartTotals dl dd {
+.CartTotals li .value {
   width: 75%;
   margin-bottom: 0.5rem;
   text-align: right;
