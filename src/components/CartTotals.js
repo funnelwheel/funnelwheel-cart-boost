@@ -27,100 +27,100 @@ export default function CartTotals() {
 	if (error) return "An error has occurred: " + error.message;
 
 	return (
-		<div className="CartTotals">
-			<dl>
-				{cartInformation.data.tax_enabled && (
-					<>
-						<dt>Tax</dt>
-						<dd
-							dangerouslySetInnerHTML={{
-								__html: cartInformation.data.cart_tax,
-							}}
-						/>
-					</>
-				)}
+		<ul className="CartTotals">
+			{cartInformation.data.tax_enabled && (
+				<li>
+					<span>Tax</span>
+					<span
+						dangerouslySetInnerHTML={{
+							__html: cartInformation.data.cart_tax,
+						}}
+					/>
+				</li>
+			)}
 
-				{cartInformation.data.has_discount && (
-					<>
-						{cartInformation.data.coupons.map((coupon) => (
-							<>
-								<dt>{coupon.label}</dt>
-								<dd>
-									<span
-										dangerouslySetInnerHTML={{
-											__html: coupon.coupon_html,
-										}}
-									/>
-									<button
-										className="CartTotals__remove-coupon"
-										type="button"
-										onClick={() =>
-											mutationRemoveCoupon.mutate({
-												security:
-													woocommerce_growcart.remove_coupon_nonce,
-												coupon: coupon.code,
-											})
-										}
-										disabled={
-											mutationRemoveCoupon.isLoading
-										}
-									>
-										[Remove]
-									</button>
-								</dd>
-							</>
-						))}
-
-						{cartInformation.data.rewards && (
-							<>
-								<dt>Rewards</dt>
-								<dd
-									className="CartTotals__rewards"
+			{cartInformation.data.has_discount && (
+				<>
+					{cartInformation.data.coupons.map((coupon) => (
+						<li>
+							<span>{coupon.label}</span>
+							<span>
+								<span
 									dangerouslySetInnerHTML={{
-										__html: cartInformation.data.rewards,
+										__html: coupon.coupon_html,
 									}}
 								/>
-							</>
-						)}
-					</>
-				)}
+								<button
+									className="CartTotals__remove-coupon"
+									type="button"
+									onClick={() =>
+										mutationRemoveCoupon.mutate({
+											security:
+												woocommerce_growcart.remove_coupon_nonce,
+											coupon: coupon.code,
+										})
+									}
+									disabled={
+										mutationRemoveCoupon.isLoading
+									}
+								>
+									[Remove]
+								</button>
+							</span>
+						</li>
+					))}
 
-				{cartInformation.data.display_coupon && (
-					<>
-						<dt>Coupon code</dt>
-						<dd>
-							<input
-								type="text"
-								value={coupon}
-								placeholder="Enter code"
-								onChange={(e) => updateCoupon(e.target.value)}
+					{cartInformation.data.rewards && (
+						<li>
+							<span>Rewards</span>
+							<span
+								className="CartTotals__rewards"
+								dangerouslySetInnerHTML={{
+									__html: cartInformation.data.rewards,
+								}}
 							/>
-							<button
-								type="button"
-								className="button"
-								onClick={() =>
-									mutationApplyCoupon.mutate({
-										security:
-											woocommerce_growcart.apply_coupon_nonce,
-										coupon_code: coupon,
-									})
-								}
-								disabled={mutationApplyCoupon.isLoading}
-							>
-								Apply coupon
-							</button>
-						</dd>
-					</>
-				)}
+						</li>
+					)}
+				</>
+			)}
 
-				<dt>Total</dt>
-				<dd
+			{cartInformation.data.display_coupon && (
+				<li>
+					<span>Coupon code</span>
+					<span>
+						<input
+							type="text"
+							value={coupon}
+							placeholder="Enter code"
+							onChange={(e) => updateCoupon(e.target.value)}
+						/>
+						<button
+							type="button"
+							className="button"
+							onClick={() =>
+								mutationApplyCoupon.mutate({
+									security:
+										woocommerce_growcart.apply_coupon_nonce,
+									coupon_code: coupon,
+								})
+							}
+							disabled={mutationApplyCoupon.isLoading}
+						>
+							Apply coupon
+						</button>
+					</span>
+				</li>
+			)}
+
+			<li>
+				<span>Total</span>
+				<span
 					className="CartTotals__total"
 					dangerouslySetInnerHTML={{
 						__html: cartInformation.data.total,
 					}}
 				/>
-			</dl>
-		</div>
+			</li>
+		</ul>
 	);
 }
