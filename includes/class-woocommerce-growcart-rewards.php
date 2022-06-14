@@ -260,7 +260,7 @@ class WooCommerce_GrowCart_Rewards {
 		return [
 			'hint'                  => $hint,
 			'featured_rewards'      => $this->get_featured_rewards(),
-			'count_rewards'         => count( $rewards ),
+			'count_rewards'         => count( $filtered_rewards ),
 			'count_current_rewards' => count( $filtered_rewards['current_rewards'] ),
 			'cart_contents_count'   => WC()->cart->get_cart_contents_count(),
 			'rewards_progress'      => $most_rewards ? 100 : $this->get_rewards_progress( $filtered_rewards['rewards'], $filtered_rewards['type'] ),
