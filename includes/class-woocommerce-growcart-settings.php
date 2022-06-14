@@ -86,7 +86,7 @@ class WooCommerce_Growcart_Settings {
 			__( 'GrowCart Settings', 'woocommerce-grow-cart' ),
 			__( 'GrowCart', 'woocommerce-grow-cart' ),
 			'manage_options',
-			'woocommerce-growcart',
+			'wc-growcart',
 			array( $this, 'menu_page_html' ),
 			'dashicons-cart',
 			58
