@@ -275,7 +275,7 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param [type] $cart_contents_count
 	 * @return void
 	 */
-	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count ) {
+	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count = 0) {
 		$filtered_rewards = [
 			'rewards'         => [],
 			'current_rewards' => [],
@@ -310,7 +310,7 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param [type] $cart_subtotal
 	 * @return void
 	 */
-	public function filter_rewards_by_cart_subtotal( $rewards = [], $cart_subtotal ) {
+	public function filter_rewards_by_cart_subtotal( $rewards = [], $cart_subtotal = 0 ) {
 		$filtered_rewards = [
 			'rewards'         => [],
 			'current_rewards' => [],

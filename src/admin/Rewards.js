@@ -7,19 +7,15 @@ import RewardsListItem from "./RewardsListItem";
 import RewardsListItemAdd from "./RewardsListItemAdd";
 
 export default function Rewards() {
+	const initialRewards = document.querySelector('input[name="woocommerce_growcart_rewards"]')
+		.value || [];
 	const activeRewardId = null;
 	const [activeScreen, setActiveScreen] = useState("list");
 	const [currentlyEditing, setCurrentlyEditing] = useState(activeRewardId);
-	const [rewards, setRewards] = useState(
-		JSON.parse(
-			document.querySelector('input[name="woocommerce_growcart_rewards"]')
-				.value
-		)
-	);
+	const [rewards, setRewards] = useState(JSON.parse(initialRewards));
 	const mutation = useMutation(updateAdminRewards, {
-		onSuccess: (response) => {},
+		onSuccess: (response) => { },
 	});
-
 	const activeRewardItem = currentlyEditing
 		? rewards.find((reward) => reward.id === currentlyEditing)
 		: null;
