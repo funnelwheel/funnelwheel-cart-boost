@@ -15,7 +15,7 @@
 		font-size: 12px;
 
 		li {
-			margin-right: 16px;
+			margin: 0 16px 0 0;
 		}
 	}
 
@@ -32,6 +32,10 @@
 		.spend,
 		.amount {
 			font-weight: bold;
+		}
+
+		.progress {
+			margin-bottom: 4px;
 		}
 	}
 
@@ -65,6 +69,10 @@
 		.Rewards__text {
 			font-weight: bold;
 		}
+	}
+
+	.checkout-button {
+		width: 100%;
 	}
 
 	@include media-breakpoint-down(sm) {

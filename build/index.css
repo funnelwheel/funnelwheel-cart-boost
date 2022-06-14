@@ -56,7 +56,7 @@
   line-height: 1;
 }
 .modal .modal-title {
-  margin-bottom: 0;
+  margin: 0;
   line-height: 1.5;
   font-size: 16px;
   font-weight: bold;
@@ -159,6 +159,7 @@
   padding-top: 0;
 }
 .grow-cart__proceed-to-checkout.wc-proceed-to-checkout .button {
+  width: 100%;
   margin-bottom: 0;
   border-radius: 4px;
 }
@@ -294,6 +295,7 @@
   padding: 32px;
 }
 .SuggestedProducts__title {
+  margin-top: 0;
   line-height: 1;
 }
 .SuggestedProducts__item {
@@ -389,7 +391,7 @@
   font-size: 12px;
 }
 .Rewards__list li {
-  margin-right: 16px;
+  margin: 0 16px 0 0;
 }
 .Rewards__item {
   display: flex;
@@ -403,6 +405,9 @@
 .Rewards__progress .spend,
 .Rewards__progress .amount {
   font-weight: bold;
+}
+.Rewards__progress .progress {
+  margin-bottom: 4px;
 }
 .Rewards__progress-wrap {
   width: 100%;
@@ -428,6 +433,9 @@
 }
 .Rewards .availed .Rewards__text {
   font-weight: bold;
+}
+.Rewards .checkout-button {
+  width: 100%;
 }
 @media (max-width: 575.98px) {
   .Rewards__list {
