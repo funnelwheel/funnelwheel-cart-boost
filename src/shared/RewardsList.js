@@ -1,12 +1,12 @@
 import { ReactComponent as LockIcon } from "./../svg/lock.svg";
 import { ReactComponent as StarIcon } from "./../svg/star.svg";
 
-export default function Rewards({ current_rewards, next_rewards, rewards_progress, hint }) {
+export default function RewardsList({ children, rewards, rewards_progress, hint }) {
     return (
         <div className="Rewards">
             <ul className="Rewards__list">
                 <li className="Rewards__title">Rewards</li>
-                {current_rewards.map((reward, index) => (
+                {rewards.current_rewards.map((reward, index) => (
                     <li key={index} className="Rewards__item availed">
                         <span className="Rewards__icon">
                             <StarIcon />
@@ -18,7 +18,7 @@ export default function Rewards({ current_rewards, next_rewards, rewards_progres
                     </li>
                 ))}
 
-                {next_rewards.map((reward, index) => (
+                {rewards.next_rewards.map((reward, index) => (
                     <li key={index} className="Rewards__item">
                         <span className="Rewards__icon">
                             <LockIcon />

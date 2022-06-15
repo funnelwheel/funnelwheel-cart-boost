@@ -36,7 +36,7 @@ export default function MiniCart({ setShowPopup }) {
 		<div className="grow-cart-mini slideInUp">
 			<div className="grow-cart-mini__inner">
 				<Rewards>
-					<div className="">
+					<>
 						<span className="cart-contents">
 							<BasketIcon />
 							<span className="badge">
@@ -49,7 +49,7 @@ export default function MiniCart({ setShowPopup }) {
 						>
 							<ChevronUpIcon />
 						</button>
-					</div>
+					</>
 				</Rewards>
 			</div>
 		</div>
