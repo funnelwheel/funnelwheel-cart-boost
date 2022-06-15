@@ -1,0 +1,10 @@
+{
+    "core": "WordPress/WordPress#6.0",
+    "plugins": [
+        ".",
+        "https://downloads.wordpress.org/plugin/woocommerce.6.6.0.zip"
+    ],
+    "themes": [
+        "https://downloads.wordpress.org/theme/storefront.4.1.0.zip"
+    ]
+}
