@@ -1,5 +1,5 @@
 .Rewards {
-	padding: 20px 24px;
+	padding: var(--growcart-spacing-top) var(--growcart-spacing-right) var(--growcart-spacing-bottom) var(--growcart-spacing-left);
 	width: 100%;
 	font-size: $font-size-sm;
 	background-color: var(--growcart-background-color);

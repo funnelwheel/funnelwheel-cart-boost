@@ -10,8 +10,8 @@
 		justify-content: space-between;
 		align-items: center;
 		margin: auto;
+		padding: var(--growcart-spacing-top) var(--growcart-spacing-right) var(--growcart-spacing-bottom) var(--growcart-spacing-left);
 		max-width: 570px;
-		padding: 1rem 1.5rem;
 		border-top-left-radius: 8px;
 		border-top-right-radius: 8px;
 		background-color: var(--growcart-background-color);
