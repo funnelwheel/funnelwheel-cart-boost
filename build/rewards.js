@@ -2255,6 +2255,23 @@ function updateAdminRewards(_ref) {
 
 /***/ }),
 
+/***/ "./src/admin/Preview.js":
+/*!******************************!*\
+  !*** ./src/admin/Preview.js ***!
+  \******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Preview; }
+/* harmony export */ });
+function Preview() {
+  return "Preview";
+}
+
+/***/ }),
+
 /***/ "./src/admin/Rewards.js":
 /*!******************************!*\
   !*** ./src/admin/Rewards.js ***!
@@ -2433,12 +2450,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
 /* harmony import */ var _RulesList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RulesList */ "./src/admin/RulesList.js");
 /* harmony import */ var _Styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Styles */ "./src/admin/Styles.js");
+/* harmony import */ var _Preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Preview */ "./src/admin/Preview.js");
+
 
 
 
@@ -2502,7 +2521,7 @@ function RewardsListItem() {
     reward: reward,
     addRule: () => updateReward({ ...reward,
       rules: [...reward.rules, {
-        id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_6__["default"])(),
         name: `Rule ${reward.rules.length + 1}`,
         type: "percent",
         value: 1,
@@ -2520,7 +2539,7 @@ function RewardsListItem() {
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__col-preview"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Styles__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Preview__WEBPACK_IMPORTED_MODULE_5__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Styles__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
 }
 
 /***/ }),

@@ -4,6 +4,7 @@ import { BaseControl, TextControl, ToggleControl } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
 import RulesList from "./RulesList";
 import Styles from "./Styles";
+import Preview from "./Preview";
 
 export default function RewardsListItem() {
 	const {
@@ -112,6 +113,7 @@ export default function RewardsListItem() {
 				</div>
 
 				<div className="RewardsListItem__col-preview">
+					<Preview />
 					<Styles />
 				</div>
 			</div>
