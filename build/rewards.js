@@ -2880,62 +2880,6 @@ function Styles() {
     name: "backgroundColor",
     value: backgroundColor
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    className: "Styles__color",
-    label: "Color",
-    __nextHasNoMarginBottom: true
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "components-tools-panel-item first"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
-    position: "bottom right",
-    renderToggle: _ref => {
-      let {
-        isOpen,
-        onToggle
-      } = _ref;
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-        onClick: onToggle,
-        "aria-expanded": isOpen
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorIndicator, {
-        colorValue: textColor
-      }), "Text");
-    },
-    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
-      color: textColor,
-      onChange: textcolor => updateReward({ ...reward,
-        styles: { ...reward.styles,
-          textcolor
-        }
-      }),
-      enableAlpha: true,
-      defaultValue: "#000000"
-    })
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "components-tools-panel-item last"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
-    position: "bottom right",
-    renderToggle: _ref2 => {
-      let {
-        isOpen,
-        onToggle
-      } = _ref2;
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-        onClick: onToggle,
-        "aria-expanded": isOpen
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorIndicator, {
-        colorValue: backgroundColor
-      }), "Background");
-    },
-    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
-      color: backgroundColor,
-      onChange: backgroundColor => updateReward({ ...reward,
-        styles: { ...reward.styles,
-          backgroundColor
-        }
-      }),
-      enableAlpha: true,
-      defaultValue: "#ffffff"
-    })
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     className: "Styles__typography",
     label: "Typography",
     __nextHasNoMarginBottom: true

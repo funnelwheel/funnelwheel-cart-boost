@@ -79,68 +79,6 @@ export default function Styles() {
 			</BaseControl>
 
 			<BaseControl
-				className="Styles__color"
-				label="Color"
-				__nextHasNoMarginBottom={true}
-			>
-				<div className="components-tools-panel-item first">
-					<Dropdown
-						position="bottom right"
-						renderToggle={({ isOpen, onToggle }) => (
-							<Button onClick={onToggle} aria-expanded={isOpen}>
-								<ColorIndicator colorValue={textColor} />
-								Text
-							</Button>
-						)}
-						renderContent={() => (
-							<ColorPicker
-								color={textColor}
-								onChange={(textcolor) =>
-									updateReward({
-										...reward,
-										styles: {
-											...reward.styles,
-											textcolor,
-										},
-									})
-								}
-								enableAlpha
-								defaultValue="#000000"
-							/>
-						)}
-					/>
-				</div>
-
-				<div className="components-tools-panel-item last">
-					<Dropdown
-						position="bottom right"
-						renderToggle={({ isOpen, onToggle }) => (
-							<Button onClick={onToggle} aria-expanded={isOpen}>
-								<ColorIndicator colorValue={backgroundColor} />
-								Background
-							</Button>
-						)}
-						renderContent={() => (
-							<ColorPicker
-								color={backgroundColor}
-								onChange={(backgroundColor) =>
-									updateReward({
-										...reward,
-										styles: {
-											...reward.styles,
-											backgroundColor,
-										},
-									})
-								}
-								enableAlpha
-								defaultValue="#ffffff"
-							/>
-						)}
-					/>
-				</div>
-			</BaseControl>
-
-			<BaseControl
 				className="Styles__typography"
 				label="Typography"
 				__nextHasNoMarginBottom={true}
