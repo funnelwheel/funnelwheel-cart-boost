@@ -27,12 +27,12 @@ export default function RewardsListItemAdd() {
 		display_coupon: true,
 		styles: {
 			spacing: {
-				top: 24,
-				right: 24,
-				bottom: 24,
-				left: 24
+				top: '24px',
+				right: '24px',
+				bottom: '24px',
+				left: '24px'
 			},
-			fontSize: 14,
+			fontSize: '14px',
 			textcolor: "#ffffff",
 			backgroundColor: "#000000",
 		},

@@ -2567,12 +2567,12 @@ function RewardsListItemAdd() {
     display_coupon: true,
     styles: {
       spacing: {
-        top: 24,
-        right: 24,
-        bottom: 24,
-        left: 24
+        top: '24px',
+        right: '24px',
+        bottom: '24px',
+        left: '24px'
       },
-      fontSize: 14,
+      fontSize: '14px',
       textcolor: "#ffffff",
       backgroundColor: "#000000"
     }
@@ -2857,12 +2857,12 @@ function Styles() {
   }
 
   const spacing = typeof reward.styles === "undefined" || typeof reward.styles.spacing === "undefined" ? {
-    top: 24,
-    right: 24,
-    bottom: 24,
-    left: 24
+    top: '24px',
+    right: '24px',
+    bottom: '24px',
+    left: '24px'
   } : reward.styles.spacing;
-  const fontSize = typeof reward.styles === "undefined" || typeof reward.styles.fontSize === "undefined" ? 14 : reward.styles.fontSize;
+  const fontSize = typeof reward.styles === "undefined" || typeof reward.styles.fontSize === "undefined" ? '14px' : reward.styles.fontSize;
   const textColor = typeof reward.styles === "undefined" || typeof reward.styles.textColor === "undefined" ? "#000000" : reward.styles.textColor;
   const backgroundColor = typeof reward.styles === "undefined" || typeof reward.styles.backgroundColor === "undefined" ? "#ffffff" : reward.styles.backgroundColor;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

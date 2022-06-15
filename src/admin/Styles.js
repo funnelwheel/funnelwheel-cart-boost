@@ -48,16 +48,16 @@ export default function Styles() {
 		typeof reward.styles === "undefined" ||
 			typeof reward.styles.spacing === "undefined"
 			? {
-				top: 24,
-				right: 24,
-				bottom: 24,
-				left: 24,
+				top: '24px',
+				right: '24px',
+				bottom: '24px',
+				left: '24px',
 			}
 			: reward.styles.spacing;
 	const fontSize =
 		typeof reward.styles === "undefined" ||
 			typeof reward.styles.fontSize === "undefined"
-			? 14
+			? '14px'
 			: reward.styles.fontSize;
 	const textColor =
 		typeof reward.styles === "undefined" ||
