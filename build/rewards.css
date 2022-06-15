@@ -4,7 +4,7 @@
 .Rewards {
   padding: var(--growcart-spacing-top) var(--growcart-spacing-right) var(--growcart-spacing-bottom) var(--growcart-spacing-left);
   width: 100%;
-  font-size: 0.875rem;
+  font-size: var(--growcart-font-size);
   background-color: var(--growcart-background-color);
   color: var(--growcart-text-color);
 }
