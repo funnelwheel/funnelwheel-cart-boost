@@ -236,6 +236,10 @@ button {
 	border-radius: 4px;
 	background-color: $white;
 
+	&__field-label {
+		display: block;
+	}
+
 	&__color {
 		.components-dropdown {
 			display: block;

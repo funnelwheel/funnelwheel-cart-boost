@@ -2862,6 +2862,24 @@ function Styles() {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "textColor",
+    label: "Text Color",
+    __nextHasNoMarginBottom: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "color",
+    id: "textColor",
+    name: "textColor",
+    value: textColor
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "backgroundColor",
+    label: "Background Color",
+    __nextHasNoMarginBottom: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "color",
+    id: "backgroundColor",
+    name: "backgroundColor",
+    value: backgroundColor
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     className: "Styles__color",
     label: "Color",
     __nextHasNoMarginBottom: true

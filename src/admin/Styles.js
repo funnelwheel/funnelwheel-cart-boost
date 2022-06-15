@@ -44,32 +44,40 @@ export default function Styles() {
 	const { reward, updateReward } = useContext(RewardsAdminContext);
 	const spacing =
 		typeof reward.styles === "undefined" ||
-		typeof reward.styles.spacing === "undefined"
+			typeof reward.styles.spacing === "undefined"
 			? {
-					top: 24,
-					right: 24,
-					bottom: 24,
-					left: 24,
-			  }
+				top: 24,
+				right: 24,
+				bottom: 24,
+				left: 24,
+			}
 			: reward.styles.spacing;
 	const fontSize =
 		typeof reward.styles === "undefined" ||
-		typeof reward.styles.fontSize === "undefined"
+			typeof reward.styles.fontSize === "undefined"
 			? 14
 			: reward.styles.fontSize;
 	const textColor =
 		typeof reward.styles === "undefined" ||
-		typeof reward.styles.textcolor === "undefined"
+			typeof reward.styles.textcolor === "undefined"
 			? "#000000"
 			: reward.styles.textcolor;
 	const backgroundColor =
 		typeof reward.styles === "undefined" ||
-		typeof reward.styles.backgroundColor === "undefined"
+			typeof reward.styles.backgroundColor === "undefined"
 			? "#ffffff"
 			: reward.styles.backgroundColor;
 
 	return (
 		<div className="Styles">
+			<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
+				<input type="color" id="textColor" name="textColor" value={textColor} />
+			</BaseControl>
+			
+			<BaseControl id="backgroundColor" label="Background Color" __nextHasNoMarginBottom={true}>
+				<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} />
+			</BaseControl>
+
 			<BaseControl
 				className="Styles__color"
 				label="Color"

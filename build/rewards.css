@@ -213,6 +213,9 @@ button {
   border-radius: 4px;
   background-color: #fff;
 }
+.Styles__field-label {
+  display: block;
+}
 .Styles__color .components-dropdown {
   display: block;
 }
