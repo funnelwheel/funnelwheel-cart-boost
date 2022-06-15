@@ -80,31 +80,23 @@ export default function Styles() {
 				<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
 			</BaseControl>
 
-			<BaseControl
-				className="Styles__typography"
-				label="Typography"
-				__nextHasNoMarginBottom={true}
-			>
-				<FontSizePicker
-					fontSizes={fontSizes}
-					value={fontSize}
-					fallbackFontSize={fallbackFontSize}
-					onChange={(fontSize) =>
-						updateReward({
-							...reward,
-							styles: {
-								...reward.styles,
-								fontSize,
-							},
-						})
-					}
-				/>
-			</BaseControl>
+			<UnitControl
+				label="Font Size"
+				onChange={(fontSize) =>
+					updateReward({
+						...reward,
+						styles: {
+							...reward.styles,
+							fontSize,
+						},
+					})
+				}
+				value={fontSize}
+			/>
 
 			<BaseControl
 				className="Styles__spacing"
 				label="Spacing"
-				__nextHasNoMarginBottom={true}
 			>
 				<Flex>
 					<FlexItem>
