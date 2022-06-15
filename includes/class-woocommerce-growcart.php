@@ -137,12 +137,20 @@ final class WooCommerce_GrowCart {
 
 		$active_reward = woocommerce_growcart()->rewards->get_active_reward();
 		if ( $active_reward ) {
-			$font_size        = isset( $active_reward['styles'], $active_reward['styles']['fontSize'] ) ? $active_reward['styles']['fontSize'] . 'px' : '14px';
+			$spacing_top      = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['top'] : '24px';
+			$spacing_right    = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['right'] : '24px';
+			$spacing_bottom   = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['bottom'] : '24px';
+			$spacing_left     = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['left'] : '24px';
+			$font_size        = isset( $active_reward['styles'], $active_reward['styles']['fontSize'] ) ? $active_reward['styles']['fontSize'] : '14px';
 			$text_color       = isset( $active_reward['styles'], $active_reward['styles']['textcolor'] ) ? $active_reward['styles']['textcolor'] : '#ffffff';
 			$background_color = isset( $active_reward['styles'], $active_reward['styles']['backgroundColor'] ) ? $active_reward['styles']['backgroundColor'] : '#000000';
 
 			$custom_css = "
 				:root {
+					--growcart-spacing-top: {$spacing_top};
+					--growcart-spacing-right: {$spacing_right};
+					--growcart-spacing-bottom: {$spacing_bottom};
+					--growcart-spacing-left: {$spacing_left};
 					--growcart-font-size: {$font_size};
                     --growcart-text-color: {$text_color};
                     --growcart-background-color: {$background_color};
