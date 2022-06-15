@@ -265,7 +265,7 @@ class WooCommerce_Growcart_Settings {
 		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/rewards.asset.php';
 
 		wp_enqueue_script(
-			'woocommerce-growcart-rewards',
+			'woocommerce-growcart-admin',
 			plugins_url( 'build/rewards.js', WOOCOMMERCE_GROWCART_FILE ),
 			$asset_file['dependencies'],
 			$asset_file['version'],
@@ -273,8 +273,8 @@ class WooCommerce_Growcart_Settings {
 		);
 
 		wp_localize_script(
-			'woocommerce-growcart-rewards',
-			'woocommerce_growcart_rewards',
+			'woocommerce-growcart-admin',
+			'woocommerce_growcart_admin',
 			[
 				'ajaxURL'              => admin_url( 'admin-ajax.php' ),
 				'update_rewards_nonce' => wp_create_nonce( 'update-rewards' ),
@@ -306,7 +306,7 @@ class WooCommerce_Growcart_Settings {
 		);
 
 		wp_enqueue_style(
-			'woocommerce-growcart-rewards',
+			'woocommerce-growcart-admin',
 			plugins_url( 'build/rewards.css', WOOCOMMERCE_GROWCART_FILE ),
 			[ 'wp-components' ],
 			$asset_file['version']

@@ -58,7 +58,7 @@ export default function RulesList({ reward, addRule, removeRule }) {
 		return previousValue;
 	}, false);
 
-	const typeOptions = woocommerce_growcart_rewards.reward_types.map(
+	const typeOptions = woocommerce_growcart_admin.reward_types.map(
 		(option) => {
 			if (hasFreeShippingRule && "free_shipping" === option.value) {
 				return { ...option, disabled: true };

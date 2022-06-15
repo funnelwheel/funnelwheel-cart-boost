@@ -118,7 +118,7 @@ class WooCommerce_GrowCart_Ajax {
 	}
 
 	public function get_admin_rewards() {
-		wp_send_json( woocommerce_growcart()->rewards->get_available_rewards() );
+		wp_send_json( woocommerce_growcart()->rewards->get_rewards() );
 	}
 
 	public function update_admin_rewards() {

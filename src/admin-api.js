@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-	baseURL: woocommerce_growcart_rewards.ajaxURL,
+	baseURL: woocommerce_growcart_admin.ajaxURL,
 });
 
 export function getAdminRewards() {

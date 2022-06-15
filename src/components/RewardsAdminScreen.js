@@ -36,7 +36,7 @@ export default function RewardsAdminScreen() {
 		).value = JSON.stringify(rewards);
 	}, [rewards]);
 
-	const rewardRuleLabels = woocommerce_growcart_rewards.reward_rules.reduce(
+	const rewardRuleLabels = woocommerce_growcart_admin.reward_rules.reduce(
 		(previousValue, currentValue) => {
 			previousValue[currentValue.value] = currentValue.label;
 			return previousValue;
@@ -44,7 +44,7 @@ export default function RewardsAdminScreen() {
 		{}
 	);
 
-	const rewardTypeLabels = woocommerce_growcart_rewards.reward_types.reduce(
+	const rewardTypeLabels = woocommerce_growcart_admin.reward_types.reduce(
 		(previousValue, currentValue) => {
 			previousValue[currentValue.value] = currentValue.label;
 			return previousValue;
@@ -86,7 +86,7 @@ export default function RewardsAdminScreen() {
 											reward.name
 										)}
 
-										<div class="row-actions">
+										<div className="row-actions">
 											{activeReward &&
 											activeReward.id === reward.id ? (
 												<a
@@ -141,7 +141,7 @@ export default function RewardsAdminScreen() {
 											<SelectControl
 												value={reward.type}
 												options={
-													woocommerce_growcart_rewards.reward_types
+													woocommerce_growcart_admin.reward_types
 												}
 												onChange={(type) => {
 													updateReward({
@@ -176,7 +176,7 @@ export default function RewardsAdminScreen() {
 											<SelectControl
 												value={reward.rule}
 												options={
-													woocommerce_growcart_rewards.reward_rules
+													woocommerce_growcart_admin.reward_rules
 												}
 												onChange={(rule) => {
 													updateReward({
