@@ -1,19 +1,12 @@
 import {
 	BaseControl,
 	FontSizePicker,
-	__experimentalNumberControl as NumberControl,
-	__experimentalToolsPanel as ToolsPanel,
-	__experimentalToolsPanelItem as ToolsPanelItem,
-	__experimentalDimensionControl as DimensionControl,
 	__experimentalUnitControl as UnitControl,
 	Flex,
 	FlexItem,
 } from "@wordpress/components";
-import { useState, useContext } from "@wordpress/element";
+import { useContext } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { Button, Dropdown } from "@wordpress/components";
-import { ColorPicker } from "@wordpress/components";
-import { ColorIndicator } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
 
 const fontSizes = [
@@ -42,6 +35,15 @@ const fallbackFontSize = 16;
 
 export default function Styles() {
 	const { reward, updateReward } = useContext(RewardsAdminContext);
+	function handleInputChange(event) {
+		updateReward({
+			...reward,
+			styles: {
+				...reward.styles,
+				[event.target.name]: event.target.value,
+			},
+		})
+	}
 	const spacing =
 		typeof reward.styles === "undefined" ||
 			typeof reward.styles.spacing === "undefined"
@@ -59,9 +61,9 @@ export default function Styles() {
 			: reward.styles.fontSize;
 	const textColor =
 		typeof reward.styles === "undefined" ||
-			typeof reward.styles.textcolor === "undefined"
+			typeof reward.styles.textColor === "undefined"
 			? "#000000"
-			: reward.styles.textcolor;
+			: reward.styles.textColor;
 	const backgroundColor =
 		typeof reward.styles === "undefined" ||
 			typeof reward.styles.backgroundColor === "undefined"
@@ -71,11 +73,11 @@ export default function Styles() {
 	return (
 		<div className="Styles">
 			<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
-				<input type="color" id="textColor" name="textColor" value={textColor} />
+				<input type="color" id="textColor" name="textColor" value={textColor} onChange={handleInputChange} />
 			</BaseControl>
-			
+
 			<BaseControl id="backgroundColor" label="Background Color" __nextHasNoMarginBottom={true}>
-				<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} />
+				<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
 			</BaseControl>
 
 			<BaseControl

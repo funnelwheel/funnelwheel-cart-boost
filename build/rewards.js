@@ -2824,9 +2824,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
 const fontSizes = [{
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Small"),
   slug: "small",
@@ -2850,6 +2847,15 @@ function Styles() {
     reward,
     updateReward
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
+
+  function handleInputChange(event) {
+    updateReward({ ...reward,
+      styles: { ...reward.styles,
+        [event.target.name]: event.target.value
+      }
+    });
+  }
+
   const spacing = typeof reward.styles === "undefined" || typeof reward.styles.spacing === "undefined" ? {
     top: 24,
     right: 24,
@@ -2857,7 +2863,7 @@ function Styles() {
     left: 24
   } : reward.styles.spacing;
   const fontSize = typeof reward.styles === "undefined" || typeof reward.styles.fontSize === "undefined" ? 14 : reward.styles.fontSize;
-  const textColor = typeof reward.styles === "undefined" || typeof reward.styles.textcolor === "undefined" ? "#000000" : reward.styles.textcolor;
+  const textColor = typeof reward.styles === "undefined" || typeof reward.styles.textColor === "undefined" ? "#000000" : reward.styles.textColor;
   const backgroundColor = typeof reward.styles === "undefined" || typeof reward.styles.backgroundColor === "undefined" ? "#ffffff" : reward.styles.backgroundColor;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles"
@@ -2869,7 +2875,8 @@ function Styles() {
     type: "color",
     id: "textColor",
     name: "textColor",
-    value: textColor
+    value: textColor,
+    onChange: handleInputChange
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     id: "backgroundColor",
     label: "Background Color",
@@ -2878,7 +2885,8 @@ function Styles() {
     type: "color",
     id: "backgroundColor",
     name: "backgroundColor",
-    value: backgroundColor
+    value: backgroundColor,
+    onChange: handleInputChange
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     className: "Styles__typography",
     label: "Typography",
