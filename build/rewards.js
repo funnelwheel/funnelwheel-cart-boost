@@ -2342,12 +2342,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _admin_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../admin-api */ "./src/admin-api.js");
-/* harmony import */ var _shared_RewardsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../shared/RewardsList */ "./src/shared/RewardsList.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _shared_RewardsList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../shared/RewardsList */ "./src/shared/RewardsList.js");
+
+
 
 
 
 
 function Preview() {
+  const {
+    activeRewardItem
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
   const {
     isLoading,
     error,
@@ -2355,7 +2361,19 @@ function Preview() {
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("rewards", _admin_api__WEBPACK_IMPORTED_MODULE_2__.getAdminRewards);
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_RewardsList__WEBPACK_IMPORTED_MODULE_3__["default"], rewards.data);
+  const style = {
+    ['--growcart-spacing-top']: activeRewardItem.styles.spacing.top,
+    ['--growcart-spacing-right']: activeRewardItem.styles.spacing.right,
+    ['--growcart-spacing-bottom']: activeRewardItem.styles.spacing.bottom,
+    ['--growcart-spacing-left']: activeRewardItem.styles.spacing.left,
+    ['--growcart-font-size']: activeRewardItem.styles.fontSize,
+    ['--growcart-text-color']: activeRewardItem.styles.textColor,
+    ['--growcart-background-color']: activeRewardItem.styles.backgroundColor
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "Preview",
+    style: style
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_RewardsList__WEBPACK_IMPORTED_MODULE_4__["default"], rewards.data));
 }
 
 /***/ }),
@@ -2500,8 +2518,9 @@ function RewardsList() {
           };
         }));
       }
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.rules.map(rule => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "badge"
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.rules.map((rule, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "badge",
+      key: index
     }, rule.name))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       className: "growcart-reward-edit",
       href: "#",

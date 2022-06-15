@@ -61,8 +61,8 @@ export default function RewardsList() {
 									</td>
 									<td>{reward.name}</td>
 									<td>
-										{reward.rules.map((rule) => (
-											<span className="badge">
+										{reward.rules.map((rule, index) => (
+											<span className="badge" key={index}>
 												{rule.name}
 											</span>
 										))}

@@ -1,6 +1,100 @@
 /*!****************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/sass/admin-rewards.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************/
+.Rewards {
+  padding: var(--growcart-spacing-top) var(--growcart-spacing-right) var(--growcart-spacing-bottom) var(--growcart-spacing-left);
+  width: 100%;
+  font-size: 0.875rem;
+  background-color: var(--growcart-background-color);
+  color: var(--growcart-text-color);
+}
+.Rewards__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+.Rewards__list li {
+  margin: 0 16px 0 0;
+}
+.Rewards__item {
+  display: flex;
+  align-items: center;
+}
+.Rewards__progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Rewards__progress .spend,
+.Rewards__progress .amount {
+  font-weight: bold;
+}
+.Rewards__progress .progress {
+  margin-bottom: 4px;
+}
+.Rewards__progress-wrap {
+  width: 100%;
+}
+.Rewards__title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.Rewards__icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #495057;
+}
+.Rewards .availed .Rewards__icon {
+  background-color: #198754;
+}
+.Rewards .availed .Rewards__text {
+  font-weight: bold;
+}
+.Rewards .checkout-button {
+  width: 100%;
+}
+@media (max-width: 575.98px) {
+  .Rewards__list {
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .Rewards__title {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  overflow: hidden;
+  font-size: 0.75rem;
+  background-color: #495057;
+  border-radius: 0.25rem;
+}
+.progress__bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #198754;
+  transition: width 0.6s ease;
+}
+
 button {
   padding: 8px 16px;
   margin: auto 2px;
@@ -213,29 +307,13 @@ button {
   border-radius: 4px;
   background-color: #fff;
 }
-.Styles__field-label {
-  display: block;
-}
-.Styles__color .components-dropdown {
-  display: block;
-}
-.Styles__color .components-button {
-  width: 100%;
-}
-.Styles__color .components-tools-panel-item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 0;
-}
-.Styles__color .components-tools-panel-item.first {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-}
-.Styles__color .components-tools-panel-item.last {
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+
+.Preview {
+  margin-bottom: 16px;
+  max-width: 500px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #fff;
 }
 
 /*# sourceMappingURL=rewards.css.map*/
