@@ -27,6 +27,11 @@ class WooCommerce_GrowCart_Ajax {
 		add_action( 'wp_ajax_nopriv_growcart_add_to_cart', [ $this, 'add_to_cart' ] );
 	}
 
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
 	public function get_cart_information() {
 		$current_reward_ids           = [];
 		$reward_string                = '';

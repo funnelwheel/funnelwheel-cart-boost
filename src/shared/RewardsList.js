@@ -6,7 +6,7 @@ import { ReactComponent as StarIcon } from "./../svg/star.svg";
 export default function RewardsList({ children }) {
     const { rewardsInformation } = useContext(CartContext);
     const { rewards, rewards_progress, hint } = rewardsInformation.data;
-    
+
     return (
         <div className="Rewards">
             <ul className="Rewards__list">

@@ -102,6 +102,11 @@ function get_reward_types() {
 	];
 }
 
+/**
+ * Undocumented function
+ *
+ * @return void
+ */
 function get_reward_rules() {
 	return [
 		[

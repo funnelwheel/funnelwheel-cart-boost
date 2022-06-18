@@ -214,6 +214,9 @@ class WooCommerce_GrowCart_Rewards {
 			'type'                       => 'minimum_cart_quantity',
 			'display_suggested_products' => true,
 			'display_coupon'             => true,
+			'rewards'                    => [],
+			'current_rewards'            => [],
+			'next_rewards'               => [],
 		];
 
 		$active_reward = $this->get_active_reward();
@@ -275,7 +278,7 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param [type] $cart_contents_count
 	 * @return void
 	 */
-	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count = 0) {
+	public function filter_rewards_by_cart_contents_count( $rewards = [], $cart_contents_count = 0 ) {
 		$filtered_rewards = [
 			'rewards'         => [],
 			'current_rewards' => [],

@@ -2513,6 +2513,11 @@ function Preview() {
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("rewards", _api__WEBPACK_IMPORTED_MODULE_2__.getRewards);
   if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
+
+  if (!rewardsInformation.data.rewards.current_rewards.length || !rewardsInformation.data.rewards.next_rewards.length) {
+    return null;
+  }
+
   const style = {
     ['--growcart-spacing-top']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.top,
     ['--growcart-spacing-right']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.right,

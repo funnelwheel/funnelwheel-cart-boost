@@ -18,6 +18,10 @@ export default function Preview() {
     if (isCartLoading || isRewardsLoading) return <Spinner />;
     if (cartError || rewardsError) return "An error has occurred: " + cartError.message || cartError.rewardsError;
 
+    if (!rewardsInformation.data.rewards.current_rewards.length || !rewardsInformation.data.rewards.next_rewards.length) {
+        return null;
+    }
+
     const style = {
         ['--growcart-spacing-top']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.top,
         ['--growcart-spacing-right']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.right,
