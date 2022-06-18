@@ -43,7 +43,7 @@ export default function Rewards() {
 		});
 	}, [rewards]);
 
-	const rewardTypeLabels = woocommerce_growcart_admin.reward_rules.reduce(
+	const rewardTypeLabels = woocommerce_growcart.reward_rules.reduce(
 		(previousValue, currentValue) => {
 			previousValue[currentValue.value] = currentValue.label;
 			return previousValue;
@@ -63,7 +63,7 @@ export default function Rewards() {
 				setCurrentlyEditing,
 				setActiveScreen,
 				rewardTypeLabels,
-				rewardRules: woocommerce_growcart_admin.reward_rules,
+				rewardRules: woocommerce_growcart.reward_rules,
 			}}
 		>
 			{"list" === activeScreen && <RewardsList />}

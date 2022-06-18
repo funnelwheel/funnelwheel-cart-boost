@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { useContext } from "@wordpress/element";
 import { getAdminRewards } from "../admin-api";
 import { RewardsAdminContext } from "../context";
-import RewardsList from "./../shared/RewardsList";
+import Cart from "./../components/Cart";
 
 export default function Preview() {
     const {
@@ -24,6 +24,6 @@ export default function Preview() {
     }
 
     return <div className="Preview" style={style}>
-        <RewardsList {...rewards.data} />
+        <Cart />
     </div>;
 }

@@ -74,6 +74,14 @@
   outline: 0;
   height: 90%;
 }
+.modal .modal-content.slideInUp {
+  -webkit-animation-name: slideInUp;
+          animation-name: slideInUp;
+  -webkit-animation-duration: 800ms;
+          animation-duration: 800ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
 .modal .modal-body {
   display: flex;
   justify-content: space-between;
@@ -107,34 +115,6 @@
 
 .show {
   display: block;
-}
-
-@-webkit-keyframes slideInUp {
-  from {
-    transform: translate3d(0, 100%, 0);
-    visibility: visible;
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    transform: translate3d(0, 100%, 0);
-    visibility: visible;
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-.slideInUp {
-  -webkit-animation-name: slideInUp;
-          animation-name: slideInUp;
-  -webkit-animation-duration: 800ms;
-          animation-duration: 800ms;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both;
 }
 
 .grow-cart__main {
@@ -225,12 +205,24 @@
   text-align: center;
 }
 
-.grow-cart-mini {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 999;
+@-webkit-keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 .grow-cart-mini__inner {
   display: flex;
@@ -289,6 +281,22 @@
 }
 .grow-cart-mini .Rewards__progress-wrap {
   width: 75%;
+}
+
+.woocommerce .grow-cart-mini {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+.woocommerce .grow-cart-mini.slideInUp {
+  -webkit-animation-name: slideInUp;
+          animation-name: slideInUp;
+  -webkit-animation-duration: 800ms;
+          animation-duration: 800ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
 }
 
 .SuggestedProducts {

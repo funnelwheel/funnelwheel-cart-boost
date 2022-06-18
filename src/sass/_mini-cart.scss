@@ -1,10 +1,4 @@
 .grow-cart-mini {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	z-index: 999;
-
 	&__inner {
 		display: flex;
 		justify-content: space-between;
@@ -69,6 +63,22 @@
 
 		&__progress-wrap {
 			width: 75%;
+		}
+	}
+}
+
+.woocommerce {
+	.grow-cart-mini {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		z-index: 999;
+
+		&.slideInUp {
+			animation-name: slideInUp;
+			animation-duration: 800ms;
+			animation-fill-mode: both;
 		}
 	}
 }

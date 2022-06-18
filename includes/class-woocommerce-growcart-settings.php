@@ -4,6 +4,8 @@ namespace Upnrunn;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+use WC_AJAX;
+
 class WooCommerce_Growcart_Settings {
 	/**
 	 * The single instance of the class.
@@ -265,7 +267,7 @@ class WooCommerce_Growcart_Settings {
 		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/rewards.asset.php';
 
 		wp_enqueue_script(
-			'woocommerce-growcart-admin',
+			'woocommerce-growcart',
 			plugins_url( 'build/rewards.js', WOOCOMMERCE_GROWCART_FILE ),
 			$asset_file['dependencies'],
 			$asset_file['version'],
@@ -273,10 +275,12 @@ class WooCommerce_Growcart_Settings {
 		);
 
 		wp_localize_script(
-			'woocommerce-growcart-admin',
-			'woocommerce_growcart_admin',
+			'woocommerce-growcart',
+			'woocommerce_growcart',
 			[
 				'ajaxURL'              => admin_url( 'admin-ajax.php' ),
+				'wcAjaxURL'            => WC_AJAX::get_endpoint( '%%endpoint%%' ),
+				'display_mini_cart'    => true,
 				'update_rewards_nonce' => wp_create_nonce( 'update-rewards' ),
 				'reward_types'         => [
 					[
@@ -306,7 +310,7 @@ class WooCommerce_Growcart_Settings {
 		);
 
 		wp_enqueue_style(
-			'woocommerce-growcart-admin',
+			'woocommerce-growcart',
 			plugins_url( 'build/rewards.css', WOOCOMMERCE_GROWCART_FILE ),
 			[ 'wp-components' ],
 			$asset_file['version']

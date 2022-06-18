@@ -80,6 +80,12 @@
 		// Remove focus outline from opened modal
 		outline: 0;
 		height: 90%;
+
+		&.slideInUp {
+			animation-name: slideInUp;
+			animation-duration: 800ms;
+			animation-fill-mode: both;
+		}
 	}
 
 	.modal-body {
@@ -123,21 +129,4 @@
 
 .show {
 	display: block;
-}
-
-@keyframes slideInUp {
-	from {
-		transform: translate3d(0, 100%, 0);
-		visibility: visible;
-	}
-
-	to {
-		transform: translate3d(0, 0, 0);
-	}
-}
-
-.slideInUp {
-	animation-name: slideInUp;
-	animation-duration: 800ms;
-	animation-fill-mode: both;
 }

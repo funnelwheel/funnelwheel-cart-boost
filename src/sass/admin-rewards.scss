@@ -4,7 +4,12 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
 
-@import "./rewards";
+@import "modal";
+@import "cart";
+@import "mini-cart";
+@import "suggested-products";
+@import "cart-totals";
+@import "rewards";
 
 button {
 	padding: 8px 16px;
