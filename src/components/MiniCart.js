@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "@wordpress/element";
 import { CartContext } from "../context";
 import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
 import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
-import RewardsList from "./../shared/RewardsList";
+import RewardsList from "./RewardsList";
 
 export default function MiniCart({ setShowPopup }) {
 	const { cartInformation } = useContext(CartContext);

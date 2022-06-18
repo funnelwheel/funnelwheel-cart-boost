@@ -4,7 +4,7 @@ import { useState, useContext, useEffect } from "@wordpress/element";
 import { useQueryClient } from "react-query";
 import { CartContext } from "../context";
 import MiniCart from "./MiniCart";
-import Rewards from "./Rewards";
+import RewardsList from "./RewardsList";
 import CartItems from "./CartItems";
 import CartTotals from "./CartTotals";
 import SuggestedProducts from "./SuggestedProducts";
@@ -40,7 +40,7 @@ export default function Cart() {
 				</div>
 			) : (
 				<>
-					<Rewards />
+					<RewardsList />
 					<CartItems />
 					<CartTotals />
 
