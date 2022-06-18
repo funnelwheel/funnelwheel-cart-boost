@@ -3,8 +3,7 @@ import { useState, useEffect, useContext } from "@wordpress/element";
 import { CartContext } from "../context";
 import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
 import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
-import Rewards from "./Rewards";
-
+import RewardsList from "./../shared/RewardsList";
 
 export default function MiniCart({ setShowPopup }) {
 	const { cartInformation } = useContext(CartContext);
@@ -32,7 +31,7 @@ export default function MiniCart({ setShowPopup }) {
 	return (
 		<div className="grow-cart-mini slideInUp">
 			<div className="grow-cart-mini__inner">
-				<Rewards>
+				<RewardsList>
 					<>
 						<span className="cart-contents">
 							<BasketIcon />
@@ -47,7 +46,7 @@ export default function MiniCart({ setShowPopup }) {
 							<ChevronUpIcon />
 						</button>
 					</>
-				</Rewards>
+				</RewardsList>
 			</div>
 		</div>
 	);

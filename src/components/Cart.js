@@ -3,7 +3,8 @@ import classNames from "classnames";
 import { useState, useEffect } from "@wordpress/element";
 import { useQuery, useQueryClient } from "react-query";
 import { CartContext } from "../context";
-import { getCartInformation } from "../api";
+import { getRewards, getCartInformation } from "../api";
+import Spinner from "./Spinner";
 import MiniCart from "./MiniCart";
 import Rewards from "./Rewards";
 import CartItems from "./CartItems";
@@ -13,10 +14,11 @@ import SuggestedProducts from "./SuggestedProducts";
 export default function Cart() {
 	const queryClient = useQueryClient();
 	const [showPopup, setShowPopup] = useState(false);
-	const { isLoading, error, data: cartInformation } = useQuery(
+	const { isLoading: isCartLoading, error: cartError, data: cartInformation } = useQuery(
 		["cartInformation"],
 		getCartInformation
 	);
+	const { isLoading: isRewardsLoading, error: rewardsError, data: rewardsInformation } = useQuery("rewards", getRewards);
 
 	function invalidateQueries() {
 		queryClient.invalidateQueries("cartInformation");
@@ -32,8 +34,8 @@ export default function Cart() {
 		);
 	}, []);
 
-	if (isLoading) return "Loading...";
-	if (error) return "An error has occurred: " + error.message;
+	if (isCartLoading || isRewardsLoading) return <Spinner />;
+	if (cartError || rewardsError) return "An error has occurred: " + cartError.message || cartError.rewardsError;
 
 	const main = (
 		<>
@@ -63,7 +65,7 @@ export default function Cart() {
 	);
 
 	return (
-		<CartContext.Provider value={{ cartInformation }}>
+		<CartContext.Provider value={{ cartInformation, rewardsInformation }}>
 			{showPopup && (
 				<div
 					id="grow-cart"
@@ -105,8 +107,8 @@ export default function Cart() {
 								</div>
 								{cartInformation.data
 									.display_suggested_products &&
-								cartInformation.data.suggested_products.products
-									.length > 0 ? (
+									cartInformation.data.suggested_products.products
+										.length > 0 ? (
 									<div className="grow-cart__upsell">
 										<SuggestedProducts />
 									</div>

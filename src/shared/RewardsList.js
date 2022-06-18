@@ -1,7 +1,12 @@
+import { useContext } from "@wordpress/element";
+import { CartContext } from "../context";
 import { ReactComponent as LockIcon } from "./../svg/lock.svg";
 import { ReactComponent as StarIcon } from "./../svg/star.svg";
 
-export default function RewardsList({ children, rewards, rewards_progress, hint }) {
+export default function RewardsList({ children }) {
+    const { rewardsInformation } = useContext(CartContext);
+    const { rewards, rewards_progress, hint } = rewardsInformation.data;
+    
     return (
         <div className="Rewards">
             <ul className="Rewards__list">
