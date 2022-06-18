@@ -2802,7 +2802,7 @@ function MiniCart(_ref) {
   } = _ref;
   const {
     cartInformation
-  } = useContext(_context__WEBPACK_IMPORTED_MODULE_2__.CartContext);
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.CartContext);
   const [showMiniCart, setShowMiniCart] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(woocommerce_growcart.display_mini_cart);
 
   function displayMiniCart() {

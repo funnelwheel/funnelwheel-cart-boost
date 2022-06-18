@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { useState, useEffect } from "@wordpress/element";
+import { useState, useEffect, useContext } from "@wordpress/element";
 import { CartContext } from "../context";
 import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
 import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
