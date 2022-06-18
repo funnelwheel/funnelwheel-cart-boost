@@ -1,11 +1,22 @@
 import { useContext } from "@wordpress/element";
-import { RewardsAdminContext } from "../context";
+import { useQuery } from "react-query";
+import { getRewards, getCartInformation } from "../api";
+import { RewardsAdminContext, CartContext } from "../context";
+import Spinner from "./../components/Spinner";
 import Cart from "./../components/Cart";
 
 export default function Preview() {
     const {
         activeRewardItem
     } = useContext(RewardsAdminContext);
+    const { isLoading: isCartLoading, error: cartError, data: cartInformation } = useQuery(
+        ["cartInformation"],
+        getCartInformation
+    );
+    const { isLoading: isRewardsLoading, error: rewardsError, data: rewardsInformation } = useQuery("rewards", getRewards);
+
+    if (isCartLoading || isRewardsLoading) return <Spinner />;
+    if (cartError || rewardsError) return "An error has occurred: " + cartError.message || cartError.rewardsError;
 
     const style = {
         ['--growcart-spacing-top']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.top,
@@ -17,7 +28,9 @@ export default function Preview() {
         ['--growcart-background-color']: "undefined" === typeof activeRewardItem.styles ? '#000000' : activeRewardItem.styles.backgroundColor,
     }
 
-    return <div className="Preview" style={style}>
-        <Cart />
-    </div>;
+    return <CartContext.Provider value={{ cartInformation, rewardsInformation }}>
+        <div className="Preview" style={style}>
+            <Cart />
+        </div>
+    </CartContext.Provider>;
 }

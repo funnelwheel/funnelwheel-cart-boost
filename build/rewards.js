@@ -2485,8 +2485,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/context.js");
-/* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/Cart */ "./src/components/Cart.js");
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./src/api.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../components/Spinner */ "./src/components/Spinner.js");
+/* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../components/Cart */ "./src/components/Cart.js");
+
+
+
 
 
 
@@ -2494,7 +2500,19 @@ __webpack_require__.r(__webpack_exports__);
 function Preview() {
   const {
     activeRewardItem
-  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_1__.RewardsAdminContext);
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
+  const {
+    isLoading: isCartLoading,
+    error: cartError,
+    data: cartInformation
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
+  const {
+    isLoading: isRewardsLoading,
+    error: rewardsError,
+    data: rewardsInformation
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("rewards", _api__WEBPACK_IMPORTED_MODULE_2__.getRewards);
+  if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+  if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
   const style = {
     ['--growcart-spacing-top']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.top,
     ['--growcart-spacing-right']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.right,
@@ -2504,10 +2522,15 @@ function Preview() {
     ['--growcart-text-color']: "undefined" === typeof activeRewardItem.styles ? '#ffffff' : activeRewardItem.styles.textColor,
     ['--growcart-background-color']: "undefined" === typeof activeRewardItem.styles ? '#000000' : activeRewardItem.styles.backgroundColor
   };
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext.Provider, {
+    value: {
+      cartInformation,
+      rewardsInformation
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Preview",
     style: style
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Cart__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Cart__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
 }
 
 /***/ }),
@@ -3293,15 +3316,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./src/context.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../api */ "./src/api.js");
-/* harmony import */ var _Spinner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Spinner */ "./src/components/Spinner.js");
-/* harmony import */ var _MiniCart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./MiniCart */ "./src/components/MiniCart.js");
-/* harmony import */ var _Rewards__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Rewards */ "./src/components/Rewards.js");
-/* harmony import */ var _CartItems__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CartItems */ "./src/components/CartItems.js");
-/* harmony import */ var _CartTotals__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CartTotals */ "./src/components/CartTotals.js");
-/* harmony import */ var _SuggestedProducts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./SuggestedProducts */ "./src/components/SuggestedProducts.js");
-
-
+/* harmony import */ var _MiniCart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MiniCart */ "./src/components/MiniCart.js");
+/* harmony import */ var _Rewards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Rewards */ "./src/components/Rewards.js");
+/* harmony import */ var _CartItems__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CartItems */ "./src/components/CartItems.js");
+/* harmony import */ var _CartTotals__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CartTotals */ "./src/components/CartTotals.js");
+/* harmony import */ var _SuggestedProducts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./SuggestedProducts */ "./src/components/SuggestedProducts.js");
 
 
 
@@ -3317,15 +3336,8 @@ function Cart() {
   const queryClient = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useQueryClient)();
   const [showPopup, setShowPopup] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const {
-    isLoading: isCartLoading,
-    error: cartError,
-    data: cartInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_5__.getCartInformation);
-  const {
-    isLoading: isRewardsLoading,
-    error: rewardsError,
-    data: rewardsInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useQuery)("rewards", _api__WEBPACK_IMPORTED_MODULE_5__.getRewards);
+    cartInformation
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_4__.CartContext);
 
   function invalidateQueries() {
     queryClient.invalidateQueries("cartInformation");
@@ -3337,24 +3349,17 @@ function Cart() {
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(document.body).on("added_to_cart removed_from_cart", invalidateQueries);
   }, []);
-  if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Spinner__WEBPACK_IMPORTED_MODULE_6__["default"], null);
-  if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
   const main = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, cartInformation.data.is_empty ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "empty"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Your Cart is Empty"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Fill your cart with amazing products"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: cartInformation.data.shop_url
-  }, "Shop Now")) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Rewards__WEBPACK_IMPORTED_MODULE_8__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartItems__WEBPACK_IMPORTED_MODULE_9__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartTotals__WEBPACK_IMPORTED_MODULE_10__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "Shop Now")) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Rewards__WEBPACK_IMPORTED_MODULE_6__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartItems__WEBPACK_IMPORTED_MODULE_7__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CartTotals__WEBPACK_IMPORTED_MODULE_8__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart__proceed-to-checkout wc-proceed-to-checkout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: cartInformation.data.checkout_url,
     className: "checkout-button button alt wc-forward"
   }, "Proceed to checkout"))));
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_4__.CartContext.Provider, {
-    value: {
-      cartInformation,
-      rewardsInformation
-    }
-  }, showPopup && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, showPopup && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "grow-cart",
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("modal show", {
       ["modal--small"]: !cartInformation.data.display_suggested_products || !cartInformation.data.suggested_products.products.length
@@ -3381,7 +3386,7 @@ function Cart() {
     })
   }, main), cartInformation.data.display_suggested_products && cartInformation.data.suggested_products.products.length > 0 ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart__upsell"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SuggestedProducts__WEBPACK_IMPORTED_MODULE_11__["default"], null)) : null)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MiniCart__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SuggestedProducts__WEBPACK_IMPORTED_MODULE_9__["default"], null)) : null)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MiniCart__WEBPACK_IMPORTED_MODULE_5__["default"], {
     setShowPopup: setShowPopup
   }));
 }

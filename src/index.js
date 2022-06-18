@@ -3,7 +3,7 @@ import {
 	QueryClientProvider
 } from "react-query";
 import {render} from "@wordpress/element";
-import Cart from "./components/Cart";
+import GrowCart from "./components/GrowCart";
 import "./sass/index.scss";
 
 // Create a client
@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 
 render(
 	<QueryClientProvider client={queryClient}>
-		<Cart />
+		<GrowCart />
 	</QueryClientProvider>,
 	document.getElementById("woocommerce-growcart-root")
 );
