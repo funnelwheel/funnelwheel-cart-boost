@@ -2485,12 +2485,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-/* harmony import */ var _admin_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../admin-api */ "./src/admin-api.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
-/* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../components/Cart */ "./src/components/Cart.js");
-
-
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/Cart */ "./src/components/Cart.js");
 
 
 
@@ -2498,14 +2494,7 @@ __webpack_require__.r(__webpack_exports__);
 function Preview() {
   const {
     activeRewardItem
-  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
-  const {
-    isLoading,
-    error,
-    data: rewards
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("rewards", _admin_api__WEBPACK_IMPORTED_MODULE_2__.getAdminRewards);
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_1__.RewardsAdminContext);
   const style = {
     ['--growcart-spacing-top']: "undefined" === typeof activeRewardItem.styles.spacing ? '24px' : activeRewardItem.styles.spacing.top,
     ['--growcart-spacing-right']: "undefined" === typeof activeRewardItem.styles.spacing ? '24px' : activeRewardItem.styles.spacing.right,
@@ -2518,7 +2507,7 @@ function Preview() {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Preview",
     style: style
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Cart__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Cart__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 }
 
 /***/ }),
@@ -3593,12 +3582,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "jquery");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api */ "./src/api.js");
-/* harmony import */ var _Rewards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Rewards */ "./src/components/Rewards.js");
-/* harmony import */ var _svg_chevron_up_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../svg/chevron-up.svg */ "./src/svg/chevron-up.svg");
-/* harmony import */ var _svg_basket_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../svg/basket.svg */ "./src/svg/basket.svg");
-
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _svg_chevron_up_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../svg/chevron-up.svg */ "./src/svg/chevron-up.svg");
+/* harmony import */ var _svg_basket_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../svg/basket.svg */ "./src/svg/basket.svg");
+/* harmony import */ var _Rewards__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Rewards */ "./src/components/Rewards.js");
 
 
 
@@ -3610,12 +3597,10 @@ function MiniCart(_ref) {
   let {
     setShowPopup
   } = _ref;
-  const [showMiniCart, setShowMiniCart] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(woocommerce_growcart.display_mini_cart);
   const {
-    isLoading,
-    error,
-    data: cartInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_2__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_3__.getCartInformation);
+    cartInformation
+  } = useContext(_context__WEBPACK_IMPORTED_MODULE_2__.CartContext);
+  const [showMiniCart, setShowMiniCart] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(woocommerce_growcart.display_mini_cart);
 
   function displayMiniCart() {
     setShowMiniCart(true);
@@ -3630,21 +3615,24 @@ function MiniCart(_ref) {
       };
     }
   }, []);
-  if (!showMiniCart) return null;
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
+
+  if (!showMiniCart) {
+    return null;
+  }
+
+  ;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart-mini slideInUp"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "grow-cart-mini__inner"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Rewards__WEBPACK_IMPORTED_MODULE_4__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Rewards__WEBPACK_IMPORTED_MODULE_5__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "cart-contents"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_basket_svg__WEBPACK_IMPORTED_MODULE_6__.ReactComponent, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_basket_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "badge"
   }, cartInformation.data.cart_contents_count)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     onClick: () => setShowPopup(true)
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_chevron_up_svg__WEBPACK_IMPORTED_MODULE_5__.ReactComponent, null))))));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_chevron_up_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null))))));
 }
 
 /***/ }),

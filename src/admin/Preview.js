@@ -1,6 +1,4 @@
-import { useQuery } from "react-query";
 import { useContext } from "@wordpress/element";
-import { getAdminRewards } from "../admin-api";
 import { RewardsAdminContext } from "../context";
 import Cart from "./../components/Cart";
 
@@ -8,10 +6,6 @@ export default function Preview() {
     const {
         activeRewardItem
     } = useContext(RewardsAdminContext);
-    const { isLoading, error, data: rewards } = useQuery("rewards", getAdminRewards);
-
-    if (isLoading) return "Loading...";
-    if (error) return "An error has occurred: " + error.message;
 
     const style = {
         ['--growcart-spacing-top']: "undefined" === typeof activeRewardItem.styles.spacing ? '24px' : activeRewardItem.styles.spacing.top,

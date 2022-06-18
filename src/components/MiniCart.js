@@ -1,18 +1,15 @@
 import $ from "jquery";
 import { useState, useEffect } from "@wordpress/element";
-import { useQuery } from "react-query";
-import { getCartInformation } from "../api";
-import Rewards from "./Rewards";
+import { CartContext } from "../context";
 import { ReactComponent as ChevronUpIcon } from "./../svg/chevron-up.svg";
 import { ReactComponent as BasketIcon } from "./../svg/basket.svg";
+import Rewards from "./Rewards";
+
 
 export default function MiniCart({ setShowPopup }) {
+	const { cartInformation } = useContext(CartContext);
 	const [showMiniCart, setShowMiniCart] = useState(
 		woocommerce_growcart.display_mini_cart
-	);
-	const { isLoading, error, data: cartInformation } = useQuery(
-		["cartInformation"],
-		getCartInformation
 	);
 
 	function displayMiniCart() {
@@ -28,9 +25,9 @@ export default function MiniCart({ setShowPopup }) {
 		}
 	}, []);
 
-	if (!showMiniCart) return null;
-	if (isLoading) return "Loading...";
-	if (error) return "An error has occurred: " + error.message;
+	if (!showMiniCart) {
+		return null
+	};
 
 	return (
 		<div className="grow-cart-mini slideInUp">
