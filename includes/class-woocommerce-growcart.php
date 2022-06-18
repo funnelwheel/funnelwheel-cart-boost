@@ -107,11 +107,6 @@ final class WooCommerce_GrowCart {
 					'wcAjaxURL'           => WC_AJAX::get_endpoint( '%%endpoint%%' ),
 					'is_product'          => is_product(),
 					'display_mini_cart'   => is_home() || is_front_page() || is_product() ? false : true,
-					'cart'                => [
-						'is_empty' => WC()->cart->is_empty(),
-						'items'    => get_cart_items(),
-						'coupons'  => get_cart_coupons(),
-					],
 					'apply_coupon_nonce'  => wp_create_nonce( 'apply-coupon' ),
 					'remove_coupon_nonce' => wp_create_nonce( 'remove-coupon' ),
 				]

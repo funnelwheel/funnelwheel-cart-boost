@@ -264,6 +264,7 @@ class WooCommerce_Growcart_Settings {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
+		$reward_types = ;
 		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/rewards.asset.php';
 
 		wp_enqueue_script(
@@ -282,30 +283,8 @@ class WooCommerce_Growcart_Settings {
 				'wcAjaxURL'            => WC_AJAX::get_endpoint( '%%endpoint%%' ),
 				'display_mini_cart'    => true,
 				'update_rewards_nonce' => wp_create_nonce( 'update-rewards' ),
-				'reward_types'         => [
-					[
-						'label' => __( 'Free Shipping' ),
-						'value' => 'free_shipping',
-					],
-					[
-						'label' => __( 'Percentage' ),
-						'value' => 'percent',
-					],
-					[
-						'label' => __( 'Fixed' ),
-						'value' => 'fixed_cart',
-					],
-				],
-				'reward_rules'         => [
-					[
-						'label' => __( 'Minimum cart quantity', 'woocommerce-grow-cart' ),
-						'value' => 'minimum_cart_quantity',
-					],
-					[
-						'label' => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
-						'value' => 'minimum_cart_amount',
-					],
-				],
+				'reward_types'         => get_reward_types(),
+				'reward_rules'         => get_reward_rules(),
 			]
 		);
 

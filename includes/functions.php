@@ -79,3 +79,38 @@ function get_icon( $name = '' ) {
 		$path
 	);
 }
+
+/**
+ * Undocumented function
+ *
+ * @return void
+ */
+function get_reward_types() {
+	return [
+		[
+			'label' => __( 'Free Shipping' ),
+			'value' => 'free_shipping',
+		],
+		[
+			'label' => __( 'Percentage' ),
+			'value' => 'percent',
+		],
+		[
+			'label' => __( 'Fixed' ),
+			'value' => 'fixed_cart',
+		],
+	];
+}
+
+function get_reward_rules() {
+	return [
+		[
+			'label' => __( 'Minimum cart quantity', 'woocommerce-grow-cart' ),
+			'value' => 'minimum_cart_quantity',
+		],
+		[
+			'label' => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
+			'value' => 'minimum_cart_amount',
+		],
+	];
+}
