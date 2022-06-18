@@ -87,9 +87,8 @@ export default function RewardsListItem() {
 										...reward.rules,
 										{
 											id: uuidv4(),
-											name: `Rule ${
-												reward.rules.length + 1
-											}`,
+											name: `Rule ${reward.rules.length + 1
+												}`,
 											type: "percent",
 											value: 1,
 											minimum_cart_quantity: 9999,
@@ -99,7 +98,7 @@ export default function RewardsListItem() {
 										},
 									],
 								}),
-							updateRule: () => {},
+							updateRule: () => { },
 							removeRule: (ruleId) => {
 								updateReward({
 									...reward,

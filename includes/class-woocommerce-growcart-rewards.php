@@ -209,7 +209,7 @@ class WooCommerce_GrowCart_Rewards {
 	 *
 	 * @return void
 	 */
-	public function get_filtered_rewards() {
+	public function get_filtered_rewards( $reward = false ) {
 		$filtered_rewards = [
 			'type'                       => 'minimum_cart_quantity',
 			'display_suggested_products' => true,
@@ -219,7 +219,7 @@ class WooCommerce_GrowCart_Rewards {
 			'next_rewards'               => [],
 		];
 
-		$active_reward = $this->get_active_reward();
+		$active_reward = $reward ? $reward : $this->get_active_reward();
 		if ( ! $active_reward ) {
 			return $filtered_rewards;
 		}
