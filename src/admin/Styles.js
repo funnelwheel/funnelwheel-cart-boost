@@ -72,28 +72,6 @@ export default function Styles() {
 
 	return (
 		<div className="Styles">
-			<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
-				<input type="color" id="textColor" name="textColor" value={textColor} onChange={handleInputChange} />
-			</BaseControl>
-
-			<BaseControl id="backgroundColor" label="Background Color" __nextHasNoMarginBottom={true}>
-				<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
-			</BaseControl>
-
-			<UnitControl
-				label="Font Size"
-				onChange={(fontSize) =>
-					updateReward({
-						...reward,
-						styles: {
-							...reward.styles,
-							fontSize,
-						},
-					})
-				}
-				value={fontSize}
-			/>
-
 			<BaseControl
 				className="Styles__spacing"
 				label="Spacing"
@@ -169,6 +147,34 @@ export default function Styles() {
 					</FlexItem>
 				</Flex>
 			</BaseControl>
+
+			<Flex>
+				<FlexItem>
+					<UnitControl
+						label="Font Size"
+						onChange={(fontSize) =>
+							updateReward({
+								...reward,
+								styles: {
+									...reward.styles,
+									fontSize,
+								},
+							})
+						}
+						value={fontSize}
+					/>
+				</FlexItem>
+				<FlexItem>
+					<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
+						<input type="color" id="textColor" name="textColor" value={textColor} onChange={handleInputChange} />
+					</BaseControl>
+				</FlexItem>
+				<FlexItem>
+					<BaseControl id="backgroundColor" label="Background Color" __nextHasNoMarginBottom={true}>
+						<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
+					</BaseControl>
+				</FlexItem>
+			</Flex>
 		</div>
 	);
 }
