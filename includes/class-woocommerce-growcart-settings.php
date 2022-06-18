@@ -264,7 +264,6 @@ class WooCommerce_Growcart_Settings {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		$reward_types = ;
 		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/rewards.asset.php';
 
 		wp_enqueue_script(
