@@ -2848,7 +2848,7 @@ function RewardsListItemAdd() {
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
   const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
     id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
-    name: "Free Shipping",
+    name: "Cart threshold incentives",
     type: "minimum_cart_quantity",
     value: 0,
     minimum_cart_quantity: 0,

@@ -16,7 +16,7 @@ export default function RewardsListItemAdd() {
 	} = useContext(RewardsAdminContext);
 	const [reward, setReward] = useState({
 		id: uuidv4(),
-		name: "Free Shipping",
+		name: "Cart threshold incentives",
 		type: "minimum_cart_quantity",
 		value: 0,
 		minimum_cart_quantity: 0,
