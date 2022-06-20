@@ -91,7 +91,7 @@
 	height: 8px;
 	overflow: hidden;
 	font-size: 0.75rem;
-	background-color: $gray-700;
+	background-color: var(--growcart-progress-background-color);
 	border-radius: 0.25rem;
 
 	&__bar {
@@ -102,7 +102,7 @@
 		color: #fff;
 		text-align: center;
 		white-space: nowrap;
-		background-color: $green;
+		background-color: var(--growcart-progress-color);
 		transition: width 0.6s ease;
 	}
 }

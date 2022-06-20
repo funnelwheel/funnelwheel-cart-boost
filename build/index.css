@@ -557,7 +557,7 @@
   height: 8px;
   overflow: hidden;
   font-size: 0.75rem;
-  background-color: #495057;
+  background-color: var(--growcart-progress-background-color);
   border-radius: 0.25rem;
 }
 .progress__bar {
@@ -568,7 +568,7 @@
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #198754;
+  background-color: var(--growcart-progress-color);
   transition: width 0.6s ease;
 }
 
