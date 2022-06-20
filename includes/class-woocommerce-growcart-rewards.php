@@ -209,7 +209,7 @@ class WooCommerce_GrowCart_Rewards {
 	 *
 	 * @return void
 	 */
-	public function get_filtered_rewards( $reward = false ) {
+	public function get_filtered_rewards() {
 		$filtered_rewards = [
 			'type'                       => 'minimum_cart_quantity',
 			'display_suggested_products' => true,
@@ -219,7 +219,7 @@ class WooCommerce_GrowCart_Rewards {
 			'next_rewards'               => [],
 		];
 
-		$active_reward = $reward ? $reward : $this->get_active_reward();
+		$active_reward = $this->get_active_reward();
 		if ( ! $active_reward ) {
 			return $filtered_rewards;
 		}
@@ -626,7 +626,10 @@ class WooCommerce_GrowCart_Rewards {
 			return null;
 		}
 
-		$available_rewards_enabled = wp_list_filter( $available_rewards, [ 'enabled' => true ] );
+		$active_reward_id = isset( $_GET['active_reward_id'] ) ? sanitize_text_field( $_GET['active_reward_id'] ) : '';
+		$filters          = '' === $active_reward_id ? [ 'enabled' => true ] : [ 'id' => $active_reward_id ];
+
+		$available_rewards_enabled = wp_list_filter( $available_rewards, $filters );
 		if ( empty( $available_rewards_enabled ) ) {
 			return null;
 		}
