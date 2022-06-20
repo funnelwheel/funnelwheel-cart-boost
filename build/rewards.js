@@ -110,42 +110,6 @@ function SvgDash(props) {
 
 /***/ }),
 
-/***/ "./src/svg/info-circle-fill.svg":
-/*!**************************************!*\
-  !*** ./src/svg/info-circle-fill.svg ***!
-  \**************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ReactComponent": function() { return /* binding */ SvgInfoCircleFill; }
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _path;
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-
-function SvgInfoCircleFill(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
-    xmlns: "http://www.w3.org/2000/svg",
-    width: 16,
-    height: 16,
-    fill: "currentColor",
-    className: "info-circle-fill_svg__bi info-circle-fill_svg__bi-info-circle-fill"
-  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    d: "M8 16A8 8 0 108 0a8 8 0 000 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 110-2 1 1 0 010 2z"
-  })));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktaW5mby1jaXJjbGUtZmlsbCIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8cGF0aCBkPSJNOCAxNkE4IDggMCAxIDAgOCAwYTggOCAwIDAgMCAwIDE2em0uOTMtOS40MTItMSA0LjcwNWMtLjA3LjM0LjAyOS41MzMuMzA0LjUzMy4xOTQgMCAuNDg3LS4wNy42ODYtLjI0NmwtLjA4OC40MTZjLS4yODcuMzQ2LS45Mi41OTgtMS40NjUuNTk4LS43MDMgMC0xLjAwMi0uNDIyLS44MDgtMS4zMTlsLjczOC0zLjQ2OGMuMDY0LS4yOTMuMDA2LS4zOTktLjI4Ny0uNDdsLS40NTEtLjA4MS4wODItLjM4MSAyLjI5LS4yODd6TTggNS41YTEgMSAwIDEgMSAwLTIgMSAxIDAgMCAxIDAgMnoiLz4KPC9zdmc+");
-
-
-/***/ }),
-
 /***/ "./src/svg/lock.svg":
 /*!**************************!*\
   !*** ./src/svg/lock.svg ***!
@@ -2502,19 +2466,19 @@ function Preview() {
     activeRewardItem
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
   const {
-    isLoading: isCartLoading,
-    error: cartError,
-    data: cartInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation", {
-    active_reward_id: activeRewardItem.id
-  }], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
-  const {
     isLoading: isRewardsLoading,
     error: rewardsError,
     data: rewardsInformation
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["rewards", {
     active_reward_id: activeRewardItem.id
   }], _api__WEBPACK_IMPORTED_MODULE_2__.getRewards);
+  const {
+    isLoading: isCartLoading,
+    error: cartError,
+    data: cartInformation
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation", {
+    active_reward_id: activeRewardItem.id
+  }], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
   if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
 
@@ -2572,13 +2536,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Rewards() {
+  const queryClient = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQueryClient)();
   const initialRewards = document.querySelector('input[name="woocommerce_growcart_rewards"]').value || '[]';
   const activeRewardId = null;
   const [activeScreen, setActiveScreen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("list");
   const [currentlyEditing, setCurrentlyEditing] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(activeRewardId);
   const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(JSON.parse(initialRewards));
   const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_admin_api__WEBPACK_IMPORTED_MODULE_3__.updateAdminRewards, {
-    onSuccess: response => {}
+    onSuccess: () => {
+      queryClient.invalidateQueries('rewards');
+      queryClient.invalidateQueries('cartInformation');
+    }
   });
   const activeRewardItem = currentlyEditing ? rewards.find(reward => reward.id === currentlyEditing) : null;
 
@@ -2938,8 +2906,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
 /* harmony import */ var _svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../svg/trash.svg */ "./src/svg/trash.svg");
-/* harmony import */ var _svg_info_circle_fill_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../svg/info-circle-fill.svg */ "./src/svg/info-circle-fill.svg");
-
 
 
 
@@ -3865,9 +3831,9 @@ function SuggestedProducts() {
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_2__.useQuery)(["suggestedProducts"], _api__WEBPACK_IMPORTED_MODULE_3__.getSuggestedProducts);
   const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_2__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_3__.addToCart, {
     onSuccess: () => {
+      queryClient.invalidateQueries("rewards");
       queryClient.invalidateQueries("cartInformation");
       queryClient.invalidateQueries("suggestedProducts");
-      queryClient.invalidateQueries("rewards");
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(document.body).trigger("wc_fragment_refresh");
     }
   });

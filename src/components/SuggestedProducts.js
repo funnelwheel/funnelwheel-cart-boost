@@ -10,9 +10,9 @@ export default function SuggestedProducts() {
 	);
 	const mutation = useMutation(addToCart, {
 		onSuccess: () => {
+			queryClient.invalidateQueries("rewards");
 			queryClient.invalidateQueries("cartInformation");
 			queryClient.invalidateQueries("suggestedProducts");
-			queryClient.invalidateQueries("rewards");
 			$(document.body).trigger("wc_fragment_refresh");
 		},
 	});

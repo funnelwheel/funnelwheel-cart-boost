@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useState, useEffect } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 import { updateAdminRewards } from "../admin-api";
@@ -7,6 +7,7 @@ import RewardsListItem from "./RewardsListItem";
 import RewardsListItemAdd from "./RewardsListItemAdd";
 
 export default function Rewards() {
+	const queryClient = useQueryClient();
 	const initialRewards = document.querySelector('input[name="woocommerce_growcart_rewards"]')
 		.value || '[]';
 	const activeRewardId = null;
@@ -14,7 +15,10 @@ export default function Rewards() {
 	const [currentlyEditing, setCurrentlyEditing] = useState(activeRewardId);
 	const [rewards, setRewards] = useState(JSON.parse(initialRewards));
 	const mutation = useMutation(updateAdminRewards, {
-		onSuccess: (response) => { },
+		onSuccess: () => {
+			queryClient.invalidateQueries('rewards');
+			queryClient.invalidateQueries('cartInformation');
+		},
 	});
 	const activeRewardItem = currentlyEditing
 		? rewards.find((reward) => reward.id === currentlyEditing)

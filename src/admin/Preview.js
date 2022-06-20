@@ -9,11 +9,11 @@ export default function Preview() {
     const {
         activeRewardItem
     } = useContext(RewardsAdminContext);
+    const { isLoading: isRewardsLoading, error: rewardsError, data: rewardsInformation } = useQuery(["rewards", { active_reward_id: activeRewardItem.id }], getRewards);
     const { isLoading: isCartLoading, error: cartError, data: cartInformation } = useQuery(
         ["cartInformation", { active_reward_id: activeRewardItem.id }],
         getCartInformation
     );
-    const { isLoading: isRewardsLoading, error: rewardsError, data: rewardsInformation } = useQuery(["rewards", { active_reward_id: activeRewardItem.id }], getRewards);
 
     if (isCartLoading || isRewardsLoading) return <Spinner />;
     if (cartError || rewardsError) return "An error has occurred: " + cartError.message || cartError.rewardsError;

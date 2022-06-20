@@ -7,7 +7,6 @@ import {
 import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 import { ReactComponent as TrashIcon } from "./../svg/trash.svg";
-import { ReactComponent as InfoCircleFillIcon } from "./../svg/info-circle-fill.svg";
 
 export default function RulesList({ reward, addRule, removeRule }) {
 	const { updateReward } = useContext(RewardsAdminContext);

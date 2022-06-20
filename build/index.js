@@ -3085,9 +3085,9 @@ function SuggestedProducts() {
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_2__.useQuery)(["suggestedProducts"], _api__WEBPACK_IMPORTED_MODULE_3__.getSuggestedProducts);
   const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_2__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_3__.addToCart, {
     onSuccess: () => {
+      queryClient.invalidateQueries("rewards");
       queryClient.invalidateQueries("cartInformation");
       queryClient.invalidateQueries("suggestedProducts");
-      queryClient.invalidateQueries("rewards");
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(document.body).trigger("wc_fragment_refresh");
     }
   });
