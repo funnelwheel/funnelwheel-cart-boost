@@ -3488,7 +3488,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./src/api.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api */ "./src/api.js");
+
 
 
 
@@ -3497,23 +3499,19 @@ function CartTotals() {
   const queryClient = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQueryClient)();
   const [coupon, updateCoupon] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const {
-    isLoading,
-    error,
-    data: cartInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
-  const mutationApplyCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_2__.applyCoupon, {
+    cartInformation
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.CartContext);
+  const mutationApplyCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_3__.applyCoupon, {
     onSuccess: response => {
       updateCoupon("");
       queryClient.invalidateQueries("cartInformation");
     }
   });
-  const mutationRemoveCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_2__.removeCoupon, {
+  const mutationRemoveCoupon = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_3__.removeCoupon, {
     onSuccess: response => {
       queryClient.invalidateQueries("cartInformation");
     }
   });
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "CartTotals"
   }, cartInformation.data.tax_enabled && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {

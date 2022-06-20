@@ -1,14 +1,14 @@
-import { useState } from "@wordpress/element";
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { getCartInformation, applyCoupon, removeCoupon } from "../api";
+import { useState, useContext } from "@wordpress/element";
+import { useMutation, useQueryClient } from "react-query";
+import { CartContext } from "../context";
+import { applyCoupon, removeCoupon } from "../api";
 
 export default function CartTotals() {
 	const queryClient = useQueryClient();
 	const [coupon, updateCoupon] = useState("");
-	const { isLoading, error, data: cartInformation } = useQuery(
-		["cartInformation"],
-		getCartInformation
-	);
+	const {
+		cartInformation,
+	} = useContext(CartContext);
 
 	const mutationApplyCoupon = useMutation(applyCoupon, {
 		onSuccess: (response) => {
@@ -22,9 +22,6 @@ export default function CartTotals() {
 			queryClient.invalidateQueries("cartInformation");
 		},
 	});
-
-	if (isLoading) return "Loading...";
-	if (error) return "An error has occurred: " + error.message;
 
 	return (
 		<ul className="CartTotals">

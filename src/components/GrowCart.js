@@ -6,7 +6,7 @@ import Cart from "./../components/Cart";
 
 export default function GrowCart() {
     const { isLoading: isCartLoading, error: cartError, data: cartInformation } = useQuery(
-        ["cartInformation"],
+        ["cartInformation", {active_reward_id: ""}],
         getCartInformation
     );
     const { isLoading: isRewardsLoading, error: rewardsError, data: rewardsInformation } = useQuery(["rewards", { active_reward_id: "" }], getRewards);
