@@ -2505,12 +2505,16 @@ function Preview() {
     isLoading: isCartLoading,
     error: cartError,
     data: cartInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation"], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation", {
+    active_reward_id: activeRewardItem.id
+  }], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
   const {
     isLoading: isRewardsLoading,
     error: rewardsError,
     data: rewardsInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("rewards", _api__WEBPACK_IMPORTED_MODULE_2__.getRewards);
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["rewards", {
+    active_reward_id: activeRewardItem.id
+  }], _api__WEBPACK_IMPORTED_MODULE_2__.getRewards);
   if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
 
@@ -3250,50 +3254,70 @@ __webpack_require__.r(__webpack_exports__);
 const instance = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   baseURL: woocommerce_growcart.ajaxURL
 });
-function getCartInformation() {
-  return instance.get("/?action=growcart_get_cart_information");
+function getCartInformation(_ref) {
+  let {
+    queryKey
+  } = _ref;
+  const [_key, {
+    active_reward_id
+  }] = queryKey;
+  return instance.get("/?action=growcart_get_cart_information", {
+    params: {
+      active_reward_id
+    }
+  });
 }
 function getSuggestedProducts() {
   return instance.get("/?action=growcart_get_suggested_products");
 }
-function getRewards() {
-  return instance.get("/?action=growcart_get_rewards");
+function getRewards(_ref2) {
+  let {
+    queryKey
+  } = _ref2;
+  const [_key, {
+    active_reward_id
+  }] = queryKey;
+  return instance.get("/?action=growcart_get_rewards", {
+    params: {
+      active_reward_id
+    }
+  });
 }
-function addToCart(_ref) {
+function addToCart(_ref3) {
   let {
     product_id,
     quantity
-  } = _ref;
+  } = _ref3;
   return instance.post("/?action=woocommerce_add_to_cart", new URLSearchParams({
     product_id,
     quantity
   }));
 }
-function updateCartItem(_ref2) {
+function updateCartItem(_ref4) {
   let {
     cart_key,
     quantity
-  } = _ref2;
+  } = _ref4;
   return instance.post("/?action=growcart_update_cart_item", new URLSearchParams({
     cart_key,
     quantity
   }));
 }
-function applyCoupon(_ref3) {
+function applyCoupon(_ref5) {
   let {
     security,
     coupon_code
-  } = _ref3;
+  } = _ref5;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post(woocommerce_growcart.wcAjaxURL.toString().replace("%%endpoint%%", "apply_coupon"), new URLSearchParams({
     security,
     coupon_code
   }));
 }
-function removeCoupon(_ref4) {
+function removeCoupon(_ref6) {
   let {
     security,
     coupon
-  } = _ref4;
+  } = _ref6;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post(woocommerce_growcart.wcAjaxURL.toString().replace("%%endpoint%%", "remove_coupon"), new URLSearchParams({
     security,
     coupon

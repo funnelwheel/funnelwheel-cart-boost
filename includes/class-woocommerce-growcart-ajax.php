@@ -13,14 +13,14 @@ defined( 'ABSPATH' ) || exit;
  */
 class WooCommerce_GrowCart_Ajax {
 	public function __construct() {
+		add_action( 'wp_ajax_growcart_get_rewards', [ $this, 'get_rewards' ] );
+		add_action( 'wp_ajax_nopriv_growcart_get_rewards', [ $this, 'get_rewards' ] );
 		add_action( 'wp_ajax_growcart_get_cart_information', [ $this, 'get_cart_information' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_cart_information', [ $this, 'get_cart_information' ] );
 		add_action( 'wp_ajax_growcart_update_cart_item', [ $this, 'update_cart_item' ] );
 		add_action( 'wp_ajax_nopriv_growcart_update_cart_item', [ $this, 'update_cart_item' ] );
 		add_action( 'wp_ajax_growcart_get_suggested_products', [ $this, 'get_suggested_products' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_suggested_products', [ $this, 'get_suggested_products' ] );
-		add_action( 'wp_ajax_growcart_get_rewards', [ $this, 'get_rewards' ] );
-		add_action( 'wp_ajax_nopriv_growcart_get_rewards', [ $this, 'get_rewards' ] );
 		add_action( 'wp_ajax_growcart_get_admin_rewards', [ $this, 'get_admin_rewards' ] );
 		add_action( 'wp_ajax_growcart_update_admin_rewards', [ $this, 'update_admin_rewards' ] );
 		add_action( 'wp_ajax_growcart_add_to_cart', [ $this, 'add_to_cart' ] );
@@ -72,6 +72,8 @@ class WooCommerce_GrowCart_Ajax {
 
 		wp_send_json(
 			[
+				'$_GET'                             => $_GET,
+				'get_active_reward()'               => woocommerce_growcart()->rewards->get_active_reward(),
 				'current_reward_ids'                => $current_reward_ids,
 				'is_empty'                          => WC()->cart->is_empty(),
 				'items'                             => get_cart_items(),

@@ -4,16 +4,29 @@ const instance = axios.create({
 	baseURL: woocommerce_growcart.ajaxURL,
 });
 
-export function getCartInformation() {
-	return instance.get("/?action=growcart_get_cart_information");
+export function getCartInformation({ queryKey }) {
+	const [_key, { active_reward_id }] = queryKey;
+	return instance.get(
+		"/?action=growcart_get_cart_information",
+		{
+			params: {
+				active_reward_id
+			}
+		}
+	);
 }
 
 export function getSuggestedProducts() {
 	return instance.get("/?action=growcart_get_suggested_products");
 }
 
-export function getRewards() {
-	return instance.get("/?action=growcart_get_rewards");
+export function getRewards({ queryKey }) {
+	const [_key, { active_reward_id }] = queryKey;
+	return instance.get("/?action=growcart_get_rewards", {
+		params: {
+			active_reward_id
+		}
+	});
 }
 
 export function addToCart({ product_id, quantity }) {
