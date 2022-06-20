@@ -32,7 +32,7 @@ export default function Styles() {
 	const textColor = reward?.styles?.textColor || '#000000';
 	const backgroundColor = reward?.styles?.backgroundColor || '#ffffff';
 	const progressColor = reward?.styles?.progressColor || '#198754';
-	const progressBackground = reward?.styles?.progressBackground || '#495057';
+	const progressBackgroundColor = reward?.styles?.progressBackgroundColor || '#495057';
 
 	return (
 		<div className="Styles">
@@ -146,8 +146,8 @@ export default function Styles() {
 					</BaseControl>
 				</FlexItem>
 				<FlexItem>
-					<BaseControl id="progressBackground" label="Progress Background" __nextHasNoMarginBottom={true}>
-						<input type="color" id="progressBackground" name="progressBackground" value={progressBackground} onChange={handleInputChange} />
+					<BaseControl id="progressBackgroundColor" label="Progress Background" __nextHasNoMarginBottom={true}>
+						<input type="color" id="progressBackgroundColor" name="progressBackgroundColor" value={progressBackgroundColor} onChange={handleInputChange} />
 					</BaseControl>
 				</FlexItem>
 			</Flex>

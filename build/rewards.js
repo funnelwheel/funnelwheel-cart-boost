@@ -2493,7 +2493,9 @@ function Preview() {
     ['--growcart-spacing-left']: activeRewardItem?.styles?.spacing?.left || '24px',
     ['--growcart-font-size']: activeRewardItem?.styles?.fontSize || '24px',
     ['--growcart-text-color']: activeRewardItem?.styles?.textColor || '#ffffff',
-    ['--growcart-background-color']: activeRewardItem?.styles?.backgroundColor || '#000000'
+    ['--growcart-background-color']: activeRewardItem?.styles?.backgroundColor || '#000000',
+    ['--growcart-progress-color']: activeRewardItem?.styles?.progressColor || '#198754',
+    ['--growcart-progress-background-color']: activeRewardItem?.styles?.progressBackgroundColor || '#495057'
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext.Provider, {
     value: {
@@ -3107,7 +3109,7 @@ function Styles() {
   const textColor = reward?.styles?.textColor || '#000000';
   const backgroundColor = reward?.styles?.backgroundColor || '#ffffff';
   const progressColor = reward?.styles?.progressColor || '#198754';
-  const progressBackground = reward?.styles?.progressBackground || '#495057';
+  const progressBackgroundColor = reward?.styles?.progressBackgroundColor || '#495057';
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
@@ -3188,14 +3190,14 @@ function Styles() {
     value: progressColor,
     onChange: handleInputChange
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    id: "progressBackground",
+    id: "progressBackgroundColor",
     label: "Progress Background",
     __nextHasNoMarginBottom: true
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "color",
-    id: "progressBackground",
-    name: "progressBackground",
-    value: progressBackground,
+    id: "progressBackgroundColor",
+    name: "progressBackgroundColor",
+    value: progressBackgroundColor,
     onChange: handleInputChange
   })))));
 }

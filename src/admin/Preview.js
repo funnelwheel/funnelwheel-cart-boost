@@ -30,6 +30,8 @@ export default function Preview() {
         ['--growcart-font-size']: activeRewardItem?.styles?.fontSize || '24px',
         ['--growcart-text-color']: activeRewardItem?.styles?.textColor || '#ffffff',
         ['--growcart-background-color']: activeRewardItem?.styles?.backgroundColor || '#000000',
+        ['--growcart-progress-color']: activeRewardItem?.styles?.progressColor || '#198754',
+        ['--growcart-progress-background-color']: activeRewardItem?.styles?.progressBackgroundColor || '#495057',
     }
 
     return <CartContext.Provider value={{ cartInformation, rewardsInformation }}>
