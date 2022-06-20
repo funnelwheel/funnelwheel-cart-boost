@@ -2814,7 +2814,9 @@ function GrowCart() {
     isLoading: isRewardsLoading,
     error: rewardsError,
     data: rewardsInformation
-  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("rewards", _api__WEBPACK_IMPORTED_MODULE_2__.getRewards);
+  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["rewards", {
+    active_reward_id: ""
+  }], _api__WEBPACK_IMPORTED_MODULE_2__.getRewards);
   if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext.Provider, {

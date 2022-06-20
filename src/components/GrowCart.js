@@ -9,7 +9,7 @@ export default function GrowCart() {
         ["cartInformation"],
         getCartInformation
     );
-    const { isLoading: isRewardsLoading, error: rewardsError, data: rewardsInformation } = useQuery("rewards", getRewards);
+    const { isLoading: isRewardsLoading, error: rewardsError, data: rewardsInformation } = useQuery(["rewards", { active_reward_id: "" }], getRewards);
 
     if (isCartLoading || isRewardsLoading) return <Spinner />;
     if (cartError || rewardsError) return "An error has occurred: " + cartError.message || cartError.rewardsError;
