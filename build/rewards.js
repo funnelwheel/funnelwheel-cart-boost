@@ -2514,18 +2514,18 @@ function Preview() {
   if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
 
-  if (!rewardsInformation.data.rewards.current_rewards.length || !rewardsInformation.data.rewards.next_rewards.length) {
+  if (!(rewardsInformation.data.rewards.current_rewards.length || rewardsInformation.data.rewards.next_rewards.length)) {
     return null;
   }
 
   const style = {
-    ['--growcart-spacing-top']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.top,
-    ['--growcart-spacing-right']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.right,
-    ['--growcart-spacing-bottom']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.bottom,
-    ['--growcart-spacing-left']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.spacing.left,
-    ['--growcart-font-size']: "undefined" === typeof activeRewardItem.styles ? '24px' : activeRewardItem.styles.fontSize,
-    ['--growcart-text-color']: "undefined" === typeof activeRewardItem.styles ? '#ffffff' : activeRewardItem.styles.textColor,
-    ['--growcart-background-color']: "undefined" === typeof activeRewardItem.styles ? '#000000' : activeRewardItem.styles.backgroundColor
+    ['--growcart-spacing-top']: activeRewardItem?.styles?.spacing?.top || '24px',
+    ['--growcart-spacing-right']: activeRewardItem?.styles?.spacing?.right || '24px',
+    ['--growcart-spacing-bottom']: activeRewardItem?.styles?.spacing?.bottom || '24px',
+    ['--growcart-spacing-left']: activeRewardItem?.styles?.spacing?.left || '24px',
+    ['--growcart-font-size']: activeRewardItem?.styles?.fontSize || '24px',
+    ['--growcart-text-color']: activeRewardItem?.styles?.textColor || '#ffffff',
+    ['--growcart-background-color']: activeRewardItem?.styles?.backgroundColor || '#000000'
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext.Provider, {
     value: {
