@@ -9,29 +9,12 @@ import { useContext } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { RewardsAdminContext } from "../context";
 
-const fontSizes = [
-	{
-		name: __("Small"),
-		slug: "small",
-		size: 14,
-	},
-	{
-		name: __("Normal"),
-		slug: "normal",
-		size: 16,
-	},
-	{
-		name: __("Medium"),
-		slug: "medium",
-		size: 23,
-	},
-	{
-		name: __("Large"),
-		slug: "Large",
-		size: 26,
-	},
-];
-const fallbackFontSize = 16;
+const defaultSpacing = {
+	top: '24px',
+	right: '24px',
+	bottom: '24px',
+	left: '24px',
+};
 
 export default function Styles() {
 	const { reward, updateReward } = useContext(RewardsAdminContext);
@@ -44,31 +27,12 @@ export default function Styles() {
 			},
 		})
 	}
-	const spacing =
-		typeof reward.styles === "undefined" ||
-			typeof reward.styles.spacing === "undefined"
-			? {
-				top: '24px',
-				right: '24px',
-				bottom: '24px',
-				left: '24px',
-			}
-			: reward.styles.spacing;
-	const fontSize =
-		typeof reward.styles === "undefined" ||
-			typeof reward.styles.fontSize === "undefined"
-			? '14px'
-			: reward.styles.fontSize;
-	const textColor =
-		typeof reward.styles === "undefined" ||
-			typeof reward.styles.textColor === "undefined"
-			? "#000000"
-			: reward.styles.textColor;
-	const backgroundColor =
-		typeof reward.styles === "undefined" ||
-			typeof reward.styles.backgroundColor === "undefined"
-			? "#ffffff"
-			: reward.styles.backgroundColor;
+	const spacing = reward?.styles?.spacing || defaultSpacing;
+	const fontSize = reward?.styles?.fontSize || '14px';
+	const textColor = reward?.styles?.textColor || '#000000';
+	const backgroundColor = reward?.styles?.backgroundColor || '#ffffff';
+	const progressColor = reward?.styles?.progressColor || '#198754';
+	const progressBackground = reward?.styles?.progressBackground || '#495057';
 
 	return (
 		<div className="Styles">
@@ -148,22 +112,21 @@ export default function Styles() {
 				</Flex>
 			</BaseControl>
 
+			<UnitControl
+				label="Font Size"
+				onChange={(fontSize) =>
+					updateReward({
+						...reward,
+						styles: {
+							...reward.styles,
+							fontSize,
+						},
+					})
+				}
+				value={fontSize}
+			/>
+
 			<Flex>
-				<FlexItem>
-					<UnitControl
-						label="Font Size"
-						onChange={(fontSize) =>
-							updateReward({
-								...reward,
-								styles: {
-									...reward.styles,
-									fontSize,
-								},
-							})
-						}
-						value={fontSize}
-					/>
-				</FlexItem>
 				<FlexItem>
 					<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
 						<input type="color" id="textColor" name="textColor" value={textColor} onChange={handleInputChange} />
@@ -172,6 +135,19 @@ export default function Styles() {
 				<FlexItem>
 					<BaseControl id="backgroundColor" label="Background Color" __nextHasNoMarginBottom={true}>
 						<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
+					</BaseControl>
+				</FlexItem>
+			</Flex>
+
+			<Flex>
+				<FlexItem>
+					<BaseControl id="progressColor" label="Progress Color" __nextHasNoMarginBottom={true}>
+						<input type="color" id="progressColor" name="progressColor" value={progressColor} onChange={handleInputChange} />
+					</BaseControl>
+				</FlexItem>
+				<FlexItem>
+					<BaseControl id="progressBackground" label="Progress Background" __nextHasNoMarginBottom={true}>
+						<input type="color" id="progressBackground" name="progressBackground" value={progressBackground} onChange={handleInputChange} />
 					</BaseControl>
 				</FlexItem>
 			</Flex>

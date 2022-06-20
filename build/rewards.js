@@ -3082,24 +3082,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const fontSizes = [{
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Small"),
-  slug: "small",
-  size: 14
-}, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Normal"),
-  slug: "normal",
-  size: 16
-}, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Medium"),
-  slug: "medium",
-  size: 23
-}, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Large"),
-  slug: "Large",
-  size: 26
-}];
-const fallbackFontSize = 16;
+const defaultSpacing = {
+  top: '24px',
+  right: '24px',
+  bottom: '24px',
+  left: '24px'
+};
 function Styles() {
   const {
     reward,
@@ -3114,15 +3102,12 @@ function Styles() {
     });
   }
 
-  const spacing = typeof reward.styles === "undefined" || typeof reward.styles.spacing === "undefined" ? {
-    top: '24px',
-    right: '24px',
-    bottom: '24px',
-    left: '24px'
-  } : reward.styles.spacing;
-  const fontSize = typeof reward.styles === "undefined" || typeof reward.styles.fontSize === "undefined" ? '14px' : reward.styles.fontSize;
-  const textColor = typeof reward.styles === "undefined" || typeof reward.styles.textColor === "undefined" ? "#000000" : reward.styles.textColor;
-  const backgroundColor = typeof reward.styles === "undefined" || typeof reward.styles.backgroundColor === "undefined" ? "#ffffff" : reward.styles.backgroundColor;
+  const spacing = reward?.styles?.spacing || defaultSpacing;
+  const fontSize = reward?.styles?.fontSize || '14px';
+  const textColor = reward?.styles?.textColor || '#000000';
+  const backgroundColor = reward?.styles?.backgroundColor || '#ffffff';
+  const progressColor = reward?.styles?.progressColor || '#198754';
+  const progressBackground = reward?.styles?.progressBackground || '#495057';
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
@@ -3164,7 +3149,7 @@ function Styles() {
       }
     }),
     value: spacing.left
-  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
     label: "Font Size",
     onChange: fontSize => updateReward({ ...reward,
       styles: { ...reward.styles,
@@ -3172,7 +3157,7 @@ function Styles() {
       }
     }),
     value: fontSize
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     id: "textColor",
     label: "Text Color",
     __nextHasNoMarginBottom: true
@@ -3191,6 +3176,26 @@ function Styles() {
     id: "backgroundColor",
     name: "backgroundColor",
     value: backgroundColor,
+    onChange: handleInputChange
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "progressColor",
+    label: "Progress Color",
+    __nextHasNoMarginBottom: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "color",
+    id: "progressColor",
+    name: "progressColor",
+    value: progressColor,
+    onChange: handleInputChange
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "progressBackground",
+    label: "Progress Background",
+    __nextHasNoMarginBottom: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "color",
+    id: "progressBackground",
+    name: "progressBackground",
+    value: progressBackground,
     onChange: handleInputChange
   })))));
 }
