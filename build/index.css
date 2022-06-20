@@ -98,7 +98,7 @@
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1055;
+  z-index: 9999;
   /* Sit on top */
   left: 0;
   top: 0;
