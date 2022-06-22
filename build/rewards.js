@@ -3108,8 +3108,10 @@ function Styles() {
     });
   }
 
-  const spacing = reward?.styles?.spacing || defaultSpacing;
+  const headerTextColor = reward?.styles?.headerTextColor || '#ffffff';
+  const headerBackground = reward?.styles?.headerBackground || '#343a40';
   const fontSize = reward?.styles?.fontSize || '14px';
+  const spacing = reward?.styles?.spacing || defaultSpacing;
   const textColor = reward?.styles?.textColor || '#000000';
   const backgroundColor = reward?.styles?.backgroundColor || '#ffffff';
   const iconColor = reward?.styles?.iconColor || '#ffffff';
@@ -3132,7 +3134,27 @@ function Styles() {
       }
     }),
     value: fontSize
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "headerTextColor",
+    label: "Header Text Color",
+    __nextHasNoMarginBottom: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "color",
+    id: "headerTextColor",
+    name: "headerTextColor",
+    value: headerTextColor,
+    onChange: handleInputChange
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    id: "headerBackground",
+    label: "Header Background",
+    __nextHasNoMarginBottom: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "color",
+    id: "headerBackground",
+    name: "headerBackground",
+    value: headerBackground,
+    onChange: handleInputChange
+  }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles__block"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     className: "Styles__block-title"

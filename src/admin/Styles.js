@@ -27,8 +27,11 @@ export default function Styles() {
 			},
 		})
 	}
-	const spacing = reward?.styles?.spacing || defaultSpacing;
+
+	const headerTextColor = reward?.styles?.headerTextColor || '#ffffff';
+	const headerBackground = reward?.styles?.headerBackground || '#343a40';
 	const fontSize = reward?.styles?.fontSize || '14px';
+	const spacing = reward?.styles?.spacing || defaultSpacing;
 	const textColor = reward?.styles?.textColor || '#000000';
 	const backgroundColor = reward?.styles?.backgroundColor || '#ffffff';
 	const iconColor = reward?.styles?.iconColor || '#ffffff';
@@ -55,6 +58,19 @@ export default function Styles() {
 					}
 					value={fontSize}
 				/>
+
+				<Flex>
+					<FlexItem>
+						<BaseControl id="headerTextColor" label="Header Text Color" __nextHasNoMarginBottom={true}>
+							<input type="color" id="headerTextColor" name="headerTextColor" value={headerTextColor} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+					<FlexItem>
+						<BaseControl id="headerBackground" label="Header Background" __nextHasNoMarginBottom={true}>
+							<input type="color" id="headerBackground" name="headerBackground" value={headerBackground} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+				</Flex>
 			</div>
 
 			<div className="Styles__block">
