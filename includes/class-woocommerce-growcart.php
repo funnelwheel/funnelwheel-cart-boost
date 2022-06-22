@@ -144,12 +144,16 @@ final class WooCommerce_GrowCart {
 				'backgroundColor'         => '#000000',
 				'progressColor'           => '#198754',
 				'progressBackgroundColor' => '#495057',
+				'iconColor'               => '#ffffff',
+				'iconBackground'          => '#495057',
+				'activeIconColor'         => '#ffffff',
+				'activeIconBackground'    => '#198754',
 			];
 
 			if ( $active_reward['styles'] ) {
-				foreach ( $styles  as $key => $value ) {
+				foreach ( array_keys( $styles ) as $key ) {
 					if ( isset( $active_reward['styles'][ $key ] ) ) {
-						$styles['styles'][ $key ] = $active_reward['styles'][ $key ];
+						$styles[ $key ] = $active_reward['styles'][ $key ];
 					}
 				}
 			}

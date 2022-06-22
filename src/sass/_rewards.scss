@@ -56,12 +56,14 @@
 		margin-right: 8px;
 		border-radius: 50%;
 		text-align: center;
-		background-color: var(--growcart-progress-background-color);
+		color: var(--growcart-icon-color);
+		background-color: var(--growcart-icon-background);
 	}
 
 	.availed {
 		.Rewards__icon {
-			background-color: var(--growcart-progress-color);
+			color: var(--growcart-active-icon-color);
+			background-color: var(--growcart-active-icon-background);
 		}
 
 		.Rewards__text {
