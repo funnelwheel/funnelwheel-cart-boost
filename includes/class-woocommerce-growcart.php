@@ -132,27 +132,43 @@ final class WooCommerce_GrowCart {
 
 		$active_reward = woocommerce_growcart()->rewards->get_active_reward();
 		if ( $active_reward ) {
-			$spacing_top               = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['top'] : '24px';
-			$spacing_right             = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['right'] : '24px';
-			$spacing_bottom            = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['bottom'] : '24px';
-			$spacing_left              = isset( $active_reward['styles'], $active_reward['styles']['spacing'] ) ? $active_reward['styles']['spacing']['left'] : '24px';
-			$font_size                 = isset( $active_reward['styles'], $active_reward['styles']['fontSize'] ) ? $active_reward['styles']['fontSize'] : '14px';
-			$text_color                = isset( $active_reward['styles'], $active_reward['styles']['textcolor'] ) ? $active_reward['styles']['textcolor'] : '#ffffff';
-			$background_color          = isset( $active_reward['styles'], $active_reward['styles']['backgroundColor'] ) ? $active_reward['styles']['backgroundColor'] : '#000000';
-			$progress_color            = isset( $active_reward['styles'], $active_reward['styles']['progressColor'] ) ? $active_reward['styles']['progressColor'] : '#198754';
-			$progress_background_color = isset( $active_reward['styles'], $active_reward['styles']['progressBackgroundColor'] ) ? $active_reward['styles']['progressBackgroundColor'] : '#495057';
+			$styles = [
+				'spacing'                 => [
+					'top'    => '24px',
+					'right'  => '24px',
+					'bottom' => '24px',
+					'left'   => '24px',
+				],
+				'fontSize'                => '14px',
+				'textcolor'               => '#ffffff',
+				'backgroundColor'         => '#000000',
+				'progressColor'           => '#198754',
+				'progressBackgroundColor' => '#495057',
+			];
+
+			if ( $active_reward['styles'] ) {
+				foreach ( $styles  as $key => $value ) {
+					if ( isset( $active_reward['styles'][ $key ] ) ) {
+						$styles['styles'][ $key ] = $active_reward['styles'][ $key ];
+					}
+				}
+			}
 
 			$custom_css = "
 				:root {
-					--growcart-spacing-top: {$spacing_top};
-					--growcart-spacing-right: {$spacing_right};
-					--growcart-spacing-bottom: {$spacing_bottom};
-					--growcart-spacing-left: {$spacing_left};
-					--growcart-font-size: {$font_size};
-                    --growcart-text-color: {$text_color};
-                    --growcart-background-color: {$background_color};
-                    --growcart-progress-color: {$progress_color};
-                    --growcart-progress-background-color: {$progress_background_color};
+					--growcart-spacing-top: {$styles['spacing']['top']};
+					--growcart-spacing-right: {$styles['spacing']['right']};
+					--growcart-spacing-bottom: {$styles['spacing']['bottom']};
+					--growcart-spacing-left: {$styles['spacing']['left']};
+					--growcart-font-size: {$styles['fontSize']};
+                    --growcart-text-color: {$styles['textcolor']};
+                    --growcart-background-color: {$styles['backgroundColor']};
+					--growcart-icon-color: {$styles['iconColor']};
+                    --growcart-icon-background: {$styles['iconBackground']};
+					--growcart-active-icon-color: {$styles['activeIconColor']};
+                    --growcart-active-icon-background: {$styles['activeIconBackground']};
+                    --growcart-progress-color: {$styles['progressColor']};
+                    --growcart-progress-background-color: {$styles['progressBackgroundColor']};
                 }
 			";
 			wp_add_inline_style( 'woocommerce-growcart', $custom_css );
