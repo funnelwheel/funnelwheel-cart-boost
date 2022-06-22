@@ -2494,8 +2494,12 @@ function Preview() {
     ['--growcart-font-size']: activeRewardItem?.styles?.fontSize || '24px',
     ['--growcart-text-color']: activeRewardItem?.styles?.textColor || '#ffffff',
     ['--growcart-background-color']: activeRewardItem?.styles?.backgroundColor || '#000000',
+    ['--growcart-icon-color']: activeRewardItem?.styles?.iconColor || '#ffffff',
+    ['--growcart-icon-background']: activeRewardItem?.styles?.iconBackground || '#495057',
+    ['--growcart-active-icon-color']: activeRewardItem?.styles?.activeIconColor || '#ffffff',
+    ['--growcart-active-icon-background']: activeRewardItem?.styles?.activeIconBackground || '#198754',
     ['--growcart-progress-color']: activeRewardItem?.styles?.progressColor || '#198754',
-    ['--growcart-progress-background-color']: activeRewardItem?.styles?.progressBackgroundColor || '#495057'
+    ['--growcart-progress-background']: activeRewardItem?.styles?.progressBackground || '#495057'
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext.Provider, {
     value: {
