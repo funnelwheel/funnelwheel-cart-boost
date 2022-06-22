@@ -31,8 +31,10 @@ export default function Styles() {
 	const fontSize = reward?.styles?.fontSize || '14px';
 	const textColor = reward?.styles?.textColor || '#000000';
 	const backgroundColor = reward?.styles?.backgroundColor || '#ffffff';
-	const iconColor = reward?.styles?.iconColor || '#198754';
+	const iconColor = reward?.styles?.iconColor || '#ffffff';
 	const iconBackground = reward?.styles?.iconBackground || '#495057';
+	const activeIconColor = reward?.styles?.activeIconColor || '#ffffff';
+	const activeIconBackground = reward?.styles?.activeIconBackground || '#198754';
 	const progressColor = reward?.styles?.progressColor || '#198754';
 	const progressBackgroundColor = reward?.styles?.progressBackgroundColor || '#495057';
 
@@ -150,6 +152,19 @@ export default function Styles() {
 				<FlexItem>
 					<BaseControl id="iconBackground" label="Icon Background" __nextHasNoMarginBottom={true}>
 						<input type="color" id="iconBackground" name="iconBackground" value={iconBackground} onChange={handleInputChange} />
+					</BaseControl>
+				</FlexItem>
+			</Flex>
+
+			<Flex>
+				<FlexItem>
+					<BaseControl id="activeIconColor" label="Active Icon Color" __nextHasNoMarginBottom={true}>
+						<input type="color" id="activeIconColor" name="activeIconColor" value={activeIconColor} onChange={handleInputChange} />
+					</BaseControl>
+				</FlexItem>
+				<FlexItem>
+					<BaseControl id="activeIconBackground" label="Active Icon Background" __nextHasNoMarginBottom={true}>
+						<input type="color" id="activeIconBackground" name="activeIconBackground" value={activeIconBackground} onChange={handleInputChange} />
 					</BaseControl>
 				</FlexItem>
 			</Flex>
