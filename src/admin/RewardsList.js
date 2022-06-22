@@ -72,11 +72,19 @@ export default function RewardsList() {
 											<button
 												type="button"
 												className="growcart-reward-edit"
-												onClick={() => setRewards({
-													...rewards,
-													activeScreen: "edit",
-													currentlyEditing: reward.id,
-												})}
+												onClick={() => {
+													alert("Deactivating on front-end.");
+													setRewards({
+														...rewards,
+														rewards: rewards.rewards.map(
+															(_reward) =>
+																_reward.id ===
+																	reward.id ? { ..._reward, enabled: false } : _reward
+														),
+														activeScreen: "edit",
+														currentlyEditing: reward.id,
+													})
+												}}
 											>
 												Edit
 											</button>

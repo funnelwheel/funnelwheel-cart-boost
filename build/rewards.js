@@ -2660,10 +2660,16 @@ function RewardsList() {
     }, (0,_utilities__WEBPACK_IMPORTED_MODULE_3__.replaceTags)(rule.name, rule.type, rule.value)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "growcart-reward-edit",
-      onClick: () => setRewards({ ...rewards,
-        activeScreen: "edit",
-        currentlyEditing: reward.id
-      })
+      onClick: () => {
+        alert("Deactivating on front-end.");
+        setRewards({ ...rewards,
+          rewards: rewards.rewards.map(_reward => _reward.id === reward.id ? { ..._reward,
+            enabled: false
+          } : _reward),
+          activeScreen: "edit",
+          currentlyEditing: reward.id
+        });
+      }
     }, "Edit"), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "growcart-reward-delete",
