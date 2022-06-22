@@ -56,12 +56,12 @@
 		margin-right: 8px;
 		border-radius: 50%;
 		text-align: center;
-		background-color: $gray-700;
+		background-color: var(--growcart-progress-background-color);
 	}
 
 	.availed {
 		.Rewards__icon {
-			background-color: $green;
+			background-color: var(--growcart-progress-color);
 		}
 
 		.Rewards__text {
