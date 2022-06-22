@@ -244,6 +244,12 @@ button {
 	padding: 24px;
 	border-radius: 4px;
 	background-color: $white;
+
+	&__block-title {
+		text-transform: uppercase;
+		font-weight: bold;
+		color: $gray-400;
+	}
 }
 
 

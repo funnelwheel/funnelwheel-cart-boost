@@ -786,6 +786,11 @@ button {
   border-radius: 4px;
   background-color: #fff;
 }
+.Styles__block-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ced4da;
+}
 
 .Preview {
   margin-bottom: 16px;

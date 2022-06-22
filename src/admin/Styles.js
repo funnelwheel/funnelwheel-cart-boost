@@ -40,147 +40,152 @@ export default function Styles() {
 
 	return (
 		<div className="Styles">
-			<BaseControl
-				className="Styles__spacing"
-				label="Spacing"
-			>
+			<div className="Styles__block">
+				<h4 className="Styles__block-title">Modal</h4>
+				<UnitControl
+					label="Font Size"
+					onChange={(fontSize) =>
+						updateReward({
+							...reward,
+							styles: {
+								...reward.styles,
+								fontSize,
+							},
+						})
+					}
+					value={fontSize}
+				/>
+			</div>
+
+			<div className="Styles__block">
+				<h4 className="Styles__block-title">Rewards</h4>
+				<BaseControl
+					className="Styles__spacing"
+					label="Spacing"
+				>
+					<Flex>
+						<FlexItem>
+							<UnitControl
+								onChange={(top) =>
+									updateReward({
+										...reward,
+										styles: {
+											...reward.styles,
+											spacing: {
+												...reward.styles.spacing,
+												top,
+											},
+										},
+									})
+								}
+								value={spacing.top}
+							/>
+						</FlexItem>
+						<FlexItem>
+							<UnitControl
+								onChange={(right) =>
+									updateReward({
+										...reward,
+										styles: {
+											...reward.styles,
+											spacing: {
+												...reward.styles.spacing,
+												right,
+											},
+										},
+									})
+								}
+								value={spacing.right}
+							/>
+						</FlexItem>
+						<FlexItem>
+							<UnitControl
+								onChange={(bottom) =>
+									updateReward({
+										...reward,
+										styles: {
+											...reward.styles,
+											spacing: {
+												...reward.styles.spacing,
+												bottom,
+											},
+										},
+									})
+								}
+								value={spacing.bottom}
+							/>
+						</FlexItem>
+						<FlexItem>
+							<UnitControl
+								onChange={(left) =>
+									updateReward({
+										...reward,
+										styles: {
+											...reward.styles,
+											spacing: {
+												...reward.styles.spacing,
+												left,
+											},
+										},
+									})
+								}
+								value={spacing.left}
+							/>
+						</FlexItem>
+					</Flex>
+				</BaseControl>
 				<Flex>
 					<FlexItem>
-						<UnitControl
-							onChange={(top) =>
-								updateReward({
-									...reward,
-									styles: {
-										...reward.styles,
-										spacing: {
-											...reward.styles.spacing,
-											top,
-										},
-									},
-								})
-							}
-							value={spacing.top}
-						/>
+						<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
+							<input type="color" id="textColor" name="textColor" value={textColor} onChange={handleInputChange} />
+						</BaseControl>
 					</FlexItem>
 					<FlexItem>
-						<UnitControl
-							onChange={(right) =>
-								updateReward({
-									...reward,
-									styles: {
-										...reward.styles,
-										spacing: {
-											...reward.styles.spacing,
-											right,
-										},
-									},
-								})
-							}
-							value={spacing.right}
-						/>
-					</FlexItem>
-					<FlexItem>
-						<UnitControl
-							onChange={(bottom) =>
-								updateReward({
-									...reward,
-									styles: {
-										...reward.styles,
-										spacing: {
-											...reward.styles.spacing,
-											bottom,
-										},
-									},
-								})
-							}
-							value={spacing.bottom}
-						/>
-					</FlexItem>
-					<FlexItem>
-						<UnitControl
-							onChange={(left) =>
-								updateReward({
-									...reward,
-									styles: {
-										...reward.styles,
-										spacing: {
-											...reward.styles.spacing,
-											left,
-										},
-									},
-								})
-							}
-							value={spacing.left}
-						/>
+						<BaseControl id="backgroundColor" label="Background" __nextHasNoMarginBottom={true}>
+							<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
+						</BaseControl>
 					</FlexItem>
 				</Flex>
-			</BaseControl>
 
-			<UnitControl
-				label="Font Size"
-				onChange={(fontSize) =>
-					updateReward({
-						...reward,
-						styles: {
-							...reward.styles,
-							fontSize,
-						},
-					})
-				}
-				value={fontSize}
-			/>
+				<Flex>
+					<FlexItem>
+						<BaseControl id="iconColor" label="Icon Color" __nextHasNoMarginBottom={true}>
+							<input type="color" id="iconColor" name="iconColor" value={iconColor} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+					<FlexItem>
+						<BaseControl id="iconBackground" label="Icon Background" __nextHasNoMarginBottom={true}>
+							<input type="color" id="iconBackground" name="iconBackground" value={iconBackground} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+				</Flex>
 
-			<Flex>
-				<FlexItem>
-					<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
-						<input type="color" id="textColor" name="textColor" value={textColor} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-				<FlexItem>
-					<BaseControl id="backgroundColor" label="Background" __nextHasNoMarginBottom={true}>
-						<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-			</Flex>
+				<Flex>
+					<FlexItem>
+						<BaseControl id="activeIconColor" label="Active Icon Color" __nextHasNoMarginBottom={true}>
+							<input type="color" id="activeIconColor" name="activeIconColor" value={activeIconColor} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+					<FlexItem>
+						<BaseControl id="activeIconBackground" label="Active Icon Background" __nextHasNoMarginBottom={true}>
+							<input type="color" id="activeIconBackground" name="activeIconBackground" value={activeIconBackground} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+				</Flex>
 
-			<Flex>
-				<FlexItem>
-					<BaseControl id="iconColor" label="Icon Color" __nextHasNoMarginBottom={true}>
-						<input type="color" id="iconColor" name="iconColor" value={iconColor} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-				<FlexItem>
-					<BaseControl id="iconBackground" label="Icon Background" __nextHasNoMarginBottom={true}>
-						<input type="color" id="iconBackground" name="iconBackground" value={iconBackground} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-			</Flex>
-
-			<Flex>
-				<FlexItem>
-					<BaseControl id="activeIconColor" label="Active Icon Color" __nextHasNoMarginBottom={true}>
-						<input type="color" id="activeIconColor" name="activeIconColor" value={activeIconColor} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-				<FlexItem>
-					<BaseControl id="activeIconBackground" label="Active Icon Background" __nextHasNoMarginBottom={true}>
-						<input type="color" id="activeIconBackground" name="activeIconBackground" value={activeIconBackground} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-			</Flex>
-
-			<Flex>
-				<FlexItem>
-					<BaseControl id="progressColor" label="Progress Color" __nextHasNoMarginBottom={true}>
-						<input type="color" id="progressColor" name="progressColor" value={progressColor} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-				<FlexItem>
-					<BaseControl id="progressBackgroundColor" label="Progress Background" __nextHasNoMarginBottom={true}>
-						<input type="color" id="progressBackgroundColor" name="progressBackgroundColor" value={progressBackgroundColor} onChange={handleInputChange} />
-					</BaseControl>
-				</FlexItem>
-			</Flex>
+				<Flex>
+					<FlexItem>
+						<BaseControl id="progressColor" label="Progress Color" __nextHasNoMarginBottom={true}>
+							<input type="color" id="progressColor" name="progressColor" value={progressColor} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+					<FlexItem>
+						<BaseControl id="progressBackgroundColor" label="Progress Background" __nextHasNoMarginBottom={true}>
+							<input type="color" id="progressBackgroundColor" name="progressBackgroundColor" value={progressBackgroundColor} onChange={handleInputChange} />
+						</BaseControl>
+					</FlexItem>
+				</Flex>
+			</div>
 		</div>
 	);
 }
