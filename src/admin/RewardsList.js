@@ -73,7 +73,10 @@ export default function RewardsList() {
 												type="button"
 												className="growcart-reward-edit"
 												onClick={() => {
-													alert("Deactivating on front-end.");
+													if (reward.enabled) {
+														alert("Deactivating on front-end.");
+													}
+
 													setRewards({
 														...rewards,
 														rewards: rewards.rewards.map(

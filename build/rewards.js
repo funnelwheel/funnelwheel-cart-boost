@@ -2661,7 +2661,10 @@ function RewardsList() {
       type: "button",
       className: "growcart-reward-edit",
       onClick: () => {
-        alert("Deactivating on front-end.");
+        if (reward.enabled) {
+          alert("Deactivating on front-end.");
+        }
+
         setRewards({ ...rewards,
           rewards: rewards.rewards.map(_reward => _reward.id === reward.id ? { ..._reward,
             enabled: false
@@ -4013,7 +4016,7 @@ __webpack_require__.r(__webpack_exports__);
 function replaceTags(text, ruleType, value) {
   const tags = "percent" === ruleType ? ['{{value}}'] : ['{{value}}', '{{currency}}'];
   return tags.reduce((previousValue, currentValue) => {
-    const _value = "{{currency}}" === value ? woocommerce_growcart.currency_symbol : value;
+    const _value = "{{currency}}" === currentValue ? woocommerce_growcart.currency_symbol : value;
 
     return previousValue.replace(currentValue, _value);
   }, text);
