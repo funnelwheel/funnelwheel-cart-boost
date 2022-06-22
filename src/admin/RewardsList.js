@@ -4,6 +4,7 @@ import {
 	__experimentalConfirmDialog as ConfirmDialog,
 } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
+import { replaceTags } from "../utilities";
 
 export default function RewardsList() {
 	const {
@@ -63,7 +64,7 @@ export default function RewardsList() {
 									<td>
 										{reward.rules.map((rule, index) => (
 											<span className="badge" key={index}>
-												{rule.name}
+												{replaceTags(rule.name, rule.type, rule.value)}
 											</span>
 										))}
 									</td>

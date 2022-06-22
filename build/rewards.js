@@ -2618,6 +2618,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utilities */ "./src/utilities.js");
+
 
 
 
@@ -2663,7 +2665,7 @@ function RewardsList() {
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.rules.map((rule, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "badge",
       key: index
-    }, rule.name))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    }, (0,_utilities__WEBPACK_IMPORTED_MODULE_3__.replaceTags)(rule.name, rule.type, rule.value)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "growcart-reward-edit",
       onClick: () => {
@@ -3983,6 +3985,28 @@ const RewardsAdminContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.c
   rewards: [],
   updateRewards: () => {}
 });
+
+/***/ }),
+
+/***/ "./src/utilities.js":
+/*!**************************!*\
+  !*** ./src/utilities.js ***!
+  \**************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "replaceTags": function() { return /* binding */ replaceTags; }
+/* harmony export */ });
+function replaceTags(text, ruleType, value) {
+  const tags = "percent" === ruleType ? ['{{value}}'] : ['{{value}}', '{{currency}}'];
+  return tags.reduce((previousValue, currentValue) => {
+    const _value = "{{currency}}" === value ? woocommerce_growcart.currency_symbol : value;
+
+    return previousValue.replace(currentValue, _value);
+  }, text);
+}
 
 /***/ }),
 

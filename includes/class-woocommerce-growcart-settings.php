@@ -284,6 +284,7 @@ class WooCommerce_Growcart_Settings {
 				'update_rewards_nonce' => wp_create_nonce( 'update-rewards' ),
 				'reward_types'         => get_reward_types(),
 				'reward_rules'         => get_reward_rules(),
+				'currency_symbol'      => get_woocommerce_currency_symbol(),
 			]
 		);
 
