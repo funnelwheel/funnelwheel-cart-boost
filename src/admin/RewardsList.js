@@ -69,9 +69,9 @@ export default function RewardsList() {
 									</td>
 									<td>
 										<>
-											<a
+											<button
+												type="button"
 												className="growcart-reward-edit"
-												href="#"
 												onClick={() => {
 													setCurrentlyEditing(
 														reward.id
@@ -80,10 +80,10 @@ export default function RewardsList() {
 												}}
 											>
 												Edit
-											</a>
+											</button>
 											{" | "}
-											<a
-												href="#"
+											<button
+												type="button"
 												className="growcart-reward-delete"
 												onClick={() =>
 													setRewards(
@@ -96,7 +96,7 @@ export default function RewardsList() {
 												}
 											>
 												Remove
-											</a>
+											</button>
 										</>
 									</td>
 								</tr>
