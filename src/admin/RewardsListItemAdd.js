@@ -9,9 +9,8 @@ import { RewardsAdminContext } from "../context";
 
 export default function RewardsListItemAdd() {
 	const {
-		addReward,
-		setCurrentlyEditing,
-		setActiveScreen,
+		rewards,
+		setRewards,
 		rewardRules,
 	} = useContext(RewardsAdminContext);
 	const [reward, setReward] = useState({
@@ -43,7 +42,10 @@ export default function RewardsListItemAdd() {
 			<button
 				className="RewardsListItemAdd__back"
 				type="button"
-				onClick={() => setActiveScreen("list")}
+				onClick={() => setRewards({
+					...rewards,
+					activeScreen: "edit",
+				})}
 			>
 				Back
 			</button>
@@ -100,11 +102,11 @@ export default function RewardsListItemAdd() {
 			<button
 				className="RewardsListItemAdd__next"
 				type="button"
-				onClick={() => {
-					addReward(reward);
-					setCurrentlyEditing(reward.id);
-					setActiveScreen("edit");
-				}}
+				onClick={() => setRewards({
+					rewards: [...rewards.rewards, reward],
+					activeScreen: "edit",
+					currentlyEditing: reward.id
+				})}
 			>
 				Next
 			</button>

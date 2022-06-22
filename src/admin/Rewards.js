@@ -10,40 +10,34 @@ export default function Rewards() {
 	const queryClient = useQueryClient();
 	const initialRewards = document.querySelector('input[name="woocommerce_growcart_rewards"]')
 		.value || '[]';
-	const activeRewardId = null;
-	const [activeScreen, setActiveScreen] = useState("list");
-	const [currentlyEditing, setCurrentlyEditing] = useState(activeRewardId);
-	const [rewards, setRewards] = useState(JSON.parse(initialRewards));
+	const [rewards, setRewards] = useState({ activeScreen: "list", currentlyEditing: null, rewards: JSON.parse(initialRewards) });
 	const mutation = useMutation(updateAdminRewards, {
 		onSuccess: () => {
 			queryClient.invalidateQueries('rewards');
 			queryClient.invalidateQueries('cartInformation');
 		},
 	});
-	const activeRewardItem = currentlyEditing
-		? rewards.find((reward) => reward.id === currentlyEditing)
+	const activeRewardItem = rewards.currentlyEditing
+		? rewards.rewards.find((reward) => reward.id === rewards.currentlyEditing)
 		: null;
 
-	function addReward(reward) {
-		setRewards([...rewards, reward]);
-	}
-
 	function updateReward(reward) {
-		setRewards(
-			rewards.map((_reward) => {
+		setRewards({
+			...rewards,
+			rewards: rewards.rewards.map((_reward) => {
 				if (_reward.id === reward.id) {
 					return reward;
 				}
 
 				return _reward;
 			})
-		);
+		});
 	}
 
 	useEffect(() => {
 		mutation.mutate({
 			security: document.querySelector('input[name="_wpnonce"]').value,
-			rewards: JSON.stringify(rewards),
+			rewards: JSON.stringify(rewards.rewards),
 		});
 	}, [rewards]);
 
@@ -62,19 +56,14 @@ export default function Rewards() {
 				activeRewardItem,
 				rewards,
 				setRewards,
-				addReward,
 				updateReward,
-				setCurrentlyEditing,
-				setActiveScreen,
 				rewardTypeLabels,
 				rewardRules: woocommerce_growcart.reward_rules,
 			}}
 		>
-			{"list" === activeScreen && <RewardsList />}
-			{"edit" === activeScreen && <RewardsListItem />}
-			{"add" === activeScreen && (
-				<RewardsListItemAdd {...{ setActiveScreen }} />
-			)}
+			{"list" === rewards.activeScreen && <RewardsList />}
+			{"edit" === rewards.activeScreen && <RewardsListItem />}
+			{"add" === rewards.activeScreen && <RewardsListItemAdd />}
 		</RewardsAdminContext.Provider>
 	);
 }

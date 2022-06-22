@@ -2546,36 +2546,35 @@ __webpack_require__.r(__webpack_exports__);
 function Rewards() {
   const queryClient = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQueryClient)();
   const initialRewards = document.querySelector('input[name="woocommerce_growcart_rewards"]').value || '[]';
-  const activeRewardId = null;
-  const [activeScreen, setActiveScreen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("list");
-  const [currentlyEditing, setCurrentlyEditing] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(activeRewardId);
-  const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(JSON.parse(initialRewards));
+  const [rewards, setRewards] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    activeScreen: "list",
+    currentlyEditing: null,
+    rewards: JSON.parse(initialRewards)
+  });
   const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_admin_api__WEBPACK_IMPORTED_MODULE_3__.updateAdminRewards, {
     onSuccess: () => {
       queryClient.invalidateQueries('rewards');
       queryClient.invalidateQueries('cartInformation');
     }
   });
-  const activeRewardItem = currentlyEditing ? rewards.find(reward => reward.id === currentlyEditing) : null;
-
-  function addReward(reward) {
-    setRewards([...rewards, reward]);
-  }
+  const activeRewardItem = rewards.currentlyEditing ? rewards.rewards.find(reward => reward.id === rewards.currentlyEditing) : null;
 
   function updateReward(reward) {
-    setRewards(rewards.map(_reward => {
-      if (_reward.id === reward.id) {
-        return reward;
-      }
+    setRewards({ ...rewards,
+      rewards: rewards.rewards.map(_reward => {
+        if (_reward.id === reward.id) {
+          return reward;
+        }
 
-      return _reward;
-    }));
+        return _reward;
+      })
+    });
   }
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     mutation.mutate({
       security: document.querySelector('input[name="_wpnonce"]').value,
-      rewards: JSON.stringify(rewards)
+      rewards: JSON.stringify(rewards.rewards)
     });
   }, [rewards]);
   const rewardTypeLabels = woocommerce_growcart.reward_rules.reduce((previousValue, currentValue) => {
@@ -2588,16 +2587,11 @@ function Rewards() {
       activeRewardItem,
       rewards,
       setRewards,
-      addReward,
       updateReward,
-      setCurrentlyEditing,
-      setActiveScreen,
       rewardTypeLabels,
       rewardRules: woocommerce_growcart.reward_rules
     }
-  }, "list" === activeScreen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsList__WEBPACK_IMPORTED_MODULE_4__["default"], null), "edit" === activeScreen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsListItem__WEBPACK_IMPORTED_MODULE_5__["default"], null), "add" === activeScreen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsListItemAdd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    setActiveScreen
-  }));
+  }, "list" === rewards.activeScreen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsList__WEBPACK_IMPORTED_MODULE_4__["default"], null), "edit" === rewards.activeScreen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsListItem__WEBPACK_IMPORTED_MODULE_5__["default"], null), "add" === rewards.activeScreen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RewardsListItemAdd__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 }
 
 /***/ }),
@@ -2627,8 +2621,6 @@ __webpack_require__.r(__webpack_exports__);
 function RewardsList() {
   const {
     rewards,
-    setCurrentlyEditing,
-    setActiveScreen,
     setRewards
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -2643,14 +2635,14 @@ function RewardsList() {
     scope: "col"
   }, "Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
     scope: "col"
-  }, "Actions"))), rewards && rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.map(reward => {
+  }, "Actions"))), rewards.rewards && rewards.rewards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rewards.rewards.map(reward => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", {
       key: reward.id
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
       checked: reward.enabled,
       label: reward.enabled ? "Active" : "Disabled",
-      onChange: () => {
-        setRewards(rewards.map(_reward => {
+      onChange: () => setRewards({ ...rewards,
+        rewards: rewards.rewards.map(_reward => {
           if (_reward.id === reward.id) {
             return { ...reward,
               enabled: !reward.enabled
@@ -2660,29 +2652,33 @@ function RewardsList() {
           return { ..._reward,
             enabled: false
           };
-        }));
-      }
+        })
+      })
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, reward.rules.map((rule, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "badge",
       key: index
     }, (0,_utilities__WEBPACK_IMPORTED_MODULE_3__.replaceTags)(rule.name, rule.type, rule.value)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "growcart-reward-edit",
-      onClick: () => {
-        setCurrentlyEditing(reward.id);
-        setActiveScreen("edit");
-      }
+      onClick: () => setRewards({ ...rewards,
+        activeScreen: "edit",
+        currentlyEditing: reward.id
+      })
     }, "Edit"), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "growcart-reward-delete",
-      onClick: () => setRewards(rewards.filter(_reward => _reward.id !== reward.id))
+      onClick: () => setRewards({ ...rewards,
+        rewards: rewards.rewards.filter(_reward => _reward.id !== reward.id)
+      })
     }, "Remove"))));
   })) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     colSpan: "5"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     className: "RewardsList__add",
-    onClick: () => setActiveScreen("add")
+    onClick: () => setRewards({ ...rewards,
+      activeScreen: "add"
+    })
   }, "Add reward"))))));
 }
 
@@ -2718,11 +2714,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function RewardsListItem() {
   const {
+    rewards,
+    setRewards,
     reward,
     updateReward,
-    rewardTypeLabels,
-    setActiveScreen,
-    setCurrentlyEditing
+    rewardTypeLabels
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
 
   function getRuleHint(rewardType) {
@@ -2734,10 +2730,10 @@ function RewardsListItem() {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "RewardsListItem__back",
     type: "button",
-    onClick: () => {
-      setActiveScreen("list");
-      setCurrentlyEditing(null);
-    }
+    onClick: () => setRewards({ ...rewards,
+      activeScreen: "list",
+      currentlyEditing: null
+    })
   }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__row"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -2819,9 +2815,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function RewardsListItemAdd() {
   const {
-    addReward,
-    setCurrentlyEditing,
-    setActiveScreen,
+    rewards,
+    setRewards,
     rewardRules
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
   const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
@@ -2852,7 +2847,9 @@ function RewardsListItemAdd() {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "RewardsListItemAdd__back",
     type: "button",
-    onClick: () => setActiveScreen("list")
+    onClick: () => setRewards({ ...rewards,
+      activeScreen: "edit"
+    })
   }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItemAdd__body"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
@@ -2889,11 +2886,11 @@ function RewardsListItemAdd() {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "RewardsListItemAdd__next",
     type: "button",
-    onClick: () => {
-      addReward(reward);
-      setCurrentlyEditing(reward.id);
-      setActiveScreen("edit");
-    }
+    onClick: () => setRewards({
+      rewards: [...rewards.rewards, reward],
+      activeScreen: "edit",
+      currentlyEditing: reward.id
+    })
   }, "Next"));
 }
 

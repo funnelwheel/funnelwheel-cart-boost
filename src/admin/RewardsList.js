@@ -9,8 +9,6 @@ import { replaceTags } from "../utilities";
 export default function RewardsList() {
 	const {
 		rewards,
-		setCurrentlyEditing,
-		setActiveScreen,
 		setRewards,
 	} = useContext(RewardsAdminContext);
 
@@ -25,9 +23,9 @@ export default function RewardsList() {
 						<th scope="col">Actions</th>
 					</tr>
 				</thead>
-				{rewards && rewards.length ? (
+				{rewards.rewards && rewards.rewards.length ? (
 					<tbody>
-						{rewards.map((reward) => {
+						{rewards.rewards.map((reward) => {
 							return (
 								<tr key={reward.id}>
 									<td>
@@ -38,9 +36,10 @@ export default function RewardsList() {
 													? "Active"
 													: "Disabled"
 											}
-											onChange={() => {
-												setRewards(
-													rewards.map((_reward) => {
+											onChange={() => setRewards(
+												{
+													...rewards,
+													rewards: rewards.rewards.map((_reward) => {
 														if (
 															_reward.id ===
 															reward.id
@@ -56,8 +55,8 @@ export default function RewardsList() {
 															enabled: false,
 														};
 													})
-												);
-											}}
+												}
+											)}
 										/>
 									</td>
 									<td>{reward.name}</td>
@@ -73,12 +72,11 @@ export default function RewardsList() {
 											<button
 												type="button"
 												className="growcart-reward-edit"
-												onClick={() => {
-													setCurrentlyEditing(
-														reward.id
-													);
-													setActiveScreen("edit");
-												}}
+												onClick={() => setRewards({
+													...rewards,
+													activeScreen: "edit",
+													currentlyEditing: reward.id,
+												})}
 											>
 												Edit
 											</button>
@@ -88,11 +86,14 @@ export default function RewardsList() {
 												className="growcart-reward-delete"
 												onClick={() =>
 													setRewards(
-														rewards.filter(
-															(_reward) =>
-																_reward.id !==
-																reward.id
-														)
+														{
+															...rewards,
+															rewards: rewards.rewards.filter(
+																(_reward) =>
+																	_reward.id !==
+																	reward.id
+															)
+														}
 													)
 												}
 											>
@@ -111,7 +112,10 @@ export default function RewardsList() {
 							<button
 								type="button"
 								className="RewardsList__add"
-								onClick={() => setActiveScreen("add")}
+								onClick={() => setRewards({
+									...rewards,
+									activeScreen: "add",
+								})}
 							>
 								Add reward
 							</button>

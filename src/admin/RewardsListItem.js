@@ -8,11 +8,11 @@ import Preview from "./Preview";
 
 export default function RewardsListItem() {
 	const {
+		rewards,
+		setRewards,
 		reward,
 		updateReward,
 		rewardTypeLabels,
-		setActiveScreen,
-		setCurrentlyEditing,
 	} = useContext(RewardsAdminContext);
 
 	function getRuleHint(rewardType) {
@@ -26,10 +26,11 @@ export default function RewardsListItem() {
 			<button
 				className="RewardsListItem__back"
 				type="button"
-				onClick={() => {
-					setActiveScreen("list");
-					setCurrentlyEditing(null);
-				}}
+				onClick={() => setRewards({
+					...rewards,
+					activeScreen: "list",
+					currentlyEditing: null,
+				})}
 			>
 				Back
 			</button>
