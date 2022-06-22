@@ -2831,15 +2831,23 @@ function RewardsListItemAdd() {
     display_suggested_products: true,
     display_coupon: true,
     styles: {
+      headerTextColor: '#ffffff',
+      headerBackground: '#343a40',
+      fontSize: '14px',
       spacing: {
         top: '24px',
         right: '24px',
         bottom: '24px',
         left: '24px'
       },
-      fontSize: '14px',
-      textColor: "#ffffff",
-      backgroundColor: "#000000"
+      textcolor: '#ffffff',
+      backgroundColor: '#343a40',
+      progressColor: '#198754',
+      progressBackgroundColor: '#495057',
+      iconColor: '#ffffff',
+      iconBackground: '#495057',
+      activeIconColor: '#ffffff',
+      activeIconBackground: '#198754'
     }
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
