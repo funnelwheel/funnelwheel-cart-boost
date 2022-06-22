@@ -23,11 +23,13 @@ export default function Preview() {
     }
 
     const style = {
+        ['--growcart-font-size']: activeRewardItem?.styles?.fontSize || '24px',
+        ['--growcart-header-text-color']: activeRewardItem?.styles?.headerTextColor || '#ffffff',
+        ['--growcart-header-background']: activeRewardItem?.styles?.headerBackground || '#343a40',
         ['--growcart-spacing-top']: activeRewardItem?.styles?.spacing?.top || '24px',
         ['--growcart-spacing-right']: activeRewardItem?.styles?.spacing?.right || '24px',
         ['--growcart-spacing-bottom']: activeRewardItem?.styles?.spacing?.bottom || '24px',
         ['--growcart-spacing-left']: activeRewardItem?.styles?.spacing?.left || '24px',
-        ['--growcart-font-size']: activeRewardItem?.styles?.fontSize || '24px',
         ['--growcart-text-color']: activeRewardItem?.styles?.textColor || '#ffffff',
         ['--growcart-background-color']: activeRewardItem?.styles?.backgroundColor || '#000000',
         ['--growcart-icon-color']: activeRewardItem?.styles?.iconColor || '#ffffff',

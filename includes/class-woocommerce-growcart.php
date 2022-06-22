@@ -133,13 +133,15 @@ final class WooCommerce_GrowCart {
 		$active_reward = woocommerce_growcart()->rewards->get_active_reward();
 		if ( $active_reward ) {
 			$styles = [
+				'headerTextColor'         => '#ffffff',
+				'headerBackground'        => '#343a40',
+				'fontSize'                => '14px',
 				'spacing'                 => [
 					'top'    => '24px',
 					'right'  => '24px',
 					'bottom' => '24px',
 					'left'   => '24px',
 				],
-				'fontSize'                => '14px',
 				'textcolor'               => '#ffffff',
 				'backgroundColor'         => '#000000',
 				'progressColor'           => '#198754',
@@ -160,11 +162,13 @@ final class WooCommerce_GrowCart {
 
 			$custom_css = "
 				:root {
+					--growcart-font-size: {$styles['fontSize']};
+					--growcart-header-text-color: {$styles['headerTextColor']};
+					--growcart-header-background: {$styles['headerBackground']};
 					--growcart-spacing-top: {$styles['spacing']['top']};
 					--growcart-spacing-right: {$styles['spacing']['right']};
 					--growcart-spacing-bottom: {$styles['spacing']['bottom']};
 					--growcart-spacing-left: {$styles['spacing']['left']};
-					--growcart-font-size: {$styles['fontSize']};
                     --growcart-text-color: {$styles['textcolor']};
                     --growcart-background-color: {$styles['backgroundColor']};
 					--growcart-icon-color: {$styles['iconColor']};

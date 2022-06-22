@@ -133,7 +133,8 @@
   border-bottom: 1px solid var(--bs-border-color);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: #343a40;
+  color: var(--growcart-header-text-color);
+  background-color: var(--growcart-header-background);
 }
 .modal .modal-header .btn-close {
   position: absolute;

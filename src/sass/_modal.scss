@@ -40,7 +40,8 @@
 		padding: $modal-header-padding;
 		border-bottom: $modal-header-border-width solid $modal-header-border-color;
 		@include border-top-radius(8px);
-		background-color: $gray-800;
+		color: var(--growcart-header-text-color);
+		background-color: var(--growcart-header-background);
 	
 		.btn-close {
 			position: absolute;
