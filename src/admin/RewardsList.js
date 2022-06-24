@@ -12,6 +12,8 @@ export default function RewardsList() {
 		setRewards,
 	} = useContext(RewardsAdminContext);
 
+	console.log(JSON.stringify(rewards.rewards));
+
 	return (
 		<div className="RewardsList">
 			<table className="growcart-rewards">

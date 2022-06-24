@@ -17,7 +17,112 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_default_rewards() {
-		return [];
+		return [
+			[
+				'name'                       => 'Cart threshold incentives (by quantity)',
+				'type'                       => 'minimum_cart_quantity',
+				'value'                      => 0,
+				'minimum_cart_quantity'      => 0,
+				'minimum_cart_amount'        => 0,
+				'rules'                      => [
+					[
+						'id'                    => '3e6f0d87-bbd1-49f4-a0c0-7f58b665c12a',
+						'name'                  => 'Rule 1',
+						'type'                  => 'percent',
+						'value'                 => 1,
+						'minimum_cart_quantity' => 9999,
+						'minimum_cart_amount'   => 9999,
+						'hint'                  => '**Add** {{quantity}} more to get {{name}}',
+						'enabled'               => true,
+					],
+					[
+						'id'                    => 'bfdfa1cb-4b94-4133-a4e4-f4d98fe7f545',
+						'name'                  => 'Rule 2',
+						'type'                  => 'percent',
+						'value'                 => 1,
+						'minimum_cart_quantity' => 9999,
+						'minimum_cart_amount'   => 9999,
+						'hint'                  => '**Add** {{quantity}} more to get {{name}}',
+						'enabled'               => true,
+					],
+				],
+				'enabled'                    => false,
+				'display_suggested_products' => true,
+				'display_coupon'             => true,
+				'styles'                     => [
+					'headerTextColor'         => '#ffffff',
+					'headerBackground'        => '#343a40',
+					'fontSize'                => '14px',
+					'spacing'                 => [
+						'top'    => '24px',
+						'right'  => '24px',
+						'bottom' => '24px',
+						'left'   => '24px',
+					],
+					'textcolor'               => '#ffffff',
+					'backgroundColor'         => '#343a40',
+					'progressColor'           => '#198754',
+					'progressBackgroundColor' => '#495057',
+					'iconColor'               => '#ffffff',
+					'iconBackground'          => '#495057',
+					'activeIconColor'         => '#ffffff',
+					'activeIconBackground'    => '#198754',
+				],
+				'id'                         => '4d36c7fa-93ce-4384-aa86-b6575b85f9ba',
+			],
+			[
+				'name'                       => 'Cart threshold incentives (by amount)',
+				'type'                       => 'minimum_cart_amount',
+				'value'                      => 0,
+				'minimum_cart_quantity'      => 0,
+				'minimum_cart_amount'        => 0,
+				'rules'                      => [
+					[
+						'id'                    => 'fc6c8709-8434-4395-96ba-73587910c4db',
+						'name'                  => 'Rule 1',
+						'type'                  => 'percent',
+						'value'                 => 1,
+						'minimum_cart_quantity' => 9999,
+						'minimum_cart_amount'   => 9999,
+						'hint'                  => '**Spend** {{amount}}{{currency}} more to get {{name}}',
+						'enabled'               => true,
+					],
+					[
+						'id'                    => '5e357180-9180-4c4b-b575-e5305b840a2f',
+						'name'                  => 'Rule 2',
+						'type'                  => 'percent',
+						'value'                 => 1,
+						'minimum_cart_quantity' => 9999,
+						'minimum_cart_amount'   => 9999,
+						'hint'                  => '**Spend** {{amount}}{{currency}} more to get {{name}}',
+						'enabled'               => true,
+					],
+				],
+				'enabled'                    => false,
+				'display_suggested_products' => true,
+				'display_coupon'             => true,
+				'styles'                     => [
+					'headerTextColor'         => '#ffffff',
+					'headerBackground'        => '#343a40',
+					'fontSize'                => '14px',
+					'spacing'                 => [
+						'top'    => '24px',
+						'right'  => '24px',
+						'bottom' => '24px',
+						'left'   => '24px',
+					],
+					'textcolor'               => '#ffffff',
+					'backgroundColor'         => '#343a40',
+					'progressColor'           => '#198754',
+					'progressBackgroundColor' => '#495057',
+					'iconColor'               => '#ffffff',
+					'iconBackground'          => '#495057',
+					'activeIconColor'         => '#ffffff',
+					'activeIconBackground'    => '#198754',
+				],
+				'id'                         => '466641db-218d-4ab7-8636-96e9267271a5',
+			],
+		];
 	}
 
 	public function __construct() {

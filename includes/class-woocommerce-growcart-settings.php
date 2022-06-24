@@ -52,7 +52,7 @@ class WooCommerce_Growcart_Settings {
 				[
 					[
 						'name'       => 'woocommerce_growcart_rewards',
-						'std'        => '',
+						'std'        => json_encode( woocommerce_growcart()->rewards->get_default_rewards() ),
 						'desc'       => '',
 						'type'       => 'rewards',
 						'attributes' => [],
