@@ -2458,7 +2458,6 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getAdminRewards": () => (/* binding */ getAdminRewards),
 /* harmony export */   "updateAdminRewards": () => (/* binding */ updateAdminRewards)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2467,9 +2466,6 @@ __webpack_require__.r(__webpack_exports__);
 const instance = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   baseURL: woocommerce_growcart.ajaxURL
 });
-function getAdminRewards() {
-  return instance.get("/?action=growcart_get_admin_rewards");
-}
 function updateAdminRewards(_ref) {
   let {
     security,
