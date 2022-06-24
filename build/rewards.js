@@ -1,6 +1,46 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/svg/arrow-clockwise.svg":
+/*!*************************************!*\
+  !*** ./src/svg/arrow-clockwise.svg ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": () => (/* binding */ SvgArrowClockwise),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path, _path2;
+
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgArrowClockwise(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 16,
+    height: 16,
+    fill: "currentColor",
+    className: "arrow-clockwise_svg__bi arrow-clockwise_svg__bi-arrow-clockwise"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fillRule: "evenodd",
+    d: "M8 3a5 5 0 104.546 2.914.5.5 0 01.908-.417A6 6 0 118 2v1z"
+  })), _path2 || (_path2 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M8 4.466V.534a.25.25 0 01.41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 018 4.466z"
+  })));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktYXJyb3ctY2xvY2t3aXNlIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTggM2E1IDUgMCAxIDAgNC41NDYgMi45MTQuNS41IDAgMCAxIC45MDgtLjQxN0E2IDYgMCAxIDEgOCAydjF6Ii8+CiAgPHBhdGggZD0iTTggNC40NjZWLjUzNGEuMjUuMjUgMCAwIDEgLjQxLS4xOTJsMi4zNiAxLjk2NmMuMTIuMS4xMi4yODQgMCAuMzg0TDguNDEgNC42NThBLjI1LjI1IDAgMCAxIDggNC40NjZ6Ii8+Cjwvc3ZnPg==");
+
+
+/***/ }),
+
 /***/ "./src/svg/basket.svg":
 /*!****************************!*\
   !*** ./src/svg/basket.svg ***!
@@ -2819,36 +2859,8 @@ function RewardsListItemAdd() {
     setRewards,
     rewardRules
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
-  const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])(),
-    name: "Cart threshold incentives",
-    type: "minimum_cart_quantity",
-    value: 0,
-    minimum_cart_quantity: 0,
-    minimum_cart_amount: 0,
-    rules: [],
-    enabled: false,
-    display_suggested_products: true,
-    display_coupon: true,
-    styles: {
-      headerTextColor: '#ffffff',
-      headerBackground: '#343a40',
-      fontSize: '14px',
-      spacing: {
-        top: '24px',
-        right: '24px',
-        bottom: '24px',
-        left: '24px'
-      },
-      textcolor: '#ffffff',
-      backgroundColor: '#343a40',
-      progressColor: '#198754',
-      progressBackgroundColor: '#495057',
-      iconColor: '#ffffff',
-      iconBackground: '#495057',
-      activeIconColor: '#ffffff',
-      activeIconBackground: '#198754'
-    }
+  const [reward, setReward] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({ ...woocommerce_growcart.initial_reward,
+    id: (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])()
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItemAdd"
@@ -3116,6 +3128,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _svg_arrow_clockwise_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../svg/arrow-clockwise.svg */ "./src/svg/arrow-clockwise.svg");
+
 
 
 
@@ -3155,7 +3169,13 @@ function Styles() {
   const progressBackgroundColor = reward?.styles?.progressBackgroundColor || '#495057';
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "Styles__redo",
+    type: "button",
+    onClick: () => updateReward({ ...reward,
+      enabled: true
+    })
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_arrow_clockwise_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Styles__block"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     className: "Styles__block-title"
