@@ -197,10 +197,8 @@ class WooCommerce_GrowCart_Rewards {
 	 * @return void
 	 */
 	public function get_available_rewards() {
-		$rewards = get_option( 'woocommerce_growcart_rewards' );
-		$rewards = $rewards ? json_decode( $rewards, true ) : $this->get_default_rewards();
-
-		return $rewards;
+		$rewards = get_option( 'woocommerce_growcart_rewards', $this->get_default_rewards() );
+		return json_decode( $rewards, true );
 	}
 
 	/**
