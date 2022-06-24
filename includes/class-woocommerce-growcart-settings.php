@@ -285,6 +285,36 @@ class WooCommerce_Growcart_Settings {
 				'reward_types'         => get_reward_types(),
 				'reward_rules'         => get_reward_rules(),
 				'currency_symbol'      => get_woocommerce_currency_symbol(),
+				'initial_reward'       => [
+					'name'                       => 'Cart threshold incentives',
+					'type'                       => 'minimum_cart_quantity',
+					'value'                      => 0,
+					'minimum_cart_quantity'      => 0,
+					'minimum_cart_amount'        => 0,
+					'rules'                      => [],
+					'enabled'                    => false,
+					'display_suggested_products' => true,
+					'display_coupon'             => true,
+					'styles'                     => [
+						'headerTextColor'         => '#ffffff',
+						'headerBackground'        => '#343a40',
+						'fontSize'                => '14px',
+						'spacing'                 => [
+							'top'    => '24px',
+							'right'  => '24px',
+							'bottom' => '24px',
+							'left'   => '24px',
+						],
+						'textcolor'               => '#ffffff',
+						'backgroundColor'         => '#343a40',
+						'progressColor'           => '#198754',
+						'progressBackgroundColor' => '#495057',
+						'iconColor'               => '#ffffff',
+						'iconBackground'          => '#495057',
+						'activeIconColor'         => '#ffffff',
+						'activeIconBackground'    => '#198754',
+					],
+				],
 			]
 		);
 
