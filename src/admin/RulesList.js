@@ -8,8 +8,37 @@ import { useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 import { ReactComponent as TrashIcon } from "./../svg/trash.svg";
 
-export default function RulesList({ reward, addRule, removeRule }) {
-	const { updateReward } = useContext(RewardsAdminContext);
+export default function RulesList() {
+	const { reward, updateReward } = useContext(RewardsAdminContext);
+
+	function addRule() {
+		updateReward({
+			...reward,
+			rules: [
+				...reward.rules,
+				{
+					id: uuidv4(),
+					name: `Rule ${reward.rules.length + 1
+						}`,
+					type: "percent",
+					value: 1,
+					minimum_cart_quantity: 9999,
+					minimum_cart_amount: 9999,
+					hint: getRuleHint(reward.type),
+					enabled: true,
+				},
+			],
+		})
+	}
+
+	function removeRule(ruleId) {
+		updateReward({
+			...reward,
+			rules: reward.rules.filter(
+				(rule) => rule.id !== ruleId
+			),
+		})
+	}
 
 	function updateRule(rule) {
 		const rules = reward.rules.map((_rule) => {
@@ -74,76 +103,76 @@ export default function RulesList({ reward, addRule, removeRule }) {
 			<div className="RulesList__items">
 				{reward.rules && reward.rules.length
 					? reward.rules.map((rule) => {
-							return (
-								<div className="RulesListItem" key={rule.id}>
-									<div className="RulesListItem__actions">
-										<ToggleControl
-											label={
-												rule.enabled
-													? "Active"
-													: "Disabled"
-											}
-											checked={rule.enabled}
-											onChange={() => {
-												updateRule({
-													...rule,
-													enabled: !rule.enabled,
-												});
-											}}
-										/>
-										<button
-											type="button"
-											className="RulesList__remove"
-											onClick={() => {
-												if (
-													confirm(
-														"Deleting rule!"
-													) === true
-												) {
-													removeRule(rule.id);
-												}
-											}}
-										>
-											<TrashIcon />
-										</button>
-									</div>
-
-									<TextControl
-										label="Name"
-										help={
-											<span
-												dangerouslySetInnerHTML={{
-													__html: getNameFieldHelp(
-														rule.type
-													),
-												}}
-											></span>
+						return (
+							<div className="RulesListItem" key={rule.id}>
+								<div className="RulesListItem__actions">
+									<ToggleControl
+										label={
+											rule.enabled
+												? "Active"
+												: "Disabled"
 										}
-										value={rule.name}
-										onChange={(name) => {
+										checked={rule.enabled}
+										onChange={() => {
 											updateRule({
 												...rule,
-												name,
+												enabled: !rule.enabled,
 											});
 										}}
 									/>
+									<button
+										type="button"
+										className="RulesList__remove"
+										onClick={() => {
+											if (
+												confirm(
+													"Deleting rule!"
+												) === true
+											) {
+												removeRule(rule.id);
+											}
+										}}
+									>
+										<TrashIcon />
+									</button>
+								</div>
 
-									<SelectControl
-										label="Type"
-										value={rule.type}
-										options={typeOptions}
-										onChange={(type) =>
-											updateRule({
-												...rule,
-												type,
-											})
-										}
-										__nextHasNoMarginBottom
-									/>
+								<TextControl
+									label="Name"
+									help={
+										<span
+											dangerouslySetInnerHTML={{
+												__html: getNameFieldHelp(
+													rule.type
+												),
+											}}
+										></span>
+									}
+									value={rule.name}
+									onChange={(name) => {
+										updateRule({
+											...rule,
+											name,
+										});
+									}}
+								/>
 
-									{["percent", "fixed_cart"].includes(
-										rule.type
-									) && (
+								<SelectControl
+									label="Type"
+									value={rule.type}
+									options={typeOptions}
+									onChange={(type) =>
+										updateRule({
+											...rule,
+											type,
+										})
+									}
+									__nextHasNoMarginBottom
+								/>
+
+								{["percent", "fixed_cart"].includes(
+									rule.type
+								) && (
 										<NumberControl
 											label="Value"
 											value={rule.value}
@@ -157,50 +186,62 @@ export default function RulesList({ reward, addRule, removeRule }) {
 										/>
 									)}
 
-									<NumberControl
-										label={
-											"minimum_cart_quantity" ===
+								<NumberControl
+									label={
+										"minimum_cart_quantity" ===
 											reward.type
-												? "Minimum cart quantity"
-												: "Minimum cart amount"
-										}
-										onChange={(value) =>
-											updateRule({
-												...rule,
-												[reward.type]: value,
-											})
-										}
-										value={rule[reward.type]}
-										min={1}
-									/>
+											? "Minimum cart quantity"
+											: "Minimum cart amount"
+									}
+									onChange={(value) =>
+										updateRule({
+											...rule,
+											[reward.type]: value,
+										})
+									}
+									value={rule[reward.type]}
+									min={1}
+								/>
 
-									<TextControl
-										label="Hint"
-										help={
-											<span
-												dangerouslySetInnerHTML={{
-													__html: getHintFieldHelp(
-														reward.type
-													),
-												}}
-											></span>
-										}
-										value={rule.hint}
-										onChange={(hint) => {
-											updateRule({
-												...rule,
-												hint,
-											});
-										}}
-									/>
-								</div>
-							);
-					  })
+								<TextControl
+									label="Hint"
+									help={
+										<span
+											dangerouslySetInnerHTML={{
+												__html: getHintFieldHelp(
+													reward.type
+												),
+											}}
+										></span>
+									}
+									value={rule.hint}
+									onChange={(hint) => {
+										updateRule({
+											...rule,
+											hint,
+										});
+									}}
+								/>
+							</div>
+						);
+					})
 					: null}
 			</div>
 
 			<button type="button" className="RulesList__add" onClick={addRule}>
 				Add rule
+			</button>
+
+			<button
+				disabled={reward.enabled}
+				className="RulesList__publish"
+				type="button"
+				onClick={() => updateReward({
+					...reward,
+					enabled: true,
+				})}
+			>
+				Publish
 			</button>
 		</div>
 	);

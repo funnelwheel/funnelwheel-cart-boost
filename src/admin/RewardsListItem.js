@@ -35,18 +35,28 @@ export default function RewardsListItem() {
 				Back
 			</button>
 
+			<button
+				disabled={reward.enabled}
+				className="RewardsListItem__back"
+				type="button"
+				onClick={() => updateReward({
+					...reward,
+					enabled: true,
+				})}
+			>
+				Publish
+			</button>
+
 			<div className="RewardsListItem__row">
 				<div className="RewardsListItem__col-rules">
 					<div className="RewardsListItem__type">
 						<TextControl
 							label="Name"
 							value={reward.name}
-							onChange={(name) => {
-								updateReward({
-									...reward,
-									name,
-								});
-							}}
+							onChange={(name) => updateReward({
+								...reward,
+								name,
+							})}
 						/>
 
 						<BaseControl label="Reward type">
@@ -78,38 +88,7 @@ export default function RewardsListItem() {
 						/>
 					</div>
 
-					<RulesList
-						{...{
-							reward: reward,
-							addRule: () =>
-								updateReward({
-									...reward,
-									rules: [
-										...reward.rules,
-										{
-											id: uuidv4(),
-											name: `Rule ${reward.rules.length + 1
-												}`,
-											type: "percent",
-											value: 1,
-											minimum_cart_quantity: 9999,
-											minimum_cart_amount: 9999,
-											hint: getRuleHint(reward.type),
-											enabled: true,
-										},
-									],
-								}),
-							updateRule: () => { },
-							removeRule: (ruleId) => {
-								updateReward({
-									...reward,
-									rules: reward.rules.filter(
-										(rule) => rule.id !== ruleId
-									),
-								});
-							},
-						}}
-					/>
+					<RulesList />
 				</div>
 
 				<div className="RewardsListItem__col-preview">

@@ -2713,7 +2713,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
@@ -2750,7 +2749,14 @@ function RewardsListItem() {
       activeScreen: "list",
       currentlyEditing: null
     })
-  }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    disabled: reward.enabled,
+    className: "RewardsListItem__back",
+    type: "button",
+    onClick: () => updateReward({ ...reward,
+      enabled: true
+    })
+  }, "Publish"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__row"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__col-rules"
@@ -2759,11 +2765,9 @@ function RewardsListItem() {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: "Name",
     value: reward.name,
-    onChange: name => {
-      updateReward({ ...reward,
-        name
-      });
-    }
+    onChange: name => updateReward({ ...reward,
+      name
+    })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     label: "Reward type"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, rewardTypeLabels[reward.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
@@ -2780,27 +2784,7 @@ function RewardsListItem() {
     onChange: () => updateReward({ ...reward,
       display_coupon: !reward.display_coupon
     })
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    reward: reward,
-    addRule: () => updateReward({ ...reward,
-      rules: [...reward.rules, {
-        id: (0,uuid__WEBPACK_IMPORTED_MODULE_6__["default"])(),
-        name: `Rule ${reward.rules.length + 1}`,
-        type: "percent",
-        value: 1,
-        minimum_cart_quantity: 9999,
-        minimum_cart_amount: 9999,
-        hint: getRuleHint(reward.type),
-        enabled: true
-      }]
-    }),
-    updateRule: () => {},
-    removeRule: ruleId => {
-      updateReward({ ...reward,
-        rules: reward.rules.filter(rule => rule.id !== ruleId)
-      });
-    }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RulesList__WEBPACK_IMPORTED_MODULE_3__["default"], null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__col-preview"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Preview__WEBPACK_IMPORTED_MODULE_5__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Styles__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
 }
@@ -2942,15 +2926,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function RulesList(_ref) {
-  let {
-    reward,
-    addRule,
-    removeRule
-  } = _ref;
+function RulesList() {
   const {
+    reward,
     updateReward
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
+
+  function addRule() {
+    updateReward({ ...reward,
+      rules: [...reward.rules, {
+        id: uuidv4(),
+        name: `Rule ${reward.rules.length + 1}`,
+        type: "percent",
+        value: 1,
+        minimum_cart_quantity: 9999,
+        minimum_cart_amount: 9999,
+        hint: getRuleHint(reward.type),
+        enabled: true
+      }]
+    });
+  }
+
+  function removeRule(ruleId) {
+    updateReward({ ...reward,
+      rules: reward.rules.filter(rule => rule.id !== ruleId)
+    });
+  }
 
   function updateRule(rule) {
     const rules = reward.rules.map(_rule => {
@@ -3085,7 +3086,14 @@ function RulesList(_ref) {
     type: "button",
     className: "RulesList__add",
     onClick: addRule
-  }, "Add rule"));
+  }, "Add rule"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    disabled: reward.enabled,
+    className: "RulesList__publish",
+    type: "button",
+    onClick: () => updateReward({ ...reward,
+      enabled: true
+    })
+  }, "Publish"));
 }
 
 /***/ }),
