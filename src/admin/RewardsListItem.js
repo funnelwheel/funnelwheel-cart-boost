@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { useContext } from "@wordpress/element";
 import { BaseControl, TextControl, ToggleControl } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
@@ -14,12 +13,6 @@ export default function RewardsListItem() {
 		updateReward,
 		rewardTypeLabels,
 	} = useContext(RewardsAdminContext);
-
-	function getRuleHint(rewardType) {
-		return "minimum_cart_quantity" === rewardType
-			? "**Add** {{quantity}} more to get {{name}}"
-			: "**Spend** {{amount}}{{currency}} more to get {{name}}";
-	}
 
 	return (
 		<div className="RewardsListItem">

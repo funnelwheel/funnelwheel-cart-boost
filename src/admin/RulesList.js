@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import {
 	TextControl,
 	ToggleControl,
@@ -66,6 +67,12 @@ export default function RulesList() {
 			default:
 				null;
 		}
+	}
+
+	function getRuleHint(rewardType) {
+		return "minimum_cart_quantity" === rewardType
+			? "**Add** {{quantity}} more to get {{name}}"
+			: "**Spend** {{amount}}{{currency}} more to get {{name}}";
 	}
 
 	function getHintFieldHelp(rewardType) {

@@ -2766,7 +2766,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 function RewardsListItem() {
   const {
     rewards,
@@ -2775,11 +2774,6 @@ function RewardsListItem() {
     updateReward,
     rewardTypeLabels
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
-
-  function getRuleHint(rewardType) {
-    return "minimum_cart_quantity" === rewardType ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}}{{currency}} more to get {{name}}";
-  }
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -2929,10 +2923,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
 /* harmony import */ var _svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../svg/trash.svg */ "./src/svg/trash.svg");
+
 
 
 
@@ -2947,7 +2943,7 @@ function RulesList() {
   function addRule() {
     updateReward({ ...reward,
       rules: [...reward.rules, {
-        id: uuidv4(),
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
         name: `Rule ${reward.rules.length + 1}`,
         type: "percent",
         value: 1,
@@ -2989,6 +2985,10 @@ function RulesList() {
       default:
         null;
     }
+  }
+
+  function getRuleHint(rewardType) {
+    return "minimum_cart_quantity" === rewardType ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}}{{currency}} more to get {{name}}";
   }
 
   function getHintFieldHelp(rewardType) {
