@@ -21,7 +21,6 @@ class WooCommerce_GrowCart_Ajax {
 		add_action( 'wp_ajax_nopriv_growcart_update_cart_item', [ $this, 'update_cart_item' ] );
 		add_action( 'wp_ajax_growcart_get_suggested_products', [ $this, 'get_suggested_products' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_suggested_products', [ $this, 'get_suggested_products' ] );
-		add_action( 'wp_ajax_growcart_get_admin_rewards', [ $this, 'get_admin_rewards' ] );
 		add_action( 'wp_ajax_growcart_update_admin_rewards', [ $this, 'update_admin_rewards' ] );
 		add_action( 'wp_ajax_growcart_add_to_cart', [ $this, 'add_to_cart' ] );
 		add_action( 'wp_ajax_nopriv_growcart_add_to_cart', [ $this, 'add_to_cart' ] );
@@ -121,10 +120,6 @@ class WooCommerce_GrowCart_Ajax {
 	}
 
 	public function get_rewards() {
-		wp_send_json( woocommerce_growcart()->rewards->get_rewards() );
-	}
-
-	public function get_admin_rewards() {
 		wp_send_json( woocommerce_growcart()->rewards->get_rewards() );
 	}
 
