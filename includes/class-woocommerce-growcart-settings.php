@@ -173,37 +173,6 @@ class WooCommerce_Growcart_Settings {
 	}
 
 	/**
-	 * Checkbox input field.
-	 *
-	 * @param array  $option
-	 * @param array  $attributes
-	 * @param mixed  $value
-	 * @param string $ignored_placeholder
-	 */
-	protected function input_checkbox( $option, $attributes, $value, $ignored_placeholder ) {
-		if ( ! isset( $option['hidden_value'] ) ) {
-			$option['hidden_value'] = '0';
-		}
-		?>
-		<label>
-		<input type="hidden" name="<?php echo esc_attr( $option['name'] ); ?>" value="<?php echo esc_attr( $option['hidden_value'] ); ?>" />
-		<input
-			id="setting-<?php echo esc_attr( $option['name'] ); ?>"
-			name="<?php echo esc_attr( $option['name'] ); ?>"
-			type="checkbox"
-			value="1"
-			<?php
-			echo implode( ' ', $attributes ) . ' '; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			checked( '1', $value );
-			?>
-		/> <?php echo wp_kses_post( $option['cb_label'] ); ?></label>
-		<?php
-		if ( ! empty( $option['desc'] ) ) {
-			echo ' <p class="description">' . wp_kses_post( $option['desc'] ) . '</p>';
-		}
-	}
-
-	/**
 	 * Select input field.
 	 *
 	 * @param array  $option
