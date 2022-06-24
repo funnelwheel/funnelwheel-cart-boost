@@ -173,37 +173,6 @@ class WooCommerce_Growcart_Settings {
 	}
 
 	/**
-	 * Select input field.
-	 *
-	 * @param array  $option
-	 * @param array  $attributes
-	 * @param mixed  $value
-	 * @param string $ignored_placeholder
-	 */
-	protected function input_select( $option, $attributes, $value, $ignored_placeholder ) {
-		?>
-		<select
-			id="setting-<?php echo esc_attr( $option['name'] ); ?>"
-			class="regular-text"
-			name="<?php echo esc_attr( $option['name'] ); ?>"
-			<?php
-			echo implode( ' ', $attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			?>
-		>
-		<?php
-		foreach ( $option['options'] as $key => $name ) {
-			echo '<option value="' . esc_attr( $key ) . '" ' . selected( $value, $key, false ) . '>' . esc_html( $name ) . '</option>';
-		}
-		?>
-		</select>
-		<?php
-
-		if ( ! empty( $option['desc'] ) ) {
-			echo ' <p class="description">' . wp_kses_post( $option['desc'] ) . '</p>';
-		}
-	}
-
-	/**
 	 * Undocumented function
 	 *
 	 * @param [type] $option
