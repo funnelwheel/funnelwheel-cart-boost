@@ -23,7 +23,6 @@ class WooCommerce_GrowCart_Rewards {
 	public function __construct() {
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'filter_shop_coupon_data' ], 10, 2 );
 		add_filter( 'woocommerce_package_rates', [ $this, 'filter_package_rates' ], 10, 2 );
-		// add_action( 'woocommerce_before_calculate_totals', [ $this, 'auto_add_coupons' ] );
 		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
 		add_action( 'woocommerce_before_cart_totals', [ $this, 'conditionally_hide_rewards' ] );
 		add_action( 'woocommerce_review_order_before_cart_contents', [ $this, 'conditionally_hide_rewards' ] );
