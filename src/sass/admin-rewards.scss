@@ -250,6 +250,11 @@ button {
 		font-weight: bold;
 		color: $gray-400;
 	}
+
+	&__redo {
+		padding: 0;
+		vertical-align: middle;
+	}
 }
 
 

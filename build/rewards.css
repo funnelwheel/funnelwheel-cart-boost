@@ -792,6 +792,10 @@ button {
   font-weight: bold;
   color: #ced4da;
 }
+.Styles__redo {
+  padding: 0;
+  vertical-align: middle;
+}
 
 .Preview {
   margin-bottom: 16px;

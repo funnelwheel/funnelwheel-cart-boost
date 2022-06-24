@@ -8,6 +8,7 @@ import {
 import { useContext } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { RewardsAdminContext } from "../context";
+import { ReactComponent as ClockwiseIcon } from "./../svg/arrow-clockwise.svg";
 
 const defaultSpacing = {
 	top: '24px',
@@ -44,7 +45,24 @@ export default function Styles() {
 	return (
 		<div className="Styles">
 			<div className="Styles__block">
-				<h4 className="Styles__block-title">Modal</h4>
+				<h4 className="Styles__block-title">
+					Modal
+					<button
+						className="Styles__redo"
+						type="button"
+						onClick={() => updateReward({
+							...reward,
+							styles: {
+								...reward.styles,
+								fontSize: woocommerce_growcart.initial_reward.styles.fontSize,
+								headerTextColor: woocommerce_growcart.initial_reward.styles.headerTextColor,
+								headerBackground: woocommerce_growcart.initial_reward.styles.headerBackground
+							},
+						})}
+					>
+						<ClockwiseIcon />
+					</button>
+				</h4>
 				<UnitControl
 					label="Font Size"
 					onChange={(fontSize) =>
@@ -74,7 +92,30 @@ export default function Styles() {
 			</div>
 
 			<div className="Styles__block">
-				<h4 className="Styles__block-title">Rewards</h4>
+				<h4 className="Styles__block-title">
+					Rewards
+					<button
+						className="Styles__redo"
+						type="button"
+						onClick={() => updateReward({
+							...reward,
+							styles: {
+								...reward.styles,
+								spacing: woocommerce_growcart.initial_reward.styles.spacing,
+								textColor: woocommerce_growcart.initial_reward.styles.textColor,
+								backgroundColor: woocommerce_growcart.initial_reward.styles.backgroundColor,
+								iconColor: woocommerce_growcart.initial_reward.styles.iconColor,
+								iconBackground: woocommerce_growcart.initial_reward.styles.iconBackground,
+								activeIconColor: woocommerce_growcart.initial_reward.styles.activeIconColor,
+								activeIconBackground: woocommerce_growcart.initial_reward.styles.activeIconBackground,
+								progressColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
+								progressBackgroundColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
+							},
+						})}
+					>
+						<ClockwiseIcon />
+					</button>
+				</h4>
 				<BaseControl
 					className="Styles__spacing"
 					label="Spacing"
