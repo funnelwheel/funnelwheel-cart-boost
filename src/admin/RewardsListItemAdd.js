@@ -52,7 +52,7 @@ export default function RewardsListItemAdd() {
 				type="button"
 				onClick={() => setRewards({
 					...rewards,
-					activeScreen: "edit",
+					activeScreen: "list",
 				})}
 			>
 				Back
