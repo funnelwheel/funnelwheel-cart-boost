@@ -23,6 +23,7 @@ export default function RulesList() {
 						}`,
 					type: "percent",
 					value: 1,
+					productId: 0,
 					minimum_cart_quantity: 9999,
 					minimum_cart_amount: 9999,
 					hint: getRuleHint(reward.type),
@@ -177,6 +178,18 @@ export default function RulesList() {
 									__nextHasNoMarginBottom
 								/>
 
+								{"gift" === rule.type && <NumberControl
+									label="Product ID"
+									min={1}
+									value={rule.productId}
+									onChange={(productId) =>
+										updateRule({
+											...rule,
+											productId,
+										})
+									}
+								/>}
+
 								{["percent", "fixed_cart"].includes(
 									rule.type
 								) && (
@@ -189,7 +202,7 @@ export default function RulesList() {
 													value,
 												})
 											}
-											min={0}
+											min={1}
 										/>
 									)}
 

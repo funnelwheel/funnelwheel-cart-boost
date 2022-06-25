@@ -2944,6 +2944,7 @@ function RulesList() {
         name: `Rule ${reward.rules.length + 1}`,
         type: "percent",
         value: 1,
+        productId: 0,
         minimum_cart_quantity: 9999,
         minimum_cart_amount: 9999,
         hint: getRuleHint(reward.type),
@@ -3063,13 +3064,20 @@ function RulesList() {
         type
       }),
       __nextHasNoMarginBottom: true
+    }), "gift" === rule.type && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: "Product ID",
+      min: 1,
+      value: rule.productId,
+      onChange: productId => updateRule({ ...rule,
+        productId
+      })
     }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "Value",
       value: rule.value,
       onChange: value => updateRule({ ...rule,
         value
       }),
-      min: 0
+      min: 1
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: "minimum_cart_quantity" === reward.type ? "Minimum cart quantity" : "Minimum cart amount",
       onChange: value => updateRule({ ...rule,
