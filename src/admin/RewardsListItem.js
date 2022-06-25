@@ -16,32 +16,34 @@ export default function RewardsListItem() {
 
 	return (
 		<div className="RewardsListItem">
-			<button
-				className="RewardsListItem__back"
-				type="button"
-				onClick={() => setRewards({
-					...rewards,
-					activeScreen: "list",
-					currentlyEditing: null,
-				})}
-			>
-				Back
-			</button>
-
-			<button
-				disabled={reward.enabled}
-				className="RewardsListItem__back"
-				type="button"
-				onClick={() => updateReward({
-					...reward,
-					enabled: true,
-				})}
-			>
-				Publish
-			</button>
-
 			<div className="RewardsListItem__row">
 				<div className="RewardsListItem__col-rules">
+					<div className="RewardsListItem__action-buttons">
+						<button
+							className="RewardsListItem__back"
+							type="button"
+							onClick={() => setRewards({
+								...rewards,
+								activeScreen: "list",
+								currentlyEditing: null,
+							})}
+						>
+							Back
+						</button>
+
+						<button
+							disabled={reward.enabled}
+							className="RewardsListItem__publish"
+							type="button"
+							onClick={() => updateReward({
+								...reward,
+								enabled: true,
+							})}
+						>
+							Publish
+						</button>
+					</div>
+
 					<div className="RewardsListItem__type">
 						<TextControl
 							label="Name"
