@@ -1,7 +1,7 @@
 import {
 	BaseControl,
-	FontSizePicker,
 	__experimentalUnitControl as UnitControl,
+	Tooltip,
 	Flex,
 	FlexItem,
 } from "@wordpress/components";
@@ -47,21 +47,24 @@ export default function Styles() {
 			<div className="Styles__block">
 				<h4 className="Styles__block-title">
 					Modal
-					<button
-						className="Styles__redo"
-						type="button"
-						onClick={() => updateReward({
-							...reward,
-							styles: {
-								...reward.styles,
-								fontSize: woocommerce_growcart.initial_reward.styles.fontSize,
-								headerTextColor: woocommerce_growcart.initial_reward.styles.headerTextColor,
-								headerBackground: woocommerce_growcart.initial_reward.styles.headerBackground
-							},
-						})}
-					>
-						<ClockwiseIcon />
-					</button>
+
+					<Tooltip text="Revert" position="top" delay={1}>
+						<button
+							className="Styles__redo"
+							type="button"
+							onClick={() => updateReward({
+								...reward,
+								styles: {
+									...reward.styles,
+									fontSize: woocommerce_growcart.initial_reward.styles.fontSize,
+									headerTextColor: woocommerce_growcart.initial_reward.styles.headerTextColor,
+									headerBackground: woocommerce_growcart.initial_reward.styles.headerBackground
+								},
+							})}
+						>
+							<ClockwiseIcon />
+						</button>
+					</Tooltip>
 				</h4>
 				<UnitControl
 					label="Font Size"
@@ -94,27 +97,30 @@ export default function Styles() {
 			<div className="Styles__block">
 				<h4 className="Styles__block-title">
 					Rewards
-					<button
-						className="Styles__redo"
-						type="button"
-						onClick={() => updateReward({
-							...reward,
-							styles: {
-								...reward.styles,
-								spacing: woocommerce_growcart.initial_reward.styles.spacing,
-								textColor: woocommerce_growcart.initial_reward.styles.textColor,
-								backgroundColor: woocommerce_growcart.initial_reward.styles.backgroundColor,
-								iconColor: woocommerce_growcart.initial_reward.styles.iconColor,
-								iconBackground: woocommerce_growcart.initial_reward.styles.iconBackground,
-								activeIconColor: woocommerce_growcart.initial_reward.styles.activeIconColor,
-								activeIconBackground: woocommerce_growcart.initial_reward.styles.activeIconBackground,
-								progressColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
-								progressBackgroundColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
-							},
-						})}
-					>
-						<ClockwiseIcon />
-					</button>
+
+					<Tooltip text="Revert" position="top" delay={1}>
+						<button
+							className="Styles__redo"
+							type="button"
+							onClick={() => updateReward({
+								...reward,
+								styles: {
+									...reward.styles,
+									spacing: woocommerce_growcart.initial_reward.styles.spacing,
+									textColor: woocommerce_growcart.initial_reward.styles.textColor,
+									backgroundColor: woocommerce_growcart.initial_reward.styles.backgroundColor,
+									iconColor: woocommerce_growcart.initial_reward.styles.iconColor,
+									iconBackground: woocommerce_growcart.initial_reward.styles.iconBackground,
+									activeIconColor: woocommerce_growcart.initial_reward.styles.activeIconColor,
+									activeIconBackground: woocommerce_growcart.initial_reward.styles.activeIconBackground,
+									progressColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
+									progressBackgroundColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
+								},
+							})}
+						>
+							<ClockwiseIcon />
+						</button>
+					</Tooltip>
 				</h4>
 				<BaseControl
 					className="Styles__spacing"

@@ -3180,7 +3180,11 @@ function Styles() {
     className: "Styles__block"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     className: "Styles__block-title"
-  }, "Modal", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, "Modal", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Tooltip, {
+    text: "Revert",
+    position: "top",
+    delay: 1
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "Styles__redo",
     type: "button",
     onClick: () => updateReward({ ...reward,
@@ -3190,7 +3194,7 @@ function Styles() {
         headerBackground: woocommerce_growcart.initial_reward.styles.headerBackground
       }
     })
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_arrow_clockwise_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_arrow_clockwise_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
     label: "Font Size",
     onChange: fontSize => updateReward({ ...reward,
       styles: { ...reward.styles,
@@ -3222,7 +3226,11 @@ function Styles() {
     className: "Styles__block"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     className: "Styles__block-title"
-  }, "Rewards", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, "Rewards", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Tooltip, {
+    text: "Revert",
+    position: "top",
+    delay: 1
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "Styles__redo",
     type: "button",
     onClick: () => updateReward({ ...reward,
@@ -3238,7 +3246,7 @@ function Styles() {
         progressBackgroundColor: woocommerce_growcart.initial_reward.styles.activeIconBackground
       }
     })
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_arrow_clockwise_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_arrow_clockwise_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     className: "Styles__spacing",
     label: "Spacing"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
