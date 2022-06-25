@@ -99,6 +99,10 @@ function get_reward_types() {
 			'label' => __( 'Fixed' ),
 			'value' => 'fixed_cart',
 		],
+		[
+			'label' => __( 'Gift' ),
+			'value' => 'gift',
+		],
 	];
 }
 
