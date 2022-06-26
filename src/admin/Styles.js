@@ -238,7 +238,7 @@ export default function Styles() {
 
 				<Flex>
 					<FlexItem>
-						<BaseControl id="progressColor" label="Progress Color" __nextHasNoMarginBottom={true}>
+						<BaseControl id="progressColor" label="Progress Bar" __nextHasNoMarginBottom={true}>
 							<input type="color" id="progressColor" name="progressColor" value={progressColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
