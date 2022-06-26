@@ -88,19 +88,19 @@ function get_icon( $name = '' ) {
 function get_reward_types() {
 	return [
 		[
-			'label' => __( 'Free Shipping' ),
+			'label' => __( 'Free Shipping', 'woocommerce-grow-cart' ),
 			'value' => 'free_shipping',
 		],
 		[
-			'label' => __( 'Percentage' ),
+			'label' => __( 'Percentage', 'woocommerce-grow-cart' ),
 			'value' => 'percent',
 		],
 		[
-			'label' => __( 'Fixed' ),
+			'label' => __( 'Fixed', 'woocommerce-grow-cart' ),
 			'value' => 'fixed_cart',
 		],
 		[
-			'label' => __( 'Gift' ),
+			'label' => __( 'Gift', 'woocommerce-grow-cart' ),
 			'value' => 'gift',
 		],
 	];

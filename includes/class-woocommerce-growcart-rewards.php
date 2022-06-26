@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
  * @var [type]
  */
 class WooCommerce_GrowCart_Rewards {
-	private static $gift_cart_id = null;
+	private static $gift_cart_ids = [];
 
 
 	/**
@@ -130,7 +130,8 @@ class WooCommerce_GrowCart_Rewards {
 
 	public function __construct() {
 		add_action( 'woocommerce_before_calculate_totals', [ $this, 'gift_checkout_process' ] );
-		add_filter( 'woocommerce_cart_item_quantity', [ $this, 'update_gift_qty_input_in_cart' ], 10, 2 );
+		add_filter( 'woocommerce_cart_item_quantity', [ $this, 'change_gift_qty_input_in_cart' ], 10, 2 );
+		add_filter( 'woocommerce_cart_item_name', [ $this, 'add_gift_label_in_cart' ], 10, 3 );
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'filter_shop_coupon_data' ], 10, 2 );
 		add_filter( 'woocommerce_package_rates', [ $this, 'filter_package_rates' ], 10, 2 );
 		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
@@ -157,9 +158,9 @@ class WooCommerce_GrowCart_Rewards {
 		$gift_id = 203;
 
 		// Generate unique ID for the gift in cart.
-		$gift_cart_id       = $cart->generate_cart_id( $gift_id );
-		self::$gift_cart_id = $gift_cart_id;
-		$gift_cart_item     = $cart->get_cart_item( $gift_cart_id );
+		$gift_cart_id          = $cart->generate_cart_id( $gift_id );
+		self::$gift_cart_ids[] = $gift_cart_id;
+		$gift_cart_item        = $cart->get_cart_item( $gift_cart_id );
 
 		// Check if gift is already in cart.
 		if ( empty( $cart->find_product_in_cart( $gift_cart_id ) ) ) {
@@ -183,22 +184,48 @@ class WooCommerce_GrowCart_Rewards {
 	 * @param [type] $cart_item_key
 	 * @return void
 	 */
-	public function update_gift_qty_input_in_cart( $product_quantity, $cart_item_key ) {
-		// // If there aren't valid gifts return initial quantity.
-		// if ( empty( self::$gift_cart_ids ) ) {
-		// 	return $product_quantity;
-		// }
+	public function change_gift_qty_input_in_cart( $product_quantity, $cart_item_key ) {
+		// If there aren't valid gifts return initial quantity.
+		if ( empty( self::$gift_cart_ids ) ) {
+			return $product_quantity;
+		}
 
 		// if ( ! self::$is_correct_logged_condition || ! self::$is_correct_cart_total_condition ) {
 		// 	return $product_quantity;
 		// }
 
 		// If current product is a gift.
-		if ( $cart_item_key === self::$gift_cart_id ) {
+		if ( in_array( $cart_item_key, self::$gift_cart_ids ) ) {
 			$product_quantity = sprintf( '%s <input type="hidden" name="cart[%s][qty]" value="%s" />', 1, $cart_item_key, 1 );
 		}
 
 		return $product_quantity;
+	}
+
+	/**
+	 * Add 'Gift' label for product name in cart.
+	 */
+	public static function add_gift_label_in_cart( $product_name, $cart_item, $cart_item_key ) {
+		// If there aren't valid gifts return initial name.
+		if ( empty( self::$gift_cart_ids ) ) {
+			return $product_name;
+		}
+
+		// if ( ! self::$is_correct_logged_condition || ! self::$is_correct_cart_total_condition ) {
+		// 	return $product_name;
+		// }
+
+		$product_name_postfix = '';
+
+		// If current product is a gift.
+		if ( in_array( $cart_item_key, self::$gift_cart_ids ) ) {
+			$product_name_postfix = '<span class="growcart-free-gift-label">' . apply_filters(
+				'growcart_free_gift_product_name_postfix',
+				sprintf( ' - %s', esc_html__( 'Free Gift', 'woocommerce-grow-cart' ) )
+			) . '</span>';
+		}
+
+		return $product_name . $product_name_postfix;
 	}
 
 	/**
