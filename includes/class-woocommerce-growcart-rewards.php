@@ -155,7 +155,10 @@ class WooCommerce_GrowCart_Rewards {
 			return;
 		}
 
-		$gift_id = 203;
+		$gift_id = $this->has_valid_gift();
+		if ( ! $gift_id ) {
+			return;
+		}
 
 		// Generate unique ID for the gift in cart.
 		$gift_cart_id          = $cart->generate_cart_id( $gift_id );
@@ -190,10 +193,6 @@ class WooCommerce_GrowCart_Rewards {
 			return $product_quantity;
 		}
 
-		// if ( ! self::$is_correct_logged_condition || ! self::$is_correct_cart_total_condition ) {
-		// 	return $product_quantity;
-		// }
-
 		// If current product is a gift.
 		if ( in_array( $cart_item_key, self::$gift_cart_ids ) ) {
 			$product_quantity = sprintf( '%s <input type="hidden" name="cart[%s][qty]" value="%s" />', 1, $cart_item_key, 1 );
@@ -210,10 +209,6 @@ class WooCommerce_GrowCart_Rewards {
 		if ( empty( self::$gift_cart_ids ) ) {
 			return $product_name;
 		}
-
-		// if ( ! self::$is_correct_logged_condition || ! self::$is_correct_cart_total_condition ) {
-		// 	return $product_name;
-		// }
 
 		$product_name_postfix = '';
 
