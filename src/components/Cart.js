@@ -44,10 +44,10 @@ export default function Cart() {
 					<CartItems />
 					<CartTotals />
 
-					<div className="grow-cart__proceed-to-checkout wc-proceed-to-checkout">
+					<div className="grow-cart__proceed-to-checkout">
 						<a
+							className="button"
 							href={cartInformation.data.checkout_url}
-							className="checkout-button button alt wc-forward"
 						>
 							Proceed to checkout
 						</a>

@@ -18,7 +18,7 @@
 		background-color: rgb(255, 249, 239);
 	}
 
-	&__proceed-to-checkout.wc-proceed-to-checkout {
+	&__proceed-to-checkout {
 		padding: 20px 24px;
 		margin-bottom: 0;
 		padding-top: 0;
@@ -27,9 +27,21 @@
 			display: block;
 			width: 100%;
 			margin-bottom: 0;
+			padding: .6180469716em 1.41575em;
 			border-radius: 4px;
 			box-sizing: border-box;
 			text-align: center;
+			font-weight: 600;
+			font-size: 16px;
+			background-color: #333333;
+			border-color: #333333;
+			color: #ffffff;
+
+			&:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
 		}
 	}
 
@@ -37,11 +49,11 @@
 		&__main {
 			width: 100%;
 		}
-		
+
 		&__upsell {
 			display: none;
 		}
-	} 
+	}
 }
 
 .empty {
@@ -85,6 +97,7 @@
 	}
 
 	&__item-thumbnail {
+
 		.attachment-woocommerce_thumbnail,
 		.wp-post-image {
 			max-width: 80px;
