@@ -248,21 +248,23 @@ export default function RulesList() {
 					: null}
 			</div>
 
-			<button type="button" className="RulesList__add" onClick={addRule}>
-				Add rule
-			</button>
+			<div className="RulesList__action-buttons">
+				<button type="button" className="RulesList__add" onClick={addRule}>
+					Add rule
+				</button>
 
-			<button
-				disabled={reward.enabled}
-				className="RulesList__publish"
-				type="button"
-				onClick={() => updateReward({
-					...reward,
-					enabled: true,
-				})}
-			>
-				Publish
-			</button>
+				<button
+					disabled={reward.enabled}
+					className="RulesList__publish"
+					type="button"
+					onClick={() => updateReward({
+						...reward,
+						enabled: true,
+					})}
+				>
+					Publish
+				</button>
+			</div>
 		</div>
 	);
 }

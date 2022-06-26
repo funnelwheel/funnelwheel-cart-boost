@@ -3101,7 +3101,9 @@ function RulesList() {
         });
       }
     }));
-  }) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }) : null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "RulesList__action-buttons"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "button",
     className: "RulesList__add",
     onClick: addRule
@@ -3112,7 +3114,7 @@ function RulesList() {
     onClick: () => updateReward({ ...reward,
       enabled: true
     })
-  }, "Publish"));
+  }, "Publish")));
 }
 
 /***/ }),
