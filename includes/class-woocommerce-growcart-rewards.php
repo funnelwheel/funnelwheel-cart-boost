@@ -871,4 +871,23 @@ class WooCommerce_GrowCart_Rewards {
 
 		return $active_rules;
 	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return boolean
+	 */
+	public function has_valid_gift() {
+		$filtered_rewards = $this->get_filtered_rules();
+
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				if ( 'gift' === $value['type'] ) {
+					return $value['productId'];
+				}
+			}
+		}
+
+		return false;
+	}
 }
