@@ -82,12 +82,12 @@ export default function Styles() {
 
 				<Flex>
 					<FlexItem>
-						<BaseControl id="headerTextColor" label="Header Text Color" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="headerTextColor" label="Header Text Color" __nextHasNoMarginBottom={true}>
 							<input type="color" id="headerTextColor" name="headerTextColor" value={headerTextColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
 					<FlexItem>
-						<BaseControl id="headerBackground" label="Header Background" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="headerBackground" label="Header Background" __nextHasNoMarginBottom={true}>
 							<input type="color" id="headerBackground" name="headerBackground" value={headerBackground} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
@@ -199,12 +199,12 @@ export default function Styles() {
 				</BaseControl>
 				<Flex>
 					<FlexItem>
-						<BaseControl id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="textColor" label="Text Color" __nextHasNoMarginBottom={true}>
 							<input type="color" id="textColor" name="textColor" value={textColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
 					<FlexItem>
-						<BaseControl id="backgroundColor" label="Background" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="backgroundColor" label="Background" __nextHasNoMarginBottom={true}>
 							<input type="color" id="backgroundColor" name="backgroundColor" value={backgroundColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
@@ -212,12 +212,12 @@ export default function Styles() {
 
 				<Flex>
 					<FlexItem>
-						<BaseControl id="iconColor" label="Icon Color" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="iconColor" label="Icon Color" __nextHasNoMarginBottom={true}>
 							<input type="color" id="iconColor" name="iconColor" value={iconColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
 					<FlexItem>
-						<BaseControl id="iconBackground" label="Icon Background" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="iconBackground" label="Icon Background" __nextHasNoMarginBottom={true}>
 							<input type="color" id="iconBackground" name="iconBackground" value={iconBackground} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
@@ -225,12 +225,12 @@ export default function Styles() {
 
 				<Flex>
 					<FlexItem>
-						<BaseControl id="activeIconColor" label="Active Icon Color" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="activeIconColor" label="Active Icon Color" __nextHasNoMarginBottom={true}>
 							<input type="color" id="activeIconColor" name="activeIconColor" value={activeIconColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
 					<FlexItem>
-						<BaseControl id="activeIconBackground" label="Active Icon Background" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="activeIconBackground" label="Active Icon Background" __nextHasNoMarginBottom={true}>
 							<input type="color" id="activeIconBackground" name="activeIconBackground" value={activeIconBackground} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
@@ -238,12 +238,12 @@ export default function Styles() {
 
 				<Flex>
 					<FlexItem>
-						<BaseControl id="progressColor" label="Progress Bar" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="progressColor" label="Progress Bar" __nextHasNoMarginBottom={true}>
 							<input type="color" id="progressColor" name="progressColor" value={progressColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>
 					<FlexItem>
-						<BaseControl id="progressBackgroundColor" label="Progress Background" __nextHasNoMarginBottom={true}>
+						<BaseControl className="components-color-control" id="progressBackgroundColor" label="Progress Background" __nextHasNoMarginBottom={true}>
 							<input type="color" id="progressBackgroundColor" name="progressBackgroundColor" value={progressBackgroundColor} onChange={handleInputChange} />
 						</BaseControl>
 					</FlexItem>

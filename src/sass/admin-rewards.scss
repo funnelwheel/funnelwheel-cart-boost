@@ -153,6 +153,7 @@ button {
 }
 
 .RewardsListItem {
+
 	*,
 	*::before,
 	*::after {
@@ -190,6 +191,7 @@ button {
 
 .RewardsListItem,
 .RewardsListItemAdd {
+
 	.components-base-control,
 	.components-number-control {
 		margin-bottom: 16px;
@@ -217,7 +219,7 @@ button {
 		display: flex;
 		justify-content: space-between;
 	}
-	
+
 	&__publish {
 		background-color: var(--wp-admin-theme-color);
 		color: #ffffff;
@@ -288,6 +290,25 @@ button {
 		padding: 0;
 		vertical-align: middle;
 	}
+
+	input[type="color"] {
+		-webkit-appearance: none;
+		width: 30px;
+		height: 30px;
+		border: 0;
+		border-radius: 50%;
+		padding: 0;
+		overflow: hidden;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, .1);
+	}
+
+	input[type="color"]::-webkit-color-swatch-wrapper {
+		padding: 0;
+	}
+
+	input[type="color"]::-webkit-color-swatch {
+		border: none;
+	}
 }
 
 
@@ -297,4 +318,17 @@ button {
 	border-radius: 4px;
 	overflow: hidden;
 	background-color: $white;
+}
+
+.components-color-control {
+	.components-base-control__field {
+		position: relative;
+		padding-left: 40px;
+
+		input[type="color"] {
+			position: absolute;
+			top: -4px;
+			left: 0;
+		}
+	}
 }

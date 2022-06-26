@@ -3205,6 +3205,7 @@ function Styles() {
     }),
     value: fontSize
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "headerTextColor",
     label: "Header Text Color",
     __nextHasNoMarginBottom: true
@@ -3215,6 +3216,7 @@ function Styles() {
     value: headerTextColor,
     onChange: handleInputChange
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "headerBackground",
     label: "Header Background",
     __nextHasNoMarginBottom: true
@@ -3288,6 +3290,7 @@ function Styles() {
     }),
     value: spacing.left
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "textColor",
     label: "Text Color",
     __nextHasNoMarginBottom: true
@@ -3298,6 +3301,7 @@ function Styles() {
     value: textColor,
     onChange: handleInputChange
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "backgroundColor",
     label: "Background",
     __nextHasNoMarginBottom: true
@@ -3308,6 +3312,7 @@ function Styles() {
     value: backgroundColor,
     onChange: handleInputChange
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "iconColor",
     label: "Icon Color",
     __nextHasNoMarginBottom: true
@@ -3318,6 +3323,7 @@ function Styles() {
     value: iconColor,
     onChange: handleInputChange
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "iconBackground",
     label: "Icon Background",
     __nextHasNoMarginBottom: true
@@ -3328,6 +3334,7 @@ function Styles() {
     value: iconBackground,
     onChange: handleInputChange
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "activeIconColor",
     label: "Active Icon Color",
     __nextHasNoMarginBottom: true
@@ -3338,6 +3345,7 @@ function Styles() {
     value: activeIconColor,
     onChange: handleInputChange
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "activeIconBackground",
     label: "Active Icon Background",
     __nextHasNoMarginBottom: true
@@ -3348,6 +3356,7 @@ function Styles() {
     value: activeIconBackground,
     onChange: handleInputChange
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "progressColor",
     label: "Progress Bar",
     __nextHasNoMarginBottom: true
@@ -3358,6 +3367,7 @@ function Styles() {
     value: progressColor,
     onChange: handleInputChange
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    className: "components-color-control",
     id: "progressBackgroundColor",
     label: "Progress Background",
     __nextHasNoMarginBottom: true

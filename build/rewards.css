@@ -812,6 +812,22 @@ button {
   padding: 0;
   vertical-align: middle;
 }
+.Styles input[type=color] {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.Styles input[type=color]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.Styles input[type=color]::-webkit-color-swatch {
+  border: none;
+}
 
 .Preview {
   margin-bottom: 16px;
@@ -819,6 +835,16 @@ button {
   border-radius: 4px;
   overflow: hidden;
   background-color: #fff;
+}
+
+.components-color-control .components-base-control__field {
+  position: relative;
+  padding-left: 40px;
+}
+.components-color-control .components-base-control__field input[type=color] {
+  position: absolute;
+  top: -4px;
+  left: 0;
 }
 
 /*# sourceMappingURL=rewards.css.map*/
