@@ -76,7 +76,7 @@ export default function RewardsList() {
 												className="growcart-reward-edit"
 												onClick={() => {
 													if (reward.enabled) {
-														alert("Deactivating on front-end.");
+														alert("We'll disable the cart on the store.");
 													}
 
 													setRewards({
