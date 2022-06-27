@@ -155,8 +155,27 @@ class WooCommerce_GrowCart_Rewards {
 			return;
 		}
 
-		$gift_id = $this->has_valid_gift();
+		$gift_id          = false;
+		$filtered_rewards = $this->get_filtered_rules();
+
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				if ( 'gift' === $value['type'] ) {
+					$gift_id = $value['productId'];
+				}
+			}
+		}
+
 		if ( ! $gift_id ) {
+			if ( isset( $filtered_rewards['next_rewards'] ) && count( $filtered_rewards['next_rewards'] ) ) {
+				foreach ( $filtered_rewards['next_rewards'] as $key => $value ) {
+					if ( 'gift' === $value['type'] ) {
+						$gift_cart_id = $cart->generate_cart_id( $value['productId'] );
+						WC()->cart->remove_cart_item( $gift_cart_id );
+					}
+				}
+			}
+
 			return;
 		}
 
