@@ -72,17 +72,30 @@ class WooCommerce_GrowCart_Ajax {
 		$cart_items  = [];
 		$_cart_items = get_cart_items();
 
-		$gift_id = false;
+		$cart_gift_items      = [];
+		$gift_rewards         = wp_list_filter( $filtered_rewards['rewards'], [ 'type' => 'gift' ] );
+		$gift_id_list         = empty( $gift_rewards ) ? [] : wp_list_pluck( $gift_rewards, 'productId' );
+		$gift_id_list         = wp_parse_id_list( $gift_id_list );
+		$current_gift_id_list = [];
+
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
 				if ( 'gift' === $value['type'] ) {
-					$gift_id = intval( $value['productId'] );
+					$current_gift_id_list[] = intval( $value['productId'] );
 				}
 			}
 		}
 
 		foreach ( $_cart_items as $cart_item ) {
-			if ( $cart_item['product_id'] === $gift_id ) {
+			if ( in_array( $cart_item['product_id'], $gift_id_list, true ) ) {
+				if ( in_array( $cart_item['product_id'], $current_gift_id_list, true ) ) {
+					$cart_item['unlocked'] = true;
+				}
+
+				$cart_gift_items[] = $cart_item;
+			}
+
+			if ( in_array( $cart_item['product_id'], $current_gift_id_list, true ) ) {
 				continue;
 			}
 
@@ -96,6 +109,7 @@ class WooCommerce_GrowCart_Ajax {
 				'current_reward_ids'                => $current_reward_ids,
 				'is_empty'                          => WC()->cart->is_empty(),
 				'items'                             => $cart_items,
+				'cart_gift_items'                   => $cart_gift_items,
 				'cart_title'                        => sprintf( __( 'Your Cart (%d)', 'woocommerce-grow-cart' ), WC()->cart->get_cart_contents_count() ),
 				'tax_enabled'                       => wc_tax_enabled(),
 				'has_shipping'                      => WC()->cart->needs_shipping() && WC()->cart->show_shipping(),
