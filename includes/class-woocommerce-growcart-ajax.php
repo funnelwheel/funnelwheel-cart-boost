@@ -86,15 +86,22 @@ class WooCommerce_GrowCart_Ajax {
 			}
 		}
 
-		foreach ( $_cart_items as $cart_item ) {
-			if ( in_array( $cart_item['product_id'], $gift_id_list, true ) ) {
-				if ( in_array( $cart_item['product_id'], $current_gift_id_list, true ) ) {
-					$cart_item['unlocked'] = true;
-				}
+		foreach ( $gift_id_list as $gift_id ) {
+			$product   = wc_get_product( $gift_id );
+			$gift_item = [
+				'product_title'     => $product->get_title(),
+				'product_thumbnail' => $product->get_image(),
+				'unlocked'          => false,
+			];
 
-				$cart_gift_items[] = $cart_item;
+			if ( in_array( $gift_id, $current_gift_id_list, true ) ) {
+				$gift_item['unlocked'] = true;
 			}
 
+			$cart_gift_items[] = $gift_item;
+		}
+
+		foreach ( $_cart_items as $cart_item ) {
 			if ( in_array( $cart_item['product_id'], $current_gift_id_list, true ) ) {
 				continue;
 			}
@@ -109,7 +116,7 @@ class WooCommerce_GrowCart_Ajax {
 				'current_reward_ids'                => $current_reward_ids,
 				'is_empty'                          => WC()->cart->is_empty(),
 				'items'                             => $cart_items,
-				'cart_gift_items'                   => $cart_gift_items,
+				'gift_items'                        => $cart_gift_items,
 				'cart_title'                        => sprintf( __( 'Your Cart (%d)', 'woocommerce-grow-cart' ), WC()->cart->get_cart_contents_count() ),
 				'tax_enabled'                       => wc_tax_enabled(),
 				'has_shipping'                      => WC()->cart->needs_shipping() && WC()->cart->show_shipping(),

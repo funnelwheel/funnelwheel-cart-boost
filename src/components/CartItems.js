@@ -20,6 +20,30 @@ export default function CartItems() {
 
 	return (
 		<div className="CartItems">
+			{cartInformation.data.gift_items.map((item) => (
+				<div className="CartItems__item" key={item.key}>
+					<div className="CartItems__item-thumbnail-title-container">
+						<div
+							className="CartItems__item-thumbnail"
+							dangerouslySetInnerHTML={{
+								__html: item.product_thumbnail,
+							}}
+						/>
+
+						<div className="CartItems__item-title-wrap">
+							<div
+								className="CartItems__item-title"
+							>
+								{item.product_title}
+							</div>
+
+							<div>
+								{item.unlocked ? "You've unlocked your free gift!" : "Add more products to unlock."}
+							</div>
+						</div>
+					</div>
+				</div>
+			))}
 			{cartInformation.data.items.map((item) => (
 				<div className="CartItems__item" key={item.key}>
 					<div className="CartItems__item-thumbnail-title-container">

@@ -2641,7 +2641,21 @@ function CartItems() {
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems"
-  }, cartInformation.data.items.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, cartInformation.data.gift_items.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item",
+    key: item.key
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-thumbnail-title-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-thumbnail",
+    dangerouslySetInnerHTML: {
+      __html: item.product_thumbnail
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-title-wrap"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-title"
+  }, item.product_title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, item.unlocked ? "You've unlocked your free gift!" : "Add more products to unlock."))))), cartInformation.data.items.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item",
     key: item.key
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
