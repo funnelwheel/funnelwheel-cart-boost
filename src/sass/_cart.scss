@@ -96,6 +96,23 @@
 		align-items: flex-end;
 	}
 
+	&__item-thumbnail-wrap {
+		position: relative;
+
+		.CartItems__item-locked {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, .5);
+			color: $white;
+		}
+	}
+
 	&__item-thumbnail {
 
 		.attachment-woocommerce_thumbnail,
