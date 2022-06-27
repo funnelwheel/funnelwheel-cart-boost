@@ -2632,7 +2632,7 @@ function CartItems() {
     cartInformation
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext);
   const mutation = (0,react_query__WEBPACK_IMPORTED_MODULE_2__.useMutation)(_api__WEBPACK_IMPORTED_MODULE_4__.updateCartItem, {
-    onSuccess: response => {
+    onSuccess: () => {
       queryClient.invalidateQueries("cartInformation");
       queryClient.invalidateQueries("suggestedProducts");
       queryClient.invalidateQueries("rewards");

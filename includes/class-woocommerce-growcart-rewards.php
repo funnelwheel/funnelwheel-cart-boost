@@ -161,7 +161,7 @@ class WooCommerce_GrowCart_Rewards {
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
 				if ( 'gift' === $value['type'] ) {
-					$gift_id = $value['productId'];
+					$gift_id = intval( $value['productId'] );
 				}
 			}
 		}
@@ -170,7 +170,7 @@ class WooCommerce_GrowCart_Rewards {
 			if ( isset( $filtered_rewards['next_rewards'] ) && count( $filtered_rewards['next_rewards'] ) ) {
 				foreach ( $filtered_rewards['next_rewards'] as $key => $value ) {
 					if ( 'gift' === $value['type'] ) {
-						$gift_cart_id = $cart->generate_cart_id( $value['productId'] );
+						$gift_cart_id = $cart->generate_cart_id( intval( $value['productId'] ) );
 						WC()->cart->remove_cart_item( $gift_cart_id );
 					}
 				}
@@ -509,7 +509,7 @@ class WooCommerce_GrowCart_Rewards {
 		foreach ( $rewards as $key => $value ) {
 			$minimum_cart_quantity = intval( $value['minimum_cart_quantity'] );
 			if ( 'gift' === $value['type'] ) {
-				$gift_cart_id = WC()->cart->generate_cart_id( $value['productId'] );
+				$gift_cart_id = WC()->cart->generate_cart_id( intval( $value['productId'] ) );
 				if ( ! empty( WC()->cart->find_product_in_cart( $gift_cart_id ) ) ) {
 					$minimum_cart_quantity += 1;
 				}
@@ -905,7 +905,7 @@ class WooCommerce_GrowCart_Rewards {
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
 				if ( 'gift' === $value['type'] ) {
-					return $value['productId'];
+					return intval( $value['productId'] );
 				}
 			}
 		}

@@ -69,13 +69,33 @@ class WooCommerce_GrowCart_Ajax {
 		wc_cart_totals_order_total_html();
 		$cart_totals_order_total_html .= \ob_get_clean();
 
+		$cart_items  = [];
+		$_cart_items = get_cart_items();
+
+		$gift_id = false;
+		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
+			foreach ( $filtered_rewards['current_rewards'] as $key => $value ) {
+				if ( 'gift' === $value['type'] ) {
+					$gift_id = intval( $value['productId'] );
+				}
+			}
+		}
+
+		foreach ( $_cart_items as $cart_item ) {
+			if ( $cart_item['product_id'] === $gift_id ) {
+				continue;
+			}
+
+			$cart_items[] = $cart_item;
+		}
+
 		wp_send_json(
 			[
 				'$_GET'                             => $_GET,
 				'get_active_reward()'               => woocommerce_growcart()->rewards->get_active_reward(),
 				'current_reward_ids'                => $current_reward_ids,
 				'is_empty'                          => WC()->cart->is_empty(),
-				'items'                             => get_cart_items(),
+				'items'                             => $cart_items,
 				'cart_title'                        => sprintf( __( 'Your Cart (%d)', 'woocommerce-grow-cart' ), WC()->cart->get_cart_contents_count() ),
 				'tax_enabled'                       => wc_tax_enabled(),
 				'has_shipping'                      => WC()->cart->needs_shipping() && WC()->cart->show_shipping(),

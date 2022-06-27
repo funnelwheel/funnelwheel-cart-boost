@@ -9,7 +9,7 @@ export default function CartItems() {
 	const queryClient = useQueryClient();
 	const { cartInformation } = useContext(CartContext);
 	const mutation = useMutation(updateCartItem, {
-		onSuccess: (response) => {
+		onSuccess: () => {
 			queryClient.invalidateQueries("cartInformation");
 			queryClient.invalidateQueries("suggestedProducts");
 			queryClient.invalidateQueries("rewards");
