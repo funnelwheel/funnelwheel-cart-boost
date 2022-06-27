@@ -113,6 +113,43 @@ function SvgDash(props) {
 
 /***/ }),
 
+/***/ "./src/svg/lock-fill.svg":
+/*!*******************************!*\
+  !*** ./src/svg/lock-fill.svg ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": () => (/* binding */ SvgLockFill),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgLockFill(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 16,
+    height: 16,
+    fill: "currentColor",
+    className: "lock-fill_svg__bi lock-fill_svg__bi-lock-fill"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M8 1a2 2 0 012 2v4H6V3a2 2 0 012-2zm3 6V3a3 3 0 00-6 0v4a2 2 0 00-2 2v5a2 2 0 002 2h6a2 2 0 002-2V9a2 2 0 00-2-2z"
+  })));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktbG9jay1maWxsIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik04IDFhMiAyIDAgMCAxIDIgMnY0SDZWM2EyIDIgMCAwIDEgMi0yem0zIDZWM2EzIDMgMCAwIDAtNiAwdjRhMiAyIDAgMCAwLTIgMnY1YTIgMiAwIDAgMCAyIDJoNmEyIDIgMCAwIDAgMi0yVjlhMiAyIDAgMCAwLTItMnoiLz4KPC9zdmc+");
+
+
+/***/ }),
+
 /***/ "./src/svg/lock.svg":
 /*!**************************!*\
   !*** ./src/svg/lock.svg ***!
@@ -2618,7 +2655,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api */ "./src/api.js");
-/* harmony import */ var _QuantityInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./QuantityInput */ "./src/components/QuantityInput.js");
+/* harmony import */ var _svg_lock_fill_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../svg/lock-fill.svg */ "./src/svg/lock-fill.svg");
+/* harmony import */ var _QuantityInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./QuantityInput */ "./src/components/QuantityInput.js");
+
 
 
 
@@ -2647,11 +2686,15 @@ function CartItems() {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item-thumbnail-title-container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-thumbnail-wrap"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item-thumbnail",
     dangerouslySetInnerHTML: {
       __html: item.product_thumbnail
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), item.unlocked ? null : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "CartItems__item-locked"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_lock_fill_svg__WEBPACK_IMPORTED_MODULE_5__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item-title-wrap"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "CartItems__item-title"
@@ -2682,7 +2725,7 @@ function CartItems() {
     dangerouslySetInnerHTML: {
       __html: item.product_subtotal
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_QuantityInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_QuantityInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
     isLoading: mutation.isLoading,
     quantity: item.quantity,
     min: item.min_purchase_quantity,

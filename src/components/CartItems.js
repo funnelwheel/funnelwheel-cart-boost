@@ -3,7 +3,9 @@ import { useQueryClient, useMutation } from "react-query";
 import { useContext } from "@wordpress/element";
 import { CartContext } from "../context";
 import { updateCartItem } from "../api";
+import { ReactComponent as LockIcon } from "./../svg/lock-fill.svg";
 import QuantityInput from "./QuantityInput";
+
 
 export default function CartItems() {
 	const queryClient = useQueryClient();
@@ -23,12 +25,18 @@ export default function CartItems() {
 			{cartInformation.data.gift_items.map((item) => (
 				<div className="CartItems__item" key={item.key}>
 					<div className="CartItems__item-thumbnail-title-container">
-						<div
-							className="CartItems__item-thumbnail"
-							dangerouslySetInnerHTML={{
-								__html: item.product_thumbnail,
-							}}
-						/>
+						<div className="CartItems__item-thumbnail-wrap">
+							<div
+								className="CartItems__item-thumbnail"
+								dangerouslySetInnerHTML={{
+									__html: item.product_thumbnail,
+								}}
+							/>
+
+							{item.unlocked ? null : <div className="CartItems__item-locked">
+								<LockIcon />
+							</div>}
+						</div>
 
 						<div className="CartItems__item-title-wrap">
 							<div
