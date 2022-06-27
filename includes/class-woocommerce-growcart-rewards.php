@@ -507,7 +507,15 @@ class WooCommerce_GrowCart_Rewards {
 		$filtered_rewards['rewards'] = $rewards;
 
 		foreach ( $rewards as $key => $value ) {
-			if ( intval( $value['minimum_cart_quantity'] ) <= $cart_contents_count ) {
+			$minimum_cart_quantity = intval( $value['minimum_cart_quantity'] );
+			if ( 'gift' === $value['type'] ) {
+				$gift_cart_id = WC()->cart->generate_cart_id( $value['productId'] );
+				if ( ! empty( WC()->cart->find_product_in_cart( $gift_cart_id ) ) ) {
+					$minimum_cart_quantity += 1;
+				}
+			}
+
+			if ( $minimum_cart_quantity <= $cart_contents_count ) {
 				$filtered_rewards['current_rewards'][] = $value;
 			} else {
 				$filtered_rewards['next_rewards'][] = $value;
