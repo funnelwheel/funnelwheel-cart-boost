@@ -19,8 +19,7 @@ export default function RulesList() {
 				...reward.rules,
 				{
 					id: uuidv4(),
-					name: `Rule ${reward.rules.length + 1
-						}`,
+					name: `Rule ${reward.rules.length + 1}`,
 					type: "percent",
 					value: 1,
 					productId: 0,

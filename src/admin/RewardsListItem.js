@@ -7,10 +7,10 @@ import Preview from "./Preview";
 
 export default function RewardsListItem() {
 	const {
-		rewards,
-		setRewards,
 		reward,
 		updateReward,
+		rewards,
+		setRewards,
 		rewardTypeLabels,
 	} = useContext(RewardsAdminContext);
 
@@ -35,9 +35,24 @@ export default function RewardsListItem() {
 							disabled={reward.enabled}
 							className="RewardsListItem__publish"
 							type="button"
-							onClick={() => updateReward({
-								...reward,
-								enabled: true,
+							onClick={() => setRewards({
+								...rewards,
+								rewards: rewards.rewards.map((_reward) => {
+									if (
+										_reward.id ===
+										reward.id
+									) {
+										return {
+											...reward,
+											enabled: true,
+										};
+									}
+
+									return {
+										..._reward,
+										enabled: false,
+									};
+								})
 							})}
 						>
 							Publish
