@@ -92,15 +92,15 @@ function get_reward_types() {
 			'value' => 'free_shipping',
 		],
 		[
-			'label' => __( 'Percentage', 'woocommerce-grow-cart' ),
+			'label' => __( 'Percentage discount', 'woocommerce-grow-cart' ),
 			'value' => 'percent',
 		],
 		[
-			'label' => __( 'Fixed', 'woocommerce-grow-cart' ),
+			'label' => __( 'Fixed cart discount', 'woocommerce-grow-cart' ),
 			'value' => 'fixed_cart',
 		],
 		[
-			'label' => __( 'Gift', 'woocommerce-grow-cart' ),
+			'label' => __( 'Gift Card', 'woocommerce-grow-cart' ),
 			'value' => 'gift',
 		],
 	];
