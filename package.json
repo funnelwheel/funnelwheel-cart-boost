@@ -31,6 +31,7 @@
 		"axios": "^0.24.0",
 		"bootstrap": "^5.2.0-beta1",
 		"classnames": "^2.3.1",
+		"react-horizontal-scrolling": "^0.1.8",
 		"react-query": "^3.34.7",
 		"uuid": "^8.3.2"
 	}

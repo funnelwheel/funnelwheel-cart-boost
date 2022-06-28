@@ -517,11 +517,39 @@
 .Rewards__list {
   display: flex;
   align-items: center;
-  list-style: none;
-  margin: 0 0 4px 0;
-  padding-left: 0;
 }
-.Rewards__list li {
+.Rewards__list ::-webkit-scrollbar {
+  height: 1px;
+}
+.Rewards__list ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.Rewards__list ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.Rewards__list ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.Rewards__list ul {
+  list-style: none;
+  margin: 0 0 4px 4px;
+  padding-left: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  transition: all 0.2s;
+  will-change: transform;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.Rewards__list ul.active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+.Rewards__list ul li {
+  display: inline-block;
   margin: 0 16px 0 0;
 }
 .Rewards__item {
@@ -543,7 +571,8 @@
 .Rewards__progress-wrap {
   width: 100%;
 }
-.Rewards__title {
+.Rewards__list-title {
+  margin: 0;
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;

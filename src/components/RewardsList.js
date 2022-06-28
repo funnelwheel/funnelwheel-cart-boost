@@ -1,4 +1,4 @@
-import { useContext } from "@wordpress/element";
+import { useContext, useEffect } from "@wordpress/element";
 import { CartContext } from "../context";
 import { ReactComponent as LockIcon } from "./../svg/lock.svg";
 import { ReactComponent as StarIcon } from "./../svg/star.svg";
@@ -7,10 +7,40 @@ export default function RewardsList({ children }) {
     const { rewardsInformation } = useContext(CartContext);
     const { rewards, rewards_progress, hint } = rewardsInformation.data;
 
+    useEffect(() => {
+        const slider = document.querySelector('.Rewards__list ul');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 3; //scroll-fast
+            slider.scrollLeft = scrollLeft - walk;
+            console.log(walk);
+        });
+    }, [rewards]);
+
     return (
         <div className="Rewards">
             <div className="Rewards__list">
-                <li className="Rewards__list-title">Rewards</li>
+                <h4 className="Rewards__list-title">Rewards</h4>
                 <ul>
                     {rewards.current_rewards.map((reward, index) => (
                         <li key={index} className="Rewards__item availed">
