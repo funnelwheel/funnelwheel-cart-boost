@@ -243,7 +243,7 @@ class WooCommerce_Growcart_Settings {
 							'bottom' => '24px',
 							'left'   => '24px',
 						],
-						'textcolor'               => '#ffffff',
+						'textColor'               => '#ffffff',
 						'backgroundColor'         => '#343a40',
 						'progressColor'           => '#198754',
 						'progressBackgroundColor' => '#495057',
