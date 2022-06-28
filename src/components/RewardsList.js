@@ -9,32 +9,35 @@ export default function RewardsList({ children }) {
 
     return (
         <div className="Rewards">
-            <ul className="Rewards__list">
-                <li className="Rewards__title">Rewards</li>
-                {rewards.current_rewards.map((reward, index) => (
-                    <li key={index} className="Rewards__item availed">
-                        <span className="Rewards__icon">
-                            <StarIcon />
-                        </span>
-                        <span
-                            className="Rewards__text"
-                            dangerouslySetInnerHTML={{ __html: reward.name }}
-                        ></span>
-                    </li>
-                ))}
+            <div className="Rewards__list">
+                <li className="Rewards__list-title">Rewards</li>
+                <ul>
+                    {rewards.current_rewards.map((reward, index) => (
+                        <li key={index} className="Rewards__item availed">
+                            <span className="Rewards__icon">
+                                <StarIcon />
+                            </span>
+                            <span
+                                className="Rewards__text"
+                                dangerouslySetInnerHTML={{ __html: reward.name }}
+                            ></span>
+                        </li>
+                    ))}
 
-                {rewards.next_rewards.map((reward, index) => (
-                    <li key={index} className="Rewards__item">
-                        <span className="Rewards__icon">
-                            <LockIcon />
-                        </span>
-                        <span
-                            className="Rewards__text"
-                            dangerouslySetInnerHTML={{ __html: reward.name }}
-                        ></span>
-                    </li>
-                ))}
-            </ul>
+                    {rewards.next_rewards.map((reward, index) => (
+                        <li key={index} className="Rewards__item">
+                            <span className="Rewards__icon">
+                                <LockIcon />
+                            </span>
+                            <span
+                                className="Rewards__text"
+                                dangerouslySetInnerHTML={{ __html: reward.name }}
+                            ></span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
 
             <div className="Rewards__progress">
                 <div className="Rewards__progress-wrap">
