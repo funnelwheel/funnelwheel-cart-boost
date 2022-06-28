@@ -37,7 +37,7 @@ export default function Preview() {
         ['--growcart-active-icon-color']: activeRewardItem?.styles?.activeIconColor || '#ffffff',
         ['--growcart-active-icon-background']: activeRewardItem?.styles?.activeIconBackground || '#198754',
         ['--growcart-progress-color']: activeRewardItem?.styles?.progressColor || '#198754',
-        ['--growcart-progress-background']: activeRewardItem?.styles?.progressBackground || '#495057',
+        ['--growcart-progress-background']: activeRewardItem?.styles?.progressBackgroundColor || '#495057',
     }
 
     return <CartContext.Provider value={{ cartInformation, rewardsInformation }}>

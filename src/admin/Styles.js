@@ -114,7 +114,7 @@ export default function Styles() {
 									activeIconColor: woocommerce_growcart.initial_reward.styles.activeIconColor,
 									activeIconBackground: woocommerce_growcart.initial_reward.styles.activeIconBackground,
 									progressColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
-									progressBackgroundColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
+									progressBackgroundColor: woocommerce_growcart.initial_reward.styles.progressBackgroundColor,
 								},
 							})}
 						>

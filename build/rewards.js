@@ -2581,7 +2581,7 @@ function Preview() {
     ['--growcart-active-icon-color']: activeRewardItem?.styles?.activeIconColor || '#ffffff',
     ['--growcart-active-icon-background']: activeRewardItem?.styles?.activeIconBackground || '#198754',
     ['--growcart-progress-color']: activeRewardItem?.styles?.progressColor || '#198754',
-    ['--growcart-progress-background']: activeRewardItem?.styles?.progressBackground || '#495057'
+    ['--growcart-progress-background']: activeRewardItem?.styles?.progressBackgroundColor || '#495057'
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context__WEBPACK_IMPORTED_MODULE_3__.CartContext.Provider, {
     value: {
@@ -2703,7 +2703,6 @@ function RewardsList() {
     rewards,
     setRewards
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
-  console.log(JSON.stringify(rewards.rewards));
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsList"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("table", {
@@ -3294,7 +3293,7 @@ function Styles() {
         activeIconColor: woocommerce_growcart.initial_reward.styles.activeIconColor,
         activeIconBackground: woocommerce_growcart.initial_reward.styles.activeIconBackground,
         progressColor: woocommerce_growcart.initial_reward.styles.activeIconBackground,
-        progressBackgroundColor: woocommerce_growcart.initial_reward.styles.activeIconBackground
+        progressBackgroundColor: woocommerce_growcart.initial_reward.styles.progressBackgroundColor
       }
     })
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_arrow_clockwise_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {

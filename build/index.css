@@ -586,7 +586,7 @@
   height: 8px;
   overflow: hidden;
   font-size: 0.75rem;
-  background-color: var(--growcart-progress-background-color);
+  background-color: var(--growcart-progress-background);
   border-radius: 0.25rem;
 }
 .progress__bar {
