@@ -40,7 +40,7 @@ export default function RewardsList({ children }) {
     return (
         <div className="Rewards">
             <div className="Rewards__list">
-                <h4 className="Rewards__list-title">Rewards</h4>
+                <span className="Rewards__list-title">Rewards</span>
                 <ul>
                     {rewards.current_rewards.map((reward, index) => (
                         <li key={index} className="Rewards__item availed">
