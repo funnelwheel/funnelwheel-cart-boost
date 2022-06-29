@@ -2,6 +2,7 @@ import { useContext } from "@wordpress/element";
 import { useQuery } from "react-query";
 import { getRewards, getCartInformation } from "../api";
 import { RewardsAdminContext, CartContext } from "../context";
+import { ReactComponent as ArrowDownIcon } from "./../svg/arrow-down.svg";
 import Spinner from "./../components/Spinner";
 import Cart from "./../components/Cart";
 
@@ -43,6 +44,10 @@ export default function Preview() {
     return <CartContext.Provider value={{ cartInformation, rewardsInformation }}>
         <div className="Preview" style={style}>
             <Cart />
+            <div className="OpenPopup">
+                <span className="OpenPopup__text">Click to open popup</span>
+                <ArrowDownIcon />
+            </div>
         </div>
     </CartContext.Provider>;
 }

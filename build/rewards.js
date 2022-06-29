@@ -41,6 +41,41 @@ function SvgArrowClockwise(props) {
 
 /***/ }),
 
+/***/ "./src/svg/arrow-down.svg":
+/*!********************************!*\
+  !*** ./src/svg/arrow-down.svg ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": () => (/* binding */ SvgArrowDown),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgArrowDown(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 95 60"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M42.1 45.8c11.3-2.6 23.2-9.1 31.8-16.9 4.9-4.4 8.9-9.7 12.4-15.2 1.8-2.9 3.5-5.8 5.1-8.8C91.9 4 93 .1 94 0c3.4-.2-3.4 13-4.2 14.4-3.5 5.8-7.4 11.5-12.3 16.3-8.2 8-18.8 15.3-29.8 18.6-6.4 2-12.8 4-19.6 4.6-2.8.2-5.7.2-8.6-.1-2-.2-4.1-.5-6-1-1.5-.3-3.1-1.5-4.6-1.6.8 2.4 3.8 4.2 4.8 6.6 1.2 2.9-1.4 2.4-3 1.1-2.6-2.1-4.8-4.5-7.2-6.9-2-2-5-4.1-3.1-7 1.7-2.5 4.4-4.5 6.5-6.6 1.4-1.4 3.8-5.2 6.2-4.8 7.4 1.2-6.3 10.2-6.9 11.3 1.1.5 2.5.4 3.6.7 1.7.4 3.3 1.1 5 1.5 3.2.8 6.5 1.2 9.8 1.4 5.8.3 12.2-.7 17.5-2.7 4.1-.9-.8.3 0 0z",
+    fill: "#231f20"
+  })));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NSA2MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgOTUgNjAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgogIDxwYXRoIGQ9Ik00Mi4xIDQ1LjhjMTEuMy0yLjYgMjMuMi05LjEgMzEuOC0xNi45IDQuOS00LjQgOC45LTkuNyAxMi40LTE1LjIgMS44LTIuOSAzLjUtNS44IDUuMS04LjhDOTEuOSA0IDkzIC4xIDk0IDBjMy40LS4yLTMuNCAxMy00LjIgMTQuNC0zLjUgNS44LTcuNCAxMS41LTEyLjMgMTYuMy04LjIgOC0xOC44IDE1LjMtMjkuOCAxOC42LTYuNCAyLTEyLjggNC0xOS42IDQuNi0yLjguMi01LjcuMi04LjYtLjEtMi0uMi00LjEtLjUtNi0xLTEuNS0uMy0zLjEtMS41LTQuNi0xLjYuOCAyLjQgMy44IDQuMiA0LjggNi42IDEuMiAyLjktMS40IDIuNC0zIDEuMS0yLjYtMi4xLTQuOC00LjUtNy4yLTYuOS0yLTItNS00LjEtMy4xLTcgMS43LTIuNSA0LjQtNC41IDYuNS02LjYgMS40LTEuNCAzLjgtNS4yIDYuMi00LjggNy40IDEuMi02LjMgMTAuMi02LjkgMTEuMyAxLjEuNSAyLjUuNCAzLjYuNyAxLjcuNCAzLjMgMS4xIDUgMS41IDMuMi44IDYuNSAxLjIgOS44IDEuNCA1LjguMyAxMi4yLS43IDE3LjUtMi43IDQuMS0uOS0uOC4zIDAgMHoiIHN0eWxlPSJmaWxsOiMyMzFmMjAiLz4KPC9zdmc+Cg==");
+
+
+/***/ }),
+
 /***/ "./src/svg/basket.svg":
 /*!****************************!*\
   !*** ./src/svg/basket.svg ***!
@@ -2532,8 +2567,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./src/api.js");
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
-/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../components/Spinner */ "./src/components/Spinner.js");
-/* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../components/Cart */ "./src/components/Cart.js");
+/* harmony import */ var _svg_arrow_down_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../svg/arrow-down.svg */ "./src/svg/arrow-down.svg");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../components/Spinner */ "./src/components/Spinner.js");
+/* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../components/Cart */ "./src/components/Cart.js");
+
 
 
 
@@ -2559,7 +2596,7 @@ function Preview() {
   } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)(["cartInformation", {
     active_reward_id: activeRewardItem.id
   }], _api__WEBPACK_IMPORTED_MODULE_2__.getCartInformation);
-  if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+  if (isCartLoading || isRewardsLoading) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"], null);
   if (cartError || rewardsError) return "An error has occurred: " + cartError.message || 0;
 
   if (!(rewardsInformation.data.rewards.current_rewards.length || rewardsInformation.data.rewards.next_rewards.length)) {
@@ -2591,7 +2628,11 @@ function Preview() {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "Preview",
     style: style
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Cart__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Cart__WEBPACK_IMPORTED_MODULE_6__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "OpenPopup"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "OpenPopup__text"
+  }, "Click to open popup"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_arrow_down_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null))));
 }
 
 /***/ }),

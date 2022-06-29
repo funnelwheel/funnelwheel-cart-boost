@@ -886,10 +886,10 @@ button {
 }
 
 .Preview {
+  position: relative;
   margin-bottom: 16px;
   max-width: 500px;
   border-radius: 4px;
-  overflow: hidden;
   background-color: #fff;
 }
 
@@ -901,6 +901,20 @@ button {
   position: absolute;
   top: -4px;
   left: 0;
+}
+
+.OpenPopup {
+  position: absolute;
+  top: -12px;
+  right: -68px;
+  width: 64px;
+}
+.OpenPopup__text {
+  display: block;
+  padding: 8px;
+}
+.OpenPopup svg {
+  width: 32px;
 }
 
 /*# sourceMappingURL=rewards.css.map*/
