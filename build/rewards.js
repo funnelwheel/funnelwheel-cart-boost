@@ -2982,7 +2982,9 @@ __webpack_require__.r(__webpack_exports__);
 function RulesList() {
   const {
     reward,
-    updateReward
+    updateReward,
+    rewards,
+    setRewards
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
 
   function addRule() {
@@ -3157,8 +3159,18 @@ function RulesList() {
     disabled: reward.enabled,
     className: "RulesList__publish",
     type: "button",
-    onClick: () => updateReward({ ...reward,
-      enabled: true
+    onClick: () => setRewards({ ...rewards,
+      rewards: rewards.rewards.map(_reward => {
+        if (_reward.id === reward.id) {
+          return { ...reward,
+            enabled: true
+          };
+        }
+
+        return { ..._reward,
+          enabled: false
+        };
+      })
     })
   }, "Publish")));
 }

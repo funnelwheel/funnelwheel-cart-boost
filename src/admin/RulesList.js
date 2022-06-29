@@ -10,7 +10,7 @@ import { RewardsAdminContext } from "../context";
 import { ReactComponent as TrashIcon } from "./../svg/trash.svg";
 
 export default function RulesList() {
-	const { reward, updateReward } = useContext(RewardsAdminContext);
+	const { reward, updateReward, rewards, setRewards } = useContext(RewardsAdminContext);
 
 	function addRule() {
 		updateReward({
@@ -256,9 +256,24 @@ export default function RulesList() {
 					disabled={reward.enabled}
 					className="RulesList__publish"
 					type="button"
-					onClick={() => updateReward({
-						...reward,
-						enabled: true,
+					onClick={() => setRewards({
+						...rewards,
+						rewards: rewards.rewards.map((_reward) => {
+							if (
+								_reward.id ===
+								reward.id
+							) {
+								return {
+									...reward,
+									enabled: true,
+								};
+							}
+
+							return {
+								..._reward,
+								enabled: false,
+							};
+						})
 					})}
 				>
 					Publish
