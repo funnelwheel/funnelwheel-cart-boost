@@ -53,7 +53,6 @@ final class WooCommerce_GrowCart {
 	 */
 	private function includes() {
 		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/functions.php';
-		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/template-functions.php';
 		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-ajax.php';
 		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-rewards.php';
 		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-settings.php';
