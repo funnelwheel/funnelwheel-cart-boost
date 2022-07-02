@@ -45,6 +45,11 @@ class WooCommerce_Growcart_Settings {
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
+	/**
+	 * Initialize the list of available settings fields.
+	 *
+	 * @return void
+	 */
 	protected function init_settings() {
 		$this->settings = [
 			'rewards' => [
@@ -96,7 +101,7 @@ class WooCommerce_Growcart_Settings {
 	}
 
 	/**
-	 * Options page callback
+	 * Options page callback.
 	 */
 	public function menu_page_html() {
 		$this->init_settings();
@@ -173,7 +178,7 @@ class WooCommerce_Growcart_Settings {
 	}
 
 	/**
-	 * Undocumented function
+	 * Output rewards input field.
 	 *
 	 * @param [type] $option
 	 * @param [type] $attributes

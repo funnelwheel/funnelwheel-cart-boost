@@ -12,6 +12,9 @@ defined( 'ABSPATH' ) || exit;
  * @var [type]
  */
 class WooCommerce_GrowCart_Ajax {
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'wp_ajax_growcart_get_rewards', [ $this, 'get_rewards' ] );
 		add_action( 'wp_ajax_nopriv_growcart_get_rewards', [ $this, 'get_rewards' ] );
@@ -27,7 +30,7 @@ class WooCommerce_GrowCart_Ajax {
 	}
 
 	/**
-	 * Undocumented function
+	 * Get cart information required to display popup on frontend.
 	 *
 	 * @return void
 	 */
@@ -139,6 +142,11 @@ class WooCommerce_GrowCart_Ajax {
 		);
 	}
 
+	/**
+	 * Update cart item via sending an AJAX request.
+	 *
+	 * @return void
+	 */
 	public function update_cart_item() {
 		$cart_key = sanitize_text_field( $_POST['cart_key'] );
 		$quantity = (int) $_POST['quantity'];
@@ -156,14 +164,29 @@ class WooCommerce_GrowCart_Ajax {
 		wp_send_json( $response );
 	}
 
+	/**
+	 * Get suggested products based on the current cart items.
+	 *
+	 * @return void
+	 */
 	public function get_suggested_products() {
 		wp_send_json( woocommerce_growcart()->rewards->get_suggested_products() );
 	}
 
+	/**
+	 * Get the list of available rewards.
+	 *
+	 * @return void
+	 */
 	public function get_rewards() {
 		wp_send_json( woocommerce_growcart()->rewards->get_rewards() );
 	}
 
+	/**
+	 * Update rewards by sending an AJAX request.
+	 *
+	 * @return void
+	 */
 	public function update_admin_rewards() {
 		check_ajax_referer( 'woocommerce_growcart-options', 'security' );
 
@@ -175,6 +198,11 @@ class WooCommerce_GrowCart_Ajax {
 		wp_send_json( $_POST['rewards'] );
 	}
 
+	/**
+	 * Add products to the cart by sending an AJAX request.
+	 *
+	 * @return void
+	 */
 	public function add_to_cart() {
 		if ( ! isset( $_POST['action'] ) || 'growcart_add_to_cart' !== $_POST['action'] || ! isset( $_POST['add-to-cart'] ) ) {
 			die();

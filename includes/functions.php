@@ -4,6 +4,11 @@ namespace Upnrunn;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Get a list of cart items.
+ *
+ * @return void
+ */
 function get_cart_items() {
 	if ( WC()->cart->is_empty() ) {
 		return [];
@@ -30,6 +35,11 @@ function get_cart_items() {
 	return $items;
 }
 
+/**
+ * Get a list of cart coupons.
+ *
+ * @return void
+ */
 function get_cart_coupons() {
 	$coupons = [];
 
@@ -57,6 +67,12 @@ function get_cart_coupons() {
 	return $coupons;
 }
 
+/**
+ * Get SVG icon
+ *
+ * @param string $name
+ * @return void
+ */
 function get_icon( $name = '' ) {
 	switch ( $name ) {
 		case 'truck':
@@ -81,7 +97,7 @@ function get_icon( $name = '' ) {
 }
 
 /**
- * Undocumented function
+ * Get a list of reward types.
  *
  * @return void
  */
@@ -107,7 +123,7 @@ function get_reward_types() {
 }
 
 /**
- * Undocumented function
+ * Get a list of reward rules.
  *
  * @return void
  */
@@ -120,6 +136,120 @@ function get_reward_rules() {
 		[
 			'label' => __( 'Minimum cart amount', 'woocommerce-grow-cart' ),
 			'value' => 'minimum_cart_amount',
+		],
+	];
+}
+
+/**
+ * Get a list of available rewards when activating the plugin for the first time.
+ *
+ * @return void
+ */
+function get_default_rewards() {
+	return [
+		[
+			'name'                       => 'Cart threshold incentives (by quantity)',
+			'type'                       => 'minimum_cart_quantity',
+			'value'                      => 0,
+			'minimum_cart_quantity'      => 0,
+			'minimum_cart_amount'        => 0,
+			'rules'                      => [
+				[
+					'id'                    => '3e6f0d87-bbd1-49f4-a0c0-7f58b665c12a',
+					'name'                  => 'Rule 1',
+					'type'                  => 'percent',
+					'value'                 => 1,
+					'minimum_cart_quantity' => 9999,
+					'minimum_cart_amount'   => 9999,
+					'hint'                  => '**Add** {{quantity}} more to get {{name}}',
+					'enabled'               => true,
+				],
+				[
+					'id'                    => 'bfdfa1cb-4b94-4133-a4e4-f4d98fe7f545',
+					'name'                  => 'Rule 2',
+					'type'                  => 'percent',
+					'value'                 => 1,
+					'minimum_cart_quantity' => 9999,
+					'minimum_cart_amount'   => 9999,
+					'hint'                  => '**Add** {{quantity}} more to get {{name}}',
+					'enabled'               => true,
+				],
+			],
+			'enabled'                    => false,
+			'display_suggested_products' => true,
+			'display_coupon'             => true,
+			'styles'                     => [
+				'headerTextColor'         => '#ffffff',
+				'headerBackground'        => '#343a40',
+				'fontSize'                => '14px',
+				'spacing'                 => [
+					'top'    => '24px',
+					'right'  => '24px',
+					'bottom' => '24px',
+					'left'   => '24px',
+				],
+				'textcolor'               => '#ffffff',
+				'backgroundColor'         => '#343a40',
+				'progressColor'           => '#198754',
+				'progressBackgroundColor' => '#495057',
+				'iconColor'               => '#ffffff',
+				'iconBackground'          => '#495057',
+				'activeIconColor'         => '#ffffff',
+				'activeIconBackground'    => '#198754',
+			],
+			'id'                         => '4d36c7fa-93ce-4384-aa86-b6575b85f9ba',
+		],
+		[
+			'name'                       => 'Cart threshold incentives (by amount)',
+			'type'                       => 'minimum_cart_amount',
+			'value'                      => 0,
+			'minimum_cart_quantity'      => 0,
+			'minimum_cart_amount'        => 0,
+			'rules'                      => [
+				[
+					'id'                    => 'fc6c8709-8434-4395-96ba-73587910c4db',
+					'name'                  => 'Rule 1',
+					'type'                  => 'percent',
+					'value'                 => 1,
+					'minimum_cart_quantity' => 9999,
+					'minimum_cart_amount'   => 9999,
+					'hint'                  => '**Spend** {{amount}}{{currency}} more to get {{name}}',
+					'enabled'               => true,
+				],
+				[
+					'id'                    => '5e357180-9180-4c4b-b575-e5305b840a2f',
+					'name'                  => 'Rule 2',
+					'type'                  => 'percent',
+					'value'                 => 1,
+					'minimum_cart_quantity' => 9999,
+					'minimum_cart_amount'   => 9999,
+					'hint'                  => '**Spend** {{amount}}{{currency}} more to get {{name}}',
+					'enabled'               => true,
+				],
+			],
+			'enabled'                    => false,
+			'display_suggested_products' => true,
+			'display_coupon'             => true,
+			'styles'                     => [
+				'headerTextColor'         => '#ffffff',
+				'headerBackground'        => '#343a40',
+				'fontSize'                => '14px',
+				'spacing'                 => [
+					'top'    => '24px',
+					'right'  => '24px',
+					'bottom' => '24px',
+					'left'   => '24px',
+				],
+				'textcolor'               => '#ffffff',
+				'backgroundColor'         => '#343a40',
+				'progressColor'           => '#198754',
+				'progressBackgroundColor' => '#495057',
+				'iconColor'               => '#ffffff',
+				'iconBackground'          => '#495057',
+				'activeIconColor'         => '#ffffff',
+				'activeIconBackground'    => '#198754',
+			],
+			'id'                         => '466641db-218d-4ab7-8636-96e9267271a5',
 		],
 	];
 }

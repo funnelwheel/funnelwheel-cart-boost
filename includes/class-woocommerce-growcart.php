@@ -184,7 +184,7 @@ final class WooCommerce_GrowCart {
 	}
 
 	/**
-	 * [growcart_root description]
+	 * Output popup root required by ReactJS.
 	 * @return [type] [description]
 	 */
 	public function growcart_root() {
@@ -196,7 +196,7 @@ final class WooCommerce_GrowCart {
 	}
 
 	/**
-	 * Undocumented function
+	 * Coditionally display growcart.
 	 *
 	 * @return void
 	 */

@@ -11,123 +11,26 @@ defined( 'ABSPATH' ) || exit;
  * @var [type]
  */
 class WooCommerce_GrowCart_Rewards {
+	/**
+	 * Store list of gift card IDs.
+	 *
+	 * @var array
+	 */
 	private static $gift_cart_ids = [];
 
 
 	/**
-	 * Undocumented function
+	 * Get a list of available rewards when activating the plugin for the first time.
 	 *
 	 * @return void
 	 */
 	public function get_default_rewards() {
-		return [
-			[
-				'name'                       => 'Cart threshold incentives (by quantity)',
-				'type'                       => 'minimum_cart_quantity',
-				'value'                      => 0,
-				'minimum_cart_quantity'      => 0,
-				'minimum_cart_amount'        => 0,
-				'rules'                      => [
-					[
-						'id'                    => '3e6f0d87-bbd1-49f4-a0c0-7f58b665c12a',
-						'name'                  => 'Rule 1',
-						'type'                  => 'percent',
-						'value'                 => 1,
-						'minimum_cart_quantity' => 9999,
-						'minimum_cart_amount'   => 9999,
-						'hint'                  => '**Add** {{quantity}} more to get {{name}}',
-						'enabled'               => true,
-					],
-					[
-						'id'                    => 'bfdfa1cb-4b94-4133-a4e4-f4d98fe7f545',
-						'name'                  => 'Rule 2',
-						'type'                  => 'percent',
-						'value'                 => 1,
-						'minimum_cart_quantity' => 9999,
-						'minimum_cart_amount'   => 9999,
-						'hint'                  => '**Add** {{quantity}} more to get {{name}}',
-						'enabled'               => true,
-					],
-				],
-				'enabled'                    => false,
-				'display_suggested_products' => true,
-				'display_coupon'             => true,
-				'styles'                     => [
-					'headerTextColor'         => '#ffffff',
-					'headerBackground'        => '#343a40',
-					'fontSize'                => '14px',
-					'spacing'                 => [
-						'top'    => '24px',
-						'right'  => '24px',
-						'bottom' => '24px',
-						'left'   => '24px',
-					],
-					'textcolor'               => '#ffffff',
-					'backgroundColor'         => '#343a40',
-					'progressColor'           => '#198754',
-					'progressBackgroundColor' => '#495057',
-					'iconColor'               => '#ffffff',
-					'iconBackground'          => '#495057',
-					'activeIconColor'         => '#ffffff',
-					'activeIconBackground'    => '#198754',
-				],
-				'id'                         => '4d36c7fa-93ce-4384-aa86-b6575b85f9ba',
-			],
-			[
-				'name'                       => 'Cart threshold incentives (by amount)',
-				'type'                       => 'minimum_cart_amount',
-				'value'                      => 0,
-				'minimum_cart_quantity'      => 0,
-				'minimum_cart_amount'        => 0,
-				'rules'                      => [
-					[
-						'id'                    => 'fc6c8709-8434-4395-96ba-73587910c4db',
-						'name'                  => 'Rule 1',
-						'type'                  => 'percent',
-						'value'                 => 1,
-						'minimum_cart_quantity' => 9999,
-						'minimum_cart_amount'   => 9999,
-						'hint'                  => '**Spend** {{amount}}{{currency}} more to get {{name}}',
-						'enabled'               => true,
-					],
-					[
-						'id'                    => '5e357180-9180-4c4b-b575-e5305b840a2f',
-						'name'                  => 'Rule 2',
-						'type'                  => 'percent',
-						'value'                 => 1,
-						'minimum_cart_quantity' => 9999,
-						'minimum_cart_amount'   => 9999,
-						'hint'                  => '**Spend** {{amount}}{{currency}} more to get {{name}}',
-						'enabled'               => true,
-					],
-				],
-				'enabled'                    => false,
-				'display_suggested_products' => true,
-				'display_coupon'             => true,
-				'styles'                     => [
-					'headerTextColor'         => '#ffffff',
-					'headerBackground'        => '#343a40',
-					'fontSize'                => '14px',
-					'spacing'                 => [
-						'top'    => '24px',
-						'right'  => '24px',
-						'bottom' => '24px',
-						'left'   => '24px',
-					],
-					'textcolor'               => '#ffffff',
-					'backgroundColor'         => '#343a40',
-					'progressColor'           => '#198754',
-					'progressBackgroundColor' => '#495057',
-					'iconColor'               => '#ffffff',
-					'iconBackground'          => '#495057',
-					'activeIconColor'         => '#ffffff',
-					'activeIconBackground'    => '#198754',
-				],
-				'id'                         => '466641db-218d-4ab7-8636-96e9267271a5',
-			],
-		];
+		return get_default_rewards();
 	}
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'woocommerce_before_calculate_totals', [ $this, 'gift_checkout_process' ] );
 		add_filter( 'woocommerce_cart_item_quantity', [ $this, 'change_gift_qty_input_in_cart' ], 10, 2 );
@@ -140,7 +43,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Conditionally set gift cart items' price to zero or remove expired gift cart items from the cart.
 	 *
 	 * @param [type] $cart
 	 * @return void
@@ -200,7 +103,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Conditionally disable gift cart item quantify input on the cart page.
 	 *
 	 * @param [type] $product_quantity
 	 * @param [type] $cart_item_key
@@ -221,7 +124,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Add 'Gift' label for product name in cart.
+	 * Add a gift label to the product name in the cart.
 	 */
 	public static function add_gift_label_in_cart( $product_name, $cart_item, $cart_item_key ) {
 		// If there aren't valid gifts return initial name.
@@ -416,7 +319,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Find an active reward and return a list of available reward rules.
 	 *
 	 * @return void
 	 */
@@ -456,7 +359,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Get rewards.
+	 * Get current rewards, unlocked rewards, progress, hint, and other information required by the frontend popup.
 	 *
 	 * @return void
 	 */
@@ -526,7 +429,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Filter available rewards by cart subtotal.
 	 *
 	 * @param array $rewards
 	 * @param [type] $cart_subtotal
@@ -649,7 +552,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Get reward string.
+	 * Get a string that shows how much you are saving from rewards.
 	 *
 	 * @param array $current_rewards
 	 * @return void
@@ -776,7 +679,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Sort rewards by minimum cart quantity.
 	 *
 	 * @param [type] $a
 	 * @param [type] $b
@@ -791,7 +694,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Sort rewards by minimum cart amount.
 	 *
 	 * @param [type] $a
 	 * @param [type] $b
@@ -806,7 +709,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Filter and get active reward rules.
 	 *
 	 * @return void
 	 */
@@ -835,7 +738,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Get active reward.
 	 *
 	 * @return void
 	 */
@@ -859,7 +762,7 @@ class WooCommerce_GrowCart_Rewards {
 	}
 
 	/**
-	 * Undocumented function
+	 * Get active reward rules.
 	 *
 	 * @param array $rules
 	 * @return void
