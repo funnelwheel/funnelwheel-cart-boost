@@ -74,6 +74,7 @@ final class WooCommerce_GrowCart {
 	 * @return [type] [description]
 	 */
 	private function hooks() {
+		add_action( 'init', [$this, 'plugin_updater'] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'wp_footer', [ $this, 'growcart_root' ] );
 	}
@@ -223,5 +224,32 @@ final class WooCommerce_GrowCart {
 		if ( ! defined( $name ) ) {
 			define( $name, $value );
 		}
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	public function plugin_updater() {
+		// To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
+		$doing_cron = defined( 'DOING_CRON' ) && DOING_CRON;
+		if ( ! current_user_can( 'manage_options' ) && ! $doing_cron ) {
+			return;
+		}
+
+		// Retrieve our license key from the DB
+		$license_key = trim( get_option( 'edd_growcart_license_key' ) );
+
+		// Setup the updater
+		$edd_updater = new EDD_SL_Plugin_Updater( WOOCOMMERCE_GROWCART_STORE_URL, WOOCOMMERCE_GROWCART_FILE,
+			array(
+				'version' => '1.0',                    // current version number
+				'license' => $license_key,             // license key (used get_option above to retrieve from DB)
+				'item_id' => WOOCOMMERCE_GROWCART_STORE_ITEM_ID,       // ID of the product
+				'author'  => 'Easy Digital Downloads', // author of this plugin
+				'beta'    => false,
+			)
+		);
 	}
 }

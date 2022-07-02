@@ -15,8 +15,15 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-if ( ! defined( 'WOOCOMMERCE_GROWCART_FILE' ) ) {
-	define( 'WOOCOMMERCE_GROWCART_FILE', __FILE__ );
+define( 'WOOCOMMERCE_GROWCART_FILE', __FILE__ );
+define( 'WOOCOMMERCE_GROWCART_STORE_URL', 'https://wpdrift.com' );
+define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_ID', 123 );
+define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_NAME', __('GrowCart for WooCommerce') );
+define( 'WOOCOMMERCE_GROWCART_LICENSE_PAGE', 'growcart-license' );
+
+// Load custom updater.
+if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+	include dirname( __FILE__ ) . '/EDD_SL_Plugin_Updater.php';
 }
 
 // Include the main Container class.
