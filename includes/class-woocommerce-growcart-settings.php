@@ -314,4 +314,18 @@ class WooCommerce_Growcart_Settings {
 			$asset_file['version']
 		);
 	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param [type] $new
+	 * @return void
+	 */
+	public function sanitize_license($new) {
+		$old = get_option('edd_growcart_license_key');
+		if ($old && $old != $new) {
+			delete_option('edd_growcart_license_status'); // new license has been entered, so must reactivate
+		}
+		return $new;
+	}
 }
