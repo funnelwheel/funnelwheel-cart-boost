@@ -40,6 +40,18 @@ class WooCommerce_Growcart_Settings {
 	 * Start up.
 	 */
 	public function __construct() {
+		add_action('init', [$this, 'init']);
+		add_action('admin_init', [$this, 'register_settings']);
+		add_action('admin_menu', array($this, 'add_plugin_pages'));
+		add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
+	}
+
+	/**
+	 * Initialize.
+	 *
+	 * @return void
+	 */
+	public function init() {
 		$this->settings_group = 'woocommerce_growcart';
 		$this->settings = [
 			'rewards' => [
@@ -55,10 +67,6 @@ class WooCommerce_Growcart_Settings {
 				],
 			],
 		];
-
-		add_action('admin_init', [$this, 'register_settings']);
-		add_action('admin_menu', array($this, 'add_plugin_pages'));
-		add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
 	}
 
 	/**
@@ -171,10 +179,10 @@ class WooCommerce_Growcart_Settings {
 								<td>
 									<?php if ($status !== false && $status == 'valid') { ?>
 										<span style="color:green;"><?php _e('active'); ?></span>
-										<?php wp_nonce_field('edd_sample_nonce', 'edd_sample_nonce'); ?>
+										<?php wp_nonce_field('edd_growcart_license_nonce', 'edd_growcart_license_nonce'); ?>
 										<input type="submit" class="button-secondary" name="edd_license_deactivate" value="<?php _e('Deactivate License'); ?>" />
 									<?php } else {
-										wp_nonce_field('edd_sample_nonce', 'edd_sample_nonce'); ?>
+										wp_nonce_field('edd_growcart_license_nonce', 'edd_growcart_license_nonce'); ?>
 										<input type="submit" class="button-secondary" name="edd_license_activate" value="<?php _e('Activate License'); ?>" />
 									<?php } ?>
 								</td>
