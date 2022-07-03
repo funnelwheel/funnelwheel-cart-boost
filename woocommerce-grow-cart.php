@@ -23,7 +23,7 @@ define( 'WOOCOMMERCE_GROWCART_LICENSE_PAGE', 'growcart-license' );
 
 // Load custom updater.
 if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
-	include dirname( __FILE__ ) . '/EDD_SL_Plugin_Updater.php';
+	include dirname( WOOCOMMERCE_GROWCART_FILE ) . '/includes/EDD_SL_Plugin_Updater.php';
 }
 
 // Include the main Container class.

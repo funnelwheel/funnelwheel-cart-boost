@@ -5,6 +5,7 @@ namespace Upnrunn;
 defined( 'ABSPATH' ) || exit;
 
 use WC_AJAX;
+use EDD_SL_Plugin_Updater;
 
 /**
  * WooCommerce_GrowCart class.
@@ -227,7 +228,7 @@ final class WooCommerce_GrowCart {
 	}
 
 	/**
-	 * Undocumented function
+	 * Retrieve our license key from the DB and setup the updater.
 	 *
 	 * @return void
 	 */
