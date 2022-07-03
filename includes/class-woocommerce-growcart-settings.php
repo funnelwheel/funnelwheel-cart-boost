@@ -206,7 +206,7 @@ class WooCommerce_Growcart_Settings {
 			__('GrowCart License', 'textdomain'),
 			__('License', 'textdomain'),
 			'manage_options',
-			'books-shortcode-ref',
+			WOOCOMMERCE_GROWCART_LICENSE_PAGE,
 			array($this, 'license_page_html'),
 		);
 	}
