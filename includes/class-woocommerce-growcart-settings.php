@@ -172,7 +172,7 @@ class WooCommerce_Growcart_Settings {
 	}
 
 	/**
-	 * Undocumented function
+	 * Deactivating a license key.
 	 *
 	 * @return void
 	 */
@@ -228,7 +228,7 @@ class WooCommerce_Growcart_Settings {
 	}
 
 	/**
-	 * Add admin notices.
+	 * Activation errors.
 	 *
 	 * @return void
 	 */
