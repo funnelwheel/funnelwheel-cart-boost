@@ -40,17 +40,6 @@ class WooCommerce_Growcart_Settings {
 	 */
 	public function __construct() {
 		$this->settings_group = 'woocommerce_growcart';
-		add_action( 'admin_init', [ $this, 'register_settings' ] );
-		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-	}
-
-	/**
-	 * Initialize the list of available settings fields.
-	 *
-	 * @return void
-	 */
-	protected function init_settings() {
 		$this->settings = [
 			'rewards' => [
 				__( 'Rewards', 'woocommerce-grow-cart' ),
@@ -65,14 +54,16 @@ class WooCommerce_Growcart_Settings {
 				],
 			],
 		];
+		
+		add_action( 'admin_init', [ $this, 'register_settings' ] );
+		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
 	/**
 	 * Register and add settings
 	 */
 	public function register_settings() {
-		$this->init_settings();
-
 		foreach ( $this->settings as $section ) {
 			foreach ( $section[1] as $option ) {
 				if ( isset( $option['std'] ) ) {
@@ -104,7 +95,6 @@ class WooCommerce_Growcart_Settings {
 	 * Options page callback.
 	 */
 	public function menu_page_html() {
-		$this->init_settings();
 		?>
 		<div class="wrap woocommerce-growcart-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
