@@ -154,7 +154,7 @@ class WooCommerce_Growcart_Settings {
 
 			// Check if anything passed on a message constituting a failure
 			if (!empty($message)) {
-				$base_url = admin_url('plugins.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE);
+				$base_url = admin_url('admin.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE);
 				$redirect = add_query_arg(array('sl_activation' => 'false', 'message' => urlencode($message)), $base_url);
 
 				wp_redirect($redirect);
@@ -195,14 +195,14 @@ class WooCommerce_Growcart_Settings {
 			__('GrowCart Settings', 'woocommerce-grow-cart'),
 			__('GrowCart', 'woocommerce-grow-cart'),
 			'manage_options',
-			'wc-growcart',
+			'growcart',
 			array($this, 'menu_page_html'),
 			'dashicons-cart',
 			58
 		);
 
 		add_submenu_page(
-			'wc-growcart',
+			'growcart',
 			__('GrowCart License', 'textdomain'),
 			__('License', 'textdomain'),
 			'manage_options',
