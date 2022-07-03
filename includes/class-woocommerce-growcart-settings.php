@@ -73,6 +73,8 @@ class WooCommerce_Growcart_Settings {
 				register_setting($this->settings_group, $option['name']);
 			}
 		}
+
+		register_setting('edd_growcart_license', 'edd_growcart_license_key', [$this, 'sanitize_license']);
 	}
 
 	/**
@@ -105,7 +107,7 @@ class WooCommerce_Growcart_Settings {
 	 * Options page callback.
 	 */
 	public function menu_page_html() {
-		?>
+?>
 		<div class="wrap woocommerce-growcart-settings-wrap">
 			<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 			<?php settings_fields($this->settings_group); ?>
@@ -143,12 +145,12 @@ class WooCommerce_Growcart_Settings {
 	public function license_page_html() {
 		$license = get_option('edd_growcart_license_key');
 		$status  = get_option('edd_growcart_license_status');
-		?>
+	?>
 		<div class="wrap">
 			<h2><?php _e('Plugin License Options'); ?></h2>
 			<form method="post" action="options.php">
 
-				<?php settings_fields('edd_sample_license'); ?>
+				<?php settings_fields('edd_growcart_license'); ?>
 
 				<table class="form-table">
 					<tbody>
@@ -239,8 +241,8 @@ class WooCommerce_Growcart_Settings {
 	public function input_rewards($option, $attributes, $value, $ignored_placeholder) {
 		?>
 			<input id="setting-<?php echo esc_attr($option['name']); ?>" type="hidden" name="<?php echo esc_attr($option['name']); ?>" value="<?php echo esc_attr($value); ?>" <?php
-																																														echo implode(' ', $attributes); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-																																														?> />
+																																												echo implode(' ', $attributes); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+																																												?> />
 	<?php
 		echo '<div id="rewards-screen"></div>';
 	}
