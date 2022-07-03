@@ -42,6 +42,7 @@ class WooCommerce_Growcart_Settings {
 	public function __construct() {
 		add_action('init', [$this, 'init']);
 		add_action('admin_init', [$this, 'activate_license']);
+		add_action('admin_notices', [$this, 'admin_notices']);
 		add_action('admin_init', [$this, 'register_settings']);
 		add_action('admin_menu', array($this, 'add_plugin_pages'));
 		add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
@@ -164,8 +165,35 @@ class WooCommerce_Growcart_Settings {
 			// $license_data->license will be either "valid" or "invalid"
 
 			update_option('edd_growcart_license_status', $license_data->license);
-			wp_redirect(admin_url('plugins.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE));
+			wp_redirect(admin_url('admin.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE));
 			exit();
+		}
+	}
+
+	/**
+	 * Add admin notices.
+	 *
+	 * @return void
+	 */
+	public function admin_notices() {
+		if (isset($_GET['sl_activation']) && !empty($_GET['message'])) {
+
+			switch ($_GET['sl_activation']) {
+
+				case 'false':
+					$message = urldecode($_GET['message']);
+?>
+					<div class="error">
+						<p><?php echo $message; ?></p>
+					</div>
+		<?php
+					break;
+
+				case 'true':
+				default:
+					// Developers can put a custom success message here for when activation is successful if they way.
+					break;
+			}
 		}
 	}
 
@@ -215,7 +243,7 @@ class WooCommerce_Growcart_Settings {
 	 * Options page callback.
 	 */
 	public function menu_page_html() {
-?>
+		?>
 		<div class="wrap woocommerce-growcart-settings-wrap">
 			<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 			<?php settings_fields($this->settings_group); ?>
