@@ -1,0 +1,234 @@
+# Copyright (C) 2022 upnrunn™ technologies
+# This file is distributed under the same license as the GrowCart for WooCommerce package.
+msgid ""
+msgstr ""
+"Project-Id-Version: GrowCart for WooCommerce 0.1.0\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/woocommerce-grow-cart\n"
+"POT-Creation-Date: 2022-07-05 09:33:11+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: includes/EDD_SL_Plugin_Updater.php:222
+#. translators: the plugin name.
+msgid "There is a new version of %1$s available."
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:228
+msgid "Contact your network administrator to install the update."
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:233
+#. translators: 1. opening anchor tag, do not translate 2. the new plugin
+#. version 3. closing anchor tag, do not translate.
+msgid "%1$sView version %2$s details%3$s."
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:241
+msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:252
+msgid "Update now."
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:481
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:481
+msgid "Error"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-admin.php:93
+msgid ""
+"You need a valid license to continue using GrowCart, please <a "
+"href=\"%s\">activate</a> your license."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-ajax.php:123
+msgid "Your Cart (%d)"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-ajax.php:155
+msgid "Something went wrong"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:141
+msgid "Free Gift"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:477
+msgid "**Add** {{quantity}} more products to get {{name}}"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:481
+msgid "**Spend** {{amount}} more to get {{name}}"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:515
+msgid "You've unlocked your %s!"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:518
+msgid "Add %d more products to unlock"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:576
+#: includes/functions.php:107
+msgid "Free Shipping"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:592
+msgid "<span>You are saving %s</span>"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:617
+msgid "Frequently bought together"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:627
+msgid "Popular products"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-rewards.php:643
+msgid "Products you may like"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:61
+msgid "Rewards"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:114
+#: includes/class-woocommerce-growcart-settings.php:152
+#: includes/class-woocommerce-growcart-settings.php:221
+msgid "An error occurred, please try again."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:124
+msgid "Your license key expired on %s."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:131
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:135
+msgid "Invalid license."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:140
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:144
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:148
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:300
+msgid "GrowCart Settings"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:301
+msgid "GrowCart"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:311
+msgid "GrowCart License"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:312
+msgid "License"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:363
+msgid "Plugin License Options"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:372
+msgid "License Key"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:376
+msgid "Enter your license key"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:382
+#: includes/class-woocommerce-growcart-settings.php:393
+msgid "Activate License"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:386
+msgid "active"
+msgstr ""
+
+#: includes/class-woocommerce-growcart-settings.php:388
+msgid "Deactivate License"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "upnrunn™ technologies"
+msgstr ""
+
+#: includes/functions.php:56
+msgid "Free shipping coupon"
+msgstr ""
+
+#: includes/functions.php:111
+msgid "Percentage discount"
+msgstr ""
+
+#: includes/functions.php:115
+msgid "Fixed cart discount"
+msgstr ""
+
+#: includes/functions.php:119
+msgid "Gift Card"
+msgstr ""
+
+#: includes/functions.php:133
+msgid "Minimum cart quantity"
+msgstr ""
+
+#: includes/functions.php:137
+msgid "Minimum cart amount"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "GrowCart for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wpgrowcart.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"GrowCart for WooCommerce delivers mobile-first, CRO-optimized site "
+"experiences that get you more customers, that spend more and subscribe "
+"longer."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://upnrunn.com/"
+msgstr ""

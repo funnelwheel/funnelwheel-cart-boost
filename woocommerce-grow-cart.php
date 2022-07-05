@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'WOOCOMMERCE_GROWCART_FILE', __FILE__ );
 define( 'WOOCOMMERCE_GROWCART_STORE_URL', 'https://wpdrift.com' );
 define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_ID', 304 );
-define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_NAME', __('GrowCart for WooCommerce') );
+define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_NAME', __('GrowCart for WooCommerce', 'woocommerce-grow-cart') );
 define( 'WOOCOMMERCE_GROWCART_LICENSE_PAGE', 'growcart-license' );
 
 // Load custom updater.
