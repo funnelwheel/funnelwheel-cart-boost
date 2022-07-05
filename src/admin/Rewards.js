@@ -26,10 +26,16 @@ export default function Rewards() {
 			...rewards,
 			rewards: rewards.rewards.map((_reward) => {
 				if (_reward.id === reward.id) {
-					return reward;
+					return {
+						...reward,
+						enabled: false
+					};
 				}
 
-				return _reward;
+				return {
+					..._reward,
+					enabled: false
+				};
 			})
 		});
 	}
