@@ -42,6 +42,11 @@ class WooCommerce_Growcart_Admin {
 	 * @return void
 	 */
 	public function check_license() {
+		$license_status_check = get_transient( 'edd_growcart_license_status_check' );
+		if ( $license_status_check ) {
+			return;
+		}
+
 		$store_url = WOOCOMMERCE_GROWCART_STORE_URL;
 		$item_name = WOOCOMMERCE_GROWCART_STORE_ITEM_NAME;
 		$license   = trim( get_option( 'edd_growcart_license_key' ) );
@@ -68,6 +73,7 @@ class WooCommerce_Growcart_Admin {
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+		set_transient( 'edd_growcart_license_status_check', true, HOUR_IN_SECONDS );
 		update_option( 'edd_growcart_license_status', $license_data->license );
 	}
 }
