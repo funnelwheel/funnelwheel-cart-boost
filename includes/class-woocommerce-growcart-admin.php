@@ -84,6 +84,11 @@ class WooCommerce_Growcart_Admin {
 	 * @return void
 	 */
 	public function admin_notices() {
+		$license_status = get_option( 'edd_growcart_license_status' );
+		if ( 'valid' === $license_status ) {
+			return;
+		}
+
 		$class   = 'notice notice-error';
 		$message = sprintf( __( 'You need a valid license to continue using GrowCart, please <a href="%s">activate</a> your license.', 'sample-text-domain' ), admin_url( 'admin.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE ) );
 
