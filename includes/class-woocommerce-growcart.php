@@ -203,6 +203,11 @@ final class WooCommerce_GrowCart {
 	 * @return void
 	 */
 	public function display_growcart() {
+		$license_status = get_option( 'edd_growcart_license_status' );
+		if ( 'invalid' === $license_status ) {
+			return false;
+		}
+
 		$active_reward = woocommerce_growcart()->rewards->get_active_reward();
 		if ( ! $active_reward ) {
 			return false;
