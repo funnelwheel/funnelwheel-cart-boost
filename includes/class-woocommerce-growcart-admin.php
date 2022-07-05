@@ -34,6 +34,7 @@ class WooCommerce_Growcart_Admin {
 	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'check_license' ] );
+		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
 	}
 
 	/**
@@ -75,5 +76,17 @@ class WooCommerce_Growcart_Admin {
 
 		set_transient( 'edd_growcart_license_status_check', true, HOUR_IN_SECONDS );
 		update_option( 'edd_growcart_license_status', $license_data->license );
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	public function admin_notices() {
+		$class   = 'notice notice-error';
+		$message = sprintf( __( 'You need a valid license to continue using GrowCart, please <a href="%s">activate</a> your license.', 'sample-text-domain' ), admin_url( 'admin.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE ) );
+
+		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), $message );
 	}
 }
