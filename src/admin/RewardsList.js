@@ -24,17 +24,36 @@ export default function RewardsList() {
 		setRewards,
 	} = useContext(RewardsAdminContext);
 
+	const tHead = <thead>
+		<tr>
+			<th scope="col">{status}</th>
+			<th scope="col">{name}</th>
+			<th scope="col">{rules}</th>
+			<th scope="col">{actions}</th>
+		</tr>
+	</thead>;
+
+	const tFoot = <tfoot>
+		<tr>
+			<td colSpan="5">
+				<button
+					type="button"
+					className="RewardsList__add"
+					onClick={() => setRewards({
+						...rewards,
+						activeScreen: "add",
+					})}
+				>
+					{addReward}
+				</button>
+			</td>
+		</tr>
+	</tfoot>
+
 	return (
 		<div className="RewardsList">
 			<table className="growcart-rewards">
-				<thead>
-					<tr>
-						<th scope="col">{status}</th>
-						<th scope="col">{name}</th>
-						<th scope="col">{rules}</th>
-						<th scope="col">{actions}</th>
-					</tr>
-				</thead>
+				{tHead}
 				{rewards.rewards && rewards.rewards.length ? (
 					<tbody>
 						{rewards.rewards.map((reward) => {
@@ -129,22 +148,7 @@ export default function RewardsList() {
 						})}
 					</tbody>
 				) : null}
-				<tfoot>
-					<tr>
-						<td colSpan="5">
-							<button
-								type="button"
-								className="RewardsList__add"
-								onClick={() => setRewards({
-									...rewards,
-									activeScreen: "add",
-								})}
-							>
-								{addReward}
-							</button>
-						</td>
-					</tr>
-				</tfoot>
+				{tFoot}
 			</table>
 		</div>
 	);
