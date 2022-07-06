@@ -256,7 +256,7 @@ final class WooCommerce_GrowCart {
 				'version' => '1.0',                    // current version number
 				'license' => $license_key,             // license key (used get_option above to retrieve from DB)
 				'item_id' => WOOCOMMERCE_GROWCART_STORE_ITEM_ID,       // ID of the product
-				'author'  => __( 'upnrunn™ technologies', 'woocommerce-grow-cart' ), // author of this plugin
+				'author'  => __( 'upnrunn™ technologies', 'woocommerce-growcart' ), // author of this plugin
 				'beta'    => false,
 			)
 		);

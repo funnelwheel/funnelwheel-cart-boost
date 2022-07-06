@@ -98,7 +98,7 @@ export default function Styles() {
 				<h4 className="Styles__block-title">
 					{__("Rewards")}
 
-					<Tooltip text={__("Revert")} position="top" delay={1}>
+					<Tooltip text={__("Revert", "woocommerce-growcart")} position="top" delay={1}>
 						<button
 							className="Styles__redo"
 							type="button"

@@ -58,7 +58,7 @@ class WooCommerce_Growcart_Settings {
 		$this->settings_group = 'woocommerce_growcart';
 		$this->settings       = [
 			'rewards' => [
-				__( 'Rewards', 'woocommerce-grow-cart' ),
+				__( 'Rewards', 'woocommerce-growcart' ),
 				[
 					[
 						'name'       => 'woocommerce_growcart_rewards',
@@ -111,7 +111,7 @@ class WooCommerce_Growcart_Settings {
 				if ( is_wp_error( $response ) ) {
 					$message = $response->get_error_message();
 				} else {
-					$message = __( 'An error occurred, please try again.', 'woocommerce-grow-cart' );
+					$message = __( 'An error occurred, please try again.', 'woocommerce-growcart' );
 				}
 			} else {
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
@@ -121,35 +121,35 @@ class WooCommerce_Growcart_Settings {
 
 						case 'expired':
 							$message = sprintf(
-								__( 'Your license key expired on %s.', 'woocommerce-grow-cart' ),
+								__( 'Your license key expired on %s.', 'woocommerce-growcart' ),
 								date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
 							);
 							break;
 
 						case 'disabled':
 						case 'revoked':
-							$message = __( 'Your license key has been disabled.', 'woocommerce-grow-cart' );
+							$message = __( 'Your license key has been disabled.', 'woocommerce-growcart' );
 							break;
 
 						case 'missing':
-							$message = __( 'Invalid license.', 'woocommerce-grow-cart' );
+							$message = __( 'Invalid license.', 'woocommerce-growcart' );
 							break;
 
 						case 'invalid':
 						case 'site_inactive':
-							$message = __( 'Your license is not active for this URL.', 'woocommerce-grow-cart' );
+							$message = __( 'Your license is not active for this URL.', 'woocommerce-growcart' );
 							break;
 
 						case 'item_name_mismatch':
-							$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'woocommerce-grow-cart' ), WOOCOMMERCE_GROWCART_STORE_ITEM_NAME );
+							$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'woocommerce-growcart' ), WOOCOMMERCE_GROWCART_STORE_ITEM_NAME );
 							break;
 
 						case 'no_activations_left':
-							$message = __( 'Your license key has reached its activation limit.', 'woocommerce-grow-cart' );
+							$message = __( 'Your license key has reached its activation limit.', 'woocommerce-growcart' );
 							break;
 
 						default:
-							$message = __( 'An error occurred, please try again.', 'woocommerce-grow-cart' );
+							$message = __( 'An error occurred, please try again.', 'woocommerce-growcart' );
 							break;
 					}
 				}
@@ -218,7 +218,7 @@ class WooCommerce_Growcart_Settings {
 				if ( is_wp_error( $response ) ) {
 					$message = $response->get_error_message();
 				} else {
-					$message = __( 'An error occurred, please try again.', 'woocommerce-grow-cart' );
+					$message = __( 'An error occurred, please try again.', 'woocommerce-growcart' );
 				}
 
 				$base_url = admin_url( 'admin.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE );
@@ -297,8 +297,8 @@ class WooCommerce_Growcart_Settings {
 	 */
 	public function add_plugin_pages() {
 		add_menu_page(
-			__( 'GrowCart Settings', 'woocommerce-grow-cart' ),
-			__( 'GrowCart', 'woocommerce-grow-cart' ),
+			__( 'GrowCart Settings', 'woocommerce-growcart' ),
+			__( 'GrowCart', 'woocommerce-growcart' ),
 			'manage_options',
 			'growcart',
 			array( $this, 'menu_page_html' ),
@@ -308,8 +308,8 @@ class WooCommerce_Growcart_Settings {
 
 		add_submenu_page(
 			'growcart',
-			__( 'GrowCart License', 'woocommerce-grow-cart' ),
-			__( 'License', 'woocommerce-grow-cart' ),
+			__( 'GrowCart License', 'woocommerce-growcart' ),
+			__( 'License', 'woocommerce-growcart' ),
 			'manage_options',
 			WOOCOMMERCE_GROWCART_LICENSE_PAGE,
 			array( $this, 'license_page_html' ),
@@ -360,7 +360,7 @@ class WooCommerce_Growcart_Settings {
 		$status  = get_option( 'edd_growcart_license_status' );
 		?>
 		<div class="wrap">
-			<h2><?php _e( 'Plugin License Options', 'woocommerce-grow-cart' ); ?></h2>
+			<h2><?php _e( 'Plugin License Options', 'woocommerce-growcart' ); ?></h2>
 			<form method="post" action="options.php">
 
 				<?php settings_fields( 'edd_growcart_license' ); ?>
@@ -369,28 +369,28 @@ class WooCommerce_Growcart_Settings {
 					<tbody>
 						<tr valign="top">
 							<th scope="row" valign="top">
-								<?php _e( 'License Key', 'woocommerce-grow-cart' ); ?>
+								<?php _e( 'License Key', 'woocommerce-growcart' ); ?>
 							</th>
 							<td>
-								<input id="edd_growcart_license_key" name="edd_growcart_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $license, 'woocommerce-grow-cart' ); ?>" />
-								<label class="description" for="edd_growcart_license_key"><?php _e( 'Enter your license key', 'woocommerce-grow-cart' ); ?></label>
+								<input id="edd_growcart_license_key" name="edd_growcart_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $license, 'woocommerce-growcart' ); ?>" />
+								<label class="description" for="edd_growcart_license_key"><?php _e( 'Enter your license key', 'woocommerce-growcart' ); ?></label>
 							</td>
 						</tr>
 						<?php if ( false !== $license ) { ?>
 							<tr valign="top">
 								<th scope="row" valign="top">
-									<?php _e( 'Activate License', 'woocommerce-grow-cart' ); ?>
+									<?php _e( 'Activate License', 'woocommerce-growcart' ); ?>
 								</th>
 								<td>
 									<?php if ( $status !== false && $status == 'valid' ) { ?>
-										<span style="color:green;"><?php _e( 'active', 'woocommerce-grow-cart' ); ?></span>
+										<span style="color:green;"><?php _e( 'active', 'woocommerce-growcart' ); ?></span>
 										<?php wp_nonce_field( 'edd_growcart_license_nonce', 'edd_growcart_license_nonce' ); ?>
-										<input type="submit" class="button-secondary" name="edd_license_deactivate" value="<?php _e( 'Deactivate License', 'woocommerce-grow-cart' ); ?>" />
+										<input type="submit" class="button-secondary" name="edd_license_deactivate" value="<?php _e( 'Deactivate License', 'woocommerce-growcart' ); ?>" />
 										<?php
 									} else {
 										wp_nonce_field( 'edd_growcart_license_nonce', 'edd_growcart_license_nonce' );
 										?>
-										<input type="submit" class="button-secondary" name="edd_license_activate" value="<?php _e( 'Activate License', 'woocommerce-grow-cart' ); ?>" />
+										<input type="submit" class="button-secondary" name="edd_license_activate" value="<?php _e( 'Activate License', 'woocommerce-growcart' ); ?>" />
 									<?php } ?>
 								</td>
 							</tr>

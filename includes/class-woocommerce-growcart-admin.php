@@ -104,7 +104,7 @@ class WooCommerce_Growcart_Admin {
 		}
 
 		$class   = 'notice notice-error';
-		$message = sprintf( __( 'You need a valid license to continue using GrowCart, please <a href="%s">activate</a> your license.', 'woocommerce-grow-cart' ), admin_url( 'admin.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE ) );
+		$message = sprintf( __( 'You need a valid license to continue using GrowCart, please <a href="%s">activate</a> your license.', 'woocommerce-growcart' ), admin_url( 'admin.php?page=' . WOOCOMMERCE_GROWCART_LICENSE_PAGE ) );
 
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), $message );
 	}

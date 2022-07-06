@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
 		addtextdomain: {
 			options: {
-				textdomain: "woocommerce-grow-cart"
+				textdomain: "woocommerce-growcart"
 			},
 			update_all_domains: {
 				options: {
@@ -37,8 +37,8 @@ module.exports = function(grunt) {
 				options: {
 					domainPath: "/languages",
 					exclude: [".git/*", "bin/*", "node_modules/*", "tests/*"],
-					mainFile: "woocommerce-grow-cart.php",
-					potFilename: "woocommerce-grow-cart.pot",
+					mainFile: "woocommerce-growcart.php",
+					potFilename: "woocommerce-growcart.pot",
 					potHeaders: {
 						poedit: true,
 						"x-poedit-keywordslist": true

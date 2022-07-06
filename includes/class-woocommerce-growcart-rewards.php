@@ -138,7 +138,7 @@ class WooCommerce_GrowCart_Rewards {
 		if ( in_array( $cart_item_key, self::$gift_cart_ids ) ) {
 			$product_name_postfix = '<span class="growcart-free-gift-label">' . apply_filters(
 				'growcart_free_gift_product_name_postfix',
-				sprintf( ' - %s', esc_html__( 'Free Gift', 'woocommerce-grow-cart' ) )
+				sprintf( ' - %s', esc_html__( 'Free Gift', 'woocommerce-growcart' ) )
 			) . '</span>';
 		}
 
@@ -474,11 +474,11 @@ class WooCommerce_GrowCart_Rewards {
 		$currency_symbol    = get_woocommerce_currency_symbol();
 
 		if ( 'minimum_cart_quantity' === $type ) {
-			$reward_hint_string     = '' === $next_reward['hint'] ? __( '**Add** {{quantity}} more products to get {{name}}', 'woocommerce-grow-cart' ) : $next_reward['hint'];
+			$reward_hint_string     = '' === $next_reward['hint'] ? __( '**Add** {{quantity}} more products to get {{name}}', 'woocommerce-growcart' ) : $next_reward['hint'];
 			$cart_contents_count    = WC()->cart->get_cart_contents_count();
 			$required_cart_quantity = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
-			$reward_hint_string   = '' === $next_reward['hint'] ? __( '**Spend** {{amount}} more to get {{name}}', 'woocommerce-grow-cart' ) : $next_reward['hint'];
+			$reward_hint_string   = '' === $next_reward['hint'] ? __( '**Spend** {{amount}} more to get {{name}}', 'woocommerce-growcart' ) : $next_reward['hint'];
 			$cart_subtotal        = WC()->cart->subtotal;
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
@@ -512,10 +512,10 @@ class WooCommerce_GrowCart_Rewards {
 		foreach ( $filtered_rewards as $key => $value ) {
 			$required_cart_contents = intval( $value['minimum_cart_quantity'] ) - $cart_contents_count;
 			$reward_hint_string     = intval( $value['minimum_cart_quantity'] ) <= $cart_contents_count ? sprintf(
-				__( 'You\'ve unlocked your %s!', 'woocommerce-grow-cart' ),
+				__( 'You\'ve unlocked your %s!', 'woocommerce-growcart' ),
 				$value['name']
 			) : sprintf(
-				__( 'Add %d more products to unlock', 'woocommerce-grow-cart' ),
+				__( 'Add %d more products to unlock', 'woocommerce-growcart' ),
 				$required_cart_contents
 			);
 
@@ -573,7 +573,7 @@ class WooCommerce_GrowCart_Rewards {
 
 		foreach ( $current_rewards as $key => $value ) {
 			if ( 'free_shipping' === $value['type'] ) {
-				$reward_strings[] = '<span class="CartTotals__free-shipping">' . get_icon( 'truck' ) . '<span> ' . __( 'Free Shipping', 'woocommerce-grow-cart' ) . '</span>' . '</span>';
+				$reward_strings[] = '<span class="CartTotals__free-shipping">' . get_icon( 'truck' ) . '<span> ' . __( 'Free Shipping', 'woocommerce-growcart' ) . '</span>' . '</span>';
 			} elseif ( max( $rewards_by_type[ $value['type'] ] ) === $value['value'] ) {
 				switch ( $value['type'] ) {
 					case 'percent':
@@ -589,7 +589,7 @@ class WooCommerce_GrowCart_Rewards {
 		}
 
 		if ( $reward_total ) {
-			$reward_strings[] = sprintf( __( '<span>You are saving %s</span>', 'woocommerce-grow-cart' ), wc_price( $reward_total ) );
+			$reward_strings[] = sprintf( __( '<span>You are saving %s</span>', 'woocommerce-growcart' ), wc_price( $reward_total ) );
 		}
 
 		if ( empty( $reward_strings ) ) {
@@ -614,7 +614,7 @@ class WooCommerce_GrowCart_Rewards {
 		$exclude_ids        = wp_list_pluck( $cart, 'product_id' );
 
 		if ( count( WC()->cart->removed_cart_contents ) ) {
-			$title = __( 'Frequently bought together', 'woocommerce-grow-cart' );
+			$title = __( 'Frequently bought together', 'woocommerce-growcart' );
 
 			foreach ( WC()->cart->removed_cart_contents as $key => $cart_item ) {
 				$product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
@@ -624,7 +624,7 @@ class WooCommerce_GrowCart_Rewards {
 				}
 			}
 		} elseif ( $cart_is_empty ) {
-			$title = __( 'Popular products', 'woocommerce-grow-cart' );
+			$title = __( 'Popular products', 'woocommerce-growcart' );
 
 			$args = array(
 				'post_type'           => 'product',
@@ -640,7 +640,7 @@ class WooCommerce_GrowCart_Rewards {
 
 			$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $query->posts ) );
 		} else {
-			$title = __( 'Products you may like', 'woocommerce-grow-cart' );
+			$title = __( 'Products you may like', 'woocommerce-growcart' );
 
 			foreach ( $cart as $cart_item ) {
 				if ( count( $suggested_products ) >= $max_items ) {
