@@ -3027,11 +3027,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./src/context.js");
-/* harmony import */ var _svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../svg/trash.svg */ "./src/svg/trash.svg");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var _svg_trash_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../svg/trash.svg */ "./src/svg/trash.svg");
+
 
 
 
@@ -3044,13 +3047,13 @@ function RulesList() {
     updateReward,
     rewards,
     setRewards
-  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_2__.RewardsAdminContext);
+  } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.RewardsAdminContext);
 
   function addRule() {
     updateReward({ ...reward,
       rules: [...reward.rules, {
-        id: (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
-        name: `Rule ${reward.rules.length + 1}`,
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+        name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Rule %d'), reward.rules.length + 1),
         type: "percent",
         value: 1,
         productId: 0,
@@ -3084,10 +3087,10 @@ function RulesList() {
   function getNameFieldHelp(ruleType) {
     switch (ruleType) {
       case "fixed_cart":
-        return "Use <code>{{value}}</code> and <code>{{currency}}</code> to display value and currency symbol.";
+        return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Use <code>{{value}}</code> and <code>{{currency}}</code> to display value and currency symbol.");
 
       case "percent":
-        return "Use <code>{{value}}</code> to display value.";
+        return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Use <code>{{value}}</code> to display value.");
 
       default:
         null;
@@ -3095,16 +3098,16 @@ function RulesList() {
   }
 
   function getRuleHint(rewardType) {
-    return "minimum_cart_quantity" === rewardType ? "**Add** {{quantity}} more to get {{name}}" : "**Spend** {{amount}}{{currency}} more to get {{name}}";
+    return "minimum_cart_quantity" === rewardType ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("**Add** {{quantity}} more to get {{name}}") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("**Spend** {{amount}}{{currency}} more to get {{name}}");
   }
 
   function getHintFieldHelp(rewardType) {
     switch (rewardType) {
       case "minimum_cart_quantity":
-        return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{quantity}}</code> and <code>{{currency}}</code> to display name, minimum cart quantity and currency symbol.";
+        return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{quantity}}</code> and <code>{{currency}}</code> to display name, minimum cart quantity and currency symbol.");
 
       default:
-        return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.";
+        return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.");
     }
   }
 
@@ -3128,7 +3131,7 @@ function RulesList() {
     className: "RulesList"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     className: "RulesList__title"
-  }, "Reward Rules"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Reward Rules")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RulesList__items"
   }, reward.rules && reward.rules.length ? reward.rules.map(rule => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -3136,8 +3139,8 @@ function RulesList() {
       key: rule.id
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "RulesListItem__actions"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-      label: rule.enabled ? "Active" : "Disabled",
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+      label: rule.enabled ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Active") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Disabled"),
       checked: rule.enabled,
       onChange: () => {
         updateRule({ ...rule,
@@ -3148,12 +3151,12 @@ function RulesList() {
       type: "button",
       className: "RulesList__remove",
       onClick: () => {
-        if (confirm("Deleting rule!") === true) {
+        if (confirm((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Deleting rule!")) === true) {
           removeRule(rule.id);
         }
       }
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_3__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-      label: "Name",
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_svg_trash_svg__WEBPACK_IMPORTED_MODULE_4__.ReactComponent, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Name"),
       help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
         dangerouslySetInnerHTML: {
           __html: getNameFieldHelp(rule.type)
@@ -3165,37 +3168,37 @@ function RulesList() {
           name
         });
       }
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-      label: "Type",
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Type"),
       value: rule.type,
       options: typeOptions,
       onChange: type => updateRule({ ...rule,
         type
       }),
       __nextHasNoMarginBottom: true
-    }), "gift" === rule.type && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Product ID",
+    }), "gift" === rule.type && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Product ID"),
       min: 1,
       value: rule.productId,
       onChange: productId => updateRule({ ...rule,
         productId
       })
-    }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Value",
+    }), ["percent", "fixed_cart"].includes(rule.type) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Value"),
       value: rule.value,
       onChange: value => updateRule({ ...rule,
         value
       }),
       min: 1
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "minimum_cart_quantity" === reward.type ? "Minimum cart quantity" : "Minimum cart amount",
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+      label: "minimum_cart_quantity" === reward.type ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Minimum cart quantity") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Minimum cart amount"),
       onChange: value => updateRule({ ...rule,
         [reward.type]: value
       }),
       value: rule[reward.type],
       min: 1
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-      label: "Hint",
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Hint"),
       help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
         dangerouslySetInnerHTML: {
           __html: getHintFieldHelp(reward.type)
@@ -3214,7 +3217,7 @@ function RulesList() {
     type: "button",
     className: "RulesList__add",
     onClick: addRule
-  }, "Add rule"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add rule")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     disabled: reward.enabled,
     className: "RulesList__publish",
     type: "button",
@@ -3231,7 +3234,7 @@ function RulesList() {
         };
       })
     })
-  }, "Publish")));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Publish"))));
 }
 
 /***/ }),

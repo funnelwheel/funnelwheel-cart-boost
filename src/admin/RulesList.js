@@ -1,3 +1,4 @@
+import { sprintf, __ } from '@wordpress/i18n';
 import { v4 as uuidv4 } from "uuid";
 import {
 	TextControl,
@@ -19,7 +20,7 @@ export default function RulesList() {
 				...reward.rules,
 				{
 					id: uuidv4(),
-					name: `Rule ${reward.rules.length + 1}`,
+					name: sprintf(__('Rule %d'), reward.rules.length + 1),
 					type: "percent",
 					value: 1,
 					productId: 0,
@@ -59,10 +60,10 @@ export default function RulesList() {
 	function getNameFieldHelp(ruleType) {
 		switch (ruleType) {
 			case "fixed_cart":
-				return "Use <code>{{value}}</code> and <code>{{currency}}</code> to display value and currency symbol.";
+				return __("Use <code>{{value}}</code> and <code>{{currency}}</code> to display value and currency symbol.");
 
 			case "percent":
-				return "Use <code>{{value}}</code> to display value.";
+				return __("Use <code>{{value}}</code> to display value.");
 
 			default:
 				null;
@@ -71,17 +72,17 @@ export default function RulesList() {
 
 	function getRuleHint(rewardType) {
 		return "minimum_cart_quantity" === rewardType
-			? "**Add** {{quantity}} more to get {{name}}"
-			: "**Spend** {{amount}}{{currency}} more to get {{name}}";
+			? __("**Add** {{quantity}} more to get {{name}}")
+			: __("**Spend** {{amount}}{{currency}} more to get {{name}}");
 	}
 
 	function getHintFieldHelp(rewardType) {
 		switch (rewardType) {
 			case "minimum_cart_quantity":
-				return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{quantity}}</code> and <code>{{currency}}</code> to display name, minimum cart quantity and currency symbol.";
+				return __("Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{quantity}}</code> and <code>{{currency}}</code> to display name, minimum cart quantity and currency symbol.");
 
 			default:
-				return "Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.";
+				return __("Wrap text with <code>**</code> to make it bold. Use <code>{{name}}</code>, <code>{{amount}}</code> and <code>{{currency}}</code> to display name, minimum cart amount and currency symbol.");
 		}
 	}
 
@@ -105,7 +106,7 @@ export default function RulesList() {
 
 	return (
 		<div className="RulesList">
-			<h4 className="RulesList__title">Reward Rules</h4>
+			<h4 className="RulesList__title">{__("Reward Rules")}</h4>
 
 			<div className="RulesList__items">
 				{reward.rules && reward.rules.length
@@ -116,8 +117,8 @@ export default function RulesList() {
 									<ToggleControl
 										label={
 											rule.enabled
-												? "Active"
-												: "Disabled"
+												? __("Active")
+												: __("Disabled")
 										}
 										checked={rule.enabled}
 										onChange={() => {
@@ -133,7 +134,7 @@ export default function RulesList() {
 										onClick={() => {
 											if (
 												confirm(
-													"Deleting rule!"
+													__("Deleting rule!")
 												) === true
 											) {
 												removeRule(rule.id);
@@ -145,7 +146,7 @@ export default function RulesList() {
 								</div>
 
 								<TextControl
-									label="Name"
+									label={__("Name")}
 									help={
 										<span
 											dangerouslySetInnerHTML={{
@@ -165,7 +166,7 @@ export default function RulesList() {
 								/>
 
 								<SelectControl
-									label="Type"
+									label={__("Type")}
 									value={rule.type}
 									options={typeOptions}
 									onChange={(type) =>
@@ -178,7 +179,7 @@ export default function RulesList() {
 								/>
 
 								{"gift" === rule.type && <NumberControl
-									label="Product ID"
+									label={__("Product ID")}
 									min={1}
 									value={rule.productId}
 									onChange={(productId) =>
@@ -193,7 +194,7 @@ export default function RulesList() {
 									rule.type
 								) && (
 										<NumberControl
-											label="Value"
+											label={__("Value")}
 											value={rule.value}
 											onChange={(value) =>
 												updateRule({
@@ -209,8 +210,8 @@ export default function RulesList() {
 									label={
 										"minimum_cart_quantity" ===
 											reward.type
-											? "Minimum cart quantity"
-											: "Minimum cart amount"
+											? __("Minimum cart quantity")
+											: __("Minimum cart amount")
 									}
 									onChange={(value) =>
 										updateRule({
@@ -223,7 +224,7 @@ export default function RulesList() {
 								/>
 
 								<TextControl
-									label="Hint"
+									label={__("Hint")}
 									help={
 										<span
 											dangerouslySetInnerHTML={{
@@ -249,7 +250,7 @@ export default function RulesList() {
 
 			<div className="RulesList__action-buttons">
 				<button type="button" className="RulesList__add" onClick={addRule}>
-					Add rule
+					{__("Add rule")}
 				</button>
 
 				<button
@@ -276,7 +277,7 @@ export default function RulesList() {
 						})
 					})}
 				>
-					Publish
+					{__("Publish")}
 				</button>
 			</div>
 		</div>
