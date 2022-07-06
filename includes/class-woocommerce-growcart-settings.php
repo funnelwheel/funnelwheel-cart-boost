@@ -455,11 +455,12 @@ class WooCommerce_Growcart_Settings {
 	 */
 	public function input_rewards( $option, $attributes, $value, $ignored_placeholder ) {
 		?>
-			<input id="setting-<?php echo esc_attr( $option['name'] ); ?>" type="hidden" name="<?php echo esc_attr( $option['name'] ); ?>" value="<?php echo esc_attr( $value ); ?>" 
-										  <?php
-																																												echo implode( ' ', $attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-											?>
-																																												 />
+			<input 
+				id="setting-<?php echo esc_attr( $option['name'] ); ?>" 
+				type="hidden" 
+				name="<?php echo esc_attr( $option['name'] ); ?>" 
+				value="<?php echo esc_attr( $value ); ?>" <?php echo implode( ' ', $attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			/>
 		<?php
 		echo '<div id="rewards-screen"></div>';
 	}
