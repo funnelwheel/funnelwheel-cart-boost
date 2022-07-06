@@ -9,6 +9,14 @@ import { RewardsAdminContext } from "../context";
 
 export default function RewardsListItemAdd() {
 	const {
+		back,
+		displaySuggestedProducts,
+		displaySuggestedProductsHelp,
+		displayCoupon,
+		displayCouponHelp,
+		next,
+	} = woocommerce_growcart.i18n;
+	const {
 		rewards,
 		setRewards,
 		rewardRules,
@@ -28,7 +36,7 @@ export default function RewardsListItemAdd() {
 					activeScreen: "list",
 				})}
 			>
-				Back
+				{back}
 			</button>
 
 			<div className="RewardsListItemAdd__body">
@@ -56,8 +64,8 @@ export default function RewardsListItemAdd() {
 				/>
 
 				<ToggleControl
-					label="Display suggested products"
-					help="Display suggested products on the right side of the popup modal."
+					label={displaySuggestedProducts}
+					help={displaySuggestedProductsHelp}
 					checked={reward.display_suggested_products}
 					onChange={() =>
 						setReward({
@@ -68,8 +76,8 @@ export default function RewardsListItemAdd() {
 				/>
 
 				<ToggleControl
-					label="Display coupon"
-					help="Display and allow users to apply coupon codes."
+					label={displayCoupon}
+					help={displayCouponHelp}
 					checked={reward.display_coupon}
 					onChange={() =>
 						setReward({
@@ -89,7 +97,7 @@ export default function RewardsListItemAdd() {
 					currentlyEditing: reward.id
 				})}
 			>
-				Next
+				{next}
 			</button>
 		</div>
 	);

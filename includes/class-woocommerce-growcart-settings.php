@@ -541,6 +541,7 @@ class WooCommerce_Growcart_Settings {
 					'displaySuggestedProductsHelp' => __( 'Display suggested products on the right side of the popup modal.' ),
 					'displayCoupon'                => __( 'Display coupon' ),
 					'displayCouponHelp'            => __( 'Display and allow users to apply coupon codes.' ),
+					'next'                         => __( 'Next' ),
 				],
 			]
 		);

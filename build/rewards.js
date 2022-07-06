@@ -2966,6 +2966,14 @@ __webpack_require__.r(__webpack_exports__);
 
 function RewardsListItemAdd() {
   const {
+    back,
+    displaySuggestedProducts,
+    displaySuggestedProductsHelp,
+    displayCoupon,
+    displayCouponHelp,
+    next
+  } = woocommerce_growcart.i18n;
+  const {
     rewards,
     setRewards,
     rewardRules
@@ -2981,7 +2989,7 @@ function RewardsListItemAdd() {
     onClick: () => setRewards({ ...rewards,
       activeScreen: "list"
     })
-  }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, back), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItemAdd__body"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: "Name",
@@ -3001,15 +3009,15 @@ function RewardsListItemAdd() {
       });
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Display suggested products",
-    help: "Display suggested products on the right side of the popup modal.",
+    label: displaySuggestedProducts,
+    help: displaySuggestedProductsHelp,
     checked: reward.display_suggested_products,
     onChange: () => setReward({ ...reward,
       display_suggested_products: !reward.display_suggested_products
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Display coupon",
-    help: "Display and allow users to apply coupon codes.",
+    label: displayCoupon,
+    help: displayCouponHelp,
     checked: reward.display_coupon,
     onChange: () => setReward({ ...reward,
       display_coupon: !reward.display_coupon
@@ -3022,7 +3030,7 @@ function RewardsListItemAdd() {
       activeScreen: "edit",
       currentlyEditing: reward.id
     })
-  }, "Next"));
+  }, next));
 }
 
 /***/ }),
