@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import { useContext } from "@wordpress/element";
 import { BaseControl, TextControl, ToggleControl } from "@wordpress/components";
 import { RewardsAdminContext } from "../context";
@@ -6,16 +7,6 @@ import Styles from "./Styles";
 import Preview from "./Preview";
 
 export default function RewardsListItem() {
-	const {
-		back,
-		publish,
-		name,
-		rewardType,
-		displaySuggestedProducts,
-		displaySuggestedProductsHelp,
-		displayCoupon,
-		displayCouponHelp
-	} = woocommerce_growcart.i18n;
 	const {
 		reward,
 		updateReward,
@@ -38,7 +29,7 @@ export default function RewardsListItem() {
 								currentlyEditing: null,
 							})}
 						>
-							{back}
+							{__('Back')}
 						</button>
 
 						<button
@@ -65,13 +56,13 @@ export default function RewardsListItem() {
 								})
 							})}
 						>
-							{publish}
+							{__('Publish')}
 						</button>
 					</div>
 
 					<div className="RewardsListItem__type">
 						<TextControl
-							label={name}
+							label={__('Name')}
 							value={reward.name}
 							onChange={(name) => updateReward({
 								...reward,
@@ -79,13 +70,13 @@ export default function RewardsListItem() {
 							})}
 						/>
 
-						<BaseControl label={rewardType}>
+						<BaseControl label={__( 'Reward type' )}>
 							<div>{rewardTypeLabels[reward.type]}</div>
 						</BaseControl>
 
 						<ToggleControl
-							label={displaySuggestedProducts}
-							help={displaySuggestedProductsHelp}
+							label={__( 'Display suggested products' )}
+							help={__( 'Display suggested products on the right side of the popup modal.' )}
 							checked={reward.display_suggested_products}
 							onChange={() =>
 								updateReward({
@@ -96,8 +87,8 @@ export default function RewardsListItem() {
 						/>
 
 						<ToggleControl
-							label={displayCoupon}
-							help={displayCouponHelp}
+							label={__( 'Display coupon' )}
+							help={__( 'Display and allow users to apply coupon codes.' )}
 							checked={reward.display_coupon}
 							onChange={() =>
 								updateReward({

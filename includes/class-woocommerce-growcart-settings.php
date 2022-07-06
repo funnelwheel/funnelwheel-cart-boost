@@ -521,28 +521,7 @@ class WooCommerce_Growcart_Settings {
 						'activeIconColor'         => '#ffffff',
 						'activeIconBackground'    => '#198754',
 					],
-				],
-				'i18n'                 => [
-					'clickToOpenPopup'             => __( 'Click to open popup' ),
-					'status'                       => __( 'Status' ),
-					'name'                         => __( 'Name' ),
-					'rules'                        => __( 'Rules' ),
-					'actions'                      => __( 'Actions' ),
-					'active'                       => __( 'Active' ),
-					'disabled'                     => __( 'Disabled' ),
-					'alertString'                  => __( "We'll disable the cart on the store." ),
-					'remove'                       => __( 'Remove' ),
-					'addReward'                    => __( 'Add reward' ),
-					'edit'                         => __( 'Edit' ),
-					'back'                         => __( 'Back' ),
-					'publish'                      => __( 'Publish' ),
-					'rewardType'                   => __( 'Reward type' ),
-					'displaySuggestedProducts'     => __( 'Display suggested products' ),
-					'displaySuggestedProductsHelp' => __( 'Display suggested products on the right side of the popup modal.' ),
-					'displayCoupon'                => __( 'Display coupon' ),
-					'displayCouponHelp'            => __( 'Display and allow users to apply coupon codes.' ),
-					'next'                         => __( 'Next' ),
-				],
+				]
 			]
 		);
 

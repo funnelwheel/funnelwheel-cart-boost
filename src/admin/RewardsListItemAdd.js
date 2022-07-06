@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import { v4 as uuidv4 } from "uuid";
 import {
 	TextControl,
@@ -8,14 +9,6 @@ import { useState, useContext } from "@wordpress/element";
 import { RewardsAdminContext } from "../context";
 
 export default function RewardsListItemAdd() {
-	const {
-		back,
-		displaySuggestedProducts,
-		displaySuggestedProductsHelp,
-		displayCoupon,
-		displayCouponHelp,
-		next,
-	} = woocommerce_growcart.i18n;
 	const {
 		rewards,
 		setRewards,
@@ -36,7 +29,7 @@ export default function RewardsListItemAdd() {
 					activeScreen: "list",
 				})}
 			>
-				{back}
+				{__( 'Back' )}
 			</button>
 
 			<div className="RewardsListItemAdd__body">
@@ -64,8 +57,8 @@ export default function RewardsListItemAdd() {
 				/>
 
 				<ToggleControl
-					label={displaySuggestedProducts}
-					help={displaySuggestedProductsHelp}
+					label={__( 'Display suggested products' )}
+					help={__( 'Display suggested products on the right side of the popup modal.' )}
 					checked={reward.display_suggested_products}
 					onChange={() =>
 						setReward({
@@ -76,8 +69,8 @@ export default function RewardsListItemAdd() {
 				/>
 
 				<ToggleControl
-					label={displayCoupon}
-					help={displayCouponHelp}
+					label={__( 'Display coupon' )}
+					help={__( 'Display and allow users to apply coupon codes.' )}
 					checked={reward.display_coupon}
 					onChange={() =>
 						setReward({
@@ -97,7 +90,7 @@ export default function RewardsListItemAdd() {
 					currentlyEditing: reward.id
 				})}
 			>
-				{next}
+				{__( 'Next' )}
 			</button>
 		</div>
 	);

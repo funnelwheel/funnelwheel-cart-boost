@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import { useContext } from "@wordpress/element";
 import {
 	ToggleControl,
@@ -8,28 +9,16 @@ import { replaceTags } from "../utilities";
 
 export default function RewardsList() {
 	const {
-		status,
-		name,
-		rules,
-		actions,
-		active,
-		disabled,
-		alertString,
-		edit,
-		remove,
-		addReward
-	} = woocommerce_growcart.i18n;
-	const {
 		rewards,
 		setRewards,
 	} = useContext(RewardsAdminContext);
 
 	const tHead = <thead>
 		<tr>
-			<th scope="col">{status}</th>
-			<th scope="col">{name}</th>
-			<th scope="col">{rules}</th>
-			<th scope="col">{actions}</th>
+			<th scope="col">{__('Status')}</th>
+			<th scope="col">{__('Name')}</th>
+			<th scope="col">{__('Rules')}</th>
+			<th scope="col">{__('Actions')}</th>
 		</tr>
 	</thead>;
 
@@ -44,7 +33,7 @@ export default function RewardsList() {
 						activeScreen: "add",
 					})}
 				>
-					{addReward}
+					{__( 'Add reward' )}
 				</button>
 			</td>
 		</tr>
@@ -64,8 +53,8 @@ export default function RewardsList() {
 											checked={reward.enabled}
 											label={
 												reward.enabled
-													? active
-													: disabled
+													? __( 'Active' )
+													: __( 'Disabled' )
 											}
 											onChange={() => setRewards(
 												{
@@ -105,7 +94,7 @@ export default function RewardsList() {
 												className="growcart-reward-edit"
 												onClick={() => {
 													if (reward.enabled) {
-														alert(alertString);
+														alert(__( "We'll disable the cart on the store." ));
 													}
 
 													setRewards({
@@ -120,7 +109,7 @@ export default function RewardsList() {
 													})
 												}}
 											>
-												{edit}
+												{__( 'Edit' )}
 											</button>
 											{" | "}
 											<button
@@ -139,7 +128,7 @@ export default function RewardsList() {
 													)
 												}
 											>
-												{remove}
+												{__( 'Remove' )}
 											</button>
 										</>
 									</td>

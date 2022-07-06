@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import { useContext } from "@wordpress/element";
 import { useQuery } from "react-query";
 import { getRewards, getCartInformation } from "../api";
@@ -7,7 +8,6 @@ import Spinner from "./../components/Spinner";
 import Cart from "./../components/Cart";
 
 export default function Preview() {
-    const { clickToOpenPopup } = woocommerce_growcart.i18n;
     const {
         activeRewardItem
     } = useContext(RewardsAdminContext);
@@ -46,7 +46,7 @@ export default function Preview() {
         <div className="Preview" style={style}>
             <Cart />
             <div className="OpenPopup">
-                <span className="OpenPopup__text">{clickToOpenPopup}</span>
+                <span className="OpenPopup__text">{__( 'Click to open popup' )}</span>
                 <ArrowDownIcon />
             </div>
         </div>
