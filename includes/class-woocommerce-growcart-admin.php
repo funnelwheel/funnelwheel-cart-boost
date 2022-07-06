@@ -33,12 +33,26 @@ class WooCommerce_Growcart_Admin {
 	 * Start up.
 	 */
 	public function __construct() {
+		add_action( 'init', [ $this, 'set_script_translations' ] );
 		add_action( 'init', [ $this, 'check_license' ] );
 		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
 	}
 
 	/**
-	 * Undocumented function
+	 * Set script translations.
+	 *
+	 * @return void
+	 */
+	public function set_script_translations() {
+		wp_set_script_translations(
+			'woocommerce-growcart',
+			'woocommerce-growcart',
+			plugin_dir_path( WOOCOMMERCE_GROWCART_FILE ) . 'languages'
+		);
+	}
+
+	/**
+	 * Check license.
 	 *
 	 * @return void
 	 */
