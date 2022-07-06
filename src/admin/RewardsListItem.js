@@ -7,6 +7,16 @@ import Preview from "./Preview";
 
 export default function RewardsListItem() {
 	const {
+		back,
+		publish,
+		name,
+		rewardType,
+		displaySuggestedProducts,
+		displaySuggestedProductsHelp,
+		displayCoupon,
+		displayCouponHelp
+	} = woocommerce_growcart.i18n;
+	const {
 		reward,
 		updateReward,
 		rewards,
@@ -28,7 +38,7 @@ export default function RewardsListItem() {
 								currentlyEditing: null,
 							})}
 						>
-							Back
+							{back}
 						</button>
 
 						<button
@@ -55,13 +65,13 @@ export default function RewardsListItem() {
 								})
 							})}
 						>
-							Publish
+							{publish}
 						</button>
 					</div>
 
 					<div className="RewardsListItem__type">
 						<TextControl
-							label="Name"
+							label={name}
 							value={reward.name}
 							onChange={(name) => updateReward({
 								...reward,
@@ -69,13 +79,13 @@ export default function RewardsListItem() {
 							})}
 						/>
 
-						<BaseControl label="Reward type">
+						<BaseControl label={rewardType}>
 							<div>{rewardTypeLabels[reward.type]}</div>
 						</BaseControl>
 
 						<ToggleControl
-							label="Display suggested products"
-							help="Display suggested products on the right side of the popup modal."
+							label={displaySuggestedProducts}
+							help={displaySuggestedProductsHelp}
 							checked={reward.display_suggested_products}
 							onChange={() =>
 								updateReward({
@@ -86,8 +96,8 @@ export default function RewardsListItem() {
 						/>
 
 						<ToggleControl
-							label="Display coupon"
-							help="Display and allow users to apply coupon codes."
+							label={displayCoupon}
+							help={displayCouponHelp}
 							checked={reward.display_coupon}
 							onChange={() =>
 								updateReward({

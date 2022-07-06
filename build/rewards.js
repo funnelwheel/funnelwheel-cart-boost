@@ -2863,6 +2863,16 @@ __webpack_require__.r(__webpack_exports__);
 
 function RewardsListItem() {
   const {
+    back,
+    publish,
+    name,
+    rewardType,
+    displaySuggestedProducts,
+    displaySuggestedProductsHelp,
+    displayCoupon,
+    displayCouponHelp
+  } = woocommerce_growcart.i18n;
+  const {
     reward,
     updateReward,
     rewards,
@@ -2884,7 +2894,7 @@ function RewardsListItem() {
       activeScreen: "list",
       currentlyEditing: null
     })
-  }, "Back"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, back), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     disabled: reward.enabled,
     className: "RewardsListItem__publish",
     type: "button",
@@ -2901,26 +2911,26 @@ function RewardsListItem() {
         };
       })
     })
-  }, "Publish")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, publish)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "RewardsListItem__type"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-    label: "Name",
+    label: name,
     value: reward.name,
     onChange: name => updateReward({ ...reward,
       name
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    label: "Reward type"
+    label: rewardType
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, rewardTypeLabels[reward.type])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Display suggested products",
-    help: "Display suggested products on the right side of the popup modal.",
+    label: displaySuggestedProducts,
+    help: displaySuggestedProductsHelp,
     checked: reward.display_suggested_products,
     onChange: () => updateReward({ ...reward,
       display_suggested_products: !reward.display_suggested_products
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Display coupon",
-    help: "Display and allow users to apply coupon codes.",
+    label: displayCoupon,
+    help: displayCouponHelp,
     checked: reward.display_coupon,
     onChange: () => updateReward({ ...reward,
       display_coupon: !reward.display_coupon
