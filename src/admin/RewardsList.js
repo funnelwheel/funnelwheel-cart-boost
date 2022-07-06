@@ -7,6 +7,7 @@ import { RewardsAdminContext } from "../context";
 import { replaceTags } from "../utilities";
 
 export default function RewardsList() {
+	const { status, name, rules, actions, active, disabled } = woocommerce_growcart.i18n;
 	const {
 		rewards,
 		setRewards,
@@ -17,10 +18,10 @@ export default function RewardsList() {
 			<table className="growcart-rewards">
 				<thead>
 					<tr>
-						<th scope="col">Status</th>
-						<th scope="col">Name</th>
-						<th scope="col">Rules</th>
-						<th scope="col">Actions</th>
+						<th scope="col">{status}</th>
+						<th scope="col">{name}</th>
+						<th scope="col">{rules}</th>
+						<th scope="col">{actions}</th>
 					</tr>
 				</thead>
 				{rewards.rewards && rewards.rewards.length ? (
@@ -33,8 +34,8 @@ export default function RewardsList() {
 											checked={reward.enabled}
 											label={
 												reward.enabled
-													? "Active"
-													: "Disabled"
+													? active
+													: disabled
 											}
 											onChange={() => setRewards(
 												{

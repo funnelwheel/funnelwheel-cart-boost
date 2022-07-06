@@ -522,6 +522,15 @@ class WooCommerce_Growcart_Settings {
 						'activeIconBackground'    => '#198754',
 					],
 				],
+				'i18n'                 => [
+					'clickToOpenPopup' => __( 'Click to open popup' ),
+					'status'           => __( 'Status' ),
+					'name'             => __( 'Name' ),
+					'rules'            => __( 'Rules' ),
+					'actions'          => __( 'Actions' ),
+					'active'           => __( 'Active' ),
+					'disabled'         => __( 'Disabled' ),
+				],
 			]
 		);
 

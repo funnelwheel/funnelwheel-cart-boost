@@ -7,6 +7,7 @@ import Spinner from "./../components/Spinner";
 import Cart from "./../components/Cart";
 
 export default function Preview() {
+    const { clickToOpenPopup } = woocommerce_growcart.i18n;
     const {
         activeRewardItem
     } = useContext(RewardsAdminContext);
@@ -45,7 +46,7 @@ export default function Preview() {
         <div className="Preview" style={style}>
             <Cart />
             <div className="OpenPopup">
-                <span className="OpenPopup__text">Click to open popup</span>
+                <span className="OpenPopup__text">{clickToOpenPopup}</span>
                 <ArrowDownIcon />
             </div>
         </div>
