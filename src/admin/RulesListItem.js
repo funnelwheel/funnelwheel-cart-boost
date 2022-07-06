@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import {
 	TextControl,
 	ToggleControl,
@@ -22,19 +23,12 @@ export default function RulesListItem() {
 					className="RulesList__remove"
 					onClick={() => removeRule(rule.id)}
 				>
-					Remove
-				</button>
-				<button
-					type="button"
-					className="RulesList__remove"
-					onClick={() => removeRule(rule.id)}
-				>
-					Remove
+					{__("Remove")}
 				</button>
 			</div>
 
 			<TextControl
-				label="Name"
+				label={__("Name")}
 				value={rule.name}
 				onChange={(name) => {
 					updateRule({
@@ -45,7 +39,7 @@ export default function RulesListItem() {
 			/>
 
 			<TextControl
-				label="Minimum cart amount"
+				label={__("Minimum cart amount")}
 				value={rule.value}
 				onChange={(value) => {
 					updateRule({
@@ -57,7 +51,7 @@ export default function RulesListItem() {
 
 			{"minimum_cart_quantity" === reward.type ? (
 				<NumberControl
-					label="Value"
+					label={__("Value")}
 					isShiftStepEnabled={true}
 					onChange={(minimum_cart_quantity) => {
 						updateRule({
@@ -70,7 +64,7 @@ export default function RulesListItem() {
 				/>
 			) : (
 				<NumberControl
-					label="Value"
+					label={__("Value")}
 					isShiftStepEnabled={true}
 					onChange={(minimum_cart_amount) => {
 						updateRule({
