@@ -530,6 +530,10 @@ class WooCommerce_Growcart_Settings {
 					'actions'          => __( 'Actions' ),
 					'active'           => __( 'Active' ),
 					'disabled'         => __( 'Disabled' ),
+					'alertString'      => __( "We'll disable the cart on the store." ),
+					'remove'           => __( 'Remove' ),
+					'addReward'        => __( 'Add reward' ),
+					'edit'             => __( 'Edit' ),
 				],
 			]
 		);

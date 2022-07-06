@@ -2753,7 +2753,11 @@ function RewardsList() {
     rules,
     actions,
     active,
-    disabled
+    disabled,
+    alertString,
+    edit,
+    remove,
+    addReward
   } = woocommerce_growcart.i18n;
   const {
     rewards,
@@ -2798,7 +2802,7 @@ function RewardsList() {
       className: "growcart-reward-edit",
       onClick: () => {
         if (reward.enabled) {
-          alert("We'll disable the cart on the store.");
+          alert(alertString);
         }
 
         setRewards({ ...rewards,
@@ -2809,13 +2813,13 @@ function RewardsList() {
           currentlyEditing: reward.id
         });
       }
-    }, "Edit"), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    }, edit), " | ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       className: "growcart-reward-delete",
       onClick: () => setRewards({ ...rewards,
         rewards: rewards.rewards.filter(_reward => _reward.id !== reward.id)
       })
-    }, "Remove"))));
+    }, remove))));
   })) : null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tfoot", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     colSpan: "5"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -2824,7 +2828,7 @@ function RewardsList() {
     onClick: () => setRewards({ ...rewards,
       activeScreen: "add"
     })
-  }, "Add reward"))))));
+  }, addReward))))));
 }
 
 /***/ }),

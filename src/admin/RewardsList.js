@@ -7,7 +7,18 @@ import { RewardsAdminContext } from "../context";
 import { replaceTags } from "../utilities";
 
 export default function RewardsList() {
-	const { status, name, rules, actions, active, disabled } = woocommerce_growcart.i18n;
+	const {
+		status,
+		name,
+		rules,
+		actions,
+		active,
+		disabled,
+		alertString,
+		edit,
+		remove,
+		addReward
+	} = woocommerce_growcart.i18n;
 	const {
 		rewards,
 		setRewards,
@@ -75,7 +86,7 @@ export default function RewardsList() {
 												className="growcart-reward-edit"
 												onClick={() => {
 													if (reward.enabled) {
-														alert("We'll disable the cart on the store.");
+														alert(alertString);
 													}
 
 													setRewards({
@@ -90,7 +101,7 @@ export default function RewardsList() {
 													})
 												}}
 											>
-												Edit
+												{edit}
 											</button>
 											{" | "}
 											<button
@@ -109,7 +120,7 @@ export default function RewardsList() {
 													)
 												}
 											>
-												Remove
+												{remove}
 											</button>
 										</>
 									</td>
@@ -129,7 +140,7 @@ export default function RewardsList() {
 									activeScreen: "add",
 								})}
 							>
-								Add reward
+								{addReward}
 							</button>
 						</td>
 					</tr>
