@@ -6,7 +6,6 @@ namespace Upnrunn;
 defined( 'ABSPATH' ) || exit;
 
 use WC_AJAX;
-use EDD_SL_Plugin_Updater;
 
 /**
  * WooCommerce_GrowCart class.
@@ -59,6 +58,27 @@ final class WooCommerce_GrowCart {
 		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-rewards.php';
 		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-settings.php';
 		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-woocommerce-growcart-admin.php';
+
+		// Include Freemius SDK.
+		require_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/freemius/start.php';
+
+		fs_dynamic_init(
+			array(
+				'id'               => '10785',
+				'slug'             => 'growcart-for-woocommerce',
+				'type'             => 'plugin',
+				'public_key'       => 'pk_c4b629da74b3b4bd0c493a6522522',
+				'is_premium'       => false,
+				'has_addons'       => false,
+				'has_paid_plans'   => false,
+				'is_org_compliant' => false,
+				'menu'             => array(
+					'slug'       => 'growcart',
+					'first-path' => 'admin.php?page=growcart',
+					'support'    => false,
+				),
+			)
+		);
 	}
 
 	/**
@@ -78,7 +98,6 @@ final class WooCommerce_GrowCart {
 	 * @return [type] [description]
 	 */
 	private function hooks() {
-		add_action( 'init', [ $this, 'plugin_updater' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'wp_footer', [ $this, 'growcart_root' ] );
 	}
@@ -203,11 +222,6 @@ final class WooCommerce_GrowCart {
 	 * @return void
 	 */
 	public function display_growcart() {
-		$license_status = get_option( 'edd_growcart_license_status' );
-		if ( 'invalid' === $license_status ) {
-			return false;
-		}
-
 		$active_reward = woocommerce_growcart()->rewards->get_active_reward();
 		if ( ! $active_reward ) {
 			return false;
@@ -231,34 +245,5 @@ final class WooCommerce_GrowCart {
 		if ( ! defined( $name ) ) {
 			define( $name, $value );
 		}
-	}
-
-	/**
-	 * Retrieve our license key from the DB and setup the updater.
-	 *
-	 * @return void
-	 */
-	public function plugin_updater() {
-		// To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
-		$doing_cron = defined( 'DOING_CRON' ) && DOING_CRON;
-		if ( ! current_user_can( 'manage_options' ) && ! $doing_cron ) {
-			return;
-		}
-
-		// Retrieve our license key from the DB
-		$license_key = trim( get_option( 'edd_growcart_license_key' ) );
-
-		// Setup the updater
-		$edd_updater = new EDD_SL_Plugin_Updater(
-			WOOCOMMERCE_GROWCART_STORE_URL,
-			WOOCOMMERCE_GROWCART_FILE,
-			array(
-				'version' => '1.0',                    // current version number
-				'license' => $license_key,             // license key (used get_option above to retrieve from DB)
-				'item_id' => WOOCOMMERCE_GROWCART_STORE_ITEM_ID,       // ID of the product
-				'author'  => __( 'upnrunn™ technologies', 'woocommerce-growcart' ), // author of this plugin
-				'beta'    => false,
-			)
-		);
 	}
 }

@@ -21,11 +21,6 @@ define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_ID', 304 );
 define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_NAME', __( 'GrowCart for WooCommerce', 'woocommerce-growcart' ) );
 define( 'WOOCOMMERCE_GROWCART_LICENSE_PAGE', 'growcart-license' );
 
-// Load custom updater.
-if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
-	include dirname( WOOCOMMERCE_GROWCART_FILE ) . '/includes/EDD_SL_Plugin_Updater.php';
-}
-
 // Include the main Container class.
 include_once dirname( WOOCOMMERCE_GROWCART_FILE ) . '/includes/class-woocommerce-growcart.php';
 
