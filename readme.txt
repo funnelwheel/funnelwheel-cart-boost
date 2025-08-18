@@ -1,7 +1,7 @@
 === FunnelWheel Cart Boost ===
 Contributors: funnelwheel, upnrunn, kishores
 Donate link: https://funnelwheel.com/
-Tags: woocommerce, cart, upsell, funnel, rewards
+Tags: woocommerce, side-cart, upsell, sticky-cart, rewards
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
