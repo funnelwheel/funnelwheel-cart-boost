@@ -78,24 +78,26 @@ class FunnelWheel_Cart_Boost_Settings {
 	public function admin_notices() {
 		if ( isset( $_GET['sl_activation'] ) && ! empty( $_GET['message'] ) ) {
 
-			switch ( $_GET['sl_activation'] ) {
+			$sl_activation = sanitize_text_field( wp_unslash( $_GET['sl_activation'] ) );
+			$message       = sanitize_text_field( urldecode( wp_unslash( $_GET['message'] ) ) );
 
+			switch ( $sl_activation ) {
 				case 'false':
-					$message = urldecode( $_GET['message'] );
 					?>
-					<div class="error">
-						<p><?php echo $message; ?></p>
+					<div class="error notice">
+						<p><?php echo esc_html( $message ); ?></p>
 					</div>
 					<?php
 					break;
 
 				case 'true':
 				default:
-					// Developers can put a custom success message here for when activation is successful if they way.
+					// Optional: Add success message here.
 					break;
 			}
 		}
 	}
+
 
 	/**
 	 * Register and add settings
