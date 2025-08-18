@@ -509,24 +509,34 @@ class FunnelWheel_Cart_Boost_Rewards {
 		$filtered_rewards    = wp_list_filter( $rewards, [ 'featured' => true ] );
 
 		$featured_rewards = [];
-		foreach ( $filtered_rewards as $key => $value ) {
-			$required_cart_contents = intval( $value['minimum_cart_quantity'] ) - $cart_contents_count;
-			$reward_hint_string     = intval( $value['minimum_cart_quantity'] ) <= $cart_contents_count ? sprintf(
-				__( 'You\'ve unlocked your %s!', 'funnelwheel-cart-boost' ),
-				$value['name']
-			) : sprintf(
-				__( 'Add %d more products to unlock', 'funnelwheel-cart-boost' ),
-				$required_cart_contents
-			);
+
+		foreach ( $filtered_rewards as $key => $reward ) {
+			$minimum_quantity   = intval( $reward['minimum_cart_quantity'] );
+			$required_to_unlock = $minimum_quantity - $cart_contents_count;
+
+			if ( $minimum_quantity <= $cart_contents_count ) {
+				$hint = sprintf(
+					// translators: %s: Reward name.
+					__( "You've unlocked your %s!", 'funnelwheel-cart-boost' ),
+					$reward['name']
+				);
+			} else {
+				$hint = sprintf(
+					// translators: %d: Number of products remaining to unlock the reward.
+					__( 'Add %d more products to unlock', 'funnelwheel-cart-boost' ),
+					$required_to_unlock
+				);
+			}
 
 			$featured_rewards[] = [
-				'name' => $value['name'],
-				'hint' => $reward_hint_string,
+				'name' => $reward['name'],
+				'hint' => $hint,
 			];
 		}
 
 		return $featured_rewards;
 	}
+
 
 	/**
 	 * Get rewards progress.
@@ -589,8 +599,14 @@ class FunnelWheel_Cart_Boost_Rewards {
 		}
 
 		if ( $reward_total ) {
-			$reward_strings[] = sprintf( __( '<span>You are saving %s</span>', 'funnelwheel-cart-boost' ), wc_price( $reward_total ) );
+			$reward_amount = wc_price( $reward_total );
+
+			// translators: %s: Amount of savings (e.g. "$5.00").
+			$reward_text = sprintf( __( 'You are saving %s', 'funnelwheel-cart-boost' ), $reward_amount );
+
+			$reward_strings[] = '<span>' . esc_html( $reward_text ) . '</span>';
 		}
+
 
 		if ( empty( $reward_strings ) ) {
 			return '';
@@ -602,81 +618,92 @@ class FunnelWheel_Cart_Boost_Rewards {
 	/**
 	 * Get suggested products.
 	 *
-	 * @return void
+	 * @return array Suggested products data with title and product details.
 	 */
 	public function get_suggested_products() {
-		global $post;
+	    $max_items       = 5;
+	    $cart            = WC()->cart->get_cart();
+	    $cart_is_empty   = WC()->cart->is_empty();
+	    $exclude_ids     = wp_list_pluck( $cart, 'product_id' );
+	    $suggested_ids   = [];
+	    $title           = '';
 
-		$suggested_products = [];
-		$max_items          = 5;
-		$cart               = WC()->cart->get_cart();
-		$cart_is_empty      = WC()->cart->is_empty();
-		$exclude_ids        = wp_list_pluck( $cart, 'product_id' );
+	    // Check removed cart contents for 'Frequently bought together'
+	    if ( ! empty( WC()->cart->removed_cart_contents ) ) {
+	        $title = __( 'Frequently bought together', 'funnelwheel-cart-boost' );
 
-		if ( count( WC()->cart->removed_cart_contents ) ) {
-			$title = __( 'Frequently bought together', 'funnelwheel-cart-boost' );
+	        foreach ( WC()->cart->removed_cart_contents as $cart_item ) {
+	            $product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
 
-			foreach ( WC()->cart->removed_cart_contents as $key => $cart_item ) {
-				$product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
+	            if ( ! in_array( $product_id, $exclude_ids, true ) ) {
+	                $suggested_ids[] = $product_id;
+	            }
+	        }
+	    }
+	    // If cart empty, suggest popular products sorted by total sales
+	    elseif ( $cart_is_empty ) {
+	        $title = __( 'Popular products', 'funnelwheel-cart-boost' );
 
-				if ( ! in_array( $product_id, $exclude_ids, true ) ) {
-					$suggested_products[] = $product_id;
-				}
-			}
-		} elseif ( $cart_is_empty ) {
-			$title = __( 'Popular products', 'funnelwheel-cart-boost' );
+	        $args = [
+	            'post_type'           => 'product',
+	            'post_status'         => 'publish',
+	            'ignore_sticky_posts' => true,
+	            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+	            'meta_key'            => 'total_sales',
+	            'orderby'             => 'meta_value_num',
+	            'order'               => 'DESC',
+	            'fields'              => 'ids',
+	            'posts_per_page'      => $max_items,
+	        ];
 
-			$args = array(
-				'post_type'           => 'product',
-				'post_status'         => 'publish',
-				'ignore_sticky_posts' => true,
-				'meta_key'            => 'total_sales',
-				'order'               => 'DESC',
-				'orderby'             => 'meta_value_num',
-				'fields'              => 'ids',
-			);
+	        $query = new WP_Query( $args );
+	        $suggested_ids = array_merge( $suggested_ids, wp_parse_id_list( $query->posts ) );
+	    }
+	    // Otherwise, suggest related products for items in cart
+	    else {
+	        $title = __( 'Products you may like', 'funnelwheel-cart-boost' );
 
-			$query = new WP_Query( $args );
+	        foreach ( $cart as $cart_item ) {
+	            if ( count( $suggested_ids ) >= $max_items ) {
+	                break;
+	            }
 
-			$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $query->posts ) );
-		} else {
-			$title = __( 'Products you may like', 'funnelwheel-cart-boost' );
+	            $product_id       = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
+	            $related_products = wc_get_related_products( $product_id, $max_items, $exclude_ids );
 
-			foreach ( $cart as $cart_item ) {
-				if ( count( $suggested_products ) >= $max_items ) {
-					continue;
-				}
+	            $suggested_ids = array_merge( $suggested_ids, wp_parse_id_list( $related_products ) );
+	            $suggested_ids = array_unique( $suggested_ids );
+	        }
+	    }
 
-				$product_id         = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
-				$related_products   = wc_get_related_products( $product_id, $max_items, $exclude_ids );
-				$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $related_products ) );
-				$suggested_products = array_unique( $suggested_products );
-			}
-		}
+	    $products = [];
+	    foreach ( $suggested_ids as $product_id ) {
+	        if ( count( $products ) >= $max_items ) {
+	            break;
+	        }
 
-		$products = [];
+	        $_product = wc_get_product( $product_id );
+	        if ( ! $_product || 'simple' !== $_product->get_type() ) {
+	            continue;
+	        }
 
-		foreach ( $suggested_products as $product_id ) {
-			$_product = wc_get_product( $product_id );
-			if ( ( count( $products ) >= $max_items ) || ! ( 'simple' === $_product->get_type() ) ) {
-				continue;
-			}
+	        $products[] = [
+	            'product_id'                => $product_id,
+	            'product_title'             => $_product->get_title(),
+	            'product_short_description' => $_product->get_short_description(),
+	            'product_permalink'         => $_product->is_visible() ? $_product->get_permalink() : '',
+	            'product_thumbnail'         => $_product->get_image(),
+	            'product_price'             => WC()->cart->get_product_price( $_product ),
+	        ];
+	    }
 
-			$products[] = [
-				'product_id'                => $product_id,
-				'product_title'             => $_product->get_title(),
-				'product_short_description' => $_product->get_short_description(),
-				'product_permalink'         => $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '',
-				'product_thumbnail'         => $_product->get_image(),
-				'product_price'             => WC()->cart->get_product_price( $_product ),
-			];
-		}
-
-		return [
-			'title'    => $title,
-			'products' => $products,
-		];
+	    return [
+	        'title'    => $title,
+	        'products' => $products,
+	    ];
 	}
+
+
 
 	/**
 	 * Sort rewards by minimum cart quantity.
