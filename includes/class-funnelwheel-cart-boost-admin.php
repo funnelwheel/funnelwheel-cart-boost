@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 
 use WC_AJAX;
 
-class WooCommerce_Growcart_Admin {
+class FunnelWheel_Cart_Boost_Admin {
 	/**
 	 * The single instance of the class.
 	 *
@@ -43,8 +43,8 @@ class WooCommerce_Growcart_Admin {
 	 */
 	public function set_script_translations() {
 		wp_set_script_translations(
-			'woocommerce-growcart',
-			'woocommerce-growcart',
+			'funnelwheel-cart-boost',
+			'funnelwheel-cart-boost',
 			plugin_dir_path( WOOCOMMERCE_GROWCART_FILE ) . 'languages'
 		);
 	}

@@ -7,10 +7,10 @@ use WP_Query;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * WooCommerce_GrowCart_Rewards class.
+ * FunnelWheel_Cart_Boost_Rewards class.
  * @var [type]
  */
-class WooCommerce_GrowCart_Rewards {
+class FunnelWheel_Cart_Boost_Rewards {
 	/**
 	 * Store list of gift card IDs.
 	 *
@@ -138,7 +138,7 @@ class WooCommerce_GrowCart_Rewards {
 		if ( in_array( $cart_item_key, self::$gift_cart_ids ) ) {
 			$product_name_postfix = '<span class="growcart-free-gift-label">' . apply_filters(
 				'growcart_free_gift_product_name_postfix',
-				sprintf( ' - %s', esc_html__( 'Free Gift', 'woocommerce-growcart' ) )
+				sprintf( ' - %s', esc_html__( 'Free Gift', 'funnelwheel-cart-boost' ) )
 			) . '</span>';
 		}
 
@@ -474,11 +474,11 @@ class WooCommerce_GrowCart_Rewards {
 		$currency_symbol    = get_woocommerce_currency_symbol();
 
 		if ( 'minimum_cart_quantity' === $type ) {
-			$reward_hint_string     = '' === $next_reward['hint'] ? __( '**Add** {{quantity}} more products to get {{name}}', 'woocommerce-growcart' ) : $next_reward['hint'];
+			$reward_hint_string     = '' === $next_reward['hint'] ? __( '**Add** {{quantity}} more products to get {{name}}', 'funnelwheel-cart-boost' ) : $next_reward['hint'];
 			$cart_contents_count    = WC()->cart->get_cart_contents_count();
 			$required_cart_quantity = intval( $next_reward['minimum_cart_quantity'] ) - $cart_contents_count;
 		} else {
-			$reward_hint_string   = '' === $next_reward['hint'] ? __( '**Spend** {{amount}} more to get {{name}}', 'woocommerce-growcart' ) : $next_reward['hint'];
+			$reward_hint_string   = '' === $next_reward['hint'] ? __( '**Spend** {{amount}} more to get {{name}}', 'funnelwheel-cart-boost' ) : $next_reward['hint'];
 			$cart_subtotal        = WC()->cart->subtotal;
 			$required_cart_amount = intval( $next_reward['minimum_cart_amount'] ) - $cart_subtotal;
 		}
@@ -512,10 +512,10 @@ class WooCommerce_GrowCart_Rewards {
 		foreach ( $filtered_rewards as $key => $value ) {
 			$required_cart_contents = intval( $value['minimum_cart_quantity'] ) - $cart_contents_count;
 			$reward_hint_string     = intval( $value['minimum_cart_quantity'] ) <= $cart_contents_count ? sprintf(
-				__( 'You\'ve unlocked your %s!', 'woocommerce-growcart' ),
+				__( 'You\'ve unlocked your %s!', 'funnelwheel-cart-boost' ),
 				$value['name']
 			) : sprintf(
-				__( 'Add %d more products to unlock', 'woocommerce-growcart' ),
+				__( 'Add %d more products to unlock', 'funnelwheel-cart-boost' ),
 				$required_cart_contents
 			);
 
@@ -573,7 +573,7 @@ class WooCommerce_GrowCart_Rewards {
 
 		foreach ( $current_rewards as $key => $value ) {
 			if ( 'free_shipping' === $value['type'] ) {
-				$reward_strings[] = '<span class="CartTotals__free-shipping">' . get_icon( 'truck' ) . '<span> ' . __( 'Free Shipping', 'woocommerce-growcart' ) . '</span>' . '</span>';
+				$reward_strings[] = '<span class="CartTotals__free-shipping">' . get_icon( 'truck' ) . '<span> ' . __( 'Free Shipping', 'funnelwheel-cart-boost' ) . '</span>' . '</span>';
 			} elseif ( max( $rewards_by_type[ $value['type'] ] ) === $value['value'] ) {
 				switch ( $value['type'] ) {
 					case 'percent':
@@ -589,7 +589,7 @@ class WooCommerce_GrowCart_Rewards {
 		}
 
 		if ( $reward_total ) {
-			$reward_strings[] = sprintf( __( '<span>You are saving %s</span>', 'woocommerce-growcart' ), wc_price( $reward_total ) );
+			$reward_strings[] = sprintf( __( '<span>You are saving %s</span>', 'funnelwheel-cart-boost' ), wc_price( $reward_total ) );
 		}
 
 		if ( empty( $reward_strings ) ) {
@@ -614,7 +614,7 @@ class WooCommerce_GrowCart_Rewards {
 		$exclude_ids        = wp_list_pluck( $cart, 'product_id' );
 
 		if ( count( WC()->cart->removed_cart_contents ) ) {
-			$title = __( 'Frequently bought together', 'woocommerce-growcart' );
+			$title = __( 'Frequently bought together', 'funnelwheel-cart-boost' );
 
 			foreach ( WC()->cart->removed_cart_contents as $key => $cart_item ) {
 				$product_id = $cart_item['variation_id'] ? $cart_item['variation_id'] : $cart_item['product_id'];
@@ -624,7 +624,7 @@ class WooCommerce_GrowCart_Rewards {
 				}
 			}
 		} elseif ( $cart_is_empty ) {
-			$title = __( 'Popular products', 'woocommerce-growcart' );
+			$title = __( 'Popular products', 'funnelwheel-cart-boost' );
 
 			$args = array(
 				'post_type'           => 'product',
@@ -640,7 +640,7 @@ class WooCommerce_GrowCart_Rewards {
 
 			$suggested_products = array_merge( $suggested_products, wp_parse_id_list( $query->posts ) );
 		} else {
-			$title = __( 'Products you may like', 'woocommerce-growcart' );
+			$title = __( 'Products you may like', 'funnelwheel-cart-boost' );
 
 			foreach ( $cart as $cart_item ) {
 				if ( count( $suggested_products ) >= $max_items ) {

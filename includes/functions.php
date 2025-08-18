@@ -53,7 +53,7 @@ function get_cart_coupons() {
 		if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->get_code(), WC()->cart->display_cart_ex_tax ) ) {
 			$discount_amount_html = '-' . wc_price( $amount );
 		} elseif ( $coupon->get_free_shipping() ) {
-			$discount_amount_html = __( 'Free shipping coupon', 'woocommerce-growcart' );
+			$discount_amount_html = __( 'Free shipping coupon', 'funnelwheel-cart-boost' );
 		}
 
 		$discount_amount_html = apply_filters( 'woocommerce_growcart_coupon_discount_amount_html', $discount_amount_html, $coupon );
@@ -104,19 +104,19 @@ function get_icon( $name = '' ) {
 function get_reward_types() {
 	return [
 		[
-			'label' => __( 'Free Shipping', 'woocommerce-growcart' ),
+			'label' => __( 'Free Shipping', 'funnelwheel-cart-boost' ),
 			'value' => 'free_shipping',
 		],
 		[
-			'label' => __( 'Percentage discount', 'woocommerce-growcart' ),
+			'label' => __( 'Percentage discount', 'funnelwheel-cart-boost' ),
 			'value' => 'percent',
 		],
 		[
-			'label' => __( 'Fixed cart discount', 'woocommerce-growcart' ),
+			'label' => __( 'Fixed cart discount', 'funnelwheel-cart-boost' ),
 			'value' => 'fixed_cart',
 		],
 		[
-			'label' => __( 'Gift Card', 'woocommerce-growcart' ),
+			'label' => __( 'Gift Card', 'funnelwheel-cart-boost' ),
 			'value' => 'gift',
 		],
 	];
@@ -130,11 +130,11 @@ function get_reward_types() {
 function get_reward_rules() {
 	return [
 		[
-			'label' => __( 'Minimum cart quantity', 'woocommerce-growcart' ),
+			'label' => __( 'Minimum cart quantity', 'funnelwheel-cart-boost' ),
 			'value' => 'minimum_cart_quantity',
 		],
 		[
-			'label' => __( 'Minimum cart amount', 'woocommerce-growcart' ),
+			'label' => __( 'Minimum cart amount', 'funnelwheel-cart-boost' ),
 			'value' => 'minimum_cart_amount',
 		],
 	];

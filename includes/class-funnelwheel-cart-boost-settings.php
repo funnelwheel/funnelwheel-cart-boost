@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 
 use WC_AJAX;
 
-class WooCommerce_Growcart_Settings {
+class FunnelWheel_Cart_Boost_Settings {
 	/**
 	 * The single instance of the class.
 	 *
@@ -41,7 +41,7 @@ class WooCommerce_Growcart_Settings {
 	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'init' ] );
-		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
+		//add_action( 'admin_notices', [ $this, 'admin_notices' ] );
 		add_action( 'admin_init', [ $this, 'register_settings' ] );
 		add_action( 'admin_menu', array( $this, 'add_plugin_pages' ) );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
@@ -56,11 +56,11 @@ class WooCommerce_Growcart_Settings {
 		$this->settings_group = 'woocommerce_growcart';
 		$this->settings       = [
 			'rewards' => [
-				__( 'Rewards', 'woocommerce-growcart' ),
+				__( 'Rewards', 'funnelwheel-cart-boost' ),
 				[
 					[
 						'name'       => 'woocommerce_growcart_rewards',
-						'std'        => json_encode( woocommerce_growcart()->rewards->get_default_rewards() ),
+						'std'        => json_encode( funnelwheel_cart_boost()->rewards->get_default_rewards() ),
 						'desc'       => '',
 						'type'       => 'rewards',
 						'attributes' => [],
@@ -118,10 +118,10 @@ class WooCommerce_Growcart_Settings {
 	 */
 	public function add_plugin_pages() {
 		add_menu_page(
-			__( 'GrowCart Settings', 'woocommerce-growcart' ),
-			__( 'GrowCart', 'woocommerce-growcart' ),
+			__( 'Cart Boost Settings', 'funnelwheel-cart-boost' ),
+			__( 'Cart Boost', 'funnelwheel-cart-boost' ),
 			'manage_options',
-			'growcart',
+			'cart-boost',
 			array( $this, 'menu_page_html' ),
 			'dashicons-cart',
 			58
@@ -234,7 +234,7 @@ class WooCommerce_Growcart_Settings {
 		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/rewards.asset.php';
 
 		wp_enqueue_script(
-			'woocommerce-growcart',
+			'funnelwheel-cart-boost',
 			plugins_url( 'build/rewards.js', WOOCOMMERCE_GROWCART_FILE ),
 			$asset_file['dependencies'],
 			$asset_file['version'],
@@ -242,7 +242,7 @@ class WooCommerce_Growcart_Settings {
 		);
 
 		wp_localize_script(
-			'woocommerce-growcart',
+			'funnelwheel-cart-boost',
 			'woocommerce_growcart',
 			[
 				'ajaxURL'              => admin_url( 'admin-ajax.php' ),
@@ -286,7 +286,7 @@ class WooCommerce_Growcart_Settings {
 		);
 
 		wp_enqueue_style(
-			'woocommerce-growcart',
+			'funnelwheel-cart-boost',
 			plugins_url( 'build/rewards.css', WOOCOMMERCE_GROWCART_FILE ),
 			[ 'wp-components' ],
 			$asset_file['version']
