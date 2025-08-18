@@ -22,11 +22,11 @@ define( 'WOOCOMMERCE_GROWCART_STORE_ITEM_NAME', __( 'GrowCart for WooCommerce', 
 define( 'WOOCOMMERCE_GROWCART_LICENSE_PAGE', 'growcart-license' );
 
 // Include the main Container class.
-include_once dirname( WOOCOMMERCE_GROWCART_FILE ) . '/includes/class-woocommerce-growcart.php';
+include_once dirname( WOOCOMMERCE_GROWCART_FILE ) . '/includes/class-funnelwheel-cart-boost.php';
 
 // Returns the main instance of Container.
 function funnelwheel_cart_boost() {
-	return \Upnrunn\WooCommerce_GrowCart::instance();
+	return \Upnrunn\Funnelwheel_Cart_Boost::instance();
 }
 
 // Global for backwards compatibility.
