@@ -1,16 +1,19 @@
 <?php
 /**
  * Plugin Name:     FunnelWheel Cart Boost
- * Plugin URI:      http://funnelwheel.com/cart-boost
+ * Plugin URI:      https://funnelwheel.com/cart-boost
  * Description:     Cart Boost for WooCommerce delivers mobile-first, CRO-optimized site experiences that get you more customers, that spend more and subscribe longer.
- * Author:          Funnelwheel
- * Author URI:      http://funnelwheel.com
+ * Author:          FunnelWheel
+ * Author URI:      https://funnelwheel.com
+ * Version:         0.1.0
  * Text Domain:     funnelwheel-cart-boost
  * Domain Path:     /languages
- * Version:         0.1.0
+ * License:         GPLv2 or later
+ * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  *
  * @package         FunnelWheel_Cart_Boost
  */
+
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;

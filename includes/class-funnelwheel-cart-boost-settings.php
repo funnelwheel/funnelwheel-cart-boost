@@ -76,26 +76,6 @@ class FunnelWheel_Cart_Boost_Settings {
 	 * @return void
 	 */
 	public function admin_notices() {
-		if ( isset( $_GET['sl_activation'] ) && ! empty( $_GET['message'] ) ) {
-
-			$sl_activation = sanitize_text_field( wp_unslash( $_GET['sl_activation'] ) );
-			$message       = sanitize_text_field( urldecode( wp_unslash( $_GET['message'] ) ) );
-
-			switch ( $sl_activation ) {
-				case 'false':
-					?>
-					<div class="error notice">
-						<p><?php echo esc_html( $message ); ?></p>
-					</div>
-					<?php
-					break;
-
-				case 'true':
-				default:
-					// Optional: Add success message here.
-					break;
-			}
-		}
 	}
 
 
@@ -108,10 +88,18 @@ class FunnelWheel_Cart_Boost_Settings {
 				if ( isset( $option['std'] ) ) {
 					add_option( $option['name'], $option['std'] );
 				}
-				register_setting( $this->settings_group, $option['name'] );
+
+				register_setting(
+					$this->settings_group,
+					$option['name'],
+					[
+						'sanitize_callback' => isset( $option['sanitize_callback'] ) ? $option['sanitize_callback'] : 'sanitize_text_field',
+					]
+				);
 			}
 		}
 	}
+
 
 	/**
 	 * Add plugin pages.

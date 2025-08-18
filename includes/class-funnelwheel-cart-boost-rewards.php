@@ -37,7 +37,7 @@ class FunnelWheel_Cart_Boost_Rewards {
 		add_filter( 'woocommerce_cart_item_name', [ $this, 'add_gift_label_in_cart' ], 10, 3 );
 		add_filter( 'woocommerce_get_shop_coupon_data', [ $this, 'filter_shop_coupon_data' ], 10, 2 );
 		add_filter( 'woocommerce_package_rates', [ $this, 'filter_package_rates' ], 10, 2 );
-		add_action( 'growcart_before_cart_information', [ $this, 'auto_add_coupons' ] );
+		add_action( 'cart_boost_before_cart_information', [ $this, 'auto_add_coupons' ] );
 		add_action( 'woocommerce_before_cart_totals', [ $this, 'conditionally_hide_rewards' ] );
 		add_action( 'woocommerce_review_order_before_cart_contents', [ $this, 'conditionally_hide_rewards' ] );
 	}
@@ -767,26 +767,38 @@ class FunnelWheel_Cart_Boost_Rewards {
 	/**
 	 * Get active reward.
 	 *
-	 * @return void
+	 * @return array|null
 	 */
 	public function get_active_reward() {
 		$available_rewards = $this->get_available_rewards();
-		if ( empty( $available_rewards ) ) {
+
+		if ( empty( $available_rewards ) || ! is_array( $available_rewards ) ) {
 			return null;
 		}
 
-		$active_reward_id = isset( $_GET['active_reward_id'] ) ? sanitize_text_field( $_GET['active_reward_id'] ) : '';
-		$filters          = '' === $active_reward_id ? [ 'enabled' => true ] : [ 'id' => $active_reward_id ];
+		$active_reward_id = '';
+		$filters          = [ 'enabled' => true ];
 
-		$available_rewards_enabled = wp_list_filter( $available_rewards, $filters );
-		if ( empty( $available_rewards_enabled ) ) {
+		// Check if `active_reward_id` and a valid nonce are present in the query string.
+		if ( isset( $_GET['active_reward_id'], $_GET['_wpnonce'] ) ) {
+			$nonce = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
+
+			if ( wp_verify_nonce( $nonce, 'get_active_reward_nonce' ) ) {
+				$active_reward_id = sanitize_text_field( wp_unslash( $_GET['active_reward_id'] ) );
+				$filters          = [ 'id' => $active_reward_id ]; // Override default filters if nonce verified.
+			}
+		}
+
+		$filtered_rewards = wp_list_filter( $available_rewards, $filters );
+
+		if ( empty( $filtered_rewards ) ) {
 			return null;
 		}
 
-		$rewards = array_values( $available_rewards_enabled );
-
-		return $rewards[0];
+		return array_values( $filtered_rewards )[0];
 	}
+
+
 
 	/**
 	 * Get active reward rules.

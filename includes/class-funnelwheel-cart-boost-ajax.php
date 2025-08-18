@@ -40,7 +40,7 @@ class FunnelWheel_Cart_Boost_Ajax {
 		$filtered_rewards             = funnelwheel_cart_boost()->rewards->get_filtered_rewards();
 		$cart_totals_order_total_html = '';
 
-		do_action( 'growcart_before_cart_information' );
+		do_action( 'cart_boost_before_cart_information' );
 
 		if ( isset( $filtered_rewards['current_rewards'] ) && count( $filtered_rewards['current_rewards'] ) ) {
 			$current_reward_ids = wp_list_pluck( $filtered_rewards['current_rewards'], 'id' );
