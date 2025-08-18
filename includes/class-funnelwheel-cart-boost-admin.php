@@ -45,7 +45,7 @@ class FunnelWheel_Cart_Boost_Admin {
 		wp_set_script_translations(
 			'funnelwheel-cart-boost',
 			'funnelwheel-cart-boost',
-			plugin_dir_path( WOOCOMMERCE_GROWCART_FILE ) . 'languages'
+			plugin_dir_path( FUNNELWHEEL_CART_BOOST_FILE ) . 'languages'
 		);
 	}
 }

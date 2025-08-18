@@ -45,7 +45,7 @@ final class FunnelWheel_Cart_Boost {
 	 * Define WooCommerce_Grow_Cart constants.
 	 */
 	private function define_constants() {
-		$this->define( 'WOOCOMMERCE_GROWCART_ABSPATH', dirname( WOOCOMMERCE_GROWCART_FILE ) . '/' );
+		$this->define( 'FUNNELWHEEL_CART_BOOST_ABSPATH', dirname( FUNNELWHEEL_CART_BOOST_FILE ) . '/' );
 	}
 
 	/**
@@ -53,11 +53,11 @@ final class FunnelWheel_Cart_Boost {
 	 * @return [type] [description]
 	 */
 	private function includes() {
-		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/functions.php';
-		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-funnelwheel-cart-boost-ajax.php';
-		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-funnelwheel-cart-boost-rewards.php';
-		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-funnelwheel-cart-boost-settings.php';
-		include_once WOOCOMMERCE_GROWCART_ABSPATH . 'includes/class-funnelwheel-cart-boost-admin.php';
+		include_once FUNNELWHEEL_CART_BOOST_ABSPATH . 'includes/functions.php';
+		include_once FUNNELWHEEL_CART_BOOST_ABSPATH . 'includes/class-funnelwheel-cart-boost-ajax.php';
+		include_once FUNNELWHEEL_CART_BOOST_ABSPATH . 'includes/class-funnelwheel-cart-boost-rewards.php';
+		include_once FUNNELWHEEL_CART_BOOST_ABSPATH . 'includes/class-funnelwheel-cart-boost-settings.php';
+		include_once FUNNELWHEEL_CART_BOOST_ABSPATH . 'includes/class-funnelwheel-cart-boost-admin.php';
 	}
 
 	/**
@@ -90,11 +90,11 @@ final class FunnelWheel_Cart_Boost {
 			return;
 		}
 
-		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/index.asset.php';
+		$asset_file = include FUNNELWHEEL_CART_BOOST_ABSPATH . 'build/index.asset.php';
 
 		wp_enqueue_script(
 			'funnelwheel-cart-boost',
-			plugins_url( 'build/index.js', WOOCOMMERCE_GROWCART_FILE ),
+			plugins_url( 'build/index.js', FUNNELWHEEL_CART_BOOST_FILE ),
 			array_merge( $asset_file['dependencies'], [ 'wc-cart-fragments' ] ),
 			$asset_file['version'],
 			true
@@ -116,7 +116,7 @@ final class FunnelWheel_Cart_Boost {
 		if ( function_exists( 'is_product' ) && is_product() ) {
 			wp_enqueue_script(
 				'woocommerce-growcart-ajax-add-to-cart',
-				plugins_url( 'build/ajax-add-to-cart.js', WOOCOMMERCE_GROWCART_FILE ),
+				plugins_url( 'build/ajax-add-to-cart.js', FUNNELWHEEL_CART_BOOST_FILE ),
 				array_merge( $asset_file['dependencies'], [ 'jquery' ] ),
 				$asset_file['version'],
 				true
@@ -125,7 +125,7 @@ final class FunnelWheel_Cart_Boost {
 
 		wp_enqueue_style(
 			'funnelwheel-cart-boost',
-			plugins_url( 'build/index.css', WOOCOMMERCE_GROWCART_FILE ),
+			plugins_url( 'build/index.css', FUNNELWHEEL_CART_BOOST_FILE ),
 			[],
 			$asset_file['version']
 		);

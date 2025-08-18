@@ -221,11 +221,11 @@ class FunnelWheel_Cart_Boost_Settings {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		$asset_file = include WOOCOMMERCE_GROWCART_ABSPATH . 'build/rewards.asset.php';
+		$asset_file = include FUNNELWHEEL_CART_BOOST_ABSPATH . 'build/rewards.asset.php';
 
 		wp_enqueue_script(
 			'funnelwheel-cart-boost',
-			plugins_url( 'build/rewards.js', WOOCOMMERCE_GROWCART_FILE ),
+			plugins_url( 'build/rewards.js', FUNNELWHEEL_CART_BOOST_FILE ),
 			$asset_file['dependencies'],
 			$asset_file['version'],
 			true
@@ -277,7 +277,7 @@ class FunnelWheel_Cart_Boost_Settings {
 
 		wp_enqueue_style(
 			'funnelwheel-cart-boost',
-			plugins_url( 'build/rewards.css', WOOCOMMERCE_GROWCART_FILE ),
+			plugins_url( 'build/rewards.css', FUNNELWHEEL_CART_BOOST_FILE ),
 			[ 'wp-components' ],
 			$asset_file['version']
 		);
