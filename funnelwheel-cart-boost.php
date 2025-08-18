@@ -25,9 +25,9 @@ define( 'WOOCOMMERCE_GROWCART_LICENSE_PAGE', 'growcart-license' );
 include_once dirname( WOOCOMMERCE_GROWCART_FILE ) . '/includes/class-woocommerce-growcart.php';
 
 // Returns the main instance of Container.
-function woocommerce_growcart() {
+function funnelwheel_cart_boost() {
 	return \Upnrunn\WooCommerce_GrowCart::instance();
 }
 
 // Global for backwards compatibility.
-$GLOBALS['woocommerce_growcart'] = woocommerce_growcart();
+$GLOBALS['funnelwheel_cart_boost'] = funnelwheel_cart_boost();
