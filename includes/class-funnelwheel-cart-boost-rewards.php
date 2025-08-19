@@ -604,7 +604,7 @@ class FunnelWheel_Cart_Boost_Rewards {
 			// translators: %s: Amount of savings (e.g. "$5.00").
 			$reward_text = sprintf( __( 'You are saving %s', 'funnelwheel-cart-boost' ), $reward_amount );
 
-			$reward_strings[] = '<span>' . esc_html( $reward_text ) . '</span>';
+			$reward_strings[] = '<span>' . wp_kses_post( $reward_text ) . '</span>';
 		}
 
 
